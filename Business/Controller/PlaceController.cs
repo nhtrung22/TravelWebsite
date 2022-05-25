@@ -18,14 +18,20 @@ namespace TravelWebsite.Controllers
             _placeService = placeService;
         }
 
-
-        [HttpGet]
+        [HttpGet("getAll")]
         public Task Get()
         {
             return _placeService.GetAllAsysnc();
         }
 
-        
+
+        [HttpGet("sort")]
+        public Task Sort()
+        {
+            return _placeService.Sort();
+        }
+
+
 
     }
 }

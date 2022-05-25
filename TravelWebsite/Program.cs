@@ -27,6 +27,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IPlaceService, PlaceService>();
+
+
 var app = builder.Build();
 
 var config = new MapperConfiguration(cfg =>

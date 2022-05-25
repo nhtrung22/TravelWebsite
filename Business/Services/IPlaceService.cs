@@ -10,5 +10,7 @@ namespace Business.Services
         //Task<List<PlaceDTO>> GetAsysnc(int id);
         Task CreatePlace(PlaceDTO placeDto);
 
+        Task<List<PlaceDTO>> Sort();
+
     }
 }

@@ -13,6 +13,8 @@ namespace DataAccess.DTO
 
         public string Address { get; set; }
 
+        public string Price { get; set; }
+
 
     }
 }
