@@ -16,8 +16,8 @@ namespace DataAccess.Configurations
         {
             builder.ToTable("PlaceType");
 
-            builder.HasKey(x => x.PlaceTypeID);
-            builder.Property(x => x.PlaceTypeID).UseIdentityColumn();
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseIdentityColumn();
 
 
             builder.Property(x => x.PlaceTypeName).IsRequired().HasMaxLength(50);

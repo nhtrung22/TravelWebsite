@@ -24,17 +24,8 @@ namespace Business.Services.PlaceService
 
         public async Task<List<PlaceDTO>> GetAllAsysnc()
         {
-            //using (var context = new TravelDbContext())
-            //{
-            //    return await context.Place.ToListAsync();
-            //}
-            var listPlace = new List<Place>()
-            {
-
-                new Place(){ Address ="a", PlaceName = "b"},
-                new Place(){ Address ="c", PlaceName = "d"}
-            };
-            return _mapper.Map<List<PlaceDTO>>(listPlace);
+            var placeList = await _context.Place.ToListAsync();
+            return _mapper.Map<List<PlaceDTO>>(placeList);
         }
 
         public async Task CreatePlace(PlaceDTO placeDto)
@@ -46,16 +37,13 @@ namespace Business.Services.PlaceService
 
         public async Task<List<PlaceDTO>> Sort()
         {
-            var listPlace = new List<Place>()
-            {
+            var placeList = await _context.Place.ToListAsync();
 
-                new Place(){ Address ="a", PlaceName = "b"},
-                new Place(){ Address ="c", PlaceName = "d",}
-            };
 
-            var result = from Place in listPlace
-                         orderby Place.PlaceName ascending
+            var result = from Place in placeList
+                         orderby Place.PlaceName descending
                          select Place;
+
             //foreach (var Place in result) Console.WriteLine($"{Place.PlaceName}");
 
             return _mapper.Map<List<PlaceDTO>>(result);

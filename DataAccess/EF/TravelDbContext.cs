@@ -17,9 +17,12 @@ namespace DataAccess.EF
 
             // Relationship
             // Place - PlaceDetail
+            //modelBuilder.Entity<Place>().HasOne<Booking>().WithMany().HasForeignKey(e => e.Id);
+
             modelBuilder.Entity<Place>()
-             .Property(f => f.PlaceID)
+             .Property(f => f.Id)
              .ValueGeneratedOnAdd();
+
 
             modelBuilder.Entity<PlaceDetail>()
            .Property(f => f.DetailID)
@@ -27,17 +30,17 @@ namespace DataAccess.EF
 
             // Place - Booking
             modelBuilder.Entity<Booking>()
-            .Property(f => f.BookingID)
+            .Property(f => f.Id)
             .ValueGeneratedOnAdd();
 
             // City - Place
             modelBuilder.Entity<City>()
-            .Property(f => f.CityID)
+            .Property(f => f.Id)
             .ValueGeneratedOnAdd();
 
             // PlaceType - Place
             modelBuilder.Entity<PlaceType>()
-             .Property(f => f.PlaceTypeID)
+             .Property(f => f.Id)
              .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<User>()
@@ -60,7 +63,7 @@ namespace DataAccess.EF
 
 
             // Seeding data
-            //modelBuilder.Seed();
+            modelBuilder.Seed();
         }
 
         public DbSet<User> User { set; get; }

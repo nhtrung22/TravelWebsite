@@ -10,7 +10,7 @@ namespace DataAccess.Entities
     public class PlaceType
     {
         [Key]
-        public int PlaceTypeID { get; set; } // PK
+        public int Id { get; set; } // PK
 
         public string PlaceTypeName { get; set; }
 

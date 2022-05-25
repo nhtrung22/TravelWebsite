@@ -18,17 +18,17 @@ namespace TravelWebsite.Controllers
             _placeService = placeService;
         }
 
-        [HttpGet("getAll")]
-        public Task Get()
+        [HttpGet]
+        public async Task<List<PlaceDTO>> Get()
         {
-            return _placeService.GetAllAsysnc();
+            return  await _placeService.GetAllAsysnc();
         }
 
 
         [HttpGet("sort")]
-        public Task Sort()
+        public async Task<List<PlaceDTO>> Sort()
         {
-            return _placeService.Sort();
+            return await _placeService.Sort();
         }
 
 

@@ -18,8 +18,8 @@ namespace DataAccess.Configurations
         {
             builder.ToTable("Place");
 
-            builder.HasKey(x => x.PlaceID);
-            builder.Property(x => x.PlaceID).UseIdentityColumn();
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseIdentityColumn();
 
 
             builder.Property(x => x.PlaceName).IsRequired().HasMaxLength(100);

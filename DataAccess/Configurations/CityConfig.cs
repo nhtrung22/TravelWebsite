@@ -16,8 +16,8 @@ namespace DataAccess.Configurations
         {
             builder.ToTable("City");
 
-            builder.HasKey(x => x.CityID);
-            builder.Property(x => x.CityID).UseIdentityColumn();
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseIdentityColumn();
 
 
             builder.Property(x => x.CityName).IsRequired().HasMaxLength(50);

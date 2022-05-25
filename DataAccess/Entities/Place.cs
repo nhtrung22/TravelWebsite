@@ -10,7 +10,7 @@ namespace DataAccess.Entities
     public class Place
     {
         [Key]
-        public int PlaceID { get; set; } // PK
+        public int Id { get; set; } // PK
 
         public string PlaceName { get; set; } 
 
@@ -31,16 +31,16 @@ namespace DataAccess.Entities
         public virtual ICollection<PlaceDetail> PlaceDetail { get; set; }
 
         // Place - Booking
-        public int BookingID { get; set; }
-        public virtual Booking Booking { get; set; }
+        //public int BookingID { get; set; }
+        //public virtual Booking Booking { get; set; }
 
         // City - Place
-        public int CityID { get; set; }
+        //public int CityID { get; set; }
 
-        public virtual City City { get; set; }
+        //public virtual City City { get; set; }
 
         // PlaceType - Place
-        public int PlaceTypeID { get; set; }
-        public virtual PlaceType PlaceType { get; set; }
+        //public int PlaceTypeID { get; set; }
+        //public virtual PlaceType PlaceType { get; set; }
     }
 }

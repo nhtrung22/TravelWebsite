@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class initdb : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace DataAccess.Migrations
                 name: "Booking",
                 columns: table => new
                 {
-                    BookingID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BookingFromTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     BookingToTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -29,35 +29,35 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Booking", x => x.BookingID);
+                    table.PrimaryKey("PK_Booking", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "City",
                 columns: table => new
                 {
-                    CityID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CityName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_City", x => x.CityID);
+                    table.PrimaryKey("PK_City", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "PlaceType",
                 columns: table => new
                 {
-                    PlaceTypeID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PlaceTypeName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PlaceTypeDescription = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PlaceType", x => x.PlaceTypeID);
+                    table.PrimaryKey("PK_PlaceType", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -83,7 +83,7 @@ namespace DataAccess.Migrations
                 name: "Place",
                 columns: table => new
                 {
-                    PlaceID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PlaceName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
@@ -92,31 +92,28 @@ namespace DataAccess.Migrations
                     Longtitude = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Thumb = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BookingID = table.Column<int>(type: "int", nullable: false),
-                    CityID = table.Column<int>(type: "int", nullable: false),
-                    PlaceTypeID = table.Column<int>(type: "int", nullable: false)
+                    BookingId = table.Column<int>(type: "int", nullable: true),
+                    CityId = table.Column<int>(type: "int", nullable: true),
+                    PlaceTypeId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Place", x => x.PlaceID);
+                    table.PrimaryKey("PK_Place", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Place_Booking_BookingID",
-                        column: x => x.BookingID,
+                        name: "FK_Place_Booking_BookingId",
+                        column: x => x.BookingId,
                         principalTable: "Booking",
-                        principalColumn: "BookingID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Place_City_CityID",
-                        column: x => x.CityID,
+                        name: "FK_Place_City_CityId",
+                        column: x => x.CityId,
                         principalTable: "City",
-                        principalColumn: "CityID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Place_PlaceType_PlaceTypeID",
-                        column: x => x.PlaceTypeID,
+                        name: "FK_Place_PlaceType_PlaceTypeId",
+                        column: x => x.PlaceTypeId,
                         principalTable: "PlaceType",
-                        principalColumn: "PlaceTypeID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -131,38 +128,67 @@ namespace DataAccess.Migrations
                     CarParking = table.Column<bool>(type: "bit", nullable: false),
                     Size = table.Column<int>(type: "int", nullable: false),
                     Square = table.Column<int>(type: "int", nullable: false),
-                    PlaceID = table.Column<int>(type: "int", nullable: false)
+                    PlaceId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PlaceDetail", x => x.DetailID);
                     table.ForeignKey(
-                        name: "FK_PlaceDetail_Place_PlaceID",
-                        column: x => x.PlaceID,
+                        name: "FK_PlaceDetail_Place_PlaceId",
+                        column: x => x.PlaceId,
                         principalTable: "Place",
-                        principalColumn: "PlaceID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Place_BookingID",
-                table: "Place",
-                column: "BookingID");
+            migrationBuilder.InsertData(
+                table: "Booking",
+                columns: new[] { "Id", "BookingDate", "BookingFromTime", "BookingToTime", "Deposit", "FullName", "NumberOfAdult", "NumberOfKid", "PaymentStatus", "PhoneNumber", "Price", "Status" },
+                values: new object[] { 1, new DateTime(2022, 5, 10, 14, 21, 42, 262, DateTimeKind.Local).AddTicks(6994), new DateTime(2022, 5, 15, 14, 21, 42, 262, DateTimeKind.Local).AddTicks(6971), new DateTime(2022, 6, 4, 14, 21, 42, 262, DateTimeKind.Local).AddTicks(6991), 0m, "Nguyen A", 1, 3, 0, "8983424", 50m, 0 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Place_CityID",
-                table: "Place",
-                column: "CityID");
+            migrationBuilder.InsertData(
+                table: "City",
+                columns: new[] { "Id", "CityName", "Description" },
+                values: new object[] { 1, "ha noi", "LDKJfL" });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Place_PlaceTypeID",
+            migrationBuilder.InsertData(
                 table: "Place",
-                column: "PlaceTypeID");
+                columns: new[] { "Id", "Address", "BookingId", "CityId", "Image", "Latitude", "Longtitude", "PlaceName", "PlaceTypeId", "ShortDicription", "Thumb" },
+                values: new object[] { 1, "hanoi", null, null, "ljfasdkjf", 21.0278m, 105.8342m, "abc123", null, "kald;sf voiwejp", "adsfasdva" });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_PlaceDetail_PlaceID",
+            migrationBuilder.InsertData(
                 table: "PlaceDetail",
-                column: "PlaceID");
+                columns: new[] { "DetailID", "AC", "CarParking", "PlaceId", "Size", "Square", "TV", "Wifi" },
+                values: new object[] { 1, true, true, null, 3, 50, true, true });
+
+            migrationBuilder.InsertData(
+                table: "PlaceType",
+                columns: new[] { "Id", "PlaceTypeDescription", "PlaceTypeName" },
+                values: new object[] { 1, "kvjaskd", "adqfefqw" });
+
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "UserID", "Adress", "Email", "Password", "PhoneNumber", "Status", "UserName", "UserType" },
+                values: new object[] { 1, "hanoi", "abc123@gmail.com", "123456", "7921409135", 0, "abc123", 1 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Place_BookingId",
+                table: "Place",
+                column: "BookingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Place_CityId",
+                table: "Place",
+                column: "CityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Place_PlaceTypeId",
+                table: "Place",
+                column: "PlaceTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlaceDetail_PlaceId",
+                table: "PlaceDetail",
+                column: "PlaceId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -11,7 +11,7 @@ namespace DataAccess.Entities
     public class Booking
     {  
         [Key]
-        public int BookingID { get; set; } // PK
+        public int Id { get; set; } // PK
 
 
         public DateTime BookingFromTime { get; set; }

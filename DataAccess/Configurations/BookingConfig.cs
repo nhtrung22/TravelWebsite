@@ -16,8 +16,8 @@ namespace DataAccess.Configurations
         {
             builder.ToTable("Booking");
 
-            builder.HasKey(x => x.BookingID);
-            builder.Property(x => x.BookingID).UseIdentityColumn();
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseIdentityColumn();
 
 
             builder.Property(x => x.BookingFromTime).IsRequired();

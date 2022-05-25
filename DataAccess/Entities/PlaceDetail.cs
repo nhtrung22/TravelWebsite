@@ -24,7 +24,8 @@ namespace DataAccess.Entities
 
         public int Square { get; set; }
 
-        public int PlaceID { get; set; }
-        public virtual Place Place { get; set; }
+
+        //public int PlaceID { get; set; }
+        //public virtual Place Place { get; set; }
     }
 }

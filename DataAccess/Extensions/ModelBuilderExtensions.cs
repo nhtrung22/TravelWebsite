@@ -29,18 +29,39 @@ namespace DataAccess.Extensions
                 }   
             );
 
+            // Booking
+            modelBuilder.Entity<Booking>().HasData(
+                new Booking()
+                {
+                    Id = 1,
+                    BookingFromTime = DateTime.Now.AddDays(-10),
+                    BookingToTime = DateTime.Now.AddDays(10),
+                    NumberOfAdult = 1,
+                    NumberOfKid = 3,
+                    Price = 50,
+                    BookingDate = DateTime.Now.AddDays(-15),
+                    Status = 0,
+                    PaymentStatus = 0,
+                    Deposit = 0,
+                    PhoneNumber = "8983424",
+                    FullName = "Nguyen A",
+                }
+            );
+
             // Place
             modelBuilder.Entity<Place>().HasData(
                 new Place()
                 {
-                    PlaceID = 1,
+                    Id = 1,
                     PlaceName = "abc123",
                     Address = "hanoi",
                     ShortDicription = "kald;sf voiwejp",
                     Latitude = 21.0278M,
                     Longtitude = 105.8342M,
                     Thumb = "adsfasdva",
-                    Image = "ljfasdkjf"
+                    Image = "ljfasdkjf",
+    
+                    //BookingID = 1
                 }
             ); 
 
@@ -59,30 +80,13 @@ namespace DataAccess.Extensions
                 }
             );
 
-            // Booking
-            modelBuilder.Entity<Booking>().HasData(
-                new Booking()
-                {
-                    BookingID = 1,
-                    BookingFromTime = DateTime.Now.AddDays(-10),
-                    BookingToTime = DateTime.Now.AddDays(10),
-                    NumberOfAdult = 1,
-                    NumberOfKid = 3,
-                    Price = 50,
-                    BookingDate = DateTime.Now.AddDays(-15),
-                    Status = 0,
-                    PaymentStatus = 0,
-                    Deposit = 0,
-                    PhoneNumber = "8983424",
-                    FullName = "Nguyen A"
-                }
-            );
+            
 
             // City
             modelBuilder.Entity<City>().HasData(
                 new City()
                 {
-                    CityID = 1,
+                    Id = 1,
                     CityName = "ha noi",
                     Description = "LDKJfL"
                 }
@@ -92,7 +96,7 @@ namespace DataAccess.Extensions
             modelBuilder.Entity<PlaceType>().HasData(
                 new PlaceType()
                 {
-                    PlaceTypeID = 1,
+                    Id = 1,
                     PlaceTypeName = "adqfefqw",
                     PlaceTypeDescription = "kvjaskd"
                 }

@@ -10,7 +10,7 @@ namespace DataAccess.Entities
     public class City
     {
         [Key]
-        public int CityID { get; set; } // PK
+        public int Id { get; set; } // PK
 
         public string CityName { get; set; }
 
