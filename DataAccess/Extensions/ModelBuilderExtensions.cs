@@ -19,11 +19,11 @@ namespace DataAccess.Extensions
                 new User() 
                 { 
                   UserID = 1,
-                  UserName = "abc123",
+                  UserName = "user1",
                   Password = "123456",
                   Email = "abc123@gmail.com",
                   Adress = "hanoi",
-                  PhoneNumber = "7921409135",
+                  PhoneNumber = "0123456789",
                   UserType = 1,
                   Status = 0 
                 }   
@@ -38,13 +38,14 @@ namespace DataAccess.Extensions
                     BookingToTime = DateTime.Now.AddDays(10),
                     NumberOfAdult = 1,
                     NumberOfKid = 3,
-                    Price = 50,
+                    Price = 50000,
                     BookingDate = DateTime.Now.AddDays(-15),
                     Status = 0,
                     PaymentStatus = 0,
                     Deposit = 0,
-                    PhoneNumber = "8983424",
-                    FullName = "Nguyen A",
+                    PhoneNumber = "0123456789",
+                    FullName = "Nguyen A"
+    
                 }
             );
 
@@ -53,13 +54,13 @@ namespace DataAccess.Extensions
                 new Place()
                 {
                     Id = 1,
-                    PlaceName = "abc123",
-                    Address = "hanoi",
-                    ShortDicription = "kald;sf voiwejp",
+                    PlaceName = "studio",
+                    Address = "hoan kiem, ha noi",
+                    ShortDicription = "abcxyz",
                     Latitude = 21.0278M,
                     Longtitude = 105.8342M,
-                    Thumb = "adsfasdva",
-                    Image = "ljfasdkjf",
+                    Thumb = "abcxyz",
+                    Image = "abcxyz",
     
                     //BookingID = 1
                 }
@@ -88,7 +89,7 @@ namespace DataAccess.Extensions
                 {
                     Id = 1,
                     CityName = "ha noi",
-                    Description = "LDKJfL"
+                    Description = "abcxyz"
                 }
             );
 
@@ -97,8 +98,8 @@ namespace DataAccess.Extensions
                 new PlaceType()
                 {
                     Id = 1,
-                    PlaceTypeName = "adqfefqw",
-                    PlaceTypeDescription = "kvjaskd"
+                    PlaceTypeName = "abcxyz",
+                    PlaceTypeDescription = "abcxyz"
                 }
             ); 
         }
