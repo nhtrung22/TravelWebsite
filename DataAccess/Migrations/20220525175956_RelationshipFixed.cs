@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class v1 : Migration
+    public partial class RelationshipFixed : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -69,21 +69,21 @@ namespace DataAccess.Migrations
                     Longtitude = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Thumb = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CityId = table.Column<int>(type: "int", nullable: false),
-                    PlaceTypeId = table.Column<int>(type: "int", nullable: false)
+                    CurrentCityId = table.Column<int>(type: "int", nullable: false),
+                    CurrentPlaceTypeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Place", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Place_City_CityId",
-                        column: x => x.CityId,
+                        name: "FK_Place_City_CurrentCityId",
+                        column: x => x.CurrentCityId,
                         principalTable: "City",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Place_PlaceType_PlaceTypeId",
-                        column: x => x.PlaceTypeId,
+                        name: "FK_Place_PlaceType_CurrentPlaceTypeId",
+                        column: x => x.CurrentPlaceTypeId,
                         principalTable: "PlaceType",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -106,14 +106,14 @@ namespace DataAccess.Migrations
                     Deposit = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    PlaceId = table.Column<int>(type: "int", nullable: false)
+                    CurrentPlaceId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Booking", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Booking_Place_PlaceId",
-                        column: x => x.PlaceId,
+                        name: "FK_Booking_Place_CurrentPlaceId",
+                        column: x => x.CurrentPlaceId,
                         principalTable: "Place",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -144,20 +144,35 @@ namespace DataAccess.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "UserID", "Adress", "Email", "Password", "PhoneNumber", "Status", "UserName", "UserType" },
+                values: new object[] { 1, "hanoi", "abc123@gmail.com", "123456", "0123456789", 0, "user1", 1 });
+
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "UserID", "Adress", "Email", "Password", "PhoneNumber", "Status", "UserName", "UserType" },
+                values: new object[] { 2, "hanoi", "abc123@gmail.com", "123456", "0123456789", 0, "user2", 1 });
+
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "UserID", "Adress", "Email", "Password", "PhoneNumber", "Status", "UserName", "UserType" },
+                values: new object[] { 3, "hanoi", "abc123@gmail.com", "123456", "0123456789", 0, "user3", 1 });
+
             migrationBuilder.CreateIndex(
-                name: "IX_Booking_PlaceId",
+                name: "IX_Booking_CurrentPlaceId",
                 table: "Booking",
-                column: "PlaceId");
+                column: "CurrentPlaceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Place_CityId",
+                name: "IX_Place_CurrentCityId",
                 table: "Place",
-                column: "CityId");
+                column: "CurrentCityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Place_PlaceTypeId",
+                name: "IX_Place_CurrentPlaceTypeId",
                 table: "Place",
-                column: "PlaceTypeId");
+                column: "CurrentPlaceTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PlaceDetail_PlaceDetailPlace",

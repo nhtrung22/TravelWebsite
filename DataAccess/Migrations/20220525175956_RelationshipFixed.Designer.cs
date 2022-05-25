@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(TravelDbContext))]
-    [Migration("20220525165844_v1")]
-    partial class v1
+    [Migration("20220525175956_RelationshipFixed")]
+    partial class RelationshipFixed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,6 +41,9 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("BookingToTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("CurrentPlaceId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Deposit")
                         .HasColumnType("decimal(18,2)");
 
@@ -63,9 +66,6 @@ namespace DataAccess.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<int>("PlaceId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -74,7 +74,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PlaceId");
+                    b.HasIndex("CurrentPlaceId");
 
                     b.ToTable("Booking", (string)null);
                 });
@@ -115,7 +115,10 @@ namespace DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("CityId")
+                    b.Property<int>("CurrentCityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CurrentPlaceTypeId")
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
@@ -133,9 +136,6 @@ namespace DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("PlaceTypeId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ShortDicription")
                         .IsRequired()
                         .HasMaxLength(1000)
@@ -147,9 +147,9 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CityId");
+                    b.HasIndex("CurrentCityId");
 
-                    b.HasIndex("PlaceTypeId");
+                    b.HasIndex("CurrentPlaceTypeId");
 
                     b.ToTable("Place", (string)null);
                 });
@@ -255,13 +255,48 @@ namespace DataAccess.Migrations
                     b.HasKey("UserID");
 
                     b.ToTable("User", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserID = 1,
+                            Adress = "hanoi",
+                            Email = "abc123@gmail.com",
+                            Password = "123456",
+                            PhoneNumber = "0123456789",
+                            Status = 0,
+                            UserName = "user1",
+                            UserType = 1
+                        },
+                        new
+                        {
+                            UserID = 2,
+                            Adress = "hanoi",
+                            Email = "abc123@gmail.com",
+                            Password = "123456",
+                            PhoneNumber = "0123456789",
+                            Status = 0,
+                            UserName = "user2",
+                            UserType = 1
+                        },
+                        new
+                        {
+                            UserID = 3,
+                            Adress = "hanoi",
+                            Email = "abc123@gmail.com",
+                            Password = "123456",
+                            PhoneNumber = "0123456789",
+                            Status = 0,
+                            UserName = "user3",
+                            UserType = 1
+                        });
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Booking", b =>
                 {
                     b.HasOne("DataAccess.Entities.Place", "Place")
                         .WithMany("Bookings")
-                        .HasForeignKey("PlaceId")
+                        .HasForeignKey("CurrentPlaceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -272,13 +307,13 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("DataAccess.Entities.City", "City")
                         .WithMany("Places")
-                        .HasForeignKey("CityId")
+                        .HasForeignKey("CurrentCityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DataAccess.Entities.PlaceType", "PlaceType")
                         .WithMany("Places")
-                        .HasForeignKey("PlaceTypeId")
+                        .HasForeignKey("CurrentPlaceTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

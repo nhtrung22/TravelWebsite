@@ -39,6 +39,8 @@ namespace DataAccess.Entities
         public string FullName { get; set; }
 
         // Place - Booking
+
+        public int CurrentPlaceId { get; set; }
         public Place Place { get; set; }
 
     }

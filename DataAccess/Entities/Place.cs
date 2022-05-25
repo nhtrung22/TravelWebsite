@@ -37,13 +37,16 @@ namespace DataAccess.Entities
 
 
         // City - Place
+        //public virtual City City { get; set; }
+        public int CurrentCityId { get; set; }
         public City City { get; set; }
 
-        //public virtual City City { get; set; }
+
 
         // PlaceType - Place
         //public int PlaceTypeID { get; set; }
         //public virtual PlaceType PlaceType { get; set; }
+        public int CurrentPlaceTypeId { get; set; }
         public PlaceType PlaceType { get; set; }
     }
 }

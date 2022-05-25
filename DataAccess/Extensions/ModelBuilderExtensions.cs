@@ -28,80 +28,107 @@ namespace DataAccess.Extensions
                   Status = 0 
                 }   
             );
-
-            // Booking
-            modelBuilder.Entity<Booking>().HasData(
-                new Booking()
+            modelBuilder.Entity<User>().HasData(
+                new User()
                 {
-                    Id = 1,
-                    BookingFromTime = DateTime.Now.AddDays(-10),
-                    BookingToTime = DateTime.Now.AddDays(10),
-                    NumberOfAdult = 1,
-                    NumberOfKid = 3,
-                    Price = 50000,
-                    BookingDate = DateTime.Now.AddDays(-15),
-                    Status = 0,
-                    PaymentStatus = 0,
-                    Deposit = 0,
+                    UserID = 2,
+                    UserName = "user2",
+                    Password = "123456",
+                    Email = "abc123@gmail.com",
+                    Adress = "hanoi",
                     PhoneNumber = "0123456789",
-                    FullName = "Nguyen A"
-    
+                    UserType = 1,
+                    Status = 0
                 }
             );
+            modelBuilder.Entity<User>().HasData(
+                new User()
+                {
+                    UserID = 3,
+                    UserName = "user3",
+                    Password = "123456",
+                    Email = "abc123@gmail.com",
+                    Adress = "hanoi",
+                    PhoneNumber = "0123456789",
+                    UserType = 1,
+                    Status = 0
+                }
+            );
+
+
+            //// Booking
+            //modelBuilder.Entity<Booking>().HasData(
+            //    new Booking()
+            //    {
+            //        Id = 1,
+            //        BookingFromTime = DateTime.Now.AddDays(-10),
+            //        BookingToTime = DateTime.Now.AddDays(10),
+            //        NumberOfAdult = 1,
+            //        NumberOfKid = 3,
+            //        Price = 50000,
+            //        BookingDate = DateTime.Now.AddDays(-15),
+            //        Status = 0,
+            //        PaymentStatus = 0,
+            //        Deposit = 0,
+            //        PhoneNumber = "0123456789",
+            //        FullName = "Nguyen A"
+
+            //    }
+            //);
 
             // Place
-            modelBuilder.Entity<Place>().HasData(
-                new Place()
-                {
-                    Id = 1,
-                    PlaceName = "studio",
-                    Address = "hoan kiem, ha noi",
-                    ShortDicription = "abcxyz",
-                    Latitude = 21.0278M,
-                    Longtitude = 105.8342M,
-                    Thumb = "abcxyz",
-                    Image = "abcxyz",
-    
-                    //BookingID = 1
-                }
-            ); 
+            //modelBuilder.Entity<Place>().HasData(
+            //    new Place()
+            //    {
+            //        Id = 1,
+            //        PlaceName = "studio",
+            //        Address = "hoan kiem, ha noi",
+            //        ShortDicription = "abcxyz",
+            //        Latitude = 21.0278M,
+            //        Longtitude = 105.8342M,
+            //        Thumb = "abcxyz",
+            //        Image = "abcxyz",
+
+            //        //BookingID = 1
+            //    }
+            //);
 
 
-            // Place Detail
-            modelBuilder.Entity<PlaceDetail>().HasData(
-                new PlaceDetail()
-                {
-                    DetailID = 1,
-                    Wifi = true,
-                    TV = true,
-                    AC = true,
-                    CarParking = true,
-                    Size = 3,
-                    Square = 50
-                }
-            );
+            //// Place Detail
+            //modelBuilder.Entity<PlaceDetail>().HasData(
+            //    new PlaceDetail()
+            //    {
+            //        DetailID = 1,
+            //        Wifi = true,
+            //        TV = true,
+            //        AC = true,
+            //        CarParking = true,
+            //        Size = 3,
+            //        Square = 50
+            //    }
+            //);
 
-            
 
-            // City
-            modelBuilder.Entity<City>().HasData(
-                new City()
-                {
-                    Id = 1,
-                    CityName = "ha noi",
-                    Description = "abcxyz"
-                }
-            );
 
-            // Place Type
-            modelBuilder.Entity<PlaceType>().HasData(
-                new PlaceType()
-                {
-                    Id = 1,
-                    PlaceTypeName = "abcxyz",
-                    PlaceTypeDescription = "abcxyz"
-                }
-            ); 
+            //// City
+            //modelBuilder.Entity<City>().HasData(
+            //    new City()
+            //    {
+            //        Id = 1,
+            //        CityName = "ha noi",
+            //        Description = "abcxyz"
+            //    }
+            //);
+
+            //// Place Type
+            //modelBuilder.Entity<PlaceType>().HasData(
+            //    new PlaceType()
+            //    {
+            //        Id = 1,
+            //        PlaceTypeName = "abcxyz",
+            //        PlaceTypeDescription = "abcxyz"
+            //    }
+            //); 
         }
     }
 }
