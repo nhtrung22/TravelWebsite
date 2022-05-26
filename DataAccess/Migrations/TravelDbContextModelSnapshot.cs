@@ -75,6 +75,24 @@ namespace DataAccess.Migrations
                     b.HasIndex("CurrentPlaceId");
 
                     b.ToTable("Booking", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BookingDate = new DateTime(2022, 5, 11, 15, 54, 33, 723, DateTimeKind.Local).AddTicks(733),
+                            BookingFromTime = new DateTime(2022, 5, 16, 15, 54, 33, 723, DateTimeKind.Local).AddTicks(716),
+                            BookingToTime = new DateTime(2022, 6, 5, 15, 54, 33, 723, DateTimeKind.Local).AddTicks(730),
+                            CurrentPlaceId = 1,
+                            Deposit = 0m,
+                            FullName = "Nguyen A",
+                            NumberOfAdult = 1,
+                            NumberOfKid = 3,
+                            PaymentStatus = 0,
+                            PhoneNumber = "0123456789",
+                            Price = 50000m,
+                            Status = 0
+                        });
                 });
 
             modelBuilder.Entity("DataAccess.Entities.City", b =>
@@ -98,6 +116,14 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("City", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CityName = "ha noi",
+                            Description = "abcxyz"
+                        });
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Place", b =>
@@ -150,6 +176,21 @@ namespace DataAccess.Migrations
                     b.HasIndex("CurrentPlaceTypeId");
 
                     b.ToTable("Place", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "hoan kiem, ha noi",
+                            CurrentCityId = 1,
+                            CurrentPlaceTypeId = 1,
+                            Image = "abcxyz",
+                            Latitude = 21.0278m,
+                            Longtitude = 105.8342m,
+                            PlaceName = "studio",
+                            ShortDicription = "abcxyz",
+                            Thumb = "abcxyz"
+                        });
                 });
 
             modelBuilder.Entity("DataAccess.Entities.PlaceDetail", b =>
@@ -187,6 +228,19 @@ namespace DataAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("PlaceDetail", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            DetailID = 1,
+                            AC = true,
+                            CarParking = true,
+                            PlaceDetailPlace = 1,
+                            Size = 3,
+                            Square = 50,
+                            TV = true,
+                            Wifi = true
+                        });
                 });
 
             modelBuilder.Entity("DataAccess.Entities.PlaceType", b =>
@@ -210,6 +264,14 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PlaceType", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            PlaceTypeDescription = "abcxyz",
+                            PlaceTypeName = "abcxyz"
+                        });
                 });
 
             modelBuilder.Entity("DataAccess.Entities.User", b =>

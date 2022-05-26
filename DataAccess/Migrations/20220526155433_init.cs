@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class RelationshipFixed : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -145,19 +145,39 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "User",
-                columns: new[] { "UserID", "Adress", "Email", "Password", "PhoneNumber", "Status", "UserName", "UserType" },
-                values: new object[] { 1, "hanoi", "abc123@gmail.com", "123456", "0123456789", 0, "user1", 1 });
+                table: "City",
+                columns: new[] { "Id", "CityName", "Description" },
+                values: new object[] { 1, "ha noi", "abcxyz" });
+
+            migrationBuilder.InsertData(
+                table: "PlaceType",
+                columns: new[] { "Id", "PlaceTypeDescription", "PlaceTypeName" },
+                values: new object[] { 1, "abcxyz", "abcxyz" });
 
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "UserID", "Adress", "Email", "Password", "PhoneNumber", "Status", "UserName", "UserType" },
-                values: new object[] { 2, "hanoi", "abc123@gmail.com", "123456", "0123456789", 0, "user2", 1 });
+                values: new object[,]
+                {
+                    { 1, "hanoi", "abc123@gmail.com", "123456", "0123456789", 0, "user1", 1 },
+                    { 2, "hanoi", "abc123@gmail.com", "123456", "0123456789", 0, "user2", 1 },
+                    { 3, "hanoi", "abc123@gmail.com", "123456", "0123456789", 0, "user3", 1 }
+                });
 
             migrationBuilder.InsertData(
-                table: "User",
-                columns: new[] { "UserID", "Adress", "Email", "Password", "PhoneNumber", "Status", "UserName", "UserType" },
-                values: new object[] { 3, "hanoi", "abc123@gmail.com", "123456", "0123456789", 0, "user3", 1 });
+                table: "Place",
+                columns: new[] { "Id", "Address", "CurrentCityId", "CurrentPlaceTypeId", "Image", "Latitude", "Longtitude", "PlaceName", "ShortDicription", "Thumb" },
+                values: new object[] { 1, "hoan kiem, ha noi", 1, 1, "abcxyz", 21.0278m, 105.8342m, "studio", "abcxyz", "abcxyz" });
+
+            migrationBuilder.InsertData(
+                table: "Booking",
+                columns: new[] { "Id", "BookingDate", "BookingFromTime", "BookingToTime", "CurrentPlaceId", "Deposit", "FullName", "NumberOfAdult", "NumberOfKid", "PaymentStatus", "PhoneNumber", "Price", "Status" },
+                values: new object[] { 1, new DateTime(2022, 5, 11, 15, 54, 33, 723, DateTimeKind.Local).AddTicks(733), new DateTime(2022, 5, 16, 15, 54, 33, 723, DateTimeKind.Local).AddTicks(716), new DateTime(2022, 6, 5, 15, 54, 33, 723, DateTimeKind.Local).AddTicks(730), 1, 0m, "Nguyen A", 1, 3, 0, "0123456789", 50000m, 0 });
+
+            migrationBuilder.InsertData(
+                table: "PlaceDetail",
+                columns: new[] { "DetailID", "AC", "CarParking", "PlaceDetailPlace", "Size", "Square", "TV", "Wifi" },
+                values: new object[] { 1, true, true, 1, 3, 50, true, true });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Booking_CurrentPlaceId",
