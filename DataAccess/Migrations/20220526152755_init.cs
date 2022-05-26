@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -92,7 +92,7 @@ namespace DataAccess.Migrations
                     Longtitude = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Thumb = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BookingId = table.Column<int>(type: "int", nullable: true),
+                    BookingId = table.Column<int>(type: "int", nullable: false),
                     CityId = table.Column<int>(type: "int", nullable: true),
                     PlaceTypeId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -103,7 +103,8 @@ namespace DataAccess.Migrations
                         name: "FK_Place_Booking_BookingId",
                         column: x => x.BookingId,
                         principalTable: "Booking",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Place_City_CityId",
                         column: x => x.CityId,
@@ -143,17 +144,12 @@ namespace DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "Booking",
                 columns: new[] { "Id", "BookingDate", "BookingFromTime", "BookingToTime", "Deposit", "FullName", "NumberOfAdult", "NumberOfKid", "PaymentStatus", "PhoneNumber", "Price", "Status" },
-                values: new object[] { 1, new DateTime(2022, 5, 10, 14, 21, 42, 262, DateTimeKind.Local).AddTicks(6994), new DateTime(2022, 5, 15, 14, 21, 42, 262, DateTimeKind.Local).AddTicks(6971), new DateTime(2022, 6, 4, 14, 21, 42, 262, DateTimeKind.Local).AddTicks(6991), 0m, "Nguyen A", 1, 3, 0, "8983424", 50m, 0 });
+                values: new object[] { 1, new DateTime(2022, 5, 11, 15, 27, 54, 907, DateTimeKind.Local).AddTicks(7301), new DateTime(2022, 5, 16, 15, 27, 54, 907, DateTimeKind.Local).AddTicks(7282), new DateTime(2022, 6, 5, 15, 27, 54, 907, DateTimeKind.Local).AddTicks(7298), 0m, "Nguyen A", 1, 3, 0, "8983424", 50m, 0 });
 
             migrationBuilder.InsertData(
                 table: "City",
                 columns: new[] { "Id", "CityName", "Description" },
                 values: new object[] { 1, "ha noi", "LDKJfL" });
-
-            migrationBuilder.InsertData(
-                table: "Place",
-                columns: new[] { "Id", "Address", "BookingId", "CityId", "Image", "Latitude", "Longtitude", "PlaceName", "PlaceTypeId", "ShortDicription", "Thumb" },
-                values: new object[] { 1, "hanoi", null, null, "ljfasdkjf", 21.0278m, 105.8342m, "abc123", null, "kald;sf voiwejp", "adsfasdva" });
 
             migrationBuilder.InsertData(
                 table: "PlaceDetail",
@@ -169,6 +165,11 @@ namespace DataAccess.Migrations
                 table: "User",
                 columns: new[] { "UserID", "Adress", "Email", "Password", "PhoneNumber", "Status", "UserName", "UserType" },
                 values: new object[] { 1, "hanoi", "abc123@gmail.com", "123456", "7921409135", 0, "abc123", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Place",
+                columns: new[] { "Id", "Address", "BookingId", "CityId", "Image", "Latitude", "Longtitude", "PlaceName", "PlaceTypeId", "ShortDicription", "Thumb" },
+                values: new object[] { 1, "hanoi", 1, null, "ljfasdkjf", 21.0278m, 105.8342m, "abc123", null, "kald;sf voiwejp", "adsfasdva" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Place_BookingId",

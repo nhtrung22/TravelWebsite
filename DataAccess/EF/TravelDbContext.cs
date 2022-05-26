@@ -17,11 +17,13 @@ namespace DataAccess.EF
 
             // Relationship
             // Place - PlaceDetail
-            //modelBuilder.Entity<Place>().HasOne<Booking>().WithMany().HasForeignKey(e => e.Id);
+            modelBuilder.Entity<Place>().HasOne(item => item.Booking).WithMany(item => item.Places).HasForeignKey(e => e.BookingId);
+            //2 cach viet nay khac nhau (HasOne(item => item.Booking) va HasOne<Booking>()) -> cach sau tu dong sinh ra shadow property
+            //tim hieu them 
+            //https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key
+            //modelBuilder.Entity<Place>().HasOne<Booking>().WithMany(item => item.Places).HasForeignKey(e => e.BookingId);
 
-            modelBuilder.Entity<Place>()
-             .Property(f => f.Id)
-             .ValueGeneratedOnAdd();
+            //modelBuilder.Entity<Place>().Property(f => f.Id).ValueGeneratedOnAdd();
 
 
             modelBuilder.Entity<PlaceDetail>()
@@ -29,6 +31,7 @@ namespace DataAccess.EF
            .ValueGeneratedOnAdd();
 
             // Place - Booking
+
             modelBuilder.Entity<Booking>()
             .Property(f => f.Id)
             .ValueGeneratedOnAdd();

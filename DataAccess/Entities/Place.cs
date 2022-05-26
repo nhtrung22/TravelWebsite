@@ -31,8 +31,10 @@ namespace DataAccess.Entities
         public virtual ICollection<PlaceDetail> PlaceDetail { get; set; }
 
         // Place - Booking
-        //public int BookingID { get; set; }
-        //public virtual Booking Booking { get; set; }
+        // co the remove BookingId
+        //https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key
+        public int BookingId { get; set; }
+        public virtual Booking Booking { get; set; }
 
         // City - Place
         //public int CityID { get; set; }

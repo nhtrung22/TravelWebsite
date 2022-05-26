@@ -60,8 +60,7 @@ namespace DataAccess.Extensions
                     Longtitude = 105.8342M,
                     Thumb = "adsfasdva",
                     Image = "ljfasdkjf",
-    
-                    //BookingID = 1
+                    BookingId = 1,
                 }
             ); 
 
