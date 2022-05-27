@@ -80,9 +80,9 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            BookingDate = new DateTime(2022, 5, 11, 15, 54, 33, 723, DateTimeKind.Local).AddTicks(733),
-                            BookingFromTime = new DateTime(2022, 5, 16, 15, 54, 33, 723, DateTimeKind.Local).AddTicks(716),
-                            BookingToTime = new DateTime(2022, 6, 5, 15, 54, 33, 723, DateTimeKind.Local).AddTicks(730),
+                            BookingDate = new DateTime(2022, 5, 12, 11, 33, 44, 79, DateTimeKind.Local).AddTicks(9195),
+                            BookingFromTime = new DateTime(2022, 5, 17, 11, 33, 44, 79, DateTimeKind.Local).AddTicks(9180),
+                            BookingToTime = new DateTime(2022, 6, 6, 11, 33, 44, 79, DateTimeKind.Local).AddTicks(9193),
                             CurrentPlaceId = 1,
                             Deposit = 0m,
                             FullName = "Nguyen A",

@@ -34,6 +34,7 @@ var app = builder.Build();
 var config = new MapperConfiguration(cfg =>
 {
     cfg.AddProfile(new PlaceMappingProfile());
+    cfg.AddProfile(new UserMappingProfile());
 });
 
 config.CreateMapper();

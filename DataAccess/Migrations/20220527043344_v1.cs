@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class init : Migration
+    public partial class v1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -172,7 +172,7 @@ namespace DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "Booking",
                 columns: new[] { "Id", "BookingDate", "BookingFromTime", "BookingToTime", "CurrentPlaceId", "Deposit", "FullName", "NumberOfAdult", "NumberOfKid", "PaymentStatus", "PhoneNumber", "Price", "Status" },
-                values: new object[] { 1, new DateTime(2022, 5, 11, 15, 54, 33, 723, DateTimeKind.Local).AddTicks(733), new DateTime(2022, 5, 16, 15, 54, 33, 723, DateTimeKind.Local).AddTicks(716), new DateTime(2022, 6, 5, 15, 54, 33, 723, DateTimeKind.Local).AddTicks(730), 1, 0m, "Nguyen A", 1, 3, 0, "0123456789", 50000m, 0 });
+                values: new object[] { 1, new DateTime(2022, 5, 12, 11, 33, 44, 79, DateTimeKind.Local).AddTicks(9195), new DateTime(2022, 5, 17, 11, 33, 44, 79, DateTimeKind.Local).AddTicks(9180), new DateTime(2022, 6, 6, 11, 33, 44, 79, DateTimeKind.Local).AddTicks(9193), 1, 0m, "Nguyen A", 1, 3, 0, "0123456789", 50000m, 0 });
 
             migrationBuilder.InsertData(
                 table: "PlaceDetail",
