@@ -18,11 +18,11 @@ namespace DataAccess.Extensions
             modelBuilder.Entity<User>().HasData(
                 new User()
                 {
-                    UserID = 1,
+                    Id = new Guid("00000000-0000-0000-0000-000000000003"),
                     UserName = "user1",
                     Password = "123456",
                     Email = "abc123@gmail.com",
-                    Adress = "hanoi",
+                    Address = "hanoi",
                     PhoneNumber = "0123456789",
                     UserType = 1,
                     Status = 0
@@ -31,11 +31,11 @@ namespace DataAccess.Extensions
             modelBuilder.Entity<User>().HasData(
                 new User()
                 {
-                    UserID = 2,
+                    Id = new Guid("00000000-0000-0000-0000-000000000002"),
                     UserName = "user2",
                     Password = "123456",
-                    Email = "abc123@gmail.com",
-                    Adress = "hanoi",
+                    Email = "abc1234@gmail.com",
+                    Address = "hanoi",
                     PhoneNumber = "0123456789",
                     UserType = 1,
                     Status = 0
@@ -44,11 +44,11 @@ namespace DataAccess.Extensions
             modelBuilder.Entity<User>().HasData(
                 new User()
                 {
-                    UserID = 3,
+                    Id = new Guid("00000000-0000-0000-0000-000000000001"),
                     UserName = "user3",
                     Password = "123456",
-                    Email = "abc123@gmail.com",
-                    Adress = "hanoi",
+                    Email = "abc1236@gmail.com",
+                    Address = "hanoi",
                     PhoneNumber = "0123456789",
                     UserType = 1,
                     Status = 0
@@ -68,8 +68,8 @@ namespace DataAccess.Extensions
                 new PlaceType()
                 {
                     Id = 1,
-                    PlaceTypeName = "abcxyz",
-                    PlaceTypeDescription = "abcxyz"
+                    Name = "abcxyz",
+                    Description = "abcxyz"
                 }
             );
             //Place
@@ -84,8 +84,8 @@ namespace DataAccess.Extensions
                     Longtitude = 105.8342M,
                     Thumb = "abcxyz",
                     Image = "abcxyz",
-                    CurrentCityId = 1,
-                    CurrentPlaceTypeId = 1
+                    CityId = 1,
+                    PlaceTypeID = 1
                     //BookingID = 1
                 }
             );
@@ -106,27 +106,24 @@ namespace DataAccess.Extensions
                     Deposit = 0,
                     PhoneNumber = "0123456789",
                     FullName = "Nguyen A",
-                    CurrentPlaceId = 1
+                    PlaceId = 1
 
                 }
             );
-
-
-            ); 
 
 
             // Place Detail
             modelBuilder.Entity<PlaceDetail>().HasData(
                 new PlaceDetail()
                 {
-                    DetailID = 1,
+                    Id = 1,
                     Wifi = true,
                     TV = true,
                     AC = true,
                     CarParking = true,
                     Size = 3,
                     Square = 50,
-                    PlaceDetailPlace = 1
+                    PlaceID = 1
                 }
             );
 

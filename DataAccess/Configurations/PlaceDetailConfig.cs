@@ -16,8 +16,8 @@ namespace DataAccess.Configurations
         {
             builder.ToTable("PlaceDetail");
 
-            builder.HasKey(x => x.DetailID);
-            builder.Property(x => x.DetailID).UseIdentityColumn();
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).UseIdentityColumn();
 
             builder.Property(x => x.Wifi).IsRequired();
 

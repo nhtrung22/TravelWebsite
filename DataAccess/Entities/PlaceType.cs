@@ -12,9 +12,9 @@ namespace DataAccess.Entities
         [Key]
         public int Id { get; set; } // PK
 
-        public string PlaceTypeName { get; set; }
+        public string Name { get; set; }
 
-        public string PlaceTypeDescription { get; set; }
+        public string Description { get; set; }
 
         // PlaceType - Place
         public ICollection<Place> Places { get; set; }

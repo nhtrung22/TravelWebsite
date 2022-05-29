@@ -40,7 +40,7 @@ namespace DataAccess.Entities
 
         // Place - Booking
 
-        public int CurrentPlaceId { get; set; }
+        public int PlaceId { get; set; }
         public Place Place { get; set; }
 
     }

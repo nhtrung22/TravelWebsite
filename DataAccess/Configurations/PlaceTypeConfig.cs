@@ -20,9 +20,9 @@ namespace DataAccess.Configurations
             builder.Property(x => x.Id).UseIdentityColumn();
 
 
-            builder.Property(x => x.PlaceTypeName).IsRequired().HasMaxLength(50);
+            builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
 
-            builder.Property(x => x.PlaceTypeDescription).IsRequired().HasMaxLength(200);
+            builder.Property(x => x.Description).IsRequired().HasMaxLength(200);
         }
     }
 }

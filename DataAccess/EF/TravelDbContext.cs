@@ -20,7 +20,7 @@ namespace DataAccess.EF
             modelBuilder.Entity<Place>()
               .HasOne<PlaceDetail>(s => s.PlaceDetail)
                .WithOne(ad => ad.Place)
-               .HasForeignKey<PlaceDetail>(ad => ad.PlaceDetailPlace);
+               .HasForeignKey<PlaceDetail>(ad => ad.PlaceID);
 
 
             modelBuilder.Entity<Place>()
@@ -29,7 +29,7 @@ namespace DataAccess.EF
 
 
             modelBuilder.Entity<PlaceDetail>()
-           .Property(f => f.DetailID)
+           .Property(f => f.Id)
            .ValueGeneratedOnAdd();
 
             // Place - Booking
@@ -37,7 +37,7 @@ namespace DataAccess.EF
             modelBuilder.Entity<Booking>()
             .HasOne<Place>(s => s.Place)
             .WithMany(g => g.Bookings)
-            .HasForeignKey(s => s.CurrentPlaceId);
+            .HasForeignKey(s => s.PlaceId);
 
             modelBuilder.Entity<Booking>()
             .Property(f => f.Id)
@@ -47,7 +47,7 @@ namespace DataAccess.EF
             modelBuilder.Entity<Place>()
             .HasOne<City>(s => s.City)
             .WithMany(g => g.Places)
-            .HasForeignKey(s => s.CurrentCityId);
+            .HasForeignKey(s => s.CityId);
 
             modelBuilder.Entity<City>()
             .Property(f => f.Id)
@@ -57,7 +57,7 @@ namespace DataAccess.EF
             modelBuilder.Entity<Place>()
             .HasOne<PlaceType>(s => s.PlaceType)
             .WithMany(g => g.Places)
-            .HasForeignKey(s => s.CurrentPlaceTypeId);
+            .HasForeignKey(s => s.PlaceTypeID);
 
             modelBuilder.Entity<PlaceType>()
              .Property(f => f.Id)
@@ -65,8 +65,10 @@ namespace DataAccess.EF
 
             // User
             modelBuilder.Entity<User>()
-          .Property(f => f.UserID)
+          .Property(f => f.Id)
           .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<User>().HasIndex(f => f.Email).IsUnique();
 
 
             modelBuilder.ApplyConfiguration(new UserConfig());

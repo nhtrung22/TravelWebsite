@@ -11,7 +11,7 @@ namespace DataAccess.Entities
     public class User
     {
         [Key]
-        public int UserID { get; set; } // PK
+        public Guid Id { get; set; } // PK
 
         public string UserName { get; set; }
 
@@ -19,7 +19,9 @@ namespace DataAccess.Entities
 
         public string Email { get; set; }
 
-        public string Adress { get; set; }
+        //public string Token { get; set; }
+
+        public string Address { get; set; }
 
         public string PhoneNumber { get; set; }
 

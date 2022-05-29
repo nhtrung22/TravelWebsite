@@ -17,8 +17,8 @@ namespace DataAccess.Configurations
         {
             builder.ToTable("User");
 
-            builder.HasKey(x => x.UserID);
-            builder.Property(x => x.UserID).UseIdentityColumn();
+            builder.HasKey(x => x.Id);
+            //builder.Property(x => x.Id).UseIdentityColumn();
 
 
             builder.Property(x => x.UserName).IsRequired().HasMaxLength(20);

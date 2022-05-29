@@ -10,7 +10,7 @@ namespace DataAccess.Entities
     public class PlaceDetail
     {
         [Key]
-        public int DetailID { get; set; }  // PK
+        public int Id { get; set; }  // PK
 
         public bool Wifi { get; set; }
 
@@ -29,7 +29,7 @@ namespace DataAccess.Entities
         //public virtual Place Place { get; set; }
 
         // Place - Place Detail
-        public int PlaceDetailPlace { get; set; }
+        public int PlaceID { get; set; }
         public Place Place { get; set; }
     }
 }

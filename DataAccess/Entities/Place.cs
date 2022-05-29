@@ -38,7 +38,7 @@ namespace DataAccess.Entities
 
         // City - Place
         //public virtual City City { get; set; }
-        public int CurrentCityId { get; set; }
+        public int CityId { get; set; }
         public City City { get; set; }
 
 
@@ -46,7 +46,7 @@ namespace DataAccess.Entities
         // PlaceType - Place
         //public int PlaceTypeID { get; set; }
         //public virtual PlaceType PlaceType { get; set; }
-        public int CurrentPlaceTypeId { get; set; }
+        public int PlaceTypeID { get; set; }
         public PlaceType PlaceType { get; set; }
     }
 }

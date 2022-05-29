@@ -39,9 +39,6 @@ namespace DataAccess.Migrations
                     b.Property<DateTime>("BookingToTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CurrentPlaceId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Deposit")
                         .HasColumnType("decimal(18,2)");
 
@@ -64,6 +61,9 @@ namespace DataAccess.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<int>("PlaceId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -72,7 +72,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CurrentPlaceId");
+                    b.HasIndex("PlaceId");
 
                     b.ToTable("Booking", (string)null);
 
@@ -80,16 +80,16 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            BookingDate = new DateTime(2022, 5, 12, 11, 33, 44, 79, DateTimeKind.Local).AddTicks(9195),
-                            BookingFromTime = new DateTime(2022, 5, 17, 11, 33, 44, 79, DateTimeKind.Local).AddTicks(9180),
-                            BookingToTime = new DateTime(2022, 6, 6, 11, 33, 44, 79, DateTimeKind.Local).AddTicks(9193),
-                            CurrentPlaceId = 1,
+                            BookingDate = new DateTime(2022, 5, 14, 15, 8, 3, 790, DateTimeKind.Local).AddTicks(4830),
+                            BookingFromTime = new DateTime(2022, 5, 19, 15, 8, 3, 790, DateTimeKind.Local).AddTicks(4813),
+                            BookingToTime = new DateTime(2022, 6, 8, 15, 8, 3, 790, DateTimeKind.Local).AddTicks(4828),
                             Deposit = 0m,
                             FullName = "Nguyen A",
                             NumberOfAdult = 1,
                             NumberOfKid = 3,
                             PaymentStatus = 0,
                             PhoneNumber = "0123456789",
+                            PlaceId = 1,
                             Price = 50000m,
                             Status = 0
                         });
@@ -139,10 +139,7 @@ namespace DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("CurrentCityId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CurrentPlaceTypeId")
+                    b.Property<int>("CityId")
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
@@ -160,6 +157,9 @@ namespace DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("PlaceTypeID")
+                        .HasColumnType("int");
+
                     b.Property<string>("ShortDicription")
                         .IsRequired()
                         .HasMaxLength(1000)
@@ -171,9 +171,9 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CurrentCityId");
+                    b.HasIndex("CityId");
 
-                    b.HasIndex("CurrentPlaceTypeId");
+                    b.HasIndex("PlaceTypeID");
 
                     b.ToTable("Place", (string)null);
 
@@ -182,12 +182,12 @@ namespace DataAccess.Migrations
                         {
                             Id = 1,
                             Address = "hoan kiem, ha noi",
-                            CurrentCityId = 1,
-                            CurrentPlaceTypeId = 1,
+                            CityId = 1,
                             Image = "abcxyz",
                             Latitude = 21.0278m,
                             Longtitude = 105.8342m,
                             PlaceName = "studio",
+                            PlaceTypeID = 1,
                             ShortDicription = "abcxyz",
                             Thumb = "abcxyz"
                         });
@@ -195,11 +195,11 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.PlaceDetail", b =>
                 {
-                    b.Property<int>("DetailID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DetailID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<bool>("AC")
                         .HasColumnType("bit");
@@ -207,7 +207,7 @@ namespace DataAccess.Migrations
                     b.Property<bool>("CarParking")
                         .HasColumnType("bit");
 
-                    b.Property<int>("PlaceDetailPlace")
+                    b.Property<int>("PlaceID")
                         .HasColumnType("int");
 
                     b.Property<int>("Size")
@@ -222,9 +222,9 @@ namespace DataAccess.Migrations
                     b.Property<bool>("Wifi")
                         .HasColumnType("bit");
 
-                    b.HasKey("DetailID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("PlaceDetailPlace")
+                    b.HasIndex("PlaceID")
                         .IsUnique();
 
                     b.ToTable("PlaceDetail", (string)null);
@@ -232,10 +232,10 @@ namespace DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            DetailID = 1,
+                            Id = 1,
                             AC = true,
                             CarParking = true,
-                            PlaceDetailPlace = 1,
+                            PlaceID = 1,
                             Size = 3,
                             Square = 50,
                             TV = true,
@@ -251,12 +251,12 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("PlaceTypeDescription")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<string>("PlaceTypeName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -269,20 +269,18 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            PlaceTypeDescription = "abcxyz",
-                            PlaceTypeName = "abcxyz"
+                            Description = "abcxyz",
+                            Name = "abcxyz"
                         });
                 });
 
             modelBuilder.Entity("DataAccess.Entities.User", b =>
                 {
-                    b.Property<int>("UserID")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserID"), 1L, 1);
-
-                    b.Property<string>("Adress")
+                    b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -312,15 +310,18 @@ namespace DataAccess.Migrations
                     b.Property<int>("UserType")
                         .HasColumnType("int");
 
-                    b.HasKey("UserID");
+                    b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("User", (string)null);
 
                     b.HasData(
                         new
                         {
-                            UserID = 1,
-                            Adress = "hanoi",
+                            Id = new Guid("00000000-0000-0000-0000-000000000003"),
+                            Address = "hanoi",
                             Email = "abc123@gmail.com",
                             Password = "123456",
                             PhoneNumber = "0123456789",
@@ -330,9 +331,9 @@ namespace DataAccess.Migrations
                         },
                         new
                         {
-                            UserID = 2,
-                            Adress = "hanoi",
-                            Email = "abc123@gmail.com",
+                            Id = new Guid("00000000-0000-0000-0000-000000000002"),
+                            Address = "hanoi",
+                            Email = "abc1234@gmail.com",
                             Password = "123456",
                             PhoneNumber = "0123456789",
                             Status = 0,
@@ -341,9 +342,9 @@ namespace DataAccess.Migrations
                         },
                         new
                         {
-                            UserID = 3,
-                            Adress = "hanoi",
-                            Email = "abc123@gmail.com",
+                            Id = new Guid("00000000-0000-0000-0000-000000000001"),
+                            Address = "hanoi",
+                            Email = "abc1236@gmail.com",
                             Password = "123456",
                             PhoneNumber = "0123456789",
                             Status = 0,
@@ -356,7 +357,7 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("DataAccess.Entities.Place", "Place")
                         .WithMany("Bookings")
-                        .HasForeignKey("CurrentPlaceId")
+                        .HasForeignKey("PlaceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -367,13 +368,13 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("DataAccess.Entities.City", "City")
                         .WithMany("Places")
-                        .HasForeignKey("CurrentCityId")
+                        .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DataAccess.Entities.PlaceType", "PlaceType")
                         .WithMany("Places")
-                        .HasForeignKey("CurrentPlaceTypeId")
+                        .HasForeignKey("PlaceTypeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -386,7 +387,7 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("DataAccess.Entities.Place", "Place")
                         .WithOne("PlaceDetail")
-                        .HasForeignKey("DataAccess.Entities.PlaceDetail", "PlaceDetailPlace")
+                        .HasForeignKey("DataAccess.Entities.PlaceDetail", "PlaceID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
