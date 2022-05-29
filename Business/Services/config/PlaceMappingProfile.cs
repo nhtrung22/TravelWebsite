@@ -10,6 +10,7 @@ namespace Business.Services.config
         {
             CreateMap<Place, PlaceDTO>();
             CreateMap<PlaceDTO, Place>();
+
         }
     }
 }

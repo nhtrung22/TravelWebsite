@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(TravelDbContext))]
-    [Migration("20220526152755_init")]
-    partial class init
+    [Migration("20220525142142_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -77,9 +77,9 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            BookingDate = new DateTime(2022, 5, 11, 15, 27, 54, 907, DateTimeKind.Local).AddTicks(7301),
-                            BookingFromTime = new DateTime(2022, 5, 16, 15, 27, 54, 907, DateTimeKind.Local).AddTicks(7282),
-                            BookingToTime = new DateTime(2022, 6, 5, 15, 27, 54, 907, DateTimeKind.Local).AddTicks(7298),
+                            BookingDate = new DateTime(2022, 5, 10, 14, 21, 42, 262, DateTimeKind.Local).AddTicks(6994),
+                            BookingFromTime = new DateTime(2022, 5, 15, 14, 21, 42, 262, DateTimeKind.Local).AddTicks(6971),
+                            BookingToTime = new DateTime(2022, 6, 4, 14, 21, 42, 262, DateTimeKind.Local).AddTicks(6991),
                             Deposit = 0m,
                             FullName = "Nguyen A",
                             NumberOfAdult = 1,
@@ -135,7 +135,7 @@ namespace DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("BookingId")
+                    b.Property<int?>("BookingId")
                         .HasColumnType("int");
 
                     b.Property<int?>("CityId")
@@ -183,7 +183,6 @@ namespace DataAccess.Migrations
                         {
                             Id = 1,
                             Address = "hanoi",
-                            BookingId = 1,
                             Image = "ljfasdkjf",
                             Latitude = 21.0278m,
                             Longtitude = 105.8342m,
@@ -330,11 +329,9 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.Place", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Booking", "Booking")
+                    b.HasOne("DataAccess.Entities.Booking", null)
                         .WithMany("Places")
-                        .HasForeignKey("BookingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BookingId");
 
                     b.HasOne("DataAccess.Entities.City", null)
                         .WithMany("Places")
@@ -343,8 +340,6 @@ namespace DataAccess.Migrations
                     b.HasOne("DataAccess.Entities.PlaceType", null)
                         .WithMany("Places")
                         .HasForeignKey("PlaceTypeId");
-
-                    b.Navigation("Booking");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.PlaceDetail", b =>

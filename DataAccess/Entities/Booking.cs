@@ -39,7 +39,9 @@ namespace DataAccess.Entities
         public string FullName { get; set; }
 
         // Place - Booking
-        public ICollection<Place> Places { get; set; }
+
+        public int CurrentPlaceId { get; set; }
+        public Place Place { get; set; }
 
     }
 }

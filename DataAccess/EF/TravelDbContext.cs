@@ -17,13 +17,15 @@ namespace DataAccess.EF
 
             // Relationship
             // Place - PlaceDetail
-            modelBuilder.Entity<Place>().HasOne(item => item.Booking).WithMany(item => item.Places).HasForeignKey(e => e.BookingId);
-            //2 cach viet nay khac nhau (HasOne(item => item.Booking) va HasOne<Booking>()) -> cach sau tu dong sinh ra shadow property
-            //tim hieu them 
-            //https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key
-            //modelBuilder.Entity<Place>().HasOne<Booking>().WithMany(item => item.Places).HasForeignKey(e => e.BookingId);
+            modelBuilder.Entity<Place>()
+              .HasOne<PlaceDetail>(s => s.PlaceDetail)
+               .WithOne(ad => ad.Place)
+               .HasForeignKey<PlaceDetail>(ad => ad.PlaceDetailPlace);
 
-            //modelBuilder.Entity<Place>().Property(f => f.Id).ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Place>()
+             .Property(f => f.Id)
+             .ValueGeneratedOnAdd();
 
 
             modelBuilder.Entity<PlaceDetail>()
@@ -33,19 +35,35 @@ namespace DataAccess.EF
             // Place - Booking
 
             modelBuilder.Entity<Booking>()
+            .HasOne<Place>(s => s.Place)
+            .WithMany(g => g.Bookings)
+            .HasForeignKey(s => s.CurrentPlaceId);
+
+            modelBuilder.Entity<Booking>()
             .Property(f => f.Id)
             .ValueGeneratedOnAdd();
 
             // City - Place
+            modelBuilder.Entity<Place>()
+            .HasOne<City>(s => s.City)
+            .WithMany(g => g.Places)
+            .HasForeignKey(s => s.CurrentCityId);
+
             modelBuilder.Entity<City>()
             .Property(f => f.Id)
             .ValueGeneratedOnAdd();
 
             // PlaceType - Place
+            modelBuilder.Entity<Place>()
+            .HasOne<PlaceType>(s => s.PlaceType)
+            .WithMany(g => g.Places)
+            .HasForeignKey(s => s.CurrentPlaceTypeId);
+
             modelBuilder.Entity<PlaceType>()
              .Property(f => f.Id)
              .ValueGeneratedOnAdd();
 
+            // User
             modelBuilder.Entity<User>()
           .Property(f => f.UserID)
           .ValueGeneratedOnAdd();

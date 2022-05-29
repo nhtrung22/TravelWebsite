@@ -28,7 +28,7 @@ namespace TravelWebsite.Controllers
         [HttpGet("sort")]
         public async Task<List<PlaceDTO>> Sort()
         {
-            return await _placeService.Sort();
+            return await _placeService.SortDescending();
         }
 
 

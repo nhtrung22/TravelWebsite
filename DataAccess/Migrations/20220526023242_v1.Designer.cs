@@ -4,6 +4,7 @@ using DataAccess.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(TravelDbContext))]
-    partial class TravelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220526023242_v1")]
+    partial class v1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -75,24 +77,6 @@ namespace DataAccess.Migrations
                     b.HasIndex("CurrentPlaceId");
 
                     b.ToTable("Booking", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            BookingDate = new DateTime(2022, 5, 12, 11, 33, 44, 79, DateTimeKind.Local).AddTicks(9195),
-                            BookingFromTime = new DateTime(2022, 5, 17, 11, 33, 44, 79, DateTimeKind.Local).AddTicks(9180),
-                            BookingToTime = new DateTime(2022, 6, 6, 11, 33, 44, 79, DateTimeKind.Local).AddTicks(9193),
-                            CurrentPlaceId = 1,
-                            Deposit = 0m,
-                            FullName = "Nguyen A",
-                            NumberOfAdult = 1,
-                            NumberOfKid = 3,
-                            PaymentStatus = 0,
-                            PhoneNumber = "0123456789",
-                            Price = 50000m,
-                            Status = 0
-                        });
                 });
 
             modelBuilder.Entity("DataAccess.Entities.City", b =>
@@ -116,14 +100,6 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("City", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CityName = "ha noi",
-                            Description = "abcxyz"
-                        });
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Place", b =>
@@ -176,21 +152,6 @@ namespace DataAccess.Migrations
                     b.HasIndex("CurrentPlaceTypeId");
 
                     b.ToTable("Place", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Address = "hoan kiem, ha noi",
-                            CurrentCityId = 1,
-                            CurrentPlaceTypeId = 1,
-                            Image = "abcxyz",
-                            Latitude = 21.0278m,
-                            Longtitude = 105.8342m,
-                            PlaceName = "studio",
-                            ShortDicription = "abcxyz",
-                            Thumb = "abcxyz"
-                        });
                 });
 
             modelBuilder.Entity("DataAccess.Entities.PlaceDetail", b =>
@@ -228,19 +189,6 @@ namespace DataAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("PlaceDetail", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            DetailID = 1,
-                            AC = true,
-                            CarParking = true,
-                            PlaceDetailPlace = 1,
-                            Size = 3,
-                            Square = 50,
-                            TV = true,
-                            Wifi = true
-                        });
                 });
 
             modelBuilder.Entity("DataAccess.Entities.PlaceType", b =>
@@ -264,14 +212,6 @@ namespace DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PlaceType", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            PlaceTypeDescription = "abcxyz",
-                            PlaceTypeName = "abcxyz"
-                        });
                 });
 
             modelBuilder.Entity("DataAccess.Entities.User", b =>

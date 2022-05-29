@@ -28,21 +28,25 @@ namespace DataAccess.Entities
 
 
         // Place - Place Detail
-        public virtual ICollection<PlaceDetail> PlaceDetail { get; set; }
+        public PlaceDetail PlaceDetail { get; set; }
 
         // Place - Booking
-        // co the remove BookingId
-        //https://docs.microsoft.com/en-us/ef/core/modeling/relationships?tabs=fluent-api%2Cfluent-api-simple-key%2Csimple-key
-        public int BookingId { get; set; }
-        public virtual Booking Booking { get; set; }
+        //public int BookingID { get; set; }
+        //public virtual Booking Booking { get; set; }
+        public ICollection<Booking> Bookings { get; set; }
+
 
         // City - Place
-        //public int CityID { get; set; }
-
         //public virtual City City { get; set; }
+        public int CurrentCityId { get; set; }
+        public City City { get; set; }
+
+
 
         // PlaceType - Place
         //public int PlaceTypeID { get; set; }
         //public virtual PlaceType PlaceType { get; set; }
+        public int CurrentPlaceTypeId { get; set; }
+        public PlaceType PlaceType { get; set; }
     }
 }

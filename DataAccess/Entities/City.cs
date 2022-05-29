@@ -20,5 +20,9 @@ namespace DataAccess.Entities
         // City - Place
         public ICollection<Place> Places { get; set; }
 
+        public static implicit operator City(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

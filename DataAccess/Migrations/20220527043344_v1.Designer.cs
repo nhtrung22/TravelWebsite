@@ -4,6 +4,7 @@ using DataAccess.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(TravelDbContext))]
-    partial class TravelDbContextModelSnapshot : ModelSnapshot
+<<<<<<<< HEAD:DataAccess/Migrations/20220526152755_init.Designer.cs
+    [Migration("20220526152755_init")]
+    partial class init
+========
+    [Migration("20220527043344_v1")]
+    partial class v1
+>>>>>>>> TrungNH:DataAccess/Migrations/20220527043344_v1.Designer.cs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,10 +87,16 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
+<<<<<<<< HEAD:DataAccess/Migrations/20220526152755_init.Designer.cs
+                            BookingDate = new DateTime(2022, 5, 11, 15, 27, 54, 907, DateTimeKind.Local).AddTicks(7301),
+                            BookingFromTime = new DateTime(2022, 5, 16, 15, 27, 54, 907, DateTimeKind.Local).AddTicks(7282),
+                            BookingToTime = new DateTime(2022, 6, 5, 15, 27, 54, 907, DateTimeKind.Local).AddTicks(7298),
+========
                             BookingDate = new DateTime(2022, 5, 12, 11, 33, 44, 79, DateTimeKind.Local).AddTicks(9195),
                             BookingFromTime = new DateTime(2022, 5, 17, 11, 33, 44, 79, DateTimeKind.Local).AddTicks(9180),
                             BookingToTime = new DateTime(2022, 6, 6, 11, 33, 44, 79, DateTimeKind.Local).AddTicks(9193),
                             CurrentPlaceId = 1,
+>>>>>>>> TrungNH:DataAccess/Migrations/20220527043344_v1.Designer.cs
                             Deposit = 0m,
                             FullName = "Nguyen A",
                             NumberOfAdult = 1,
@@ -139,7 +152,11 @@ namespace DataAccess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+<<<<<<<< HEAD:DataAccess/Migrations/20220526152755_init.Designer.cs
+                    b.Property<int>("BookingId")
+========
                     b.Property<int>("CurrentCityId")
+>>>>>>>> TrungNH:DataAccess/Migrations/20220527043344_v1.Designer.cs
                         .HasColumnType("int");
 
                     b.Property<int>("CurrentPlaceTypeId")
@@ -181,10 +198,16 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
+<<<<<<<< HEAD:DataAccess/Migrations/20220526152755_init.Designer.cs
+                            Address = "hanoi",
+                            BookingId = 1,
+                            Image = "ljfasdkjf",
+========
                             Address = "hoan kiem, ha noi",
                             CurrentCityId = 1,
                             CurrentPlaceTypeId = 1,
                             Image = "abcxyz",
+>>>>>>>> TrungNH:DataAccess/Migrations/20220527043344_v1.Designer.cs
                             Latitude = 21.0278m,
                             Longtitude = 105.8342m,
                             PlaceName = "studio",
@@ -365,9 +388,15 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.Place", b =>
                 {
+<<<<<<<< HEAD:DataAccess/Migrations/20220526152755_init.Designer.cs
+                    b.HasOne("DataAccess.Entities.Booking", "Booking")
+                        .WithMany("Places")
+                        .HasForeignKey("BookingId")
+========
                     b.HasOne("DataAccess.Entities.City", "City")
                         .WithMany("Places")
                         .HasForeignKey("CurrentCityId")
+>>>>>>>> TrungNH:DataAccess/Migrations/20220527043344_v1.Designer.cs
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -377,9 +406,17 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+<<<<<<<< HEAD:DataAccess/Migrations/20220526152755_init.Designer.cs
+                    b.HasOne("DataAccess.Entities.PlaceType", null)
+                        .WithMany("Places")
+                        .HasForeignKey("PlaceTypeId");
+
+                    b.Navigation("Booking");
+========
                     b.Navigation("City");
 
                     b.Navigation("PlaceType");
+>>>>>>>> TrungNH:DataAccess/Migrations/20220527043344_v1.Designer.cs
                 });
 
             modelBuilder.Entity("DataAccess.Entities.PlaceDetail", b =>
