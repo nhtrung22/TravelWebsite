@@ -22,12 +22,15 @@ namespace Business.Services.PlaceService
             _mapper = mapper;
         }
 
+        // Get all places
         public async Task<List<PlaceDTO>> GetAllAsysnc()
         {
             var placeList = await _context.Place.ToListAsync();
             return _mapper.Map<List<PlaceDTO>>(placeList);
         }
 
+
+        // Create Place
         public async Task CreatePlace(PlaceDTO placeDto)
         {
             var place = _mapper.Map<Place>(placeDto);
@@ -35,7 +38,8 @@ namespace Business.Services.PlaceService
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<PlaceDTO>> Sort()
+        // Sort Descending
+        public async Task<List<PlaceDTO>> SortDescending()
         {
             var placeList = await _context.Place.ToListAsync();
 
@@ -48,6 +52,11 @@ namespace Business.Services.PlaceService
 
             return _mapper.Map<List<PlaceDTO>>(result);
         }
+
+
+
+
+        
 
     }
 }

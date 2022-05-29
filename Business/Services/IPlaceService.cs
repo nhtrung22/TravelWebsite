@@ -8,9 +8,10 @@ namespace Business.Services
         Task<List<PlaceDTO>> GetAllAsysnc();
 
         //Task<List<PlaceDTO>> GetAsysnc(int id);
+
         Task CreatePlace(PlaceDTO placeDto);
 
-        Task<List<PlaceDTO>> Sort();
+        Task<List<PlaceDTO>> SortDescending();
 
     }
 }
