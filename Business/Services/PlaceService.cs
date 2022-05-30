@@ -24,7 +24,7 @@ namespace Business.Services.PlaceService
         }
 
         // Get all places
-        public async Task<List<PlaceDTO>> GetAllAsysnc()
+        public async Task<List<PlaceDTO>> Get()
         {
             var placeList = await _context.Place.ToListAsync();
             return _mapper.Map<List<PlaceDTO>>(placeList);

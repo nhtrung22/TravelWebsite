@@ -5,7 +5,7 @@ namespace Business.Common.Interfaces
 {
     public interface IPlaceService
     {
-        Task<List<PlaceDTO>> GetAllAsysnc();
+        Task<List<PlaceDTO>> Get();
 
         //Task<List<PlaceDTO>> GetAsysnc(int id);
 
