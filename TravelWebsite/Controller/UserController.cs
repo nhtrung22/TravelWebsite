@@ -9,14 +9,7 @@ namespace TravelWebsite.Controllers
 {
     [Route("api/user")]
     [ApiController]
-<<<<<<< HEAD:Business/Controller/UserController.cs
-<<<<<<< Updated upstream:Business/Controller/UserController.cs
-=======
     [Authorize]
->>>>>>> Stashed changes:TravelWebsite/Controller/UserController.cs
-=======
-    //[Authorize]
->>>>>>> TrungNH:TravelWebsite/Controller/UserController.cs
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;

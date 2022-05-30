@@ -25,21 +25,12 @@ using Business.Services.PlaceService;
 using DataAccess.Entities;
 using AutoMapper;
 using DataAccess.DTO;
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-using Business.Services.config;
-=======
-=======
->>>>>>> TrungNH
+//using Business.Services.config;
 using Business.Common.MappingConfig;
 using Business.Common.Interfaces;
 using TravelWebsite.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-<<<<<<< HEAD
 using Middleware.Example;
->>>>>>> Stashed changes
-=======
->>>>>>> TrungNH
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,17 +50,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IPlaceService, PlaceService>();
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> TrungNH
 builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddTransient<IJWTManagerRepository, JWTManagerRepository>();
 builder.Services.AddCors();
 
-<<<<<<< HEAD
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -89,29 +74,6 @@ builder.Services.AddAuthentication(x =>
         IssuerSigningKey = new SymmetricSecurityKey(Key)
     };
 });
->>>>>>> Stashed changes
-=======
-//builder.Services.AddAuthentication(x =>
-//{
-//    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-//    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-//}).AddJwtBearer(o =>
-//{
-//    var Key = Encoding.UTF8.GetBytes(Configuration["JWT:Key"]);
-//    o.SaveToken = true;
-//    o.TokenValidationParameters = new TokenValidationParameters
-//    {
-//        ValidateIssuer = false,
-//        ValidateAudience = false,
-//        ValidateLifetime = true,
-//        ValidateIssuerSigningKey = true,
-//        ValidIssuer = Configuration["JWT:Issuer"],
-//        ValidAudience = Configuration["JWT:Audience"],
-//        IssuerSigningKey = new SymmetricSecurityKey(Key)
-//    };
-//});
->>>>>>> TrungNH
-
 
 var app = builder.Build();
 

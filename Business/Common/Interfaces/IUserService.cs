@@ -12,7 +12,7 @@ namespace Business.Common.Interfaces
 
         Task<UserDTO> Update(UserDTO user);
 
-        //Task<UserDTO> Login(string userName, string password);
+        Task<UserDTO> Login(string userName, string password);
 
         Task Remove(string email);
 
