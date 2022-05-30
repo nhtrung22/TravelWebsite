@@ -80,9 +80,9 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            BookingDate = new DateTime(2022, 5, 15, 10, 23, 40, 52, DateTimeKind.Local).AddTicks(4381),
-                            BookingFromTime = new DateTime(2022, 5, 20, 10, 23, 40, 52, DateTimeKind.Local).AddTicks(4352),
-                            BookingToTime = new DateTime(2022, 6, 9, 10, 23, 40, 52, DateTimeKind.Local).AddTicks(4378),
+                            BookingDate = new DateTime(2022, 5, 15, 11, 36, 10, 589, DateTimeKind.Local).AddTicks(5548),
+                            BookingFromTime = new DateTime(2022, 5, 20, 11, 36, 10, 589, DateTimeKind.Local).AddTicks(5533),
+                            BookingToTime = new DateTime(2022, 6, 9, 11, 36, 10, 589, DateTimeKind.Local).AddTicks(5546),
                             Deposit = 0m,
                             FullName = "Nguyen A",
                             NumberOfAdult = 1,
@@ -152,7 +152,7 @@ namespace DataAccess.Migrations
                     b.Property<decimal>("Longtitude")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("PlaceName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -186,7 +186,7 @@ namespace DataAccess.Migrations
                             Image = "abcxyz",
                             Latitude = 21.0278m,
                             Longtitude = 105.8342m,
-                            PlaceName = "studio",
+                            Name = "studio",
                             PlaceTypeID = 1,
                             ShortDicription = "abcxyz",
                             Thumb = "abcxyz"

@@ -61,7 +61,7 @@ namespace DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PlaceName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     ShortDicription = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     Latitude = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -165,13 +165,13 @@ namespace DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Place",
-                columns: new[] { "Id", "Address", "CityId", "Image", "Latitude", "Longtitude", "PlaceName", "PlaceTypeID", "ShortDicription", "Thumb" },
+                columns: new[] { "Id", "Address", "CityId", "Image", "Latitude", "Longtitude", "Name", "PlaceTypeID", "ShortDicription", "Thumb" },
                 values: new object[] { 1, "hoan kiem, ha noi", 1, "abcxyz", 21.0278m, 105.8342m, "studio", 1, "abcxyz", "abcxyz" });
 
             migrationBuilder.InsertData(
                 table: "Booking",
                 columns: new[] { "Id", "BookingDate", "BookingFromTime", "BookingToTime", "Deposit", "FullName", "NumberOfAdult", "NumberOfKid", "PaymentStatus", "PhoneNumber", "PlaceId", "Price", "Status" },
-                values: new object[] { 1, new DateTime(2022, 5, 15, 10, 23, 40, 52, DateTimeKind.Local).AddTicks(4381), new DateTime(2022, 5, 20, 10, 23, 40, 52, DateTimeKind.Local).AddTicks(4352), new DateTime(2022, 6, 9, 10, 23, 40, 52, DateTimeKind.Local).AddTicks(4378), 0m, "Nguyen A", 1, 3, 0, "0123456789", 1, 50000m, 0 });
+                values: new object[] { 1, new DateTime(2022, 5, 15, 11, 36, 10, 589, DateTimeKind.Local).AddTicks(5548), new DateTime(2022, 5, 20, 11, 36, 10, 589, DateTimeKind.Local).AddTicks(5533), new DateTime(2022, 6, 9, 11, 36, 10, 589, DateTimeKind.Local).AddTicks(5546), 0m, "Nguyen A", 1, 3, 0, "0123456789", 1, 50000m, 0 });
 
             migrationBuilder.InsertData(
                 table: "PlaceDetail",

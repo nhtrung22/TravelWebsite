@@ -10,7 +10,6 @@ namespace Business.Common.MappingConfig
         {
             CreateMap<Place, PlaceDTO>();
             CreateMap<PlaceDTO, Place>();
-
         }
     }
 }

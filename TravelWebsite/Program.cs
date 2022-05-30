@@ -8,6 +8,8 @@ using AutoMapper;
 using DataAccess.DTO;
 using Business.Common.MappingConfig;
 using Business.Common.Interfaces;
+using TravelWebsite.Jwt;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +30,29 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IPlaceService, PlaceService>();
 builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddTransient<IJWTManagerRepository, JWTManagerRepository>();
+builder.Services.AddCors();
+
+//builder.Services.AddAuthentication(x =>
+//{
+//    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+//}).AddJwtBearer(o =>
+//{
+//    var Key = Encoding.UTF8.GetBytes(Configuration["JWT:Key"]);
+//    o.SaveToken = true;
+//    o.TokenValidationParameters = new TokenValidationParameters
+//    {
+//        ValidateIssuer = false,
+//        ValidateAudience = false,
+//        ValidateLifetime = true,
+//        ValidateIssuerSigningKey = true,
+//        ValidIssuer = Configuration["JWT:Issuer"],
+//        ValidAudience = Configuration["JWT:Audience"],
+//        IssuerSigningKey = new SymmetricSecurityKey(Key)
+//    };
+//});
 
 
 var app = builder.Build();

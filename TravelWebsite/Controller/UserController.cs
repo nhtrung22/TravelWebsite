@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TravelWebsite.Controllers
 {
-    [Route("api/place")]
+    [Route("api/user")]
     [ApiController]
     public class UserController : ControllerBase
     {
