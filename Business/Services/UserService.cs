@@ -52,11 +52,15 @@ namespace Business.Services.PlaceService
 
         public async Task<UserDTO> Login(string userName, string password)
         {
+<<<<<<< Updated upstream
             
             //userEntity.Password ma hoa
             var user = await _context.User.FirstOrDefaultAsync(item => item.UserName == userName && item.Password == password);
             string token = "abcxyz";
             //user.Token = token;
+=======
+            var user = await _context.User.FirstOrDefaultAsync(item => item.UserName == userName && item.Password == password);
+>>>>>>> Stashed changes
             return _mapper.Map<UserDTO>(user);
         }
 
