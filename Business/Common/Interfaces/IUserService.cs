@@ -1,7 +1,7 @@
 ﻿using DataAccess.DTO;
 using DataAccess.Entities;
 
-namespace Business.Services
+namespace Business.Common.Interfaces
 {
     public interface IUserService
     {

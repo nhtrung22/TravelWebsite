@@ -22,7 +22,7 @@ namespace DataAccess.Configurations
             builder.Property(x => x.Id).UseIdentityColumn();
 
 
-            builder.Property(x => x.PlaceName).IsRequired().HasMaxLength(100);
+            builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
 
             builder.Property(x => x.Address).IsRequired().HasMaxLength(100);
 

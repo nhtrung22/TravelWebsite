@@ -77,7 +77,7 @@ namespace DataAccess.Extensions
                 new Place()
                 {
                     Id = 1,
-                    PlaceName = "studio",
+                    Name = "studio",
                     Address = "hoan kiem, ha noi",
                     ShortDicription = "abcxyz",
                     Latitude = 21.0278M,

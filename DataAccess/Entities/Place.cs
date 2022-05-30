@@ -12,7 +12,7 @@ namespace DataAccess.Entities
         [Key]
         public int Id { get; set; } // PK
 
-        public string PlaceName { get; set; } 
+        public string Name { get; set; } 
 
         public string Address { get; set; }
 

@@ -2,12 +2,12 @@ using Microsoft.EntityFrameworkCore;
 using DataAccess.EF;
 using System.Configuration;
 using Microsoft.Extensions.Configuration;
-using Business.Services;
 using Business.Services.PlaceService;
 using DataAccess.Entities;
 using AutoMapper;
 using DataAccess.DTO;
-using Business.Services.config;
+using Business.Common.MappingConfig;
+using Business.Common.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +27,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IPlaceService, PlaceService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 
 var app = builder.Build();

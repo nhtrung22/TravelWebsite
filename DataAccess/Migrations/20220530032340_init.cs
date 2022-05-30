@@ -171,7 +171,7 @@ namespace DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "Booking",
                 columns: new[] { "Id", "BookingDate", "BookingFromTime", "BookingToTime", "Deposit", "FullName", "NumberOfAdult", "NumberOfKid", "PaymentStatus", "PhoneNumber", "PlaceId", "Price", "Status" },
-                values: new object[] { 1, new DateTime(2022, 5, 15, 9, 59, 58, 73, DateTimeKind.Local).AddTicks(4714), new DateTime(2022, 5, 20, 9, 59, 58, 73, DateTimeKind.Local).AddTicks(4699), new DateTime(2022, 6, 9, 9, 59, 58, 73, DateTimeKind.Local).AddTicks(4712), 0m, "Nguyen A", 1, 3, 0, "0123456789", 1, 50000m, 0 });
+                values: new object[] { 1, new DateTime(2022, 5, 15, 10, 23, 40, 52, DateTimeKind.Local).AddTicks(4381), new DateTime(2022, 5, 20, 10, 23, 40, 52, DateTimeKind.Local).AddTicks(4352), new DateTime(2022, 6, 9, 10, 23, 40, 52, DateTimeKind.Local).AddTicks(4378), 0m, "Nguyen A", 1, 3, 0, "0123456789", 1, 50000m, 0 });
 
             migrationBuilder.InsertData(
                 table: "PlaceDetail",
