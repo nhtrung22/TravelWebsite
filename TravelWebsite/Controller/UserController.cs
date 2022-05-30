@@ -35,18 +35,18 @@ namespace TravelWebsite.Controllers
         {
             await _userService.Remove(email);
         }
-
+            
         [HttpPut]
         public async Task Update(UserDTO user)
         {
             await _userService.Update(user);
         }
 
-        [HttpPut]
-        public async Task Login(string userName, string password)
-        {
-            //await _userService.Add(user);
-        }
+        //[HttpPut]
+        //public async Task Login(string userName, string password)
+        //{
+        //    //await _userService.Add(user);
+        //}
 
 
     }
