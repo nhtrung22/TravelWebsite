@@ -5,7 +5,7 @@ public class UserProfile : Profile
 {
     public UserProfile()
     {
-        CreateMap<Place, PlaceDTO>();
-        CreateMap<PlaceDTO, Place>();
+        CreateMap<User, UserDTO>();
+        CreateMap<UserDTO, User>();
     }
 }

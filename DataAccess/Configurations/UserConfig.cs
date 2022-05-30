@@ -25,6 +25,8 @@ namespace DataAccess.Configurations
 
             builder.Property(x => x.Password).IsRequired().HasMaxLength(20);
 
+            builder.Property(x => x.Address).IsRequired().HasMaxLength(200);
+
             builder.Property(x => x.Email).IsRequired().HasMaxLength(50);
 
             builder.Property(x => x.PhoneNumber).IsRequired().HasMaxLength(20);

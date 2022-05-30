@@ -1,17 +1,22 @@
 ﻿using AutoMapper;
-using Business.Services;
+using Business.Common.Interfaces;
 using DataAccess.DTO;
-using DataAccess.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using DataAccess.EF;
 
 namespace TravelWebsite.Controllers
 {
-    [Route("api/place")]
+    [Route("api/user")]
     [ApiController]
+<<<<<<< HEAD:Business/Controller/UserController.cs
 <<<<<<< Updated upstream:Business/Controller/UserController.cs
 =======
     [Authorize]
 >>>>>>> Stashed changes:TravelWebsite/Controller/UserController.cs
+=======
+    //[Authorize]
+>>>>>>> TrungNH:TravelWebsite/Controller/UserController.cs
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -22,36 +27,36 @@ namespace TravelWebsite.Controllers
             _userService = userService;
         }
 
-        [HttpGet]
+        [HttpGet("get")]
         public async Task<List<UserDTO>> Get()
         {
             //validation
-            return  await _userService.GetAllAsysnc();
+            return  await _userService.Get();
         }
 
-        [HttpPost]
+        [HttpPost("add")]
         public async Task<UserDTO> Add(UserDTO user)
         {
             return await _userService.Add(user);
         }
 
-        [HttpDelete]
-        public async Task Remove(string email)
-        {
-            await _userService.Remove(email);
-        }
-
-        [HttpPut]
+        //[HttpDelete("delete")]
+        //public async Task Remove(string email)
+        //{
+        //    await _userService.Remove(email);
+        //}
+            
+        [HttpPut("put")]
         public async Task Update(UserDTO user)
         {
             await _userService.Update(user);
         }
 
-        [HttpPut]
-        public async Task Login(string userName, string password)
-        {
-            //await _userService.Add(user);
-        }
+        //[HttpPut]
+        //public async Task Login(string userName, string password)
+        //{
+        //    //await _userService.Add(user);
+        //}
 
 
     }

@@ -2,7 +2,7 @@
 using DataAccess.DTO;
 using DataAccess.Entities;
 
-namespace Business.Services.config
+namespace Business.Common.MappingConfig
 {
     public class UserMappingProfile : Profile
     {

@@ -2,7 +2,7 @@
 using DataAccess.DTO;
 using DataAccess.Entities;
 
-namespace Business.Services.config
+namespace Business.Common.MappingConfig
 {
     public class PlaceMappingProfile : Profile
     {
@@ -10,7 +10,6 @@ namespace Business.Services.config
         {
             CreateMap<Place, PlaceDTO>();
             CreateMap<PlaceDTO, Place>();
-
         }
     }
 }

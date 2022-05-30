@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Business.Common.Interfaces;
 using DataAccess.DTO;
 using DataAccess.EF;
 using DataAccess.Entities;
@@ -23,7 +24,7 @@ namespace Business.Services.PlaceService
         }
 
         // Get all places
-        public async Task<List<PlaceDTO>> GetAllAsysnc()
+        public async Task<List<PlaceDTO>> Get()
         {
             var placeList = await _context.Place.ToListAsync();
             return _mapper.Map<List<PlaceDTO>>(placeList);
@@ -45,18 +46,12 @@ namespace Business.Services.PlaceService
 
 
             var result = from Place in placeList
-                         orderby Place.PlaceName descending
+                         orderby Place.Name descending
                          select Place;
 
             //foreach (var Place in result) Console.WriteLine($"{Place.PlaceName}");
 
             return _mapper.Map<List<PlaceDTO>>(result);
         }
-
-
-
-
-        
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Business.Common.Interfaces;
 using DataAccess.DTO;
 using DataAccess.EF;
 using DataAccess.Entities;
@@ -25,7 +26,7 @@ namespace Business.Services.PlaceService
       
 
         // Get all users
-        public async Task<List<UserDTO>> GetAllAsysnc()
+        public async Task<List<UserDTO>> Get()
         {
             var result = await _context.User.ToListAsync();
             return _mapper.Map<List<UserDTO>>(result);
@@ -50,6 +51,7 @@ namespace Business.Services.PlaceService
             return _mapper.Map<UserDTO>(result);
         }
 
+<<<<<<< HEAD
         public async Task<UserDTO> Login(string userName, string password)
         {
 <<<<<<< Updated upstream
@@ -63,6 +65,17 @@ namespace Business.Services.PlaceService
 >>>>>>> Stashed changes
             return _mapper.Map<UserDTO>(user);
         }
+=======
+        //public async Task<UserDTO> Login(string userName, string password)
+        //{
+
+        //    //userEntity.Password ma hoa
+        //    var user = await _context.User.FirstOrDefaultAsync(item => item.UserName == userName && item.Password == password);
+        //    string token = "abcxyz";
+        //    //user.Token = token;   
+        //    return _mapper.Map<UserDTO>(user);
+        //}
+>>>>>>> TrungNH
 
         public async Task<UserDTO> Update(UserDTO user)
         {

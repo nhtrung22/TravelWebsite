@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
-using Business.Services;
+using Business.Common.Interfaces;
 using DataAccess.DTO;
-using DataAccess.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TravelWebsite.Controllers
@@ -18,10 +17,10 @@ namespace TravelWebsite.Controllers
             _placeService = placeService;
         }
 
-        [HttpGet]
+        [HttpGet("get")]
         public async Task<List<PlaceDTO>> Get()
         {
-            return  await _placeService.GetAllAsysnc();
+            return  await _placeService.Get();
         }
 
 

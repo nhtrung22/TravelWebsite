@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(TravelDbContext))]
-    [Migration("20220529150804_init")]
+    [Migration("20220530043610_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -82,9 +82,9 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            BookingDate = new DateTime(2022, 5, 14, 15, 8, 3, 790, DateTimeKind.Local).AddTicks(4830),
-                            BookingFromTime = new DateTime(2022, 5, 19, 15, 8, 3, 790, DateTimeKind.Local).AddTicks(4813),
-                            BookingToTime = new DateTime(2022, 6, 8, 15, 8, 3, 790, DateTimeKind.Local).AddTicks(4828),
+                            BookingDate = new DateTime(2022, 5, 15, 11, 36, 10, 589, DateTimeKind.Local).AddTicks(5548),
+                            BookingFromTime = new DateTime(2022, 5, 20, 11, 36, 10, 589, DateTimeKind.Local).AddTicks(5533),
+                            BookingToTime = new DateTime(2022, 6, 9, 11, 36, 10, 589, DateTimeKind.Local).AddTicks(5546),
                             Deposit = 0m,
                             FullName = "Nguyen A",
                             NumberOfAdult = 1,
@@ -154,7 +154,7 @@ namespace DataAccess.Migrations
                     b.Property<decimal>("Longtitude")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("PlaceName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -188,7 +188,7 @@ namespace DataAccess.Migrations
                             Image = "abcxyz",
                             Latitude = 21.0278m,
                             Longtitude = 105.8342m,
-                            PlaceName = "studio",
+                            Name = "studio",
                             PlaceTypeID = 1,
                             ShortDicription = "abcxyz",
                             Thumb = "abcxyz"
