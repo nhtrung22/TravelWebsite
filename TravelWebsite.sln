@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TW.API", "TravelWebsite\TW.API.csproj", "{530F214A-4A52-4BCC-9978-45C3A7DA70FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelWebsite.API", "TravelWebsite\TravelWebsite.API.csproj", "{530F214A-4A52-4BCC-9978-45C3A7DA70FB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TW.DataAccess", "DataAccess\TW.DataAccess.csproj", "{6BAD734E-DAF8-4477-AC40-B95687BBC5F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelWebsite.DataAccess", "DataAccess\TravelWebsite.DataAccess.csproj", "{6BAD734E-DAF8-4477-AC40-B95687BBC5F3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TW.Business", "Business\TW.Business.csproj", "{0E6F4CB4-CBF8-4DF7-84E6-717C33E828AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelWebsite.Business", "Business\TravelWebsite.Business.csproj", "{0E6F4CB4-CBF8-4DF7-84E6-717C33E828AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,4 @@
-﻿using TW.DataAccess.Entities;
+﻿using TravelWebsite.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -8,10 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using AutoMapper;
-using TW.DataAccess.Entities;
+using TravelWebsite.DataAccess.Entities;
 //using DataAccess.DTO;
 
-namespace TW.DataAccess.Configurations
+namespace TravelWebsite.DataAccess.Configurations
 {
     public class PlaceConfig : IEntityTypeConfiguration<Place>
     {

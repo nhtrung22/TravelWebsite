@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using TW.DataAccess.Entities;
-using TW.DataAccess.DTO;
+using TravelWebsite.DataAccess.Entities;
+using TravelWebsite.DataAccess.DTO;
 public class UserProfile : Profile
 {
     public UserProfile()

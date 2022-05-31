@@ -1,11 +1,11 @@
-﻿using TW.DataAccess.Configurations;
-using TW.DataAccess.Entities;
-using TW.DataAccess.Extensions;
+﻿using TravelWebsite.DataAccess.Configurations;
+using TravelWebsite.DataAccess.Entities;
+using TravelWebsite.DataAccess.Extensions;
 using Microsoft.EntityFrameworkCore;
-using TW.DataAccess.Configurations;
-using TW.DataAccess.Entities;
+using TravelWebsite.DataAccess.Configurations;
+using TravelWebsite.DataAccess.Entities;
 
-namespace TW.DataAccess.EF
+namespace TravelWebsite.DataAccess.EF
 {
     public class TravelDbContext : DbContext
     {

@@ -1,11 +1,11 @@
-﻿using TW.DataAccess.Entities;
+﻿using TravelWebsite.DataAccess.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TW.DataAccess.DTO
+namespace TravelWebsite.DataAccess.DTO
 {
     public class PlaceTypeDTO
     {

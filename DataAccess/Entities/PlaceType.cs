@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TW.DataAccess.Entities
+namespace TravelWebsite.DataAccess.Entities
 {
     public class PlaceType
     {

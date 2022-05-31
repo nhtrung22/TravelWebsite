@@ -1,8 +1,8 @@
-﻿using TW.DataAccess.DTO;
-using TW.DataAccess.Entities;
-using TW.DataAccess.EF;
+﻿using TravelWebsite.DataAccess.DTO;
+using TravelWebsite.DataAccess.Entities;
+using TravelWebsite.DataAccess.EF;
 
-namespace TW.Business.Common.Interfaces
+namespace TravelWebsite.Business.Common.Interfaces
 {
     public interface IUserService
     {

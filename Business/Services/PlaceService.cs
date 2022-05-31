@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
-using TW.Business.Common.Interfaces;
-using TW.DataAccess.DTO;
-using TW.DataAccess.EF;
-using TW.DataAccess.Entities;
+using TravelWebsite.Business.Common.Interfaces;
+using TravelWebsite.DataAccess.DTO;
+using TravelWebsite.DataAccess.EF;
+using TravelWebsite.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using TW.Business.Common.Interfaces;
-using TW.DataAccess.EF;
+using TravelWebsite.Business.Common.Interfaces;
+using TravelWebsite.DataAccess.EF;
 
-namespace TW.Business.Services.PlaceService
+namespace TravelWebsite.Business.Services.PlaceService
 {
 
     public class PlaceService : IPlaceService

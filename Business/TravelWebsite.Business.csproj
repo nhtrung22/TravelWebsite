@@ -49,6 +49,6 @@
     <Folder Include="Middelware\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\TW.DataAccess.csproj" />
+    <ProjectReference Include="..\DataAccess\TravelWebsite.DataAccess.csproj" />
   </ItemGroup>
 </Project>

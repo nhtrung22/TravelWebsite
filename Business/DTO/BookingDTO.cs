@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TW.DataAccess.DTO
+namespace TravelWebsite.DataAccess.DTO
 {
     public class BookingDTO
     {

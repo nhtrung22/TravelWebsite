@@ -1,7 +1,7 @@
-﻿using TW.DataAccess.DTO;
-using TW.DataAccess.Entities;
+﻿using TravelWebsite.DataAccess.DTO;
+using TravelWebsite.DataAccess.Entities;
 
-namespace TW.Business.Common.Interfaces
+namespace TravelWebsite.Business.Common.Interfaces
 {
     public interface IPlaceService
     {

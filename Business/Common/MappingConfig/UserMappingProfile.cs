@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using TW.DataAccess.DTO;
-using TW.DataAccess.Entities;
+using TravelWebsite.DataAccess.DTO;
+using TravelWebsite.DataAccess.Entities;
 
 namespace Business.Common.MappingConfig
 {
