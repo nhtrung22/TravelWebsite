@@ -1,8 +1,8 @@
-﻿using DataAccess.DTO;
-using DataAccess.Entities;
-using DataAccess.EF;
+﻿using TW.DataAccess.DTO;
+using TW.DataAccess.Entities;
+using TW.DataAccess.EF;
 
-namespace Business.Common.Interfaces
+namespace TW.Business.Common.Interfaces
 {
     public interface IUserService
     {

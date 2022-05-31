@@ -1,4 +1,4 @@
-﻿using DataAccess.Entities;
+﻿using TW.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.SqlServer;
 
 
-namespace DataAccess.Configurations
+namespace TW.DataAccess.Configurations
 {
     public class UserConfig : IEntityTypeConfiguration<User>
     {

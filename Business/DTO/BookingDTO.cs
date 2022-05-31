@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TW.DataAccess.Entities
+namespace TW.DataAccess.DTO
 {
-    public class Booking
-    {  
-        [Key]
-        public int Id { get; set; } // PK
-
+    public class BookingDTO
+    {
 
         public DateTime BookingFromTime { get; set; }
 
- 
+
         public DateTime BookingToTime { get; set; }
 
         public int NumberOfAdult { get; set; }
@@ -37,11 +33,6 @@ namespace TW.DataAccess.Entities
         public string PhoneNumber { get; set; }
 
         public string FullName { get; set; }
-
-        // Place - Booking
-
-        public int PlaceId { get; set; }
-        public Place Place { get; set; }
 
     }
 }

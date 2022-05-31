@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using Business.Common.Interfaces;
-using DataAccess.DTO;
-using DataAccess.EF;
-using DataAccess.Entities;
+using TW.Business.Common.Interfaces;
+using TW.DataAccess.DTO;
+using TW.DataAccess.EF;
+using TW.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-
+using TW.DataAccess.DTO;
 
 namespace Business.Services.PlaceService
 {
@@ -36,7 +36,7 @@ namespace Business.Services.PlaceService
         {
             // validation todo
             var user = await _context.User.FirstOrDefaultAsync(item => item.Email == email);
-            //if (user == null) retu
+            // if (user == null) retu
             _context.User.Remove(user);
             return;
         }
@@ -45,7 +45,7 @@ namespace Business.Services.PlaceService
         {
             // validation todo
             User userEntity = _mapper.Map<User>(user);
-            //userEntity.Password ma hoa
+            // userEntity.Password ma hoa
             _context.User.Add(userEntity);
             var result = await _context.User.AddAsync(userEntity);
             return _mapper.Map<UserDTO>(result);
@@ -63,7 +63,7 @@ namespace Business.Services.PlaceService
             // validation todo
             User userEntity = await _context.User.FirstOrDefaultAsync(item => item.Email == user.Email);
             userEntity = _mapper.Map<User>(user);
-            //userEntity.Password ma hoa
+            // userEntity.Password ma hoa
             _context.User.Update(userEntity);
             return _mapper.Map<UserDTO>(userEntity);
         }

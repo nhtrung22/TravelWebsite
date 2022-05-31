@@ -1,14 +1,15 @@
 ﻿using AutoMapper;
-using Business.Common.Interfaces;
-using DataAccess.DTO;
-using DataAccess.EF;
-using DataAccess.Entities;
+using TW.Business.Common.Interfaces;
+using TW.DataAccess.DTO;
+using TW.DataAccess.EF;
+using TW.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using TW.Business.Common.Interfaces;
+using TW.DataAccess.EF;
 
-
-namespace Business.Services.PlaceService
+namespace TW.Business.Services.PlaceService
 {
 
     public class PlaceService : IPlaceService

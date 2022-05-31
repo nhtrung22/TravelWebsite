@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Business.Common.Interfaces;
-using DataAccess.DTO;
+using TW.Business.Common.Interfaces;
+using TW.DataAccess.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using DataAccess.EF;
+using TW.DataAccess.EF;
 using TravelWebsite.Jwt;
 
 namespace TravelWebsite.Controllers

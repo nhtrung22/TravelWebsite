@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
-using Business.Common.Interfaces;
-using DataAccess.DTO;
+using TW.Business.Common.Interfaces;
+using TW.DataAccess.DTO;
 using Microsoft.AspNetCore.Mvc;
+using TW.Business.Common.Interfaces;
 
 namespace TravelWebsite.Controllers
 {

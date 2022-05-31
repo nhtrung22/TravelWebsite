@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccess.Entities;
-using DataAccess.Configurations;
+using TW.DataAccess.Entities;
+using TW.DataAccess.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace DataAccess.EF
+namespace TW.DataAccess.EF
 {
     public class TravelDbContextFactory : IDesignTimeDbContextFactory<TravelDbContext>
     {

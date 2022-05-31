@@ -1,4 +1,4 @@
-﻿using DataAccess.Entities;
+﻿using TW.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using TW.DataAccess.Entities;
 
-namespace DataAccess.Configurations
+namespace TW.DataAccess.Configurations
 {
     public class BookingConfig : IEntityTypeConfiguration<Booking>
     {

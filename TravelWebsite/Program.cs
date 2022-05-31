@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using DataAccess.EF;
+using TW.DataAccess.EF;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -22,18 +22,20 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Business.Services.PlaceService;
-using DataAccess.Entities;
+using TW.DataAccess.Entities;
 using AutoMapper;
-using DataAccess.DTO;
-//using Business.Services.config;
+using TW.DataAccess.DTO;
+using TW.Business.Services;
 using Business.Common.MappingConfig;
-using Business.Common.Interfaces;
+using TW.Business.Common.Interfaces;
 using TravelWebsite.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using TW.Business.Common.Interfaces;
+using TW.Business.Services.PlaceService;
 using Middleware.Example;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var app = builder.Build();
 
 // Add services to the container.
 
@@ -75,7 +77,7 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
-var app = builder.Build();
+
 
 var config = new MapperConfiguration(cfg =>
 {

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using DataAccess.Entities;
-using DataAccess.DTO;
+using TW.DataAccess.Entities;
+using TW.DataAccess.DTO;
 public class UserProfile : Profile
 {
     public UserProfile()

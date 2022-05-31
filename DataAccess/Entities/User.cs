@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace DataAccess.Entities
+namespace TW.DataAccess.Entities
 {
     public class User
     {

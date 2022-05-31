@@ -1,7 +1,7 @@
-﻿using DataAccess.DTO;
-using DataAccess.Entities;
+﻿using TW.DataAccess.DTO;
+using TW.DataAccess.Entities;
 
-namespace Business.Common.Interfaces
+namespace TW.Business.Common.Interfaces
 {
     public interface IPlaceService
     {

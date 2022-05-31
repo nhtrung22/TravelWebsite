@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.DTO
+namespace TW.DataAccess.DTO
 {
     public class UserDTO
     {
@@ -18,6 +18,5 @@ namespace DataAccess.DTO
 
         public string PhoneNumber { get; set; }
 
-        // public string Token { get; set; }
     }
 }

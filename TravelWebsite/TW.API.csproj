@@ -46,7 +46,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Business\Business.csproj" />
+    <ProjectReference Include="..\Business\TW.Business.csproj" />
   </ItemGroup>
 
 </Project>
