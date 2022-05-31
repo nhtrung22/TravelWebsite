@@ -43,13 +43,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\TW.DataAccess.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Middelware\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Middelware\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess\TW.DataAccess.csproj" />
   </ItemGroup>
 </Project>

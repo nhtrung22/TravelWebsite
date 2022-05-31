@@ -1,5 +1,4 @@
-﻿
-using TW.DataAccess.Entities;
+﻿using TW.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 using TW.DataAccess.Entities;
 using static Microsoft.EntityFrameworkCore.EF;
 
-namespace DataAccess.Extensions
+namespace TW.DataAccess.Extensions
 {
     public static class ModelBuilderExtensions
     {

@@ -44,7 +44,5 @@ namespace TravelWebsite.Controllers
             return Ok(result);
         }
 
-        
-
     }
 }
