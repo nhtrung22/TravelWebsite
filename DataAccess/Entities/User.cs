@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 
@@ -28,6 +29,12 @@ namespace TravelWebsite.DataAccess.Entities
         public int UserType { get; set; }
 
         public int Status { get; set; }
+
+        [JsonIgnore]
+        public string PasswordHash { get; set; }
+
+        [JsonIgnore]
+        public List<RefreshToken> RefreshTokens { get; set; }
 
     }
 }

@@ -1,56 +1,95 @@
-﻿using AutoMapper;
-using TravelWebsite.Business.Common.Interfaces;
-using TravelWebsite.DataAccess.DTO;
-using Microsoft.AspNetCore.Authorization;
+﻿namespace TravelWebsite.Controllers;
+
 using Microsoft.AspNetCore.Mvc;
-using TravelWebsite.DataAccess.EF;
+using TravelWebsite.Business.Authorization;
+using TravelWebsite.Business.Services;
+using TravelWebsite.DataAccess.Entities.JwtModel;
+using TravelWebsite.DataAccess.JwtModel;
 
-namespace TravelWebsite.Controllers
+[Authorize]
+[ApiController]
+[Route("[controller]")]
+public class UsersController : ControllerBase
 {
-    [Route("api/user")]
-    [ApiController]
-    // [Authorize]
-    public class UserController : ControllerBase
+    private IUserService _userService;
+
+    public UsersController(IUserService userService)
     {
-        private readonly IUserService _userService;
-        private readonly IMapper _mapper;
-        public UserController(IUserService userService, IMapper mapper)
+        _userService = userService;
+    }
+
+    [AllowAnonymous]
+    [HttpPost("authenticate")]
+    public IActionResult Authenticate(AuthenticateRequest model)
+    {
+        var response = _userService.Authenticate(model, ipAddress());
+        setTokenCookie(response.RefreshToken);
+        return Ok(response);
+    }
+
+    [AllowAnonymous]
+    [HttpPost("refresh-token")]
+    public IActionResult RefreshToken()
+    {
+        var refreshToken = Request.Cookies["refreshToken"];
+        var response = _userService.RefreshToken(refreshToken, ipAddress());
+        setTokenCookie(response.RefreshToken);
+        return Ok(response);
+    }
+
+    [HttpPost("revoke-token")]
+    public IActionResult RevokeToken(RevokeTokenRequest model)
+    {
+        // accept refresh token in request body or cookie
+        var token = model.Token ?? Request.Cookies["refreshToken"];
+
+        if (string.IsNullOrEmpty(token))
+            return BadRequest(new { message = "Token is required" });
+
+        _userService.RevokeToken(token, ipAddress());
+        return Ok(new { message = "Token revoked" });
+    }
+
+    [HttpGet]
+    public IActionResult GetAll()
+    {
+        var users = _userService.GetAll();
+        return Ok(users);
+    }
+
+    [HttpGet("{id}")]
+    public IActionResult GetById(int id)
+    {
+        var user = _userService.GetById(id);
+        return Ok(user);
+    }
+
+    [HttpGet("{id}/refresh-tokens")]
+    public IActionResult GetRefreshTokens(int id)
+    {
+        var user = _userService.GetById(id);
+        return Ok(user.RefreshTokens);
+    }
+
+    // helper methods
+
+    private void setTokenCookie(string token)
+    {
+        // append cookie with refresh token to the http response
+        var cookieOptions = new CookieOptions
         {
-            _mapper = mapper;
-            _userService = userService;
-        }
+            HttpOnly = true,
+            Expires = DateTime.UtcNow.AddDays(7)
+        };
+        Response.Cookies.Append("refreshToken", token, cookieOptions);
+    }
 
-        [HttpGet]
-        public async Task<List<UserDTO>> Get()
-        {
-            //validation
-            return  await _userService.Get();
-        }
-
-        [HttpPost]
-        public async Task<UserDTO> Add(UserDTO user)
-        {
-            return await _userService.Add(user);
-        }
-
-        //[HttpDelete("delete")]
-        //public async Task Remove(string email)
-        //{
-        //    await _userService.Remove(email);
-        //}
-            
-        [HttpPut]
-        public async Task Update(UserDTO user)
-        {
-            await _userService.Update(user);
-        }
-
-        //[HttpPut]
-        //public async Task Login(string userName, string password)
-        //{
-        //    //await _userService.Add(user);
-        //}
-
-
+    private string ipAddress()
+    {
+        // get source ip address for the current request
+        if (Request.Headers.ContainsKey("X-Forwarded-For"))
+            return Request.Headers["X-Forwarded-For"];
+        else
+            return HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString();
     }
 }
