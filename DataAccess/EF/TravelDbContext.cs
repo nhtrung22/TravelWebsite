@@ -13,12 +13,14 @@ namespace TravelWebsite.DataAccess.EF
         {
         }
 
-        private readonly IConfiguration Configuration;
 
+        private readonly IConfiguration Configuration;
         public TravelDbContext(IConfiguration configuration)
         {
             Configuration = configuration;
         }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Configure using Fluent API

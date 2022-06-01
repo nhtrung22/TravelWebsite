@@ -9,13 +9,7 @@ using System.Text;
 using TravelWebsite.DataAccess.Entities;
 using TravelWebsite.Business.Helpers;
 using TravelWebsite.DataAccess.EF;
-
-public interface IJwtUtils
-{
-    public string GenerateJwtToken(User user);
-    public Guid? ValidateJwtToken(string token);
-    public RefreshToken GenerateRefreshToken(string ipAddress);
-}
+using TravelWebsite.Business.Common.Interfaces;
 
 public class JwtUtils : IJwtUtils
 {
@@ -30,7 +24,8 @@ public class JwtUtils : IJwtUtils
         _appSettings = appSettings.Value;
     }
 
-    public string GenerateJwtToken(User user)
+
+    public string GenerateJwtToken(User user) 
     {
         // generate token that is valid for 15 minutes
         var tokenHandler = new JwtSecurityTokenHandler();
