@@ -80,9 +80,9 @@ namespace TravelWebsite.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            BookingDate = new DateTime(2022, 5, 16, 15, 57, 3, 690, DateTimeKind.Local).AddTicks(6510),
-                            BookingFromTime = new DateTime(2022, 5, 21, 15, 57, 3, 690, DateTimeKind.Local).AddTicks(6485),
-                            BookingToTime = new DateTime(2022, 6, 10, 15, 57, 3, 690, DateTimeKind.Local).AddTicks(6505),
+                            BookingDate = new DateTime(2022, 5, 17, 9, 58, 24, 410, DateTimeKind.Local).AddTicks(6035),
+                            BookingFromTime = new DateTime(2022, 5, 22, 9, 58, 24, 410, DateTimeKind.Local).AddTicks(6020),
+                            BookingToTime = new DateTime(2022, 6, 11, 9, 58, 24, 410, DateTimeKind.Local).AddTicks(6032),
                             Deposit = 0m,
                             FullName = "Nguyen A",
                             NumberOfAdult = 1,

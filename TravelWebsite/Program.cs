@@ -26,6 +26,7 @@ using TravelWebsite.DataAccess.Entities;
 using AutoMapper;
 using TravelWebsite.DataAccess.DTO;
 using TravelWebsite.Business.Services;
+// using TravelWebsite.Business.DTO;
 using Business.Common.MappingConfig;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Jwt;
@@ -35,7 +36,8 @@ using TravelWebsite.Business.Services.PlaceService;
 //using Middleware.Example;
 
 var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+
+
 
 // Add services to the container.
 
@@ -77,7 +79,7 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
-
+var app = builder.Build();
 
 var config = new MapperConfiguration(cfg =>
 {

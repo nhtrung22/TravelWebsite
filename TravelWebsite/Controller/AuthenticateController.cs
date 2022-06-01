@@ -6,15 +6,18 @@ using Microsoft.AspNetCore.Mvc;
 using TravelWebsite.DataAccess.EF;
 using TravelWebsite.Jwt;
 
+
+
 namespace TravelWebsite.Controllers
 {
     [Route("api/authenticate")]
     [ApiController]
-    //[Authorize]
+    // [Authorize]
+    // [AllowAnonymous]
     public class AuthenticateController : ControllerBase
     {
         private readonly IJWTManagerRepository _jWTManagerRepository;
-        //private readonly IUserService _userService;
+        // private readonly IUserService _userService;
         private readonly IMapper _mapper;
         public AuthenticateController(IJWTManagerRepository jWTManagerRepository, IMapper mapper)
         {
@@ -27,7 +30,7 @@ namespace TravelWebsite.Controllers
         public async Task<IActionResult> Login(LoginModel login)
         {
             var user = "abc";
-            //var user = await _userService.Login(login.UserName, login.Password);
+            // var user = await _userService.Login(login.UserName, login.Password);
             if (user == null)
             {
                 return Unauthorized();
@@ -39,7 +42,6 @@ namespace TravelWebsite.Controllers
             result.UserName = login.UserName;
             result.Token = token.Token;
             result.RefreshToken = token.RefreshToken;
-
 
             return Ok(result);
         }

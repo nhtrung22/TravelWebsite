@@ -171,7 +171,7 @@ namespace TravelWebsite.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "Booking",
                 columns: new[] { "Id", "BookingDate", "BookingFromTime", "BookingToTime", "Deposit", "FullName", "NumberOfAdult", "NumberOfKid", "PaymentStatus", "PhoneNumber", "PlaceId", "Price", "Status" },
-                values: new object[] { 1, new DateTime(2022, 5, 16, 15, 57, 3, 690, DateTimeKind.Local).AddTicks(6510), new DateTime(2022, 5, 21, 15, 57, 3, 690, DateTimeKind.Local).AddTicks(6485), new DateTime(2022, 6, 10, 15, 57, 3, 690, DateTimeKind.Local).AddTicks(6505), 0m, "Nguyen A", 1, 3, 0, "0123456789", 1, 50000m, 0 });
+                values: new object[] { 1, new DateTime(2022, 5, 17, 9, 58, 24, 410, DateTimeKind.Local).AddTicks(6035), new DateTime(2022, 5, 22, 9, 58, 24, 410, DateTimeKind.Local).AddTicks(6020), new DateTime(2022, 6, 11, 9, 58, 24, 410, DateTimeKind.Local).AddTicks(6032), 0m, "Nguyen A", 1, 3, 0, "0123456789", 1, 50000m, 0 });
 
             migrationBuilder.InsertData(
                 table: "PlaceDetail",

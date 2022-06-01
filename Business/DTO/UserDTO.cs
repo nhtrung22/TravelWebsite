@@ -18,5 +18,7 @@ namespace TravelWebsite.DataAccess.DTO
 
         public string PhoneNumber { get; set; }
 
+        public int UserType { get; set; }
+
     }
 }
