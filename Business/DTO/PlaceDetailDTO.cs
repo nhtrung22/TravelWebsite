@@ -1,16 +1,14 @@
-﻿using System;
+﻿using TravelWebsite.DataAccess.Entities;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravelWebsite.DataAccess.Entities
+namespace TravelWebsite.DataAccess.DTO
 {
-    public class PlaceDetail
+    public class PlaceDeatailDTO
     {
-        [Key]
-        public int Id { get; set; }  // PK
 
         public bool Wifi { get; set; }
 
@@ -31,5 +29,6 @@ namespace TravelWebsite.DataAccess.Entities
         // Place - Place Detail
         public int PlaceID { get; set; }
         public Place Place { get; set; }
+
     }
 }

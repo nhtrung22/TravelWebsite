@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace DataAccess.Entities
+namespace TravelWebsite.DataAccess.Entities
 {
     public class User
     {
@@ -18,8 +18,6 @@ namespace DataAccess.Entities
         public string Password { get; set; }
 
         public string Email { get; set; }
-
-        //public string Token { get; set; }
 
         public string Address { get; set; }
 

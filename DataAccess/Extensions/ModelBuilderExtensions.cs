@@ -1,14 +1,14 @@
-﻿
-using DataAccess.Entities;
+﻿using TravelWebsite.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccess.EF;
+using TravelWebsite.DataAccess.Entities;
+using static Microsoft.EntityFrameworkCore.EF;
 
-namespace DataAccess.Extensions
+namespace TravelWebsite.DataAccess.Extensions
 {
     public static class ModelBuilderExtensions
     {

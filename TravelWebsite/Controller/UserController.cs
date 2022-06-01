@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
-using Business.Common.Interfaces;
-using DataAccess.DTO;
+using TravelWebsite.Business.Common.Interfaces;
+using TravelWebsite.DataAccess.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using DataAccess.EF;
+using TravelWebsite.DataAccess.EF;
 
 namespace TravelWebsite.Controllers
 {
     [Route("api/user")]
     [ApiController]
-    //[Authorize]
+    // [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -20,14 +20,14 @@ namespace TravelWebsite.Controllers
             _userService = userService;
         }
 
-        [HttpGet("get")]
+        [HttpGet]
         public async Task<List<UserDTO>> Get()
         {
             //validation
             return  await _userService.Get();
         }
 
-        [HttpPost("add")]
+        [HttpPost]
         public async Task<UserDTO> Add(UserDTO user)
         {
             return await _userService.Add(user);
@@ -39,7 +39,7 @@ namespace TravelWebsite.Controllers
         //    await _userService.Remove(email);
         //}
             
-        [HttpPut("put")]
+        [HttpPut]
         public async Task Update(UserDTO user)
         {
             await _userService.Update(user);

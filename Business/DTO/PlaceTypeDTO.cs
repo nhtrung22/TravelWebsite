@@ -1,16 +1,14 @@
-﻿using System;
+﻿using TravelWebsite.DataAccess.Entities;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravelWebsite.DataAccess.Entities
+namespace TravelWebsite.DataAccess.DTO
 {
-    public class PlaceType
+    public class PlaceTypeDTO
     {
-        [Key]
-        public int Id { get; set; } // PK
 
         public string Name { get; set; }
 
@@ -18,5 +16,6 @@ namespace TravelWebsite.DataAccess.Entities
 
         // PlaceType - Place
         public ICollection<Place> Places { get; set; }
+
     }
 }

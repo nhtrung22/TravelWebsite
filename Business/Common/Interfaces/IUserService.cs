@@ -1,8 +1,8 @@
-﻿using DataAccess.DTO;
-using DataAccess.Entities;
-using DataAccess.EF;
+﻿using TravelWebsite.DataAccess.DTO;
+using TravelWebsite.DataAccess.Entities;
+using TravelWebsite.DataAccess.EF;
 
-namespace Business.Common.Interfaces
+namespace TravelWebsite.Business.Common.Interfaces
 {
     public interface IUserService
     {
@@ -12,7 +12,7 @@ namespace Business.Common.Interfaces
 
         Task<UserDTO> Update(UserDTO user);
 
-        //Task<UserDTO> Login(string userName, string password);
+        Task<UserDTO> Login(string userName, string password);
 
         Task Remove(string email);
 
