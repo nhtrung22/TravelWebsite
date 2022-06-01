@@ -1,10 +1,9 @@
 ﻿namespace TravelWebsite.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
-using TravelWebsite.Business.Authorization;
+using TravelWebsite.Business.Jwt;
 using TravelWebsite.Business.Services;
-using TravelWebsite.DataAccess.Entities.JwtModel;
-using TravelWebsite.DataAccess.JwtModel;
+using TravelWebsite.Business.JwtModel;
 
 [Authorize]
 [ApiController]
@@ -16,15 +15,6 @@ public class UsersController : ControllerBase
     public UsersController(IUserService userService)
     {
         _userService = userService;
-    }
-
-    [AllowAnonymous]
-    [HttpPost("authenticate")]
-    public IActionResult Authenticate(AuthenticateRequest model)
-    {
-        var response = _userService.Authenticate(model, ipAddress());
-        setTokenCookie(response.RefreshToken);
-        return Ok(response);
     }
 
     [AllowAnonymous]
@@ -67,14 +57,14 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetById(int id)
+    public IActionResult GetById(Guid id)
     {
         var user = _userService.GetById(id);
         return Ok(user);
     }
 
     [HttpGet("{id}/refresh-tokens")]
-    public IActionResult GetRefreshTokens(int id)
+    public IActionResult GetRefreshTokens(Guid id)
     {
         var user = _userService.GetById(id);
         return Ok(user.RefreshTokens);

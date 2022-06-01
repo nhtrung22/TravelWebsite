@@ -8,12 +8,12 @@ using System.Collections.Generic;
 using System.Linq;
 using TravelWebsite.DataAccess.DTO;
 using TravelWebsite.Business.Services;
-using TravelWebsite.Business.Authorization;
+using TravelWebsite.Business.Jwt;
 using TravelWebsite.Business.Helpers;
 using Microsoft.Extensions.Options;
 using TravelWebsite.DataAccess.Entities.JwtModel;
 using BCrypt.Net;
-using TravelWebsite.DataAccess.JwtModel;
+using TravelWebsite.Business.JwtModel;
 
 namespace Business.Services.PlaceService
 {
@@ -109,7 +109,7 @@ namespace Business.Services.PlaceService
             return _context.User;
         }
 
-        public User GetById(int id)
+        public User GetById(Guid id)
         {
             var user = _context.User.Find(id);
             if (user == null) throw new KeyNotFoundException("User not found");

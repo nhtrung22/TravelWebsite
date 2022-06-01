@@ -1,4 +1,4 @@
-namespace TravelWebsite.DataAccess.Entities.JwtModel;
+namespace TravelWebsite.Business.JwtModel;
 
 public class RevokeTokenRequest
 {

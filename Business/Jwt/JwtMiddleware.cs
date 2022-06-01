@@ -1,4 +1,4 @@
-namespace TravelWebsite.Business.Authorization;
+namespace TravelWebsite.Business.Jwt;
 
 using Microsoft.Extensions.Options;
 using TravelWebsite.Business.Common.Interfaces;

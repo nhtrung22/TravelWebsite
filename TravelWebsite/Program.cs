@@ -29,10 +29,11 @@ using TravelWebsite.Business.Services;
 // using TravelWebsite.Business.DTO;
 using Business.Common.MappingConfig;
 using TravelWebsite.Business.Common.Interfaces;
-using TravelWebsite.Business.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.Services.PlaceService;
+using TravelWebsite.Business.Helpers;
+using TravelWebsite.Business.Jwt;
 //using Middleware.Example;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -54,11 +55,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IPlaceService, PlaceService>();
+builder.Services.AddScoped<IJwtUtils, JwtUtils>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
-builder.Services.AddTransient<IJWTManagerRepository, JWTManagerRepository>();
+
 builder.Services.AddCors();
-
+    
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -101,7 +104,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+// global error handler
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
+// custom jwt auth middleware
+app.UseMiddleware<JwtMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

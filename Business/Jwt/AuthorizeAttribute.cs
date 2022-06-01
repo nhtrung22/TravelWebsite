@@ -1,4 +1,4 @@
-namespace TravelWebsite.Business.Authorization;
+namespace TravelWebsite.Business.Jwt;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;

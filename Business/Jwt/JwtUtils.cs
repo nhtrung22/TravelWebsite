@@ -1,4 +1,4 @@
-namespace TravelWebsite.Business.Authorization;
+namespace TravelWebsite.Business.Jwt;
 
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -13,7 +13,7 @@ using TravelWebsite.DataAccess.EF;
 public interface IJwtUtils
 {
     public string GenerateJwtToken(User user);
-    public int? ValidateJwtToken(string token);
+    public Guid? ValidateJwtToken(string token);
     public RefreshToken GenerateRefreshToken(string ipAddress);
 }
 
@@ -45,7 +45,7 @@ public class JwtUtils : IJwtUtils
         return tokenHandler.WriteToken(token);
     }
 
-    public int? ValidateJwtToken(string token)
+    public Guid? ValidateJwtToken(string token)
     {
         if (token == null)
             return null;
@@ -65,7 +65,7 @@ public class JwtUtils : IJwtUtils
             }, out SecurityToken validatedToken);
 
             var jwtToken = (JwtSecurityToken)validatedToken;
-            var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
+            var userId = Guid.Parse(jwtToken.Claims.First(x => x.Type == "id").Value);
 
             // return user id from JWT token if validation successful
             return userId;
@@ -95,7 +95,7 @@ public class JwtUtils : IJwtUtils
             // token is a cryptographically strong random sequence of values
             var token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
             // ensure token is unique by checking against db
-            var tokenIsUnique = !_context.Users.Any(u => u.RefreshTokens.Any(t => t.Token == token));
+            var tokenIsUnique = !_context.User.Any(u => u.RefreshTokens.Any(t => t.Token == token));
 
             if (!tokenIsUnique)
                 return getUniqueToken();

@@ -1,7 +1,7 @@
 namespace TravelWebsite.DataAccess.Entities.JwtModel;
 
 using System.Text.Json.Serialization;
-using TravelWebsite.DataAccess.Entities.JwtModel;
+using TravelWebsite.Business.JwtModel;
 
 public class AuthenticateResponse
 {

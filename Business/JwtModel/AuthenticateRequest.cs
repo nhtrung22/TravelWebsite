@@ -1,4 +1,4 @@
-namespace TravelWebsite.DataAccess.JwtModel;
+namespace TravelWebsite.Business.JwtModel;
 
 using System.ComponentModel.DataAnnotations;
 
