@@ -29,7 +29,7 @@ using TravelWebsite.Business.Services;
 // using TravelWebsite.Business.DTO;
 using Business.Common.MappingConfig;
 using TravelWebsite.Business.Common.Interfaces;
-using TravelWebsite.Jwt;
+using TravelWebsite.Business.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.Services.PlaceService;

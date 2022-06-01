@@ -3,7 +3,7 @@ using TravelWebsite.DataAccess.Entities;
 using TravelWebsite.DataAccess.Extensions;
 using Microsoft.EntityFrameworkCore;
 using TravelWebsite.DataAccess.Configurations;
-using TravelWebsite.DataAccess.Entities;
+using Microsoft.Extensions.Configuration;
 
 namespace TravelWebsite.DataAccess.EF
 {
@@ -13,6 +13,12 @@ namespace TravelWebsite.DataAccess.EF
         {
         }
 
+        private readonly IConfiguration Configuration;
+
+        public TravelDbContext(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Configure using Fluent API

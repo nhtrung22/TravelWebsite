@@ -28,6 +28,15 @@ public class UsersController : ControllerBase
     }
 
     [AllowAnonymous]
+    [HttpPost("authenticate")]
+    public IActionResult Authenticate(AuthenticateRequest model)
+    {
+        var response = _userService.Authenticate(model, ipAddress());
+        setTokenCookie(response.RefreshToken);
+        return Ok(response);
+    }
+
+    [AllowAnonymous]
     [HttpPost("refresh-token")]
     public IActionResult RefreshToken()
     {
