@@ -28,7 +28,10 @@ namespace TravelWebsite.Business.Services.PlaceService
         public async Task<List<PlaceDTO>> Get()
         {
             var placeList = await _context.Place.ToListAsync();
-            return _mapper.Map<List<PlaceDTO>>(placeList);
+            var result = from Place in placeList
+                         orderby Place.Name descending
+                         select Place;
+            return _mapper.Map<List<PlaceDTO>>(result);
         }
 
 
@@ -40,19 +43,5 @@ namespace TravelWebsite.Business.Services.PlaceService
             await _context.SaveChangesAsync();
         }
 
-        // Sort Descending
-        public async Task<List<PlaceDTO>> SortDescending()
-        {
-            var placeList = await _context.Place.ToListAsync();
-
-
-            var result = from Place in placeList
-                         orderby Place.Name descending
-                         select Place;
-
-            //foreach (var Place in result) Console.WriteLine($"{Place.PlaceName}");
-
-            return _mapper.Map<List<PlaceDTO>>(result);
-        }
     }
 }

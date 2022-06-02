@@ -18,19 +18,11 @@ namespace TravelWebsite.Controllers
             _placeService = placeService;
         }
 
-        [HttpGet("get")]
+        [HttpGet]
         public async Task<List<PlaceDTO>> Get()
         {
             return  await _placeService.Get();
         }
-
-
-        [HttpGet("sort")]
-        public async Task<List<PlaceDTO>> Sort()
-        {
-            return await _placeService.SortDescending();
-        }
-
 
 
     }

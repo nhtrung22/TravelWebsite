@@ -24,15 +24,18 @@ namespace Business.Services.PlaceService
         private TravelDbContext _context;
         private IJwtUtils _jwtUtils;
         private readonly AppSettings _appSettings;
+        private readonly IMapper _mapper;
 
         public UserService(
             TravelDbContext context,
             IJwtUtils jwtUtils,
-            IOptions<AppSettings> appSettings)
+            IOptions<AppSettings> appSettings,
+            IMapper mapper)
         {
             _context = context;
             _jwtUtils = jwtUtils;
             _appSettings = appSettings.Value;
+            _mapper = mapper;
         }
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model, string ipAddress)
@@ -54,7 +57,7 @@ namespace Business.Services.PlaceService
 
             // save changes to db
             _context.Update(user);
-            _context.SaveChanges();
+            // _context.SaveChanges();
 
             return new AuthenticateResponse(user, jwtToken, refreshToken.Token);
         }

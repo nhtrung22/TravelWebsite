@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelWebsite.DataAccess.Enums;
 
 namespace TravelWebsite.DataAccess.DTO
 {
@@ -18,7 +19,7 @@ namespace TravelWebsite.DataAccess.DTO
 
         public string PhoneNumber { get; set; }
 
-        public int UserType { get; set; }
+        public UserType UserType { get; set; }
 
     }
 }
