@@ -186,20 +186,20 @@ namespace TravelWebsite.DataAccess.Migrations
                 columns: new[] { "Id", "Address", "Email", "Password", "PasswordHash", "PhoneNumber", "Status", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { new Guid("00000000-0000-0000-0000-000000000001"), "hanoi", "abc1236@gmail.com", "123456", "0a989ebc4a77b56a6e2bb7b19d995d185ce44090c13e2984b7ecc6d446d4b61ea9991b76a4c2f04b1b4d244841449454", "0123456789", 0, "user3", 1 },
-                    { new Guid("00000000-0000-0000-0000-000000000002"), "hanoi", "abc1234@gmail.com", "123456", "0a989ebc4a77b56a6e2bb7b19d995d185ce44090c13e2984b7ecc6d446d4b61ea9991b76a4c2f04b1b4d244841449454", "0123456789", 0, "user2", 1 },
-                    { new Guid("00000000-0000-0000-0000-000000000003"), "hanoi", "abc123@gmail.com", "123456", "0a989ebc4a77b56a6e2bb7b19d995d185ce44090c13e2984b7ecc6d446d4b61ea9991b76a4c2f04b1b4d244841449454", "0123456789", 0, "user1", 1 }
+                    { new Guid("00000000-0000-0000-0000-000000000001"), "hanoi", "abc1236@gmail.com", "123456", "$2a$11$x2j0oqq8piEipqyPHUXcWOnQuH2wIAinllqgZwHB5tFQY76xTz3EC", "0123456789", 0, "user3", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000002"), "hanoi", "abc1234@gmail.com", "123456", "$2a$11$HZY/nUBZUa83RpqfIS6pRe0Ay8rvXwLYm8x9WlCzoBVzrs6okRvRe", "0123456789", 0, "user2", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000003"), "hanoi", "abc123@gmail.com", "123456", "$2a$11$Wo4L7fsVvh3auvzRcUrgZu7XVYA55UYGm.DpZZ70zJt63I8/YP172", "0123456789", 0, "user1", 0 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Place",
                 columns: new[] { "Id", "Address", "CityId", "Image", "Latitude", "Longtitude", "Name", "PlaceTypeID", "ShortDicription", "Thumb" },
-                values: new object[] { 1, "hoan kiem, ha noi", 1, "abcxyz", 21.0278m, 105.8342m, "studio", 1, "abcxyz", "abcxyz" });
+                values: new object[] { 1, "hoan kiem, ha noi", 1, "1", 21.0278m, 105.8342m, "studio", 1, "abcxyz", "1" });
 
             migrationBuilder.InsertData(
                 table: "Booking",
                 columns: new[] { "Id", "BookingDate", "BookingFromTime", "BookingToTime", "Deposit", "FullName", "NumberOfAdult", "NumberOfKid", "PaymentStatus", "PhoneNumber", "PlaceId", "Price", "Status" },
-                values: new object[] { 1, new DateTime(2022, 5, 18, 9, 57, 46, 959, DateTimeKind.Local).AddTicks(1113), new DateTime(2022, 5, 23, 9, 57, 46, 959, DateTimeKind.Local).AddTicks(1094), new DateTime(2022, 6, 12, 9, 57, 46, 959, DateTimeKind.Local).AddTicks(1111), 0m, "Nguyen A", 1, 3, 0, "0123456789", 1, 50000m, 0 });
+                values: new object[] { 1, new DateTime(2022, 5, 18, 14, 54, 29, 263, DateTimeKind.Local).AddTicks(9439), new DateTime(2022, 5, 23, 14, 54, 29, 263, DateTimeKind.Local).AddTicks(9415), new DateTime(2022, 6, 12, 14, 54, 29, 263, DateTimeKind.Local).AddTicks(9436), 0m, "Nguyen A", 1, 3, 2, "0123456789", 1, 50000m, 0 });
 
             migrationBuilder.InsertData(
                 table: "PlaceDetail",

@@ -44,7 +44,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 
-builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull);
+
+
+// configure strongly typed settings object
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
 builder.Services.AddDbContext<TravelDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("TravelDatabase")
     ));
@@ -55,7 +59,6 @@ builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 builder.Services.AddTransient<IPlaceService, PlaceService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IJwtUtils, JwtUtils>();
@@ -63,41 +66,28 @@ builder.Services.AddTransient<IJwtUtils, JwtUtils>();
 
 
 builder.Services.AddCors();
-
-//builder.Services.AddAuthentication(x =>
-//{
-//    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-//    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-//}).AddJwtBearer(o =>
-//{
-//    var Key = Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]);
-//    o.SaveToken = true;
-//    o.TokenValidationParameters = new TokenValidationParameters
-//    {
-//        ValidateIssuer = false,
-//        ValidateAudience = false,
-//        ValidateLifetime = true,
-//        ValidateIssuerSigningKey = true,
-//        ValidIssuer = builder.Configuration["JWT:Issuer"],
-//        ValidAudience = builder.Configuration["JWT:Audience"],
-//        IssuerSigningKey = new SymmetricSecurityKey(Key)
-//    };
-//});
+builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull);
 
 var app = builder.Build();
 
 // add hardcoded test user to db on startup
-using (var scope = app.Services.CreateScope())
-{
-    var context = scope.ServiceProvider.GetRequiredService<TravelDbContext>();
-    var testUser = new User
-    {
-        UserName = "test",
-        PasswordHash = BCrypt.Net.BCrypt.HashPassword("test")
-    };
-    context.User.Add(testUser);
-    context.SaveChanges();
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var context = scope.ServiceProvider.GetRequiredService<TravelDbContext>();
+//    var testUser = new User
+//    {
+//        UserName = "test",
+//        Password = "123456",
+//        PasswordHash = BCrypt.Net.BCrypt.HashPassword("test"),
+//        Address = "hanoi",
+//        Email = "kdjf;ad",
+//        PhoneNumber = "dkjfalsd",
+//        UserType = 1,
+//        Status = 1
+//    };
+//    context.User.Add(testUser);
+//    context.SaveChanges();
+//}
 
 
 

@@ -15,9 +15,9 @@ namespace TravelWebsite.DataAccess.DTO
 
         public string ShortDicription { get; set; } 
 
-        public byte[] Thumb { get; set; }
+        public string Thumb { get; set; }
 
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
 
     }
 }

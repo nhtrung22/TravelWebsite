@@ -12,7 +12,7 @@ using TravelWebsite.DataAccess.EF;
 namespace TravelWebsite.DataAccess.Migrations
 {
     [DbContext(typeof(TravelDbContext))]
-    [Migration("20220602025747_init")]
+    [Migration("20220602075429_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -82,14 +82,14 @@ namespace TravelWebsite.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            BookingDate = new DateTime(2022, 5, 18, 9, 57, 46, 959, DateTimeKind.Local).AddTicks(1113),
-                            BookingFromTime = new DateTime(2022, 5, 23, 9, 57, 46, 959, DateTimeKind.Local).AddTicks(1094),
-                            BookingToTime = new DateTime(2022, 6, 12, 9, 57, 46, 959, DateTimeKind.Local).AddTicks(1111),
+                            BookingDate = new DateTime(2022, 5, 18, 14, 54, 29, 263, DateTimeKind.Local).AddTicks(9439),
+                            BookingFromTime = new DateTime(2022, 5, 23, 14, 54, 29, 263, DateTimeKind.Local).AddTicks(9415),
+                            BookingToTime = new DateTime(2022, 6, 12, 14, 54, 29, 263, DateTimeKind.Local).AddTicks(9436),
                             Deposit = 0m,
                             FullName = "Nguyen A",
                             NumberOfAdult = 1,
                             NumberOfKid = 3,
-                            PaymentStatus = 0,
+                            PaymentStatus = 2,
                             PhoneNumber = "0123456789",
                             PlaceId = 1,
                             Price = 50000m,
@@ -185,13 +185,13 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = 1,
                             Address = "hoan kiem, ha noi",
                             CityId = 1,
-                            Image = "abcxyz",
+                            Image = "1",
                             Latitude = 21.0278m,
                             Longtitude = 105.8342m,
                             Name = "studio",
                             PlaceTypeID = 1,
                             ShortDicription = "abcxyz",
-                            Thumb = "abcxyz"
+                            Thumb = "1"
                         });
                 });
 
@@ -331,11 +331,11 @@ namespace TravelWebsite.DataAccess.Migrations
                             Address = "hanoi",
                             Email = "abc123@gmail.com",
                             Password = "123456",
-                            PasswordHash = "0a989ebc4a77b56a6e2bb7b19d995d185ce44090c13e2984b7ecc6d446d4b61ea9991b76a4c2f04b1b4d244841449454",
+                            PasswordHash = "$2a$11$Wo4L7fsVvh3auvzRcUrgZu7XVYA55UYGm.DpZZ70zJt63I8/YP172",
                             PhoneNumber = "0123456789",
                             Status = 0,
                             UserName = "user1",
-                            UserType = 1
+                            UserType = 0
                         },
                         new
                         {
@@ -343,11 +343,11 @@ namespace TravelWebsite.DataAccess.Migrations
                             Address = "hanoi",
                             Email = "abc1234@gmail.com",
                             Password = "123456",
-                            PasswordHash = "0a989ebc4a77b56a6e2bb7b19d995d185ce44090c13e2984b7ecc6d446d4b61ea9991b76a4c2f04b1b4d244841449454",
+                            PasswordHash = "$2a$11$HZY/nUBZUa83RpqfIS6pRe0Ay8rvXwLYm8x9WlCzoBVzrs6okRvRe",
                             PhoneNumber = "0123456789",
                             Status = 0,
                             UserName = "user2",
-                            UserType = 1
+                            UserType = 0
                         },
                         new
                         {
@@ -355,11 +355,11 @@ namespace TravelWebsite.DataAccess.Migrations
                             Address = "hanoi",
                             Email = "abc1236@gmail.com",
                             Password = "123456",
-                            PasswordHash = "0a989ebc4a77b56a6e2bb7b19d995d185ce44090c13e2984b7ecc6d446d4b61ea9991b76a4c2f04b1b4d244841449454",
+                            PasswordHash = "$2a$11$x2j0oqq8piEipqyPHUXcWOnQuH2wIAinllqgZwHB5tFQY76xTz3EC",
                             PhoneNumber = "0123456789",
                             Status = 0,
                             UserName = "user3",
-                            UserType = 1
+                            UserType = 0
                         });
                 });
 

@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelWebsite.DataAccess.Enums;
 
 namespace TravelWebsite.DataAccess.Entities
 {
@@ -30,7 +31,7 @@ namespace TravelWebsite.DataAccess.Entities
 
         public int Status { get; set; }
 
-        public int PaymentStatus { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
 
         public decimal Deposit { get; set; }
 

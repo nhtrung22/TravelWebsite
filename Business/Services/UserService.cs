@@ -39,6 +39,7 @@ namespace Business.Services.PlaceService
         {
             var user = _context.User.SingleOrDefault(x => x.UserName == model.UserName);
 
+
             // validate
             if (user == null || !BCr.BCrypt.Verify(model.Password, user.PasswordHash))
                 throw new AppException("Username or password is incorrect");
