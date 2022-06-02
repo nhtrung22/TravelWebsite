@@ -25,7 +25,8 @@ namespace TravelWebsite.DataAccess.Extensions
                     Address = "hanoi",
                     PhoneNumber = "0123456789",
                     UserType = 1,
-                    Status = 0
+                    Status = 0,
+                    PasswordHash = "0a989ebc4a77b56a6e2bb7b19d995d185ce44090c13e2984b7ecc6d446d4b61ea9991b76a4c2f04b1b4d244841449454"
                 }
             );
             modelBuilder.Entity<User>().HasData(
@@ -38,7 +39,8 @@ namespace TravelWebsite.DataAccess.Extensions
                     Address = "hanoi",
                     PhoneNumber = "0123456789",
                     UserType = 1,
-                    Status = 0
+                    Status = 0,
+                    PasswordHash = "0a989ebc4a77b56a6e2bb7b19d995d185ce44090c13e2984b7ecc6d446d4b61ea9991b76a4c2f04b1b4d244841449454"
                 }
             );
             modelBuilder.Entity<User>().HasData(
@@ -51,7 +53,8 @@ namespace TravelWebsite.DataAccess.Extensions
                     Address = "hanoi",
                     PhoneNumber = "0123456789",
                     UserType = 1,
-                    Status = 0
+                    Status = 0,
+                    PasswordHash = "0a989ebc4a77b56a6e2bb7b19d995d185ce44090c13e2984b7ecc6d446d4b61ea9991b76a4c2f04b1b4d244841449454"
                 }
             );
             // City
