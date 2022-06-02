@@ -13,11 +13,11 @@ namespace TravelWebsite.DataAccess.DTO
 
         public string Address { get; set; }
 
-        public string ShortDicription { get; set; }
+        public string ShortDicription { get; set; } 
 
-        public string Thumb { get; set; }
+        public byte[] Thumb { get; set; }
 
-        public string Image { get; set; }
+        public byte[] Image { get; set; }
 
     }
 }

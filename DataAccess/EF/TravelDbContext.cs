@@ -80,6 +80,9 @@ namespace TravelWebsite.DataAccess.EF
 
             modelBuilder.Entity<User>().HasIndex(f => f.Email).IsUnique();
 
+            modelBuilder.Entity<Place>().Property(p => p.Image).HasColumnType("image");
+
+            modelBuilder.Entity<Place>().Property(p => p.Thumb).HasColumnType("thumb");
 
             modelBuilder.ApplyConfiguration(new UserConfig());
 
@@ -93,7 +96,7 @@ namespace TravelWebsite.DataAccess.EF
 
             modelBuilder.ApplyConfiguration(new BookingConfig());
 
-
+            
 
             // Seeding data
             modelBuilder.Seed();

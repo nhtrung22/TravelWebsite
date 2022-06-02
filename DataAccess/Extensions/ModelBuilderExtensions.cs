@@ -85,8 +85,8 @@ namespace TravelWebsite.DataAccess.Extensions
                     ShortDicription = "abcxyz",
                     Latitude = 21.0278M,
                     Longtitude = 105.8342M,
-                    Thumb = "abcxyz",
-                    Image = "abcxyz",
+                    Thumb = 12,
+                    Image = 64,
                     CityId = 1,
                     PlaceTypeID = 1
                     //BookingID = 1

@@ -22,9 +22,9 @@ namespace TravelWebsite.DataAccess.Entities
 
         public decimal Longtitude { get; set; }
 
-        public string Thumb { get; set; }
+        public byte[] Thumb { get; set; }
 
-        public string Image { get; set; }
+        public byte[] Image { get; set; }
 
 
         // Place - Place Detail

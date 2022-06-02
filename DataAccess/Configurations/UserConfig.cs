@@ -31,6 +31,7 @@ namespace TravelWebsite.DataAccess.Configurations
 
             builder.Property(x => x.PhoneNumber).IsRequired().HasMaxLength(20);
 
+
         }
     }
 }
