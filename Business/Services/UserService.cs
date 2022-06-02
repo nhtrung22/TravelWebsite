@@ -14,6 +14,7 @@ using Microsoft.Extensions.Options;
 using TravelWebsite.DataAccess.Entities.JwtModel;
 using BCrypt.Net;
 using TravelWebsite.Business.JwtModel;
+using BCr = BCrypt.Net;
 
 namespace Business.Services.PlaceService
 {
@@ -39,7 +40,7 @@ namespace Business.Services.PlaceService
             var user = _context.User.SingleOrDefault(x => x.UserName == model.UserName);
 
             // validate
-            if (user == null || !BCrypt.Verify(model.Password, user.PasswordHash))
+            if (user == null || !BCr.BCrypt.Verify(model.Password, user.PasswordHash))
                 throw new AppException("Username or password is incorrect");
 
             // authentication successful so generate jwt and refresh tokens
