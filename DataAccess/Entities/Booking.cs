@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using TravelWebsite.DataAccess.Enums;
 
 namespace TravelWebsite.DataAccess.Entities
 {
     public class Booking
-    {  
+    {
         [Key]
         public int Id { get; set; } // PK
 
 
         public DateTime BookingFromTime { get; set; }
 
- 
+
         public DateTime BookingToTime { get; set; }
 
         public int NumberOfAdult { get; set; }

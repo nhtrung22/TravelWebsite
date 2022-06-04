@@ -1,5 +1,4 @@
-﻿using TravelWebsite.DataAccess.DTO;
-using TravelWebsite.DataAccess.Entities;
+﻿using TravelWebsite.Business.DTO;
 
 namespace TravelWebsite.Business.Common.Interfaces
 {

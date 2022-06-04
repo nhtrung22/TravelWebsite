@@ -1,4 +1,4 @@
-namespace TravelWebsite.Business.Jwt;
+namespace TravelWebsite.Business.Utils;
 
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -6,10 +6,10 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using TravelWebsite.DataAccess.Entities;
+using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.Helpers;
 using TravelWebsite.DataAccess.EF;
-using TravelWebsite.Business.Common.Interfaces;
+using TravelWebsite.DataAccess.Entities;
 
 public class JwtUtils : IJwtUtils
 {
@@ -25,7 +25,7 @@ public class JwtUtils : IJwtUtils
     }
 
 
-    public string GenerateJwtToken(User user) 
+    public string GenerateJwtToken(User user)
     {
         // generate token that is valid for 15 minutes
         var tokenHandler = new JwtSecurityTokenHandler();
@@ -33,7 +33,7 @@ public class JwtUtils : IJwtUtils
         var tokenDescriptor = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
-            Expires = DateTime.UtcNow.AddMinutes(15),
+            Expires = DateTime.UtcNow.AddDays(1),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };
         var token = tokenHandler.CreateToken(tokenDescriptor);
@@ -80,7 +80,11 @@ public class JwtUtils : IJwtUtils
             // token is valid for 7 days
             Expires = DateTime.UtcNow.AddDays(7),
             Created = DateTime.UtcNow,
-            CreatedByIp = ipAddress
+            CreatedByIp = ipAddress,
+            //todo
+            ReasonRevoked = "",
+            ReplacedByToken = "",
+            RevokedByIp = ""
         };
 
         return refreshToken;
@@ -94,7 +98,7 @@ public class JwtUtils : IJwtUtils
 
             if (!tokenIsUnique)
                 return getUniqueToken();
-            
+
             return token;
         }
     }

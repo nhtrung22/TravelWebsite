@@ -1,7 +1,8 @@
-namespace TravelWebsite.Business.Helpers;
+namespace TravelWebsite.Business.Middelwares;
 
 using System.Net;
 using System.Text.Json;
+using TravelWebsite.Business.Helpers;
 
 public class ErrorHandlerMiddleware
 {
@@ -23,7 +24,7 @@ public class ErrorHandlerMiddleware
             var response = context.Response;
             response.ContentType = "application/json";
 
-            switch(error)
+            switch (error)
             {
                 case AppException e:
                     // custom application error

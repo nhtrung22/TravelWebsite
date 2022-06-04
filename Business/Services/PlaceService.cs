@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using TravelWebsite.Business.Common.Interfaces;
-using TravelWebsite.DataAccess.DTO;
+using TravelWebsite.Business.DTO;
 using TravelWebsite.DataAccess.EF;
 using TravelWebsite.DataAccess.Entities;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using TravelWebsite.Business.Common.Interfaces;
-using TravelWebsite.DataAccess.EF;
 
 namespace TravelWebsite.Business.Services.PlaceService
 {

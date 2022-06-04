@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using TravelWebsite.DataAccess.DTO;
+using TravelWebsite.Business.DTO;
 using TravelWebsite.DataAccess.Entities;
 
 namespace Business.Common.MappingConfig

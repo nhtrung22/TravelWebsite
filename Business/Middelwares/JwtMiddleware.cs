@@ -1,10 +1,9 @@
-namespace TravelWebsite.Business.Jwt;
-
 using Microsoft.Extensions.Options;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.Helpers;
 using TravelWebsite.Business.Services;
 
+namespace TravelWebsite.Business.Middelwares;
 public class JwtMiddleware
 {
     private readonly RequestDelegate _next;
@@ -23,7 +22,8 @@ public class JwtMiddleware
         if (userId != null)
         {
             // attach user to context on successful jwt validation
-            context.Items["User"] = userService.GetById(userId.Value);
+            var user = await userService.GetById(userId.Value);
+            context.Items["User"] = await userService.GetById(userId.Value);
         }
 
         await _next(context);

@@ -1,41 +1,16 @@
-using Microsoft.EntityFrameworkCore;
-using TravelWebsite.DataAccess.EF;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using System;
-using System.Globalization;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Configuration;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using Business.Services.PlaceService;
-using TravelWebsite.DataAccess.Entities;
 using AutoMapper;
-using TravelWebsite.DataAccess.DTO;
-using TravelWebsite.Business.Services;
-//using TravelWebsite.Business.DTO;
 using Business.Common.MappingConfig;
-using TravelWebsite.Business.Common.Interfaces;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using TravelWebsite.Business.Common.Interfaces;
-using TravelWebsite.Business.Services.PlaceService;
-using TravelWebsite.Business.Helpers;
-using TravelWebsite.Business.Jwt;
-//using Middleware.Example;
+using Business.Services.PlaceService;
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using TravelWebsite.Business.Common.Interfaces;
+using TravelWebsite.Business.Context;
+using TravelWebsite.Business.Helpers;
+using TravelWebsite.Business.Middelwares;
+using TravelWebsite.Business.Services;
+using TravelWebsite.Business.Services.PlaceService;
+using TravelWebsite.Business.Utils;
+using TravelWebsite.DataAccess.EF;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,20 +28,30 @@ builder.Services.AddDbContext<TravelDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("TravelDatabase")
     ));
 
-
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//trasient scoped singleton
 builder.Services.AddTransient<IPlaceService, PlaceService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IJwtUtils, JwtUtils>();
+builder.Services.AddScoped<ITravelWebsiteUserContext, TravelWebsiteUserContext>();
 
 
 
 builder.Services.AddCors();
 builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull);
+
+var config = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile(new PlaceMappingProfile());
+    cfg.AddProfile(new UserMappingProfile());
+});
+IMapper mapper = config.CreateMapper();
+builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
 
@@ -91,13 +76,7 @@ var app = builder.Build();
 
 
 
-var config = new MapperConfiguration(cfg =>
-{
-    cfg.AddProfile(new PlaceMappingProfile());
-    cfg.AddProfile(new UserMappingProfile());
-});
 
-config.CreateMapper();
 
 app.UseSwaggerUI(options =>
 {
@@ -131,12 +110,6 @@ app.UseCors(x => x
     .AllowAnyMethod()
     .AllowAnyHeader()
     .AllowCredentials());
-
-// global error handler
-app.UseMiddleware<ErrorHandlerMiddleware>();
-
-// custom jwt auth middleware
-app.UseMiddleware<JwtMiddleware>();
 
 app.MapControllers();
 

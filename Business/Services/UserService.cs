@@ -1,19 +1,15 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using TravelWebsite.Business.Common.Interfaces;
-using TravelWebsite.DataAccess.DTO;
+using TravelWebsite.Business.Context;
+using TravelWebsite.Business.DTO;
+using TravelWebsite.Business.Helpers;
+using TravelWebsite.Business.JwtModel;
+using TravelWebsite.Business.Services;
 using TravelWebsite.DataAccess.EF;
 using TravelWebsite.DataAccess.Entities;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using TravelWebsite.DataAccess.DTO;
-using TravelWebsite.Business.Services;
-using TravelWebsite.Business.Jwt;
-using TravelWebsite.Business.Helpers;
-using Microsoft.Extensions.Options;
 using TravelWebsite.DataAccess.Entities.JwtModel;
-using BCrypt.Net;
-using TravelWebsite.Business.JwtModel;
 using BCr = BCrypt.Net;
 
 namespace Business.Services.PlaceService
@@ -22,16 +18,19 @@ namespace Business.Services.PlaceService
     public class UserService : IUserService
     {
         private TravelDbContext _context;
+        private ITravelWebsiteUserContext _travelWebsiteUserContext;
         private IJwtUtils _jwtUtils;
         private readonly AppSettings _appSettings;
         private readonly IMapper _mapper;
 
         public UserService(
             TravelDbContext context,
+            ITravelWebsiteUserContext travelWebsiteUserContext,
             IJwtUtils jwtUtils,
             IOptions<AppSettings> appSettings,
             IMapper mapper)
         {
+            _travelWebsiteUserContext = travelWebsiteUserContext;
             _context = context;
             _jwtUtils = jwtUtils;
             _appSettings = appSettings.Value;
@@ -51,13 +50,14 @@ namespace Business.Services.PlaceService
             var jwtToken = _jwtUtils.GenerateJwtToken(user);
             var refreshToken = _jwtUtils.GenerateRefreshToken(ipAddress);
             user.RefreshTokens.Add(refreshToken);
+            //user.RefreshTokens;
 
             // remove old refresh tokens from user
             removeOldRefreshTokens(user);
 
             // save changes to db
             _context.Update(user);
-            // _context.SaveChanges();
+            _context.SaveChanges();
 
             return new AuthenticateResponse(user, jwtToken, refreshToken.Token);
         }
@@ -109,16 +109,22 @@ namespace Business.Services.PlaceService
             _context.SaveChanges();
         }
 
-        public IEnumerable<User> GetAll()
+        public async Task<IEnumerable<UserDTO>> GetAll()
         {
-            return _context.User;
+            var result = await _context.User.ToListAsync();
+            return _mapper.Map<IEnumerable<UserDTO>>(result);
         }
 
-        public User GetById(Guid id)
+        public User GetCurrentUser()
         {
-            var user = _context.User.Find(id);
+            return _context.User.FirstOrDefault(item => item.UserName == _travelWebsiteUserContext.user.UserName);
+        }
+
+        public async Task<UserDTO> GetById(Guid id)
+        {
+            var user = await _context.User.FirstOrDefaultAsync(item => item.Id == id);
             if (user == null) throw new KeyNotFoundException("User not found");
-            return user;
+            return _mapper.Map<UserDTO>(user);
         }
 
         // helper methods
