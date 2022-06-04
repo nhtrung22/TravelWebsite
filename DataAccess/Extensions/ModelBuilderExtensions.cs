@@ -67,6 +67,14 @@ namespace TravelWebsite.DataAccess.Extensions
                     Description = "abcxyz"
                 }
             );
+            modelBuilder.Entity<City>().HasData(
+                new City()
+                {
+                    Id = 2,
+                    CityName = "tp hcm",
+                    Description = "xyzabc"
+                }
+            );
             // Place Type
             modelBuilder.Entity<PlaceType>().HasData(
                 new PlaceType()
@@ -82,7 +90,7 @@ namespace TravelWebsite.DataAccess.Extensions
                 {
                     Id = 1,
                     Name = "studio",
-                    Address = "hoan kiem, ha noi",
+                    Address = "bac tu liem",
                     ShortDicription = "abcxyz",
                     Latitude = 21.0278M,
                     Longtitude = 105.8342M,
@@ -90,7 +98,36 @@ namespace TravelWebsite.DataAccess.Extensions
                     Image = "1",
                     CityId = 1,
                     PlaceTypeID = 1
-                    //BookingID = 1
+                }
+            );
+            modelBuilder.Entity<Place>().HasData(
+                new Place()
+                {
+                    Id = 2,
+                    Name = "penhouse",
+                    Address = "hoan kiem",
+                    ShortDicription = "abcxyz",
+                    Latitude = 21.0278M,
+                    Longtitude = 105.8342M,
+                    Thumb = "1",
+                    Image = "1",
+                    CityId = 1,
+                    PlaceTypeID = 1
+                }
+            );
+            modelBuilder.Entity<Place>().HasData(
+                new Place()
+                {
+                    Id = 3,
+                    Name = "palace",
+                    Address = "quan 1",
+                    ShortDicription = "abcxyz",
+                    Latitude = 21.0278M,
+                    Longtitude = 105.8342M,
+                    Thumb = "1",
+                    Image = "1",
+                    CityId = 2,
+                    PlaceTypeID = 1
                 }
             );
 

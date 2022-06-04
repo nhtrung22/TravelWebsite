@@ -12,11 +12,7 @@ using TravelWebsite.DataAccess.EF;
 namespace TravelWebsite.DataAccess.Migrations
 {
     [DbContext(typeof(TravelDbContext))]
-<<<<<<<< HEAD:DataAccess/Migrations/20220601144224_init.Designer.cs
-    [Migration("20220601144224_init")]
-========
-    [Migration("20220602095722_init")]
->>>>>>>> duc:DataAccess/Migrations/20220602095722_init.Designer.cs
+    [Migration("20220604122654_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,15 +82,9 @@ namespace TravelWebsite.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-<<<<<<<< HEAD:DataAccess/Migrations/20220601144224_init.Designer.cs
-                            BookingDate = new DateTime(2022, 5, 17, 21, 42, 23, 947, DateTimeKind.Local).AddTicks(9251),
-                            BookingFromTime = new DateTime(2022, 5, 22, 21, 42, 23, 947, DateTimeKind.Local).AddTicks(9239),
-                            BookingToTime = new DateTime(2022, 6, 11, 21, 42, 23, 947, DateTimeKind.Local).AddTicks(9249),
-========
-                            BookingDate = new DateTime(2022, 5, 18, 16, 57, 22, 336, DateTimeKind.Local).AddTicks(9246),
-                            BookingFromTime = new DateTime(2022, 5, 23, 16, 57, 22, 336, DateTimeKind.Local).AddTicks(9228),
-                            BookingToTime = new DateTime(2022, 6, 12, 16, 57, 22, 336, DateTimeKind.Local).AddTicks(9243),
->>>>>>>> duc:DataAccess/Migrations/20220602095722_init.Designer.cs
+                            BookingDate = new DateTime(2022, 5, 20, 19, 26, 54, 680, DateTimeKind.Local).AddTicks(2380),
+                            BookingFromTime = new DateTime(2022, 5, 25, 19, 26, 54, 680, DateTimeKind.Local).AddTicks(2359),
+                            BookingToTime = new DateTime(2022, 6, 14, 19, 26, 54, 680, DateTimeKind.Local).AddTicks(2376),
                             Deposit = 0m,
                             FullName = "Nguyen A",
                             NumberOfAdult = 1,
@@ -135,6 +125,12 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = 1,
                             CityName = "ha noi",
                             Description = "abcxyz"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CityName = "tp hcm",
+                            Description = "xyzabc"
                         });
                 });
 
@@ -193,12 +189,38 @@ namespace TravelWebsite.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            Address = "hoan kiem, ha noi",
+                            Address = "bac tu liem",
                             CityId = 1,
                             Image = "1",
                             Latitude = 21.0278m,
                             Longtitude = 105.8342m,
                             Name = "studio",
+                            PlaceTypeID = 1,
+                            ShortDicription = "abcxyz",
+                            Thumb = "1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Address = "hoan kiem",
+                            CityId = 1,
+                            Image = "1",
+                            Latitude = 21.0278m,
+                            Longtitude = 105.8342m,
+                            Name = "penhouse",
+                            PlaceTypeID = 1,
+                            ShortDicription = "abcxyz",
+                            Thumb = "1"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Address = "quan 1",
+                            CityId = 2,
+                            Image = "1",
+                            Latitude = 21.0278m,
+                            Longtitude = 105.8342m,
+                            Name = "palace",
                             PlaceTypeID = 1,
                             ShortDicription = "abcxyz",
                             Thumb = "1"
@@ -341,7 +363,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             Address = "hanoi",
                             Email = "abc123@gmail.com",
                             Password = "123456",
-                            PasswordHash = "$2a$11$Y/NppV.T1em.icXGXKutWu6/zJR8SU94jgLr4wQkMkvIB/ecH0L8m",
+                            PasswordHash = "$2a$11$w.qJl6qXrf5omKnHjgh3mug7RJrK1NTmXO1tR0.Yna/TnoDnxDb1m",
                             PhoneNumber = "0123456789",
                             Status = 0,
                             UserName = "user1",
@@ -353,7 +375,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             Address = "hanoi",
                             Email = "abc1234@gmail.com",
                             Password = "123456",
-                            PasswordHash = "$2a$11$5fIgWYpAd0xs2UUslV8Xz.FMIlwq8JUwa7N5zWprioHCRWXVUzJVa",
+                            PasswordHash = "$2a$11$nVcsHp9xDqUlZHmxhuf9PusEplvMDLdf6O8J2qz0uw8Jj0OTKJIXS",
                             PhoneNumber = "0123456789",
                             Status = 0,
                             UserName = "user2",
@@ -365,7 +387,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             Address = "hanoi",
                             Email = "abc1236@gmail.com",
                             Password = "123456",
-                            PasswordHash = "$2a$11$memWgaba.vZ1MkLaDdUwDOy4nMTfU6NuxLOSfLhxhYsWKwwQlZVZC",
+                            PasswordHash = "$2a$11$N3d.efsPkzOPoOSnWHHY0.0l8rDs8MFPZfOLP/RK71m2VHdCW/0Qe",
                             PhoneNumber = "0123456789",
                             Status = 0,
                             UserName = "user3",

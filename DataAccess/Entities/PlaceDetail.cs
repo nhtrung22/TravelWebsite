@@ -24,10 +24,6 @@ namespace TravelWebsite.DataAccess.Entities
 
         public int Square { get; set; }
 
-
-        //public int PlaceID { get; set; }
-        //public virtual Place Place { get; set; }
-
         // Place - Place Detail
         public int PlaceID { get; set; }
         public Place Place { get; set; }

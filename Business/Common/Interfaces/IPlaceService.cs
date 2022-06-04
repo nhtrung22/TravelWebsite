@@ -4,7 +4,7 @@ namespace TravelWebsite.Business.Common.Interfaces
 {
     public interface IPlaceService
     {
-        Task<List<PlaceDTO>> Get();
+        Task<List<PlaceDTO>> GetPlaceByCity(int CityId);
 
         Task CreatePlace(PlaceDTO placeDto);
 

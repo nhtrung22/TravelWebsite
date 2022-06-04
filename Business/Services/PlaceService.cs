@@ -20,18 +20,16 @@ namespace TravelWebsite.Business.Services.PlaceService
             _mapper = mapper;
         }
 
-        // Get all places
-        public async Task<List<PlaceDTO>> Get()
+        public async Task<List<PlaceDTO>> GetPlaceByCity(int CityId)
         {
             var placeList = await _context.Place.ToListAsync();
-            var result = from Place in placeList
-                         orderby Place.Name descending
-                         select Place;
+            var result = from place in placeList
+                         where place.CityId == CityId
+                         select place;
             return _mapper.Map<List<PlaceDTO>>(result);
         }
 
 
-        // Create Place
         public async Task CreatePlace(PlaceDTO placeDto)
         {
             var place = _mapper.Map<Place>(placeDto);

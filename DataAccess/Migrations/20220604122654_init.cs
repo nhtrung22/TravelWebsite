@@ -174,7 +174,11 @@ namespace TravelWebsite.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "City",
                 columns: new[] { "Id", "CityName", "Description" },
-                values: new object[] { 1, "ha noi", "abcxyz" });
+                values: new object[,]
+                {
+                    { 1, "ha noi", "abcxyz" },
+                    { 2, "tp hcm", "xyzabc" }
+                });
 
             migrationBuilder.InsertData(
                 table: "PlaceType",
@@ -186,24 +190,30 @@ namespace TravelWebsite.DataAccess.Migrations
                 columns: new[] { "Id", "Address", "Email", "Password", "PasswordHash", "PhoneNumber", "Status", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { new Guid("00000000-0000-0000-0000-000000000001"), "hanoi", "abc1236@gmail.com", "123456", "$2a$11$memWgaba.vZ1MkLaDdUwDOy4nMTfU6NuxLOSfLhxhYsWKwwQlZVZC", "0123456789", 0, "user3", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000002"), "hanoi", "abc1234@gmail.com", "123456", "$2a$11$5fIgWYpAd0xs2UUslV8Xz.FMIlwq8JUwa7N5zWprioHCRWXVUzJVa", "0123456789", 0, "user2", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000003"), "hanoi", "abc123@gmail.com", "123456", "$2a$11$Y/NppV.T1em.icXGXKutWu6/zJR8SU94jgLr4wQkMkvIB/ecH0L8m", "0123456789", 0, "user1", 0 }
+                    { new Guid("00000000-0000-0000-0000-000000000001"), "hanoi", "abc1236@gmail.com", "123456", "$2a$11$N3d.efsPkzOPoOSnWHHY0.0l8rDs8MFPZfOLP/RK71m2VHdCW/0Qe", "0123456789", 0, "user3", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000002"), "hanoi", "abc1234@gmail.com", "123456", "$2a$11$nVcsHp9xDqUlZHmxhuf9PusEplvMDLdf6O8J2qz0uw8Jj0OTKJIXS", "0123456789", 0, "user2", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000003"), "hanoi", "abc123@gmail.com", "123456", "$2a$11$w.qJl6qXrf5omKnHjgh3mug7RJrK1NTmXO1tR0.Yna/TnoDnxDb1m", "0123456789", 0, "user1", 0 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Place",
                 columns: new[] { "Id", "Address", "CityId", "Image", "Latitude", "Longtitude", "Name", "PlaceTypeID", "ShortDicription", "Thumb" },
-                values: new object[] { 1, "hoan kiem, ha noi", 1, "1", 21.0278m, 105.8342m, "studio", 1, "abcxyz", "1" });
+                values: new object[] { 1, "bac tu liem", 1, "1", 21.0278m, 105.8342m, "studio", 1, "abcxyz", "1" });
+
+            migrationBuilder.InsertData(
+                table: "Place",
+                columns: new[] { "Id", "Address", "CityId", "Image", "Latitude", "Longtitude", "Name", "PlaceTypeID", "ShortDicription", "Thumb" },
+                values: new object[] { 2, "hoan kiem", 1, "1", 21.0278m, 105.8342m, "penhouse", 1, "abcxyz", "1" });
+
+            migrationBuilder.InsertData(
+                table: "Place",
+                columns: new[] { "Id", "Address", "CityId", "Image", "Latitude", "Longtitude", "Name", "PlaceTypeID", "ShortDicription", "Thumb" },
+                values: new object[] { 3, "quan 1", 2, "1", 21.0278m, 105.8342m, "palace", 1, "abcxyz", "1" });
 
             migrationBuilder.InsertData(
                 table: "Booking",
                 columns: new[] { "Id", "BookingDate", "BookingFromTime", "BookingToTime", "Deposit", "FullName", "NumberOfAdult", "NumberOfKid", "PaymentStatus", "PhoneNumber", "PlaceId", "Price", "Status" },
-<<<<<<<< HEAD:DataAccess/Migrations/20220601144224_init.cs
-                values: new object[] { 1, new DateTime(2022, 5, 17, 21, 42, 23, 947, DateTimeKind.Local).AddTicks(9251), new DateTime(2022, 5, 22, 21, 42, 23, 947, DateTimeKind.Local).AddTicks(9239), new DateTime(2022, 6, 11, 21, 42, 23, 947, DateTimeKind.Local).AddTicks(9249), 0m, "Nguyen A", 1, 3, 0, "0123456789", 1, 50000m, 0 });
-========
-                values: new object[] { 1, new DateTime(2022, 5, 18, 16, 57, 22, 336, DateTimeKind.Local).AddTicks(9246), new DateTime(2022, 5, 23, 16, 57, 22, 336, DateTimeKind.Local).AddTicks(9228), new DateTime(2022, 6, 12, 16, 57, 22, 336, DateTimeKind.Local).AddTicks(9243), 0m, "Nguyen A", 1, 3, 2, "0123456789", 1, 50000m, 0 });
->>>>>>>> duc:DataAccess/Migrations/20220602095722_init.cs
+                values: new object[] { 1, new DateTime(2022, 5, 20, 19, 26, 54, 680, DateTimeKind.Local).AddTicks(2380), new DateTime(2022, 5, 25, 19, 26, 54, 680, DateTimeKind.Local).AddTicks(2359), new DateTime(2022, 6, 14, 19, 26, 54, 680, DateTimeKind.Local).AddTicks(2376), 0m, "Nguyen A", 1, 3, 2, "0123456789", 1, 50000m, 0 });
 
             migrationBuilder.InsertData(
                 table: "PlaceDetail",
