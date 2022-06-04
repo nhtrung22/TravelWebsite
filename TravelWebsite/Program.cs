@@ -55,29 +55,6 @@ builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
 
-// add hardcoded test user to db on startup
-//using (var scope = app.Services.CreateScope())
-//{
-//    var context = scope.ServiceProvider.GetRequiredService<TravelDbContext>();
-//    var testUser = new User
-//    {
-//        UserName = "test",
-//        Password = "123456",
-//        PasswordHash = BCrypt.Net.BCrypt.HashPassword("test"),
-//        Address = "hanoi",
-//        Email = "kdjf;ad",
-//        PhoneNumber = "dkjfalsd",
-//        UserType = 1,
-//        Status = 1
-//    };
-//    context.User.Add(testUser);
-//    context.SaveChanges();
-//}
-
-
-
-
-
 app.UseSwaggerUI(options =>
 {
     options.DefaultModelsExpandDepth(-1);

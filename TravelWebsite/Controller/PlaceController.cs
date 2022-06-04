@@ -17,8 +17,23 @@ namespace TravelWebsite.API.Controllers
             _placeService = placeService;
         }
 
-
         [HttpGet]
+        [AllowAnonymous]
+        public async Task<List<PlaceDTO>> Get()
+        {
+            var place = _placeService.Get();
+            return await place;
+        }
+
+        [HttpDelete("id")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var place = await _placeService.Delete(id); 
+            return Ok();
+        }
+
+        [HttpGet("get-place-by-city")]
         [AllowAnonymous]
         public async Task<List<PlaceDTO>> GetPlaceByCity(int CityId)
         {
