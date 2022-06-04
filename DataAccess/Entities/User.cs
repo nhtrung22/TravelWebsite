@@ -26,7 +26,7 @@ namespace TravelWebsite.DataAccess.Entities
 
         public UserType UserType { get; set; }
 
-        public int Status { get; set; } // specific status enum
+        public int Status { get; set; } 
 
         [JsonIgnore]
         public string PasswordHash { get; set; }
