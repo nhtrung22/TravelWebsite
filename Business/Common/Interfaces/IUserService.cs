@@ -1,24 +1,14 @@
-﻿using TravelWebsite.DataAccess.DTO;
-using TravelWebsite.DataAccess.Entities;
-using TravelWebsite.DataAccess.EF;
+﻿namespace TravelWebsite.Business.Services;
 
-namespace TravelWebsite.Business.Common.Interfaces
+using TravelWebsite.Business.DTO;
+using TravelWebsite.Business.JwtModel;
+using TravelWebsite.DataAccess.Entities.JwtModel;
+
+public interface IUserService
 {
-    public interface IUserService
-    {
-        Task<List<UserDTO>> Get();
-
-        Task<UserDTO> Add(UserDTO user);
-
-        Task<UserDTO> Update(UserDTO user);
-
-        Task<UserDTO> Login(string userName, string password);
-
-        Task Remove(string email);
-
-        //Task CreatePlace(PlaceDTO placeDto);
-
-        //Task<List<PlaceDTO>> SortDescending();
-
-    }
+    AuthenticateResponse Authenticate(AuthenticateRequest model, string ipAddress);
+    AuthenticateResponse RefreshToken(string token, string ipAddress);
+    void RevokeToken(string token, string ipAddress);
+    Task<IEnumerable<UserDTO>> GetAll();
+    Task<UserDTO> GetById(Guid id);
 }

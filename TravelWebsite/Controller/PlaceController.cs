@@ -1,14 +1,11 @@
 ﻿using AutoMapper;
-using TravelWebsite.Business.Common.Interfaces;
-using TravelWebsite.DataAccess.DTO;
 using Microsoft.AspNetCore.Mvc;
 using TravelWebsite.Business.Common.Interfaces;
+using TravelWebsite.Business.DTO;
 
-namespace TravelWebsite.Controllers
+namespace TravelWebsite.API.Controllers
 {
-    [Route("api/place")]
-    [ApiController]
-    public class PlaceController : ControllerBase
+    public class PlaceController : BaseController
     {
         private readonly IPlaceService _placeService;
         private readonly IMapper _mapper;
@@ -18,19 +15,11 @@ namespace TravelWebsite.Controllers
             _placeService = placeService;
         }
 
-        [HttpGet("get")]
+        [HttpGet]
         public async Task<List<PlaceDTO>> Get()
         {
-            return  await _placeService.Get();
+            return await _placeService.Get();
         }
-
-
-        [HttpGet("sort")]
-        public async Task<List<PlaceDTO>> Sort()
-        {
-            return await _placeService.SortDescending();
-        }
-
 
 
     }

@@ -12,9 +12,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Middelware\**" />
+    <Content Remove="Middelware\**" />
+    <EmbeddedResource Remove="Middelware\**" />
+    <None Remove="Middelware\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Collection" Version="8.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.9" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.5" />
@@ -44,9 +52,6 @@
 
   <ItemGroup>
     <None Remove="Middelware\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Middelware\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\TravelWebsite.DataAccess.csproj" />

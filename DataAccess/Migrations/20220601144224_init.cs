@@ -48,7 +48,8 @@ namespace TravelWebsite.DataAccess.Migrations
                     Address = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     UserType = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false)
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -84,6 +85,33 @@ namespace TravelWebsite.DataAccess.Migrations
                         name: "FK_Place_PlaceType_PlaceTypeID",
                         column: x => x.PlaceTypeID,
                         principalTable: "PlaceType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RefreshToken",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Expires = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedByIp = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Revoked = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    RevokedByIp = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReplacedByToken = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReasonRevoked = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RefreshToken", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RefreshToken_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -155,23 +183,27 @@ namespace TravelWebsite.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "User",
-                columns: new[] { "Id", "Address", "Email", "Password", "PhoneNumber", "Status", "UserName", "UserType" },
+                columns: new[] { "Id", "Address", "Email", "Password", "PasswordHash", "PhoneNumber", "Status", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { new Guid("00000000-0000-0000-0000-000000000001"), "hanoi", "abc1236@gmail.com", "123456", "0123456789", 0, "user3", 1 },
-                    { new Guid("00000000-0000-0000-0000-000000000002"), "hanoi", "abc1234@gmail.com", "123456", "0123456789", 0, "user2", 1 },
-                    { new Guid("00000000-0000-0000-0000-000000000003"), "hanoi", "abc123@gmail.com", "123456", "0123456789", 0, "user1", 1 }
+                    { new Guid("00000000-0000-0000-0000-000000000001"), "hanoi", "abc1236@gmail.com", "123456", "$2a$11$memWgaba.vZ1MkLaDdUwDOy4nMTfU6NuxLOSfLhxhYsWKwwQlZVZC", "0123456789", 0, "user3", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000002"), "hanoi", "abc1234@gmail.com", "123456", "$2a$11$5fIgWYpAd0xs2UUslV8Xz.FMIlwq8JUwa7N5zWprioHCRWXVUzJVa", "0123456789", 0, "user2", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000003"), "hanoi", "abc123@gmail.com", "123456", "$2a$11$Y/NppV.T1em.icXGXKutWu6/zJR8SU94jgLr4wQkMkvIB/ecH0L8m", "0123456789", 0, "user1", 0 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Place",
                 columns: new[] { "Id", "Address", "CityId", "Image", "Latitude", "Longtitude", "Name", "PlaceTypeID", "ShortDicription", "Thumb" },
-                values: new object[] { 1, "hoan kiem, ha noi", 1, "abcxyz", 21.0278m, 105.8342m, "studio", 1, "abcxyz", "abcxyz" });
+                values: new object[] { 1, "hoan kiem, ha noi", 1, "1", 21.0278m, 105.8342m, "studio", 1, "abcxyz", "1" });
 
             migrationBuilder.InsertData(
                 table: "Booking",
                 columns: new[] { "Id", "BookingDate", "BookingFromTime", "BookingToTime", "Deposit", "FullName", "NumberOfAdult", "NumberOfKid", "PaymentStatus", "PhoneNumber", "PlaceId", "Price", "Status" },
+<<<<<<<< HEAD:DataAccess/Migrations/20220601144224_init.cs
                 values: new object[] { 1, new DateTime(2022, 5, 17, 21, 42, 23, 947, DateTimeKind.Local).AddTicks(9251), new DateTime(2022, 5, 22, 21, 42, 23, 947, DateTimeKind.Local).AddTicks(9239), new DateTime(2022, 6, 11, 21, 42, 23, 947, DateTimeKind.Local).AddTicks(9249), 0m, "Nguyen A", 1, 3, 0, "0123456789", 1, 50000m, 0 });
+========
+                values: new object[] { 1, new DateTime(2022, 5, 18, 16, 57, 22, 336, DateTimeKind.Local).AddTicks(9246), new DateTime(2022, 5, 23, 16, 57, 22, 336, DateTimeKind.Local).AddTicks(9228), new DateTime(2022, 6, 12, 16, 57, 22, 336, DateTimeKind.Local).AddTicks(9243), 0m, "Nguyen A", 1, 3, 2, "0123456789", 1, 50000m, 0 });
+>>>>>>>> duc:DataAccess/Migrations/20220602095722_init.cs
 
             migrationBuilder.InsertData(
                 table: "PlaceDetail",
@@ -200,6 +232,11 @@ namespace TravelWebsite.DataAccess.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_RefreshToken_UserId",
+                table: "RefreshToken",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_User_Email",
                 table: "User",
                 column: "Email",
@@ -215,10 +252,13 @@ namespace TravelWebsite.DataAccess.Migrations
                 name: "PlaceDetail");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "RefreshToken");
 
             migrationBuilder.DropTable(
                 name: "Place");
+
+            migrationBuilder.DropTable(
+                name: "User");
 
             migrationBuilder.DropTable(
                 name: "City");

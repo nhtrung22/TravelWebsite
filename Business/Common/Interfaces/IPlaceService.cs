@@ -1,5 +1,4 @@
-﻿using TravelWebsite.DataAccess.DTO;
-using TravelWebsite.DataAccess.Entities;
+﻿using TravelWebsite.Business.DTO;
 
 namespace TravelWebsite.Business.Common.Interfaces
 {
@@ -7,11 +6,7 @@ namespace TravelWebsite.Business.Common.Interfaces
     {
         Task<List<PlaceDTO>> Get();
 
-        //Task<List<PlaceDTO>> GetAsysnc(int id);
-
         Task CreatePlace(PlaceDTO placeDto);
-
-        Task<List<PlaceDTO>> SortDescending();
 
     }
 }

@@ -80,14 +80,14 @@ namespace TravelWebsite.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            BookingDate = new DateTime(2022, 5, 17, 21, 42, 23, 947, DateTimeKind.Local).AddTicks(9251),
-                            BookingFromTime = new DateTime(2022, 5, 22, 21, 42, 23, 947, DateTimeKind.Local).AddTicks(9239),
-                            BookingToTime = new DateTime(2022, 6, 11, 21, 42, 23, 947, DateTimeKind.Local).AddTicks(9249),
+                            BookingDate = new DateTime(2022, 5, 18, 16, 57, 22, 336, DateTimeKind.Local).AddTicks(9246),
+                            BookingFromTime = new DateTime(2022, 5, 23, 16, 57, 22, 336, DateTimeKind.Local).AddTicks(9228),
+                            BookingToTime = new DateTime(2022, 6, 12, 16, 57, 22, 336, DateTimeKind.Local).AddTicks(9243),
                             Deposit = 0m,
                             FullName = "Nguyen A",
                             NumberOfAdult = 1,
                             NumberOfKid = 3,
-                            PaymentStatus = 0,
+                            PaymentStatus = 2,
                             PhoneNumber = "0123456789",
                             PlaceId = 1,
                             Price = 50000m,
@@ -183,13 +183,13 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = 1,
                             Address = "hoan kiem, ha noi",
                             CityId = 1,
-                            Image = "abcxyz",
+                            Image = "1",
                             Latitude = 21.0278m,
                             Longtitude = 105.8342m,
                             Name = "studio",
                             PlaceTypeID = 1,
                             ShortDicription = "abcxyz",
-                            Thumb = "abcxyz"
+                            Thumb = "1"
                         });
                 });
 
@@ -295,6 +295,10 @@ namespace TravelWebsite.DataAccess.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -325,10 +329,11 @@ namespace TravelWebsite.DataAccess.Migrations
                             Address = "hanoi",
                             Email = "abc123@gmail.com",
                             Password = "123456",
+                            PasswordHash = "$2a$11$Y/NppV.T1em.icXGXKutWu6/zJR8SU94jgLr4wQkMkvIB/ecH0L8m",
                             PhoneNumber = "0123456789",
                             Status = 0,
                             UserName = "user1",
-                            UserType = 1
+                            UserType = 0
                         },
                         new
                         {
@@ -336,10 +341,11 @@ namespace TravelWebsite.DataAccess.Migrations
                             Address = "hanoi",
                             Email = "abc1234@gmail.com",
                             Password = "123456",
+                            PasswordHash = "$2a$11$5fIgWYpAd0xs2UUslV8Xz.FMIlwq8JUwa7N5zWprioHCRWXVUzJVa",
                             PhoneNumber = "0123456789",
                             Status = 0,
                             UserName = "user2",
-                            UserType = 1
+                            UserType = 0
                         },
                         new
                         {
@@ -347,10 +353,11 @@ namespace TravelWebsite.DataAccess.Migrations
                             Address = "hanoi",
                             Email = "abc1236@gmail.com",
                             Password = "123456",
+                            PasswordHash = "$2a$11$memWgaba.vZ1MkLaDdUwDOy4nMTfU6NuxLOSfLhxhYsWKwwQlZVZC",
                             PhoneNumber = "0123456789",
                             Status = 0,
                             UserName = "user3",
-                            UserType = 1
+                            UserType = 0
                         });
                 });
 
@@ -393,6 +400,61 @@ namespace TravelWebsite.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Place");
+                });
+
+            modelBuilder.Entity("TravelWebsite.DataAccess.Entities.User", b =>
+                {
+                    b.OwnsMany("TravelWebsite.DataAccess.Entities.RefreshToken", "RefreshTokens", b1 =>
+                        {
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
+
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b1.Property<int>("Id"), 1L, 1);
+
+                            b1.Property<DateTime>("Created")
+                                .HasColumnType("datetime2");
+
+                            b1.Property<string>("CreatedByIp")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<DateTime>("Expires")
+                                .HasColumnType("datetime2");
+
+                            b1.Property<string>("ReasonRevoked")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("ReplacedByToken")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<DateTime?>("Revoked")
+                                .HasColumnType("datetime2");
+
+                            b1.Property<string>("RevokedByIp")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Token")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<Guid>("UserId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.HasKey("Id");
+
+                            b1.HasIndex("UserId");
+
+                            b1.ToTable("RefreshToken");
+
+                            b1.WithOwner()
+                                .HasForeignKey("UserId");
+                        });
+
+                    b.Navigation("RefreshTokens");
                 });
 
             modelBuilder.Entity("TravelWebsite.DataAccess.Entities.City", b =>

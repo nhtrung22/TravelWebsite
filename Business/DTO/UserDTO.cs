@@ -1,24 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TravelWebsite.DataAccess.Entities;
+using TravelWebsite.DataAccess.Enums;
 
-namespace TravelWebsite.DataAccess.DTO
+namespace TravelWebsite.Business.DTO
 {
     public class UserDTO
     {
         public string UserName { get; set; }
-
         public string Password { get; set; }
-
         public string Email { get; set; }
-
         public string Address { get; set; }
-
         public string PhoneNumber { get; set; }
+        public UserType UserType { get; set; }
+        public List<RefreshToken> RefreshTokens { get; set; }
 
-        public int UserType { get; set; }
 
+        //public Guid Id { get; set; } // PK
+
+        //public string UserName { get; set; }
+
+        //public string Password { get; set; }
+
+        //public string Email { get; set; }
+
+        //public string Address { get; set; }
+
+        //public string PhoneNumber { get; set; }
+
+        //public UserType UserType { get; set; }
+
+        //public int Status { get; set; } // specific status enum
+        //public string PasswordHash { get; set; }
+        //public List<RefreshToken> RefreshTokens { get; set; }
     }
 }

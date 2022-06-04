@@ -1,9 +1,8 @@
-﻿using TravelWebsite.DataAccess.Configurations;
-using TravelWebsite.DataAccess.Entities;
-using TravelWebsite.DataAccess.Extensions;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using TravelWebsite.DataAccess.Configurations;
 using TravelWebsite.DataAccess.Entities;
+using TravelWebsite.DataAccess.Extensions;
 
 namespace TravelWebsite.DataAccess.EF
 {
@@ -12,6 +11,9 @@ namespace TravelWebsite.DataAccess.EF
         public TravelDbContext(DbContextOptions options) : base(options)
         {
         }
+
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -72,7 +74,6 @@ namespace TravelWebsite.DataAccess.EF
 
             modelBuilder.Entity<User>().HasIndex(f => f.Email).IsUnique();
 
-
             modelBuilder.ApplyConfiguration(new UserConfig());
 
             modelBuilder.ApplyConfiguration(new PlaceConfig());
@@ -85,7 +86,7 @@ namespace TravelWebsite.DataAccess.EF
 
             modelBuilder.ApplyConfiguration(new BookingConfig());
 
-
+            
 
             // Seeding data
             modelBuilder.Seed();
@@ -102,6 +103,15 @@ namespace TravelWebsite.DataAccess.EF
         public DbSet<PlaceDetail> PlaceDetail { set; get; }
 
         public DbSet<PlaceType> PlaceType { set; get; }
+
+        //private readonly IConfiguration Configuration;
+
+        //public TravelDbContext(IConfiguration configuration)
+        //{
+        //    Configuration = configuration;
+        //}
+
+
 
     }
 }

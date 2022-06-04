@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TravelWebsite.DataAccess.Entities;
 using static Microsoft.EntityFrameworkCore.EF;
+using TravelWebsite.DataAccess.Enums;
 
 namespace TravelWebsite.DataAccess.Extensions
 {
@@ -24,8 +25,9 @@ namespace TravelWebsite.DataAccess.Extensions
                     Email = "abc123@gmail.com",
                     Address = "hanoi",
                     PhoneNumber = "0123456789",
-                    UserType = 1,
-                    Status = 0
+                    UserType = UserType.Client,
+                    Status = 0,
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456")
                 }
             );
             modelBuilder.Entity<User>().HasData(
@@ -37,8 +39,9 @@ namespace TravelWebsite.DataAccess.Extensions
                     Email = "abc1234@gmail.com",
                     Address = "hanoi",
                     PhoneNumber = "0123456789",
-                    UserType = 1,
-                    Status = 0
+                    UserType = UserType.Client,
+                    Status = 0,
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456")
                 }
             );
             modelBuilder.Entity<User>().HasData(
@@ -50,8 +53,9 @@ namespace TravelWebsite.DataAccess.Extensions
                     Email = "abc1236@gmail.com",
                     Address = "hanoi",
                     PhoneNumber = "0123456789",
-                    UserType = 1,
-                    Status = 0
+                    UserType = UserType.Client,
+                    Status = 0,
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456")
                 }
             );
             // City
@@ -82,8 +86,8 @@ namespace TravelWebsite.DataAccess.Extensions
                     ShortDicription = "abcxyz",
                     Latitude = 21.0278M,
                     Longtitude = 105.8342M,
-                    Thumb = "abcxyz",
-                    Image = "abcxyz",
+                    Thumb = "1",
+                    Image = "1",
                     CityId = 1,
                     PlaceTypeID = 1
                     //BookingID = 1
@@ -102,7 +106,7 @@ namespace TravelWebsite.DataAccess.Extensions
                     Price = 50000,
                     BookingDate = DateTime.Now.AddDays(-15),
                     Status = 0,
-                    PaymentStatus = 0,
+                    PaymentStatus = PaymentStatus.Paid,
                     Deposit = 0,
                     PhoneNumber = "0123456789",
                     FullName = "Nguyen A",

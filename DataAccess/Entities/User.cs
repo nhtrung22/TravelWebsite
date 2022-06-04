@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-
+using TravelWebsite.DataAccess.Enums;
 
 namespace TravelWebsite.DataAccess.Entities
 {
@@ -23,9 +24,15 @@ namespace TravelWebsite.DataAccess.Entities
 
         public string PhoneNumber { get; set; }
 
-        public int UserType { get; set; }
+        public UserType UserType { get; set; }
 
-        public int Status { get; set; }
+        public int Status { get; set; } // specific status enum
+
+        [JsonIgnore]
+        public string PasswordHash { get; set; }
+
+        [JsonIgnore]
+        public List<RefreshToken> RefreshTokens { get; set; }
 
     }
 }

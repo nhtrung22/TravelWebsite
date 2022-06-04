@@ -27,5 +27,6 @@ namespace TravelWebsite.DataAccess.EF
 
             return new TravelDbContext(optionsBuilder.Options);
         }
+
     }
 }

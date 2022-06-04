@@ -1,71 +1,179 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using TravelWebsite.Business.Common.Interfaces;
-using TravelWebsite.DataAccess.DTO;
+using TravelWebsite.Business.Context;
+using TravelWebsite.Business.DTO;
+using TravelWebsite.Business.Helpers;
+using TravelWebsite.Business.JwtModel;
+using TravelWebsite.Business.Services;
 using TravelWebsite.DataAccess.EF;
 using TravelWebsite.DataAccess.Entities;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using TravelWebsite.DataAccess.DTO;
+using TravelWebsite.DataAccess.Entities.JwtModel;
+using BCr = BCrypt.Net;
 
 namespace Business.Services.PlaceService
 {
 
     public class UserService : IUserService
     {
-        private readonly TravelDbContext _context;
-
+        private TravelDbContext _context;
+        private ITravelWebsiteUserContext _travelWebsiteUserContext;
+        private IJwtUtils _jwtUtils;
+        private readonly AppSettings _appSettings;
         private readonly IMapper _mapper;
 
-        public UserService(TravelDbContext context, IMapper mapper)
+        public UserService(
+            TravelDbContext context,
+            ITravelWebsiteUserContext travelWebsiteUserContext,
+            IJwtUtils jwtUtils,
+            IOptions<AppSettings> appSettings,
+            IMapper mapper)
         {
+            _travelWebsiteUserContext = travelWebsiteUserContext;
             _context = context;
+            _jwtUtils = jwtUtils;
+            _appSettings = appSettings.Value;
             _mapper = mapper;
         }
 
-      
+        public AuthenticateResponse Authenticate(AuthenticateRequest model, string ipAddress)
+        {
+            var user = _context.User.SingleOrDefault(x => x.UserName == model.UserName);
 
-        // Get all users
-        public async Task<List<UserDTO>> Get()
+
+            // validate
+            if (user == null || !BCr.BCrypt.Verify(model.Password, user.PasswordHash))
+                throw new AppException("Username or password is incorrect");
+
+            // authentication successful so generate jwt and refresh tokens
+            var jwtToken = _jwtUtils.GenerateJwtToken(user);
+            var refreshToken = _jwtUtils.GenerateRefreshToken(ipAddress);
+            user.RefreshTokens.Add(refreshToken);
+            //user.RefreshTokens;
+
+            // remove old refresh tokens from user
+            removeOldRefreshTokens(user);
+
+            // save changes to db
+            _context.Update(user);
+            _context.SaveChanges();
+
+            return new AuthenticateResponse(user, jwtToken, refreshToken.Token);
+        }
+
+        public AuthenticateResponse RefreshToken(string token, string ipAddress)
+        {
+            var user = getUserByRefreshToken(token);
+            var refreshToken = user.RefreshTokens.Single(x => x.Token == token);
+
+            if (refreshToken.IsRevoked)
+            {
+                // revoke all descendant tokens in case this token has been compromised
+                revokeDescendantRefreshTokens(refreshToken, user, ipAddress, $"Attempted reuse of revoked ancestor token: {token}");
+                _context.Update(user);
+                _context.SaveChanges();
+            }
+
+            if (!refreshToken.IsActive)
+                throw new AppException("Invalid token");
+
+            // replace old refresh token with a new one (rotate token)
+            var newRefreshToken = rotateRefreshToken(refreshToken, ipAddress);
+            user.RefreshTokens.Add(newRefreshToken);
+
+            // remove old refresh tokens from user
+            removeOldRefreshTokens(user);
+
+            // save changes to db
+            _context.Update(user);
+            _context.SaveChanges();
+
+            // generate new jwt
+            var jwtToken = _jwtUtils.GenerateJwtToken(user);
+
+            return new AuthenticateResponse(user, jwtToken, newRefreshToken.Token);
+        }
+
+        public void RevokeToken(string token, string ipAddress)
+        {
+            var user = getUserByRefreshToken(token);
+            var refreshToken = user.RefreshTokens.Single(x => x.Token == token);
+
+            if (!refreshToken.IsActive)
+                throw new AppException("Invalid token");
+
+            // revoke token and save
+            revokeRefreshToken(refreshToken, ipAddress, "Revoked without replacement");
+            _context.Update(user);
+            _context.SaveChanges();
+        }
+
+        public async Task<IEnumerable<UserDTO>> GetAll()
         {
             var result = await _context.User.ToListAsync();
-            return _mapper.Map<List<UserDTO>>(result);
+            return _mapper.Map<IEnumerable<UserDTO>>(result);
         }
 
-        public async Task Remove(string email)
+        public User GetCurrentUser()
         {
-            // validation todo
-            var user = await _context.User.FirstOrDefaultAsync(item => item.Email == email);
-            // if (user == null) retu
-            _context.User.Remove(user);
-            return;
+            return _context.User.FirstOrDefault(item => item.UserName == _travelWebsiteUserContext.user.UserName);
         }
 
-        public async Task<UserDTO> Add(UserDTO user)
+        public async Task<UserDTO> GetById(Guid id)
         {
-            // validation todo
-            User userEntity = _mapper.Map<User>(user);
-            // userEntity.Password ma hoa
-            _context.User.Add(userEntity);
-            var result = await _context.User.AddAsync(userEntity);
-            return _mapper.Map<UserDTO>(result);
-        }
-
-
-        public async Task<UserDTO> Login(string userName, string password)
-        {
-            var user = await _context.User.FirstOrDefaultAsync(item => item.UserName == userName && item.Password == password);
+            var user = await _context.User.FirstOrDefaultAsync(item => item.Id == id);
+            if (user == null) throw new KeyNotFoundException("User not found");
             return _mapper.Map<UserDTO>(user);
         }
 
-        public async Task<UserDTO> Update(UserDTO user)
+        // helper methods
+
+        private User getUserByRefreshToken(string token)
         {
-            // validation todo
-            User userEntity = await _context.User.FirstOrDefaultAsync(item => item.Email == user.Email);
-            userEntity = _mapper.Map<User>(user);
-            // userEntity.Password ma hoa
-            _context.User.Update(userEntity);
-            return _mapper.Map<UserDTO>(userEntity);
+            var user = _context.User.SingleOrDefault(u => u.RefreshTokens.Any(t => t.Token == token));
+
+            if (user == null)
+                throw new AppException("Invalid token");
+
+            return user;
+        }
+
+        private RefreshToken rotateRefreshToken(RefreshToken refreshToken, string ipAddress)
+        {
+            var newRefreshToken = _jwtUtils.GenerateRefreshToken(ipAddress);
+            revokeRefreshToken(refreshToken, ipAddress, "Replaced by new token", newRefreshToken.Token);
+            return newRefreshToken;
+        }
+
+        private void removeOldRefreshTokens(User user)
+        {
+            // remove old inactive refresh tokens from user based on TTL in app settings
+            user.RefreshTokens.RemoveAll(x =>
+                !x.IsActive &&
+                x.Created.AddDays(_appSettings.RefreshTokenTTL) <= DateTime.UtcNow);
+        }
+
+        private void revokeDescendantRefreshTokens(RefreshToken refreshToken, User user, string ipAddress, string reason)
+        {
+            // recursively traverse the refresh token chain and ensure all descendants are revoked
+            if (!string.IsNullOrEmpty(refreshToken.ReplacedByToken))
+            {
+                var childToken = user.RefreshTokens.SingleOrDefault(x => x.Token == refreshToken.ReplacedByToken);
+                if (childToken.IsActive)
+                    revokeRefreshToken(childToken, ipAddress, reason);
+                else
+                    revokeDescendantRefreshTokens(childToken, user, ipAddress, reason);
+            }
+        }
+
+        private void revokeRefreshToken(RefreshToken token, string ipAddress, string reason = null, string replacedByToken = null)
+        {
+            token.Revoked = DateTime.UtcNow;
+            token.RevokedByIp = ipAddress;
+            token.ReasonRevoked = reason;
+            token.ReplacedByToken = replacedByToken;
         }
     }
 }
+
