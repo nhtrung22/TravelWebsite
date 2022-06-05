@@ -19,11 +19,9 @@ namespace TravelWebsite.DataAccess.Configurations
 
             builder.HasKey(x => x.Id);
             //builder.Property(x => x.Id).UseIdentityColumn();
-
-
             builder.Property(x => x.UserName).IsRequired().HasMaxLength(20);
 
-            builder.Property(x => x.Password).IsRequired().HasMaxLength(20);
+            builder.Property(x => x.PasswordHash).IsRequired().HasMaxLength(20);
 
             builder.Property(x => x.Address).IsRequired().HasMaxLength(200);
 

@@ -86,7 +86,6 @@ public class JwtUtils : IJwtUtils
             ReplacedByToken = "",
             RevokedByIp = ""
         };
-
         return refreshToken;
 
         string getUniqueToken()
@@ -98,7 +97,6 @@ public class JwtUtils : IJwtUtils
 
             if (!tokenIsUnique)
                 return getUniqueToken();
-
             return token;
         }
     }

@@ -21,13 +21,13 @@ namespace TravelWebsite.DataAccess.Extensions
                 {
                     Id = new Guid("00000000-0000-0000-0000-000000000003"),
                     UserName = "user1",
-                    Password = "123456",
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
                     Email = "abc123@gmail.com",
                     Address = "hanoi",
                     PhoneNumber = "0123456789",
                     UserType = UserType.Client,
                     Status = 0,
-                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456")
+                    
                 }
             );
             modelBuilder.Entity<User>().HasData(
@@ -35,13 +35,13 @@ namespace TravelWebsite.DataAccess.Extensions
                 {
                     Id = new Guid("00000000-0000-0000-0000-000000000002"),
                     UserName = "user2",
-                    Password = "123456",
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
                     Email = "abc1234@gmail.com",
                     Address = "hanoi",
                     PhoneNumber = "0123456789",
                     UserType = UserType.Client,
                     Status = 0,
-                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456")
+                    
                 }
             );
             modelBuilder.Entity<User>().HasData(
@@ -49,13 +49,12 @@ namespace TravelWebsite.DataAccess.Extensions
                 {
                     Id = new Guid("00000000-0000-0000-0000-000000000001"),
                     UserName = "user3",
-                    Password = "123456",
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
                     Email = "abc1236@gmail.com",
                     Address = "hanoi",
                     PhoneNumber = "0123456789",
                     UserType = UserType.Client,
                     Status = 0,
-                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456")
                 }
             );
             // City
