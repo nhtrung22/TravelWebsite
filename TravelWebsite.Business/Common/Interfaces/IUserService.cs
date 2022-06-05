@@ -1,11 +1,14 @@
-﻿using TravelWebsite.Business.DTO;
+﻿namespace TravelWebsite.Business.Services;
 
-namespace TravelWebsite.Business.Common.Interfaces
+using Microsoft.AspNetCore.Mvc;
+using TravelWebsite.Business.DTO;
+using TravelWebsite.Business.JwtModel;
+using TravelWebsite.DataAccess.Entities;
+using TravelWebsite.DataAccess.Entities.JwtModel;
+
+public interface IUserService
 {
-    public interface IUserService
-    {
-        Task<IEnumerable<UserDTO>> GetAll();
-        Task<UserDTO> GetById(Guid id);
-
-    }
+    Task<IEnumerable<UserDTO>> GetAll();
+    Task<UserDTO> GetById(Guid id);
+    Task<ActionResult<UserDTO>> Register();
 }

@@ -16,7 +16,8 @@ namespace TravelWebsite.DataAccess.Entities
 
         public string UserName { get; set; }
 
-        public string Password { get; set; }
+        [JsonIgnore]
+        public string PasswordHash { get; set; }
 
         public string Email { get; set; }
 
@@ -28,9 +29,7 @@ namespace TravelWebsite.DataAccess.Entities
 
         public int Status { get; set; } // specific status enum
 
-        [JsonIgnore]
-        public string PasswordHash { get; set; }
-
+ 
         [JsonIgnore]
         public List<RefreshToken> RefreshTokens { get; set; }
 

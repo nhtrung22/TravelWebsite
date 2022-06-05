@@ -15,11 +15,7 @@ using TravelWebsite.DataAccess.EF;
 var builder = WebApplication.CreateBuilder(args);
 
 
-
 // Add services to the container.
-
-
-
 
 // configure strongly typed settings object
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
@@ -78,9 +74,6 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-//middeware
-//app.UseRequestCulture();
-//app.UseMiddleware<RequestCultureMiddleware>();
 
 // global cors policy
 app.UseCors(x => x

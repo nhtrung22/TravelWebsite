@@ -174,8 +174,6 @@ namespace Business.Services.PlaceService
             token.ReasonRevoked = reason;
             token.ReplacedByToken = replacedByToken;
         }
-        
-
     }
 }
 

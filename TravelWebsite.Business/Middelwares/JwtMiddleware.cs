@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.Helpers;
@@ -15,7 +16,7 @@ public class JwtMiddleware
         _appSettings = appSettings.Value;
     }
 
-    public async Task Invoke(HttpContext context, IAuthService userService, IJwtUtils jwtUtils)
+    public async Task Invoke(HttpContext context, IUserService userService, IJwtUtils jwtUtils)
     {
         var token = context.Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
         var userId = jwtUtils.ValidateJwtToken(token);

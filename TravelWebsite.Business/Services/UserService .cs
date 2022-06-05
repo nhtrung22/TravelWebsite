@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using TravelWebsite.Business.Common.Interfaces;
@@ -37,6 +38,28 @@ namespace Business.Services.PlaceService
         {
             var user = await _context.User.FirstOrDefaultAsync(item => item.Id == id);
             if (user == null) throw new KeyNotFoundException("User not found");
+            return _mapper.Map<UserDTO>(user);
+        }
+
+        private static string GetRandomSalt()
+
+        {
+            return BCrypt.Net.BCrypt.GenerateSalt(12);
+        }
+
+        public async Task<ActionResult<UserDTO>> Register()
+        {
+            var user = new User();
+            user = new User()
+            {
+                UserName = user.UserName,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash, GetRandomSalt()),
+                Email = user.Email,
+                Address = user.Address,
+                PhoneNumber = user.PhoneNumber
+            };
+            _context.User.Add(user);
+            await _context.SaveChangesAsync();
             return _mapper.Map<UserDTO>(user);
         }
     }

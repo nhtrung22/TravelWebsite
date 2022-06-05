@@ -1,5 +1,4 @@
-﻿using TravelWebsite.Business.DTO;
-using TravelWebsite.DataAccess.Entities;
+﻿using TravelWebsite.DataAccess.Entities;
 
 namespace TravelWebsite.Business.Common.Interfaces
 {
@@ -8,6 +7,5 @@ namespace TravelWebsite.Business.Common.Interfaces
         public string GenerateJwtToken(User user);
         public Guid? ValidateJwtToken(string token);
         public RefreshToken GenerateRefreshToken(string ipAddress);
-     
     }
 }

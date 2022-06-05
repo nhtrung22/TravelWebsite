@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelWebsite.API", "Travel
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelWebsite.DataAccess", "DataAccess\TravelWebsite.DataAccess.csproj", "{6BAD734E-DAF8-4477-AC40-B95687BBC5F3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelWebsite.Business", "Business\TravelWebsite.Business.csproj", "{0E6F4CB4-CBF8-4DF7-84E6-717C33E828AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelWebsite.Business", "TravelWebsite.Business\TravelWebsite.Business.csproj", "{E0020800-F899-4A3E-8C07-F601D219E32E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{6BAD734E-DAF8-4477-AC40-B95687BBC5F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BAD734E-DAF8-4477-AC40-B95687BBC5F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BAD734E-DAF8-4477-AC40-B95687BBC5F3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0E6F4CB4-CBF8-4DF7-84E6-717C33E828AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0E6F4CB4-CBF8-4DF7-84E6-717C33E828AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0E6F4CB4-CBF8-4DF7-84E6-717C33E828AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0E6F4CB4-CBF8-4DF7-84E6-717C33E828AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0020800-F899-4A3E-8C07-F601D219E32E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0020800-F899-4A3E-8C07-F601D219E32E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0020800-F899-4A3E-8C07-F601D219E32E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0020800-F899-4A3E-8C07-F601D219E32E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

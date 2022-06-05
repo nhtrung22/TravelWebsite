@@ -1,5 +1,6 @@
 namespace TravelWebsite.Business.Middelwares;
 
+using Microsoft.AspNetCore.Http;
 using System.Net;
 using System.Text.Json;
 using TravelWebsite.Business.Helpers;
