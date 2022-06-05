@@ -8,9 +8,9 @@ using TravelWebsite.Business.Services;
 
 public class AuthenticateController : BaseController
 {
-    private IUserService _userService;
+    private IAuthService _userService;
 
-    public AuthenticateController(IUserService userService)
+    public AuthenticateController(IAuthService userService)
     {
         _userService = userService;
     }

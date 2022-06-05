@@ -12,9 +12,6 @@ namespace TravelWebsite.DataAccess.EF
         {
         }
 
-
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Configure using Fluent API
@@ -103,15 +100,6 @@ namespace TravelWebsite.DataAccess.EF
         public DbSet<PlaceDetail> PlaceDetail { set; get; }
 
         public DbSet<PlaceType> PlaceType { set; get; }
-
-        //private readonly IConfiguration Configuration;
-
-        //public TravelDbContext(IConfiguration configuration)
-        //{
-        //    Configuration = configuration;
-        //}
-
-
 
     }
 }

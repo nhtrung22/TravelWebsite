@@ -190,9 +190,9 @@ namespace TravelWebsite.DataAccess.Migrations
                 columns: new[] { "Id", "Address", "Email", "Password", "PasswordHash", "PhoneNumber", "Status", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { new Guid("00000000-0000-0000-0000-000000000001"), "hanoi", "abc1236@gmail.com", "123456", "$2a$11$N3d.efsPkzOPoOSnWHHY0.0l8rDs8MFPZfOLP/RK71m2VHdCW/0Qe", "0123456789", 0, "user3", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000002"), "hanoi", "abc1234@gmail.com", "123456", "$2a$11$nVcsHp9xDqUlZHmxhuf9PusEplvMDLdf6O8J2qz0uw8Jj0OTKJIXS", "0123456789", 0, "user2", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000003"), "hanoi", "abc123@gmail.com", "123456", "$2a$11$w.qJl6qXrf5omKnHjgh3mug7RJrK1NTmXO1tR0.Yna/TnoDnxDb1m", "0123456789", 0, "user1", 0 }
+                    { new Guid("00000000-0000-0000-0000-000000000001"), "hanoi", "abc1236@gmail.com", "123456", "$2a$11$r02G1dKbL6TT3ApYDwTCfOP4HbpPNF9g/mNduZOnabBgWNgpzh/UC", "0123456789", 0, "user3", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000002"), "hanoi", "abc1234@gmail.com", "123456", "$2a$11$5rL2GXZHjet95w7Z2emPsuDHuXZ91b0oBOanVQG8oaf/xPRdMU1W6", "0123456789", 0, "user2", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000003"), "hanoi", "abc123@gmail.com", "123456", "$2a$11$Ik17igTBD01.x8BCwnzzveKwMMid0M6C.3hyeoHHLtL3O5Pmw1uzS", "0123456789", 0, "user1", 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -213,7 +213,7 @@ namespace TravelWebsite.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "Booking",
                 columns: new[] { "Id", "BookingDate", "BookingFromTime", "BookingToTime", "Deposit", "FullName", "NumberOfAdult", "NumberOfKid", "PaymentStatus", "PhoneNumber", "PlaceId", "Price", "Status" },
-                values: new object[] { 1, new DateTime(2022, 5, 20, 19, 26, 54, 680, DateTimeKind.Local).AddTicks(2380), new DateTime(2022, 5, 25, 19, 26, 54, 680, DateTimeKind.Local).AddTicks(2359), new DateTime(2022, 6, 14, 19, 26, 54, 680, DateTimeKind.Local).AddTicks(2376), 0m, "Nguyen A", 1, 3, 2, "0123456789", 1, 50000m, 0 });
+                values: new object[] { 1, new DateTime(2022, 5, 21, 16, 4, 54, 22, DateTimeKind.Local).AddTicks(8487), new DateTime(2022, 5, 26, 16, 4, 54, 22, DateTimeKind.Local).AddTicks(8467), new DateTime(2022, 6, 15, 16, 4, 54, 22, DateTimeKind.Local).AddTicks(8484), 0m, "Nguyen A", 1, 3, 2, "0123456789", 1, 50000m, 0 });
 
             migrationBuilder.InsertData(
                 table: "PlaceDetail",

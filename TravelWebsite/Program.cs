@@ -36,6 +36,7 @@ builder.Services.AddSwaggerGen();
 
 //trasient scoped singleton
 builder.Services.AddTransient<IPlaceService, PlaceService>();
+builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IJwtUtils, JwtUtils>();
 builder.Services.AddScoped<ITravelWebsiteUserContext, TravelWebsiteUserContext>();

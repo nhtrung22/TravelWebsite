@@ -15,7 +15,7 @@ using BCr = BCrypt.Net;
 namespace Business.Services.PlaceService
 {
 
-    public class UserService : IUserService
+    public class AuthService : IAuthService
     {
         private TravelDbContext _context;
         private ITravelWebsiteUserContext _travelWebsiteUserContext;
@@ -23,7 +23,7 @@ namespace Business.Services.PlaceService
         private readonly AppSettings _appSettings;
         private readonly IMapper _mapper;
 
-        public UserService(
+        public AuthService(
             TravelDbContext context,
             ITravelWebsiteUserContext travelWebsiteUserContext,
             IJwtUtils jwtUtils,
