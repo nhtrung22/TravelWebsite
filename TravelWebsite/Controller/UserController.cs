@@ -8,7 +8,7 @@ using TravelWebsite.Business.JwtModel;
 using TravelWebsite.Business.Services;
 using TravelWebsite.DataAccess.Entities;
 
-//[Authorize]
+[Authorize]
 public class UserController : BaseController
 {
     private IUserService _userService;
@@ -33,13 +33,6 @@ public class UserController : BaseController
         var user = _userService.GetById(id);
         return Ok(user);
     }
-
-    //[HttpPost("register")]
-    //public Task Register()
-    //{
-    //    var user = _userService.Register();
-    //    return user;
-    //}
 
     [AllowAnonymous]
     [HttpPost("register")]

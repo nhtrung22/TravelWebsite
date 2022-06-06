@@ -48,21 +48,7 @@ namespace Business.Services.PlaceService
             return BCrypt.Net.BCrypt.GenerateSalt(12);
         }
 
-        //public async Task<ActionResult<UserDTO>> Register()
-        //{
-        //    var user = new User();
-        //    user = new User()
-        //    {
-        //        UserName = user.UserName,
-        //        PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash, GetRandomSalt()),
-        //        Email = user.Email,
-        //        Address = user.Address,
-        //        PhoneNumber = user.PhoneNumber
-        //    };
-        //    _context.User.Add(user);
-        //    await _context.SaveChangesAsync();
-        //    return _mapper.Map<UserDTO>(user);
-        //}
+
 
         public User Create(User user, string password)
         {
