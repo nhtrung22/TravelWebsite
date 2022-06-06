@@ -48,8 +48,6 @@ namespace Business.Services.PlaceService
             return BCrypt.Net.BCrypt.GenerateSalt(12);
         }
 
-
-
         public User Create(User user, string password)
         {
             // validation

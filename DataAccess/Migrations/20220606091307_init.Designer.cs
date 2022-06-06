@@ -12,7 +12,7 @@ using TravelWebsite.DataAccess.EF;
 namespace TravelWebsite.DataAccess.Migrations
 {
     [DbContext(typeof(TravelDbContext))]
-    [Migration("20220606084350_init")]
+    [Migration("20220606091307_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -82,9 +82,9 @@ namespace TravelWebsite.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            BookingDate = new DateTime(2022, 5, 22, 15, 43, 50, 171, DateTimeKind.Local).AddTicks(3222),
-                            BookingFromTime = new DateTime(2022, 5, 27, 15, 43, 50, 171, DateTimeKind.Local).AddTicks(3203),
-                            BookingToTime = new DateTime(2022, 6, 16, 15, 43, 50, 171, DateTimeKind.Local).AddTicks(3219),
+                            BookingDate = new DateTime(2022, 5, 22, 16, 13, 6, 861, DateTimeKind.Local).AddTicks(9133),
+                            BookingFromTime = new DateTime(2022, 5, 27, 16, 13, 6, 861, DateTimeKind.Local).AddTicks(9108),
+                            BookingToTime = new DateTime(2022, 6, 16, 16, 13, 6, 861, DateTimeKind.Local).AddTicks(9129),
                             Deposit = 0m,
                             FullName = "Nguyen A",
                             NumberOfAdult = 1,
@@ -355,40 +355,40 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000001"),
                             Address = "tphcm",
                             Email = "abc12311@gmail.com",
-                            PasswordHash = "$2a$11$Srf8g4gbgynoNkpdZ10pZOHuvZNKnoWZhmPHFkwNTrhoe1DB0CZWa",
+                            PasswordHash = "$2a$11$CwOH7IUPaPnyOmW1kJSEaOppPA4vRjAaQF.NRO3UeQHvlOEvMBXHa",
                             PhoneNumber = "0123456789",
                             UserName = "user1",
-                            UserType = 1
+                            UserType = 0
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000002"),
                             Address = "bac ninh",
                             Email = "abc123664@gmail.com",
-                            PasswordHash = "$2a$11$9Xs.S6xO7l3ZJBJJwuFdf.MSyv3D0kqLdVMNNbcYGmJtzrBYd9keC",
+                            PasswordHash = "$2a$11$pD0XWCUddp8Dei0ACbZ7JeJAmP/HyIdUGf27X10qUf80yyK5TsOC2",
                             PhoneNumber = "0123456789",
                             UserName = "user2",
-                            UserType = 1
+                            UserType = 0
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000003"),
                             Address = "hanoi",
                             Email = "abc123623@gmail.com",
-                            PasswordHash = "$2a$11$VvMC5AwvNDslfYkPSbgevOIGu8TMq/PeWx.5u9Ktr4vs5uMPESCJ6",
+                            PasswordHash = "$2a$11$yvRJ4zSerJfgNdrVTRoEEeEm7n0gAaNuAFC4Q5/DB2Vvw0VvNG8Iu",
                             PhoneNumber = "0123456789",
                             UserName = "user3",
-                            UserType = 1
+                            UserType = 0
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000004"),
                             Address = "da nang",
                             Email = "abc123614@gmail.com",
-                            PasswordHash = "$2a$11$jH5IqanMBbOMRGPZKwTTve4Zukhrq1/TGF/OkOk6mFJ0vp/X4c5Ni",
+                            PasswordHash = "$2a$11$BD2tLjl3K3v3K8HHTJOkBegfkgvzwj/Jwq5ndJ7kXTB5KQXiQE65e",
                             PhoneNumber = "0123456789",
                             UserName = "user4",
-                            UserType = 0
+                            UserType = 1
                         });
                 });
 
