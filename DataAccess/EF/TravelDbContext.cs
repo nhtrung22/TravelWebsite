@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using TravelWebsite.DataAccess.Configurations;
 using TravelWebsite.DataAccess.Entities;
 using TravelWebsite.DataAccess.Extensions;
-
 namespace TravelWebsite.DataAccess.EF
 {
     public class TravelDbContext : DbContext
@@ -71,15 +69,16 @@ namespace TravelWebsite.DataAccess.EF
             .HasForeignKey(s => s.UserId);
 
             // User - Place
-            modelBuilder.Entity<Place>()
-            .HasOne<User>(s => s.User)
-            .WithMany(g => g.Places)
-            .HasForeignKey(s => s.UserId);
+            //modelBuilder.Entity<User>()
+            //.HasMany<Place>(g => g.Places)
+            //.WithRequired(s => s.CurrentUser)
+            //.WillCascadeOnDelete();
 
             modelBuilder.Entity<User>()
             .Property(f => f.Id)
             .ValueGeneratedOnAdd();
             modelBuilder.Entity<User>().HasIndex(f => f.Email).IsUnique();
+
 
 
             modelBuilder.ApplyConfiguration(new UserConfig());

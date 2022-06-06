@@ -9,7 +9,7 @@ public class RefreshToken
 {
     [Key]
     [JsonIgnore]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     public string Token { get; set; }
     public DateTime Expires { get; set; }
     public DateTime Created { get; set; }
@@ -21,4 +21,6 @@ public class RefreshToken
     public bool IsExpired => DateTime.UtcNow >= Expires;
     public bool IsRevoked => Revoked != null;
     public bool IsActive => !IsRevoked && !IsExpired;
+
+    public User User { get; set; }
 }
