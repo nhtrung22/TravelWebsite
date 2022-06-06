@@ -25,11 +25,19 @@ namespace TravelWebsite.API.Controllers
             return await place;
         }
 
-        [HttpDelete("id")]
+        //[HttpPut("(id)")]
+        //[AllowAnonymous]
+        //public async Task<PlaceDTO> Update(int Id, PlaceDTO NewPlace)
+        //{
+        //    var place = await _placeService.Update(Id, NewPlace);
+        //    return place;
+        //}
+
+        [HttpDelete("(id)")]
         [AllowAnonymous]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int Id)
         {
-            var place = await _placeService.Delete(id); 
+            var place = await _placeService.Delete(Id); 
             return Ok();
         }
 
@@ -37,10 +45,8 @@ namespace TravelWebsite.API.Controllers
         [AllowAnonymous]
         public async Task<List<PlaceDTO>> GetPlaceByCity(int CityId)
         {
-            var place = _placeService.GetPlaceByCity(CityId);
-            return await place;
+            var place = await _placeService.GetPlaceByCity(CityId);
+            return place;
         }
-
-
     }
 }

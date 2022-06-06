@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using NetTopologySuite.Geometries;
 
 namespace TravelWebsite.DataAccess.Entities
 {
@@ -19,7 +16,6 @@ namespace TravelWebsite.DataAccess.Entities
         public string ShortDicription { get; set; }
 
         public decimal Latitude { get; set; }
-
         public decimal Longtitude { get; set; }
 
         public string Thumb { get; set; }
@@ -38,10 +34,12 @@ namespace TravelWebsite.DataAccess.Entities
         public int CityId { get; set; }
         public City City { get; set; }
 
-
-
         // PlaceType - Place
         public int PlaceTypeID { get; set; }
         public PlaceType PlaceType { get; set; }
+
+        // User - Place
+        public Guid UserId { get; set; }
+        public User User { get; set; }
     }
 }

@@ -12,5 +12,5 @@ public interface IUserService
     Task<UserDTO> GetById(Guid id);
     // Task<ActionResult<UserDTO>> Register();
 
-    User Create(User user, string password);
+    Task<User> Create(User user, string password);
 }

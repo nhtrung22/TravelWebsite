@@ -1,4 +1,5 @@
 ﻿using TravelWebsite.Business.DTO;
+using TravelWebsite.DataAccess.Entities;
 
 namespace TravelWebsite.Business.Common.Interfaces
 {
@@ -6,8 +7,8 @@ namespace TravelWebsite.Business.Common.Interfaces
     {
         Task Create(PlaceDTO placeDto);
         Task<List<PlaceDTO>> Get();
-        //Task<int> Edit(int id);
-        Task<int> Delete(int id);
+        //Task<PlaceDTO> Update(int Id, PlaceDTO NewPlace);
+        Task<int> Delete(int Id);
         Task<List<PlaceDTO>> GetPlaceByCity(int CityId);
     }
 }

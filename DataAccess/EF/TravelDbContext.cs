@@ -19,14 +19,14 @@ namespace TravelWebsite.DataAccess.EF
             // Relationship
             // Place - PlaceDetail
             modelBuilder.Entity<Place>()
-              .HasOne<PlaceDetail>(s => s.PlaceDetail)
-               .WithOne(ad => ad.Place)
-               .HasForeignKey<PlaceDetail>(ad => ad.PlaceID);
+            .HasOne<PlaceDetail>(s => s.PlaceDetail)
+            .WithOne(ad => ad.Place)
+            .HasForeignKey<PlaceDetail>(ad => ad.PlaceID);
 
 
             modelBuilder.Entity<Place>()
-             .Property(f => f.Id)
-             .ValueGeneratedOnAdd();
+            .Property(f => f.Id)
+            .ValueGeneratedOnAdd();
 
 
             modelBuilder.Entity<PlaceDetail>()
@@ -61,15 +61,26 @@ namespace TravelWebsite.DataAccess.EF
             .HasForeignKey(s => s.PlaceTypeID);
 
             modelBuilder.Entity<PlaceType>()
-             .Property(f => f.Id)
-             .ValueGeneratedOnAdd();
+            .Property(f => f.Id)
+            .ValueGeneratedOnAdd();
 
-            // User
+            // User - Booking
+            modelBuilder.Entity<Booking>()
+            .HasOne<User>(s => s.User)
+            .WithMany(g => g.Bookings)
+            .HasForeignKey(s => s.UserId);
+
+            // User - Place
+            modelBuilder.Entity<Place>()
+            .HasOne<User>(s => s.User)
+            .WithMany(g => g.Places)
+            .HasForeignKey(s => s.UserId);
+
             modelBuilder.Entity<User>()
-          .Property(f => f.Id)
-          .ValueGeneratedOnAdd();
-
+            .Property(f => f.Id)
+            .ValueGeneratedOnAdd();
             modelBuilder.Entity<User>().HasIndex(f => f.Email).IsUnique();
+
 
             modelBuilder.ApplyConfiguration(new UserConfig());
 

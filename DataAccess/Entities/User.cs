@@ -29,9 +29,13 @@ namespace TravelWebsite.DataAccess.Entities
 
         public UserType UserType { get; set; }
 
-        // public int? Status { get; set; } // specific status enum
+        // User - Booking
+        public ICollection<Booking> Bookings { get; set; }
 
- 
+        // User - Place
+        public ICollection<Place> Places { get; set; }
+
+        // User - Refresh Token
         [JsonIgnore]
         public List<RefreshToken> RefreshTokens { get; set; }
     }

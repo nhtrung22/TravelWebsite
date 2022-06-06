@@ -15,6 +15,7 @@ namespace TravelWebsite.DataAccess.Extensions
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
+            var gf = NetTopologySuite.NtsGeometryServices.Instance.CreateGeometryFactory(4326);
             // User
             modelBuilder.Entity<User>().HasData(
                 new User()
@@ -26,8 +27,6 @@ namespace TravelWebsite.DataAccess.Extensions
                     Address = "tphcm",
                     PhoneNumber = "0123456789",
                     UserType = UserType.Client,
-                    // Status = 0,
-                    
                 }
             );
             modelBuilder.Entity<User>().HasData(
@@ -40,7 +39,6 @@ namespace TravelWebsite.DataAccess.Extensions
                     Address = "bac ninh",
                     PhoneNumber = "0123456789",
                     UserType = UserType.Client,
-                    // Status = 0,
                     
                 }
             );
@@ -54,7 +52,6 @@ namespace TravelWebsite.DataAccess.Extensions
                     Address = "hanoi",
                     PhoneNumber = "0123456789",
                     UserType = UserType.Client,
-                    // Status = 0,
                 }
             );
             modelBuilder.Entity<User>().HasData(
@@ -67,7 +64,6 @@ namespace TravelWebsite.DataAccess.Extensions
                     Address = "da nang",
                     PhoneNumber = "0123456789",
                     UserType = UserType.Admin,
-                    // Status = 0,
                 }
             );
             // City
@@ -104,14 +100,15 @@ namespace TravelWebsite.DataAccess.Extensions
                     Name = "studio",
                     Address = "bac tu liem",
                     ShortDicription = "abcxyz",
-                    Latitude = 21.0278M,
-                    Longtitude = 105.8342M,
+                    Latitude = 3841231423,
+                    Longtitude = 6434523,
                     Thumb = "1",
                     Image = "1",
                     CityId = 1,
-                    PlaceTypeID = 1
+                    PlaceTypeID = 1,
+                    UserId = new Guid("00000000-0000-0000-0000-000000000001")
                 }
-            );
+            ); ;
             modelBuilder.Entity<Place>().HasData(
                 new Place()
                 {
@@ -119,12 +116,13 @@ namespace TravelWebsite.DataAccess.Extensions
                     Name = "penhouse",
                     Address = "hoan kiem",
                     ShortDicription = "abcxyz",
-                    Latitude = 21.0278M,
-                    Longtitude = 105.8342M,
+                    Latitude = 3841231423,
+                    Longtitude = 6434523,
                     Thumb = "1",
                     Image = "1",
                     CityId = 1,
-                    PlaceTypeID = 1
+                    PlaceTypeID = 1,
+                    UserId = new Guid("00000000-0000-0000-0000-000000000002")
                 }
             );
             modelBuilder.Entity<Place>().HasData(
@@ -134,12 +132,13 @@ namespace TravelWebsite.DataAccess.Extensions
                     Name = "palace",
                     Address = "quan 1",
                     ShortDicription = "abcxyz",
-                    Latitude = 21.0278M,
-                    Longtitude = 105.8342M,
+                    Latitude = 3841231423,
+                    Longtitude = 6434523,
                     Thumb = "1",
                     Image = "1",
                     CityId = 2,
-                    PlaceTypeID = 1
+                    PlaceTypeID = 1,
+                    UserId = new Guid("00000000-0000-0000-0000-000000000003")
                 }
             );
 
@@ -159,8 +158,8 @@ namespace TravelWebsite.DataAccess.Extensions
                     Deposit = 0,
                     PhoneNumber = "0123456789",
                     FullName = "Nguyen A",
-                    PlaceId = 1
-
+                    PlaceId = 1,
+                    UserId = new Guid("00000000-0000-0000-0000-000000000001")
                 }
             );
             // Place Detail

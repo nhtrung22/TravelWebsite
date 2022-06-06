@@ -33,9 +33,11 @@ namespace TravelWebsite.Business.Services.PlaceService
             return _mapper.Map<List<PlaceDTO>>(placeList);
         }
 
-        //public async Task<int> Edit(int Id)
-        //{
 
+        //public async Task<PlaceDTO> Update(int Id) 
+
+        //    _context.SaveChangesAsync();
+        //    return _mapper.Map<PlaceDTO>(place);
         //}
 
         public async Task<int> Delete(int Id)

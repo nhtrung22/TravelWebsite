@@ -23,7 +23,7 @@ namespace TravelWebsite.DataAccess.EF
             var connectionString = configuration.GetConnectionString("TravelDatabase");
 
             var optionsBuilder = new DbContextOptionsBuilder<TravelDbContext>();
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer(connectionString, x => x.UseNetTopologySuite());
 
             return new TravelDbContext(optionsBuilder.Options);
         }

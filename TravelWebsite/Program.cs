@@ -21,7 +21,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 
 builder.Services.AddDbContext<TravelDbContext>(opt =>
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("TravelDatabase")
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("TravelDatabase"), x => x.UseNetTopologySuite()
     ));
 
 builder.Services.AddHttpContextAccessor();

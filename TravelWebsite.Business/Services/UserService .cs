@@ -48,7 +48,7 @@ namespace Business.Services.PlaceService
             return BCrypt.Net.BCrypt.GenerateSalt(12);
         }
 
-        public User Create(User user, string password)
+        public async Task<User> Create(User user, string password)
         {
             // validation
             if (string.IsNullOrWhiteSpace(password))
