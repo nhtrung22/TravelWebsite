@@ -10,5 +10,7 @@ public interface IUserService
 {
     Task<IEnumerable<UserDTO>> GetAll();
     Task<UserDTO> GetById(Guid id);
-    Task<ActionResult<UserDTO>> Register();
+    // Task<ActionResult<UserDTO>> Register();
+
+    User Create(User user, string password);
 }

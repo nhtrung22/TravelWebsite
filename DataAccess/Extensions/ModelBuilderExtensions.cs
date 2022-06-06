@@ -19,14 +19,14 @@ namespace TravelWebsite.DataAccess.Extensions
             modelBuilder.Entity<User>().HasData(
                 new User()
                 {
-                    Id = new Guid("00000000-0000-0000-0000-000000000003"),
+                    Id = new Guid("00000000-0000-0000-0000-000000000001"),
                     UserName = "user1",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
-                    Email = "abc123@gmail.com",
-                    Address = "hanoi",
+                    Email = "abc12311@gmail.com",
+                    Address = "tphcm",
                     PhoneNumber = "0123456789",
                     UserType = UserType.Client,
-                    Status = 0,
+                    // Status = 0,
                     
                 }
             );
@@ -36,25 +36,38 @@ namespace TravelWebsite.DataAccess.Extensions
                     Id = new Guid("00000000-0000-0000-0000-000000000002"),
                     UserName = "user2",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
-                    Email = "abc1234@gmail.com",
-                    Address = "hanoi",
+                    Email = "abc123664@gmail.com",
+                    Address = "bac ninh",
                     PhoneNumber = "0123456789",
                     UserType = UserType.Client,
-                    Status = 0,
+                    // Status = 0,
                     
                 }
             );
             modelBuilder.Entity<User>().HasData(
                 new User()
                 {
-                    Id = new Guid("00000000-0000-0000-0000-000000000001"),
+                    Id = new Guid("00000000-0000-0000-0000-000000000003"),
                     UserName = "user3",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
-                    Email = "abc1236@gmail.com",
+                    Email = "abc123623@gmail.com",
                     Address = "hanoi",
                     PhoneNumber = "0123456789",
                     UserType = UserType.Client,
-                    Status = 0,
+                    // Status = 0,
+                }
+            );
+            modelBuilder.Entity<User>().HasData(
+                new User()
+                {
+                    Id = new Guid("00000000-0000-0000-0000-000000000004"),
+                    UserName = "user4",
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
+                    Email = "abc123614@gmail.com",
+                    Address = "da nang",
+                    PhoneNumber = "0123456789",
+                    UserType = UserType.Admin,
+                    // Status = 0,
                 }
             );
             // City
@@ -150,8 +163,6 @@ namespace TravelWebsite.DataAccess.Extensions
 
                 }
             );
-
-
             // Place Detail
             modelBuilder.Entity<PlaceDetail>().HasData(
                 new PlaceDetail()
@@ -166,7 +177,6 @@ namespace TravelWebsite.DataAccess.Extensions
                     PlaceID = 1
                 }
             );
-
         }
     }
 }

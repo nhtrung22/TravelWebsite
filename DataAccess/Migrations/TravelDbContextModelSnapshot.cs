@@ -80,9 +80,9 @@ namespace TravelWebsite.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            BookingDate = new DateTime(2022, 5, 21, 16, 15, 23, 41, DateTimeKind.Local).AddTicks(5800),
-                            BookingFromTime = new DateTime(2022, 5, 26, 16, 15, 23, 41, DateTimeKind.Local).AddTicks(5779),
-                            BookingToTime = new DateTime(2022, 6, 15, 16, 15, 23, 41, DateTimeKind.Local).AddTicks(5797),
+                            BookingDate = new DateTime(2022, 5, 22, 15, 43, 50, 171, DateTimeKind.Local).AddTicks(3222),
+                            BookingFromTime = new DateTime(2022, 5, 27, 15, 43, 50, 171, DateTimeKind.Local).AddTicks(3203),
+                            BookingToTime = new DateTime(2022, 6, 16, 15, 43, 50, 171, DateTimeKind.Local).AddTicks(3219),
                             Deposit = 0m,
                             FullName = "Nguyen A",
                             NumberOfAdult = 1,
@@ -322,22 +322,15 @@ namespace TravelWebsite.DataAccess.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
 
                     b.Property<string>("UserName")
                         .IsRequired()
@@ -357,38 +350,42 @@ namespace TravelWebsite.DataAccess.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("00000000-0000-0000-0000-000000000003"),
-                            Address = "hanoi",
-                            Email = "abc123@gmail.com",
-                            Password = "123456",
-                            PasswordHash = "$2a$11$LHnDVYINqVWVyzdZtns2KeSzvVxc4rxeg6.2b13TdRc7IT9/FjL9W",
+                            Id = new Guid("00000000-0000-0000-0000-000000000001"),
+                            Address = "tphcm",
+                            Email = "abc12311@gmail.com",
+                            PasswordHash = "$2a$11$Srf8g4gbgynoNkpdZ10pZOHuvZNKnoWZhmPHFkwNTrhoe1DB0CZWa",
                             PhoneNumber = "0123456789",
-                            Status = 0,
                             UserName = "user1",
-                            UserType = 0
+                            UserType = 1
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000002"),
-                            Address = "hanoi",
-                            Email = "abc1234@gmail.com",
-                            Password = "123456",
-                            PasswordHash = "$2a$11$izyGyF.M6H0jHVoOjp2dD.BB8iA9t7ub3ZSX9U1qC19/jbJrcXFK.",
+                            Address = "bac ninh",
+                            Email = "abc123664@gmail.com",
+                            PasswordHash = "$2a$11$9Xs.S6xO7l3ZJBJJwuFdf.MSyv3D0kqLdVMNNbcYGmJtzrBYd9keC",
                             PhoneNumber = "0123456789",
-                            Status = 0,
                             UserName = "user2",
-                            UserType = 0
+                            UserType = 1
                         },
                         new
                         {
-                            Id = new Guid("00000000-0000-0000-0000-000000000001"),
+                            Id = new Guid("00000000-0000-0000-0000-000000000003"),
                             Address = "hanoi",
-                            Email = "abc1236@gmail.com",
-                            Password = "123456",
-                            PasswordHash = "$2a$11$9P40oCzhTH2aNdSQwvXapeVtRKifoe8VStvz4BuJCSRjdz5K6bM7u",
+                            Email = "abc123623@gmail.com",
+                            PasswordHash = "$2a$11$VvMC5AwvNDslfYkPSbgevOIGu8TMq/PeWx.5u9Ktr4vs5uMPESCJ6",
                             PhoneNumber = "0123456789",
-                            Status = 0,
                             UserName = "user3",
+                            UserType = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-000000000004"),
+                            Address = "da nang",
+                            Email = "abc123614@gmail.com",
+                            PasswordHash = "$2a$11$jH5IqanMBbOMRGPZKwTTve4Zukhrq1/TGF/OkOk6mFJ0vp/X4c5Ni",
+                            PhoneNumber = "0123456789",
+                            UserName = "user4",
                             UserType = 0
                         });
                 });

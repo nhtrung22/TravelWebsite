@@ -46,6 +46,7 @@ var config = new MapperConfiguration(cfg =>
 {
     cfg.AddProfile(new PlaceMappingProfile());
     cfg.AddProfile(new UserMappingProfile());
+    cfg.AddProfile(new RegisterModelMappingProfile());
 });
 IMapper mapper = config.CreateMapper();
 builder.Services.AddSingleton(mapper);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -12,6 +13,7 @@ namespace TravelWebsite.DataAccess.Entities
     public class User
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; } // PK
 
         public string UserName { get; set; }
@@ -27,11 +29,10 @@ namespace TravelWebsite.DataAccess.Entities
 
         public UserType UserType { get; set; }
 
-        public int Status { get; set; } // specific status enum
+        // public int? Status { get; set; } // specific status enum
 
  
         [JsonIgnore]
         public List<RefreshToken> RefreshTokens { get; set; }
-
     }
 }

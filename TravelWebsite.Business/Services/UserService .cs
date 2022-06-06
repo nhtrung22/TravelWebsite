@@ -21,6 +21,7 @@ namespace Business.Services.PlaceService
         private TravelDbContext _context;
         private readonly IMapper _mapper;
 
+
         public UserService(TravelDbContext context, IMapper mapper)
         {
             _context = context;
@@ -47,20 +48,43 @@ namespace Business.Services.PlaceService
             return BCrypt.Net.BCrypt.GenerateSalt(12);
         }
 
-        public async Task<ActionResult<UserDTO>> Register()
+        //public async Task<ActionResult<UserDTO>> Register()
+        //{
+        //    var user = new User();
+        //    user = new User()
+        //    {
+        //        UserName = user.UserName,
+        //        PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash, GetRandomSalt()),
+        //        Email = user.Email,
+        //        Address = user.Address,
+        //        PhoneNumber = user.PhoneNumber
+        //    };
+        //    _context.User.Add(user);
+        //    await _context.SaveChangesAsync();
+        //    return _mapper.Map<UserDTO>(user);
+        //}
+
+        public User Create(User user, string password)
         {
-            var user = new User();
-            user = new User()
-            {
-                UserName = user.UserName,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash, GetRandomSalt()),
-                Email = user.Email,
-                Address = user.Address,
-                PhoneNumber = user.PhoneNumber
-            };
+            // validation
+            if (string.IsNullOrWhiteSpace(password))
+                throw new AppException("Password is required");
+
+            if (_context.User.Any(x => x.UserName == user.UserName))
+                throw new AppException("Username \"" + user.UserName + "\" is already taken");
+
+            if (_context.User.Any(x => x.Email == user.Email))
+                throw new AppException("Email \"" + user.Email + "\" is already taken");
+
+            if (_context.User.Any(x => x.PhoneNumber == user.PhoneNumber))
+                throw new AppException("PhoneNumber \"" + user.PhoneNumber + "\" is already taken");
+
+            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash, GetRandomSalt());
+        
             _context.User.Add(user);
-            await _context.SaveChangesAsync();
-            return _mapper.Map<UserDTO>(user);
+            _context.SaveChanges();
+
+            return user;
         }
     }
 }

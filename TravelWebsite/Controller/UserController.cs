@@ -1,17 +1,23 @@
 ﻿namespace TravelWebsite.API.Controllers;
 
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using TravelWebsite.Business.Attributes;
+using TravelWebsite.Business.Helpers;
+using TravelWebsite.Business.JwtModel;
 using TravelWebsite.Business.Services;
+using TravelWebsite.DataAccess.Entities;
 
-[Authorize]
+//[Authorize]
 public class UserController : BaseController
 {
     private IUserService _userService;
+    private IMapper _mapper;
 
-    public UserController(IUserService userService)
+    public UserController(IUserService userService, IMapper mapper)
     {
         _userService = userService;
+        _mapper = mapper;
     }
 
     [HttpGet]
@@ -28,12 +34,21 @@ public class UserController : BaseController
         return Ok(user);
     }
 
+    //[HttpPost("register")]
+    //public Task Register()
+    //{
+    //    var user = _userService.Register();
+    //    return user;
+    //}
+
     [AllowAnonymous]
     [HttpPost("register")]
-    public Task Register()
+    public IActionResult Create([FromBody] RegisterModel model)
     {
-        var user = _userService.Register();
-        return user;
+        // map model to entity
+        var user = _mapper.Map<User>(model);
+        // create user
+        _userService.Create(user, model.PasswordHash);
+        return Ok();
     }
-
 }
