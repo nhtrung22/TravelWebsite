@@ -66,17 +66,18 @@ namespace TravelWebsite.DataAccess.EF
             modelBuilder.Entity<Booking>()
             .HasOne<User>(s => s.User)
             .WithMany(g => g.Bookings)
-            .HasForeignKey(s => s.UserId);
+            .HasForeignKey(s => s.CurrentUserId).OnDelete(DeleteBehavior.Cascade);
 
             // User - Place
-            //modelBuilder.Entity<User>()
-            //.HasMany<Place>(g => g.Places)
-            //.WithRequired(s => s.CurrentUser)
-            //.WillCascadeOnDelete();
+            modelBuilder.Entity<Place>()
+            .HasOne<User>(s => s.User)
+            .WithMany(g => g.Places)
+            .HasForeignKey(s => s.UserId).OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<User>()
             .Property(f => f.Id)
             .ValueGeneratedOnAdd();
+
             modelBuilder.Entity<User>().HasIndex(f => f.Email).IsUnique();
 
 

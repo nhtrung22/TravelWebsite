@@ -39,7 +39,7 @@ namespace TravelWebsite.DataAccess.Entities
         public Place Place { get; set; }
 
         // User - Booking
-        public Guid UserId { get; set; }
+        public Guid CurrentUserId { get; set; }
         public User User { get; set; }
 
     }
