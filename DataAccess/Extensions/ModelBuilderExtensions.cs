@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using TravelWebsite.DataAccess.Entities;
 using static Microsoft.EntityFrameworkCore.EF;
 using TravelWebsite.DataAccess.Enums;
+using System.IO;
 
 namespace TravelWebsite.DataAccess.Extensions
 {
@@ -137,12 +138,12 @@ namespace TravelWebsite.DataAccess.Extensions
             );
 
             //  Image
-            modelBuilder.Entity<Image>().HasData(
-                new Image()
+            modelBuilder.Entity<TravelWebsite.DataAccess.Entities.Image>().HasData(
+                new TravelWebsite.DataAccess.Entities.Image()
                 {
                     Id = 1,
                     Title = "anh1",
-                    Data = new byte[] { 8, 1 },
+                    Location = "D:\\UserData\\Documents\\source\\repos\\TravelWebsite\\DataAccess\\Image\\1.jpg",
                     CurrentPlaceId = 1
                 }
             );
