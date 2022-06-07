@@ -136,16 +136,16 @@ namespace TravelWebsite.DataAccess.Extensions
                 }
             );
 
-            // Image
-            //modelBuilder.Entity<Image>().HasData(
-            //    new Image()
-            //    {
-            //        Id = 1,
-            //        Title = "anh1",
-            //        Data = new byte[] { 8, 0 },
-            //        CurrentPlaceId = 1
-            //    }
-            //);
+            //  Image
+            modelBuilder.Entity<Image>().HasData(
+                new Image()
+                {
+                    Id = 1,
+                    Title = "anh1",
+                    Data = new byte[] { 8, 1 },
+                    CurrentPlaceId = 1
+                }
+            );
 
             // Booking
             modelBuilder.Entity<Booking>().HasData(
