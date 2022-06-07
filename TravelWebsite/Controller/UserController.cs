@@ -3,7 +3,6 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using TravelWebsite.Business.Attributes;
-using TravelWebsite.Business.Helpers;
 using TravelWebsite.Business.JwtModel;
 using TravelWebsite.Business.Services;
 using TravelWebsite.DataAccess.Entities;
@@ -30,8 +29,16 @@ public class UserController : BaseController
     [HttpGet("{id}")]
     public IActionResult GetById(Guid id)
     {
-        var user = _userService.GetById(id);
-        return Ok(user);
+        try
+        {
+            var user = _userService.GetById(id);
+            return Ok(user);
+        }
+        
+        catch
+        {
+            return NotFound();
+        }
     }
 
     [AllowAnonymous]

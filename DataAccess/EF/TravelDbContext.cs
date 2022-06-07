@@ -42,6 +42,12 @@ namespace TravelWebsite.DataAccess.EF
             .Property(f => f.Id)
             .ValueGeneratedOnAdd();
 
+            // Place - Image
+            modelBuilder.Entity<Image>()
+            .HasOne<Place>(s => s.Place)
+            .WithMany(g => g.Images)
+            .HasForeignKey(s => s.CurrentPlaceId);
+
             // City - Place
             modelBuilder.Entity<Place>()
             .HasOne<City>(s => s.City)
@@ -66,17 +72,18 @@ namespace TravelWebsite.DataAccess.EF
             modelBuilder.Entity<Booking>()
             .HasOne<User>(s => s.User)
             .WithMany(g => g.Bookings)
-            .HasForeignKey(s => s.CurrentUserId).OnDelete(DeleteBehavior.Cascade);
+            .HasForeignKey(s => s.CurrentUserId).OnDelete(DeleteBehavior.NoAction);
 
             // User - Place
             modelBuilder.Entity<Place>()
             .HasOne<User>(s => s.User)
             .WithMany(g => g.Places)
-            .HasForeignKey(s => s.UserId).OnDelete(DeleteBehavior.Cascade);
+            .HasForeignKey(s => s.UserId).OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<User>()
             .Property(f => f.Id)
             .ValueGeneratedOnAdd();
+            
 
             modelBuilder.Entity<User>().HasIndex(f => f.Email).IsUnique();
 
@@ -100,17 +107,19 @@ namespace TravelWebsite.DataAccess.EF
             modelBuilder.Seed();
         }
 
-        public DbSet<User> User { set; get; }
+        public DbSet<User> Users { set; get; }
 
-        public DbSet<Booking> Booking { set; get; }
+        public DbSet<Booking> Bookings { set; get; }
 
-        public DbSet<City> City { set; get; }
+        public DbSet<City> Citys { set; get; }
 
-        public DbSet<Place> Place { set; get; }
+        public DbSet<Place> Places { set; get; }
 
-        public DbSet<PlaceDetail> PlaceDetail { set; get; }
+        public DbSet<PlaceDetail> PlaceDetails { set; get; }
 
-        public DbSet<PlaceType> PlaceType { set; get; }
+        public DbSet<PlaceType> PlaceTypes { set; get; }
+
+        public DbSet<Image> Images { set; get; }
 
     }
 }

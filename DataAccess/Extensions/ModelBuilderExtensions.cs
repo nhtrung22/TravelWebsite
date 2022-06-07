@@ -102,8 +102,6 @@ namespace TravelWebsite.DataAccess.Extensions
                     ShortDicription = "abcxyz",
                     Latitude = 3841231423,
                     Longtitude = 6434523,
-                    Thumb = "1",
-                    Image = "1",
                     CityId = 1,
                     PlaceTypeID = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000001")
@@ -118,8 +116,6 @@ namespace TravelWebsite.DataAccess.Extensions
                     ShortDicription = "abcxyz",
                     Latitude = 3841231423,
                     Longtitude = 6434523,
-                    Thumb = "1",
-                    Image = "1",
                     CityId = 1,
                     PlaceTypeID = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000002")
@@ -134,13 +130,22 @@ namespace TravelWebsite.DataAccess.Extensions
                     ShortDicription = "abcxyz",
                     Latitude = 3841231423,
                     Longtitude = 6434523,
-                    Thumb = "1",
-                    Image = "1",
                     CityId = 2,
                     PlaceTypeID = 1,
-                    UserId = new Guid("00000000-0000-0000-0000-000000000003")
+                    UserId = new Guid("00000000-0000-0000-0000-000000000003"),
                 }
             );
+
+            // Image
+            //modelBuilder.Entity<Image>().HasData(
+            //    new Image()
+            //    {
+            //        Id = 1,
+            //        Title = "anh1",
+            //        Data = new byte[] { 8, 0 },
+            //        CurrentPlaceId = 1
+            //    }
+            //);
 
             // Booking
             modelBuilder.Entity<Booking>().HasData(

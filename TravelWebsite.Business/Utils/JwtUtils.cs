@@ -93,7 +93,7 @@ public class JwtUtils : IJwtUtils
             // token is a cryptographically strong random sequence of values
             var token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64));
             // ensure token is unique by checking against db
-            var tokenIsUnique = !_context.User.Any(u => u.RefreshTokens.Any(t => t.Token == token));
+            var tokenIsUnique = !_context.Users.Any(u => u.RefreshTokens.Any(t => t.Token == token));
 
             if (!tokenIsUnique)
                 return getUniqueToken();

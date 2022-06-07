@@ -8,9 +8,7 @@ namespace TravelWebsite.DataAccess.Entities
         [Key]
         public int Id { get; set; } // PK
 
-
         public DateTime BookingFromTime { get; set; }
-
 
         public DateTime BookingToTime { get; set; }
 
@@ -39,7 +37,7 @@ namespace TravelWebsite.DataAccess.Entities
         public Place Place { get; set; }
 
         // User - Booking
-        public Guid CurrentUserId { get; set; }
+        public Guid? CurrentUserId { get; set; }
         public User User { get; set; }
 
     }

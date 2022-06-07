@@ -18,11 +18,6 @@ namespace TravelWebsite.DataAccess.Entities
         public decimal Latitude { get; set; }
         public decimal Longtitude { get; set; }
 
-        public string Thumb { get; set; }
-
-        public string Image { get; set; }
-
-
         // Place - Place Detail
         public PlaceDetail PlaceDetail { get; set; }
 
@@ -41,5 +36,8 @@ namespace TravelWebsite.DataAccess.Entities
         // User - Place
         public Guid UserId { get; set; }
         public User User { get; set; }
+
+        // Place - Image
+        public ICollection<Image> Images { get; set; }
     }
 }

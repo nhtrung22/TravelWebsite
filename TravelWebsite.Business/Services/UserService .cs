@@ -30,14 +30,14 @@ namespace Business.Services.PlaceService
 
         public async Task<IEnumerable<UserDTO>> GetAll()
         {
-            var result = await _context.User.ToListAsync();
+            var result = await _context.Users.ToListAsync();
             return _mapper.Map<IEnumerable<UserDTO>>(result);
         }
 
 
         public async Task<UserDTO> GetById(Guid id)
         {
-            var user = await _context.User.FirstOrDefaultAsync(item => item.Id == id);
+            var user = await _context.Users.FirstOrDefaultAsync(item => item.Id == id);
             if (user == null) throw new KeyNotFoundException("User not found");
             return _mapper.Map<UserDTO>(user);
         }
@@ -54,18 +54,18 @@ namespace Business.Services.PlaceService
             if (string.IsNullOrWhiteSpace(password))
                 throw new AppException("Password is required");
 
-            if (_context.User.Any(x => x.UserName == user.UserName))
+            if (_context.Users.Any(x => x.UserName == user.UserName))
                 throw new AppException("Username \"" + user.UserName + "\" is already taken");
 
-            if (_context.User.Any(x => x.Email == user.Email))
+            if (_context.Users.Any(x => x.Email == user.Email))
                 throw new AppException("Email \"" + user.Email + "\" is already taken");
 
-            if (_context.User.Any(x => x.PhoneNumber == user.PhoneNumber))
+            if (_context.Users.Any(x => x.PhoneNumber == user.PhoneNumber))
                 throw new AppException("PhoneNumber \"" + user.PhoneNumber + "\" is already taken");
 
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash, GetRandomSalt());
         
-            _context.User.Add(user);
+            _context.Users.Add(user);
             _context.SaveChanges();
 
             return user;

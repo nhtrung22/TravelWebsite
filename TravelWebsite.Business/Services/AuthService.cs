@@ -39,7 +39,7 @@ namespace Business.Services.PlaceService
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model, string ipAddress)
         {
-            var user = _context.User.SingleOrDefault(x => x.UserName == model.UserName);
+            var user = _context.Users.SingleOrDefault(x => x.UserName == model.UserName);
 
 
             // validate
@@ -111,18 +111,18 @@ namespace Business.Services.PlaceService
 
         public async Task<IEnumerable<UserDTO>> GetAll()
         {
-            var result = await _context.User.ToListAsync();
+            var result = await _context.Users.ToListAsync();
             return _mapper.Map<IEnumerable<UserDTO>>(result);
         }
 
         public User GetCurrentUser()
         {
-            return _context.User.FirstOrDefault(item => item.UserName == _travelWebsiteUserContext.user.UserName);
+            return _context.Users.FirstOrDefault(item => item.UserName == _travelWebsiteUserContext.user.UserName);
         }
 
         public async Task<UserDTO> GetById(Guid id)
         {
-            var user = await _context.User.FirstOrDefaultAsync(item => item.Id == id);
+            var user = await _context.Users.FirstOrDefaultAsync(item => item.Id == id);
             if (user == null) throw new KeyNotFoundException("User not found");
             return _mapper.Map<UserDTO>(user);
         }
@@ -131,7 +131,7 @@ namespace Business.Services.PlaceService
 
         private User getUserByRefreshToken(string token)
         {
-            var user = _context.User.SingleOrDefault(u => u.RefreshTokens.Any(t => t.Token == token));
+            var user = _context.Users.SingleOrDefault(u => u.RefreshTokens.Any(t => t.Token == token));
 
             if (user == null)
                 throw new AppException("Invalid token");

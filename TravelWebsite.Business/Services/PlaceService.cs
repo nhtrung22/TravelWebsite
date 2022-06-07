@@ -23,13 +23,13 @@ namespace TravelWebsite.Business.Services.PlaceService
         public async Task Create(PlaceDTO placeDto)
         {
             var place = _mapper.Map<Place>(placeDto);
-            _context.Place.Add(place);
+            _context.Places.Add(place);
             await _context.SaveChangesAsync();
         }
 
         public async Task<List<PlaceDTO>> Get()
         {
-            var placeList = await _context.Place.ToListAsync();
+            var placeList = await _context.Places.ToListAsync();
             return _mapper.Map<List<PlaceDTO>>(placeList);
         }
 
@@ -42,15 +42,15 @@ namespace TravelWebsite.Business.Services.PlaceService
 
         public async Task<int> Delete(int Id)
         {
-            var place = await _context.Place.FindAsync(Id);
-            _context.Place.Remove(place);
+            var place = await _context.Places.FindAsync(Id);
+            _context.Places.Remove(place);
             return await _context.SaveChangesAsync();
         }
 
         // Get Place by City ID
         public async Task<List<PlaceDTO>> GetPlaceByCity(int CityId)
         {
-            var placeList = await _context.Place.ToListAsync();
+            var placeList = await _context.Places.ToListAsync();
             var result = from place in placeList
                          where place.CityId == CityId
                          select place;

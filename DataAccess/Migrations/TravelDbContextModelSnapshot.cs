@@ -39,6 +39,9 @@ namespace TravelWebsite.DataAccess.Migrations
                     b.Property<DateTime>("BookingToTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("CurrentUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<decimal>("Deposit")
                         .HasColumnType("decimal(18,2)");
 
@@ -70,14 +73,11 @@ namespace TravelWebsite.DataAccess.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("PlaceId");
+                    b.HasIndex("CurrentUserId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("PlaceId");
 
                     b.ToTable("Booking", (string)null);
 
@@ -85,9 +85,10 @@ namespace TravelWebsite.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            BookingDate = new DateTime(2022, 5, 23, 0, 20, 1, 242, DateTimeKind.Local).AddTicks(9440),
-                            BookingFromTime = new DateTime(2022, 5, 28, 0, 20, 1, 242, DateTimeKind.Local).AddTicks(9424),
-                            BookingToTime = new DateTime(2022, 6, 17, 0, 20, 1, 242, DateTimeKind.Local).AddTicks(9439),
+                            BookingDate = new DateTime(2022, 5, 23, 11, 25, 46, 650, DateTimeKind.Local).AddTicks(6399),
+                            BookingFromTime = new DateTime(2022, 5, 28, 11, 25, 46, 650, DateTimeKind.Local).AddTicks(6381),
+                            BookingToTime = new DateTime(2022, 6, 17, 11, 25, 46, 650, DateTimeKind.Local).AddTicks(6397),
+                            CurrentUserId = new Guid("00000000-0000-0000-0000-000000000001"),
                             Deposit = 0m,
                             FullName = "Nguyen A",
                             NumberOfAdult = 1,
@@ -96,8 +97,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             PhoneNumber = "0123456789",
                             PlaceId = 1,
                             Price = 50000m,
-                            Status = 0,
-                            UserId = new Guid("00000000-0000-0000-0000-000000000001")
+                            Status = 0
                         });
                 });
 
@@ -138,6 +138,32 @@ namespace TravelWebsite.DataAccess.Migrations
                         });
                 });
 
+            modelBuilder.Entity("TravelWebsite.DataAccess.Entities.Image", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CurrentPlaceId")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("ImageData")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("ImageTitle")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CurrentPlaceId");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("TravelWebsite.DataAccess.Entities.Place", b =>
                 {
                     b.Property<int>("Id")
@@ -154,9 +180,9 @@ namespace TravelWebsite.DataAccess.Migrations
                     b.Property<int>("CityId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Image")
+                    b.Property<byte[]>("Image")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<decimal>("Latitude")
                         .HasColumnType("decimal(18,2)");
@@ -177,9 +203,9 @@ namespace TravelWebsite.DataAccess.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<string>("Thumb")
+                    b.Property<byte[]>("Thumb")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -200,13 +226,13 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = 1,
                             Address = "bac tu liem",
                             CityId = 1,
-                            Image = "1",
+                            Image = new byte[] { 48, 1, 0 },
                             Latitude = 3841231423m,
                             Longtitude = 6434523m,
                             Name = "studio",
                             PlaceTypeID = 1,
                             ShortDicription = "abcxyz",
-                            Thumb = "1",
+                            Thumb = new byte[] { 48, 1, 0 },
                             UserId = new Guid("00000000-0000-0000-0000-000000000001")
                         },
                         new
@@ -214,13 +240,13 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = 2,
                             Address = "hoan kiem",
                             CityId = 1,
-                            Image = "1",
+                            Image = new byte[] { 48, 1, 0 },
                             Latitude = 3841231423m,
                             Longtitude = 6434523m,
                             Name = "penhouse",
                             PlaceTypeID = 1,
                             ShortDicription = "abcxyz",
-                            Thumb = "1",
+                            Thumb = new byte[] { 48, 1, 0 },
                             UserId = new Guid("00000000-0000-0000-0000-000000000002")
                         },
                         new
@@ -228,13 +254,13 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = 3,
                             Address = "quan 1",
                             CityId = 2,
-                            Image = "1",
+                            Image = new byte[] { 48, 1, 0 },
                             Latitude = 3841231423m,
                             Longtitude = 6434523m,
                             Name = "palace",
                             PlaceTypeID = 1,
                             ShortDicription = "abcxyz",
-                            Thumb = "1",
+                            Thumb = new byte[] { 48, 1, 0 },
                             UserId = new Guid("00000000-0000-0000-0000-000000000003")
                         });
                 });
@@ -367,7 +393,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000001"),
                             Address = "tphcm",
                             Email = "abc12311@gmail.com",
-                            PasswordHash = "$2a$11$2rmiwyWv1tZPFCDKrgwuCuUGimt4WtVGUiXRA/46XjUvw2mlAhW7i",
+                            PasswordHash = "$2a$11$OmFHKkgPxEi9Ul1wewE8q.anReSjfXKq1ILfzkW6H81Ias0r3cWDK",
                             PhoneNumber = "0123456789",
                             UserName = "user1",
                             UserType = 0
@@ -377,7 +403,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000002"),
                             Address = "bac ninh",
                             Email = "abc123664@gmail.com",
-                            PasswordHash = "$2a$11$CnA7PhGX2684s/Bp1PH5D.QIFwoYrp0PyFwkUQpu3Bx.JdJ0InYXy",
+                            PasswordHash = "$2a$11$dX3MpewHvJloBIsCDFj2/uf5kaAbDAZpXugfzTSW9iK/Id/h6jXay",
                             PhoneNumber = "0123456789",
                             UserName = "user2",
                             UserType = 0
@@ -387,7 +413,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000003"),
                             Address = "hanoi",
                             Email = "abc123623@gmail.com",
-                            PasswordHash = "$2a$11$jsODWRpG75PP3CpGql5iw.Y0UJDw2QihWCJZe4zIQ3yDZeiO7DWAi",
+                            PasswordHash = "$2a$11$IAliBxWdQVtVWS73tr0E4.eOWFmxAftssRXiGGrUHsIHU5fNWXR1q",
                             PhoneNumber = "0123456789",
                             UserName = "user3",
                             UserType = 0
@@ -397,7 +423,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000004"),
                             Address = "da nang",
                             Email = "abc123614@gmail.com",
-                            PasswordHash = "$2a$11$15TiY9O.IO67T3xLCGtvz.Vgsf5nFTv6bBw1DlPpTK2xWQOcjXKum",
+                            PasswordHash = "$2a$11$mh76k/41tEISfh2wggnWQuMrBYME/sgbdH8tituzyNEtLsgc.o2pa",
                             PhoneNumber = "0123456789",
                             UserName = "user4",
                             UserType = 1
@@ -406,21 +432,31 @@ namespace TravelWebsite.DataAccess.Migrations
 
             modelBuilder.Entity("TravelWebsite.DataAccess.Entities.Booking", b =>
                 {
+                    b.HasOne("TravelWebsite.DataAccess.Entities.User", "User")
+                        .WithMany("Bookings")
+                        .HasForeignKey("CurrentUserId")
+                        .OnDelete(DeleteBehavior.NoAction);
+
                     b.HasOne("TravelWebsite.DataAccess.Entities.Place", "Place")
                         .WithMany("Bookings")
                         .HasForeignKey("PlaceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TravelWebsite.DataAccess.Entities.User", "User")
-                        .WithMany("Bookings")
-                        .HasForeignKey("UserId")
+                    b.Navigation("Place");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TravelWebsite.DataAccess.Entities.Image", b =>
+                {
+                    b.HasOne("TravelWebsite.DataAccess.Entities.Place", "Place")
+                        .WithMany("Images")
+                        .HasForeignKey("CurrentPlaceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Place");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("TravelWebsite.DataAccess.Entities.Place", b =>
@@ -440,7 +476,7 @@ namespace TravelWebsite.DataAccess.Migrations
                     b.HasOne("TravelWebsite.DataAccess.Entities.User", "User")
                         .WithMany("Places")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("City");
@@ -524,6 +560,8 @@ namespace TravelWebsite.DataAccess.Migrations
             modelBuilder.Entity("TravelWebsite.DataAccess.Entities.Place", b =>
                 {
                     b.Navigation("Bookings");
+
+                    b.Navigation("Images");
 
                     b.Navigation("PlaceDetail")
                         .IsRequired();
