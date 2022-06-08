@@ -56,5 +56,4 @@ namespace TravelWebsite.Business.Services.PlaceService
                          select place;
             return _mapper.Map<List<PlaceDTO>>(result);
         }
-    }
 }
