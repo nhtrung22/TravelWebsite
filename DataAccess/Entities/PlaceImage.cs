@@ -9,11 +9,13 @@ using System.Drawing;
 namespace TravelWebsite.DataAccess.Entities
 {
 
-    public class Image
+    public class PlaceImage
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Location { get; set; }
+        public DateTime DateCreated { get; set; }
+
 
         // Place - Image
         public int CurrentPlaceId { get; set; }

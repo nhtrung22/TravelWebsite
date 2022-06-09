@@ -38,6 +38,6 @@ namespace TravelWebsite.DataAccess.Entities
         public User User { get; set; }
 
         // Place - Image
-        public ICollection<Image> Images { get; set; }
+        public ICollection<PlaceImage> Images { get; set; }
     }
 }

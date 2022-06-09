@@ -137,14 +137,15 @@ namespace TravelWebsite.DataAccess.Extensions
                 }
             );
 
-            //  Image
-            modelBuilder.Entity<TravelWebsite.DataAccess.Entities.Image>().HasData(
-                new TravelWebsite.DataAccess.Entities.Image()
+            // PlaceImage
+            modelBuilder.Entity<TravelWebsite.DataAccess.Entities.PlaceImage>().HasData(
+                new TravelWebsite.DataAccess.Entities.PlaceImage()
                 {
                     Id = 1,
                     Title = "anh1",
                     Location = "D:\\UserData\\Documents\\source\\repos\\TravelWebsite\\DataAccess\\Image\\1.jpg",
-                    CurrentPlaceId = 1
+                    CurrentPlaceId = 1,
+                    DateCreated = DateTime.Now
                 }
             );
 

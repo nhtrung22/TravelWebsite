@@ -43,7 +43,7 @@ namespace TravelWebsite.DataAccess.EF
             .ValueGeneratedOnAdd();
 
             // Place - Image
-            modelBuilder.Entity<Image>()
+            modelBuilder.Entity<PlaceImage>()
             .HasOne<Place>(s => s.Place)
             .WithMany(g => g.Images)
             .HasForeignKey(s => s.CurrentPlaceId);
@@ -101,6 +101,8 @@ namespace TravelWebsite.DataAccess.EF
 
             modelBuilder.ApplyConfiguration(new BookingConfig());
 
+            modelBuilder.ApplyConfiguration(new PlaceImageConfig());
+
             
 
             // Seeding data
@@ -119,7 +121,7 @@ namespace TravelWebsite.DataAccess.EF
 
         public DbSet<PlaceType> PlaceTypes { set; get; }
 
-        public DbSet<Image> Images { set; get; }
+        public DbSet<PlaceImage> Images { set; get; }
 
     }
 }

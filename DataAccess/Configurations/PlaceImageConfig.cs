@@ -11,14 +11,16 @@ using TravelWebsite.DataAccess.Entities;
 
 namespace TravelWebsite.DataAccess.Configurations
 {
-    public class ImageConfig : IEntityTypeConfiguration<Image>
+    public class PlaceImageConfig : IEntityTypeConfiguration<PlaceImage>
     {
-        public void Configure(EntityTypeBuilder<Image> builder)
+        public void Configure(EntityTypeBuilder<PlaceImage> builder)
         {
-            builder.ToTable("Image");
+            builder.ToTable("PlaceImage");
 
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
+
+            builder.Property(x => x.Location).HasMaxLength(200).IsRequired(true);
         }
     }
 }
