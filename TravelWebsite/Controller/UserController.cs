@@ -41,6 +41,13 @@ public class UserController : BaseController
         }
     }
 
+    [HttpPut("{id}")]
+    public IActionResult Update(Guid id, UpdateRequest model)
+    {
+        _userService.Update(id, model); 
+        return Ok(new { message = "User updated" });
+    }
+
     [AllowAnonymous]
     [HttpPost("register")]
     public IActionResult Create([FromBody] RegisterModel model)
@@ -50,5 +57,13 @@ public class UserController : BaseController
         // create user
         _userService.Create(user, model.PasswordHash);
         return Ok();
+    }
+
+
+    [HttpDelete("{id}")]
+    public IActionResult Delete(Guid id)
+    {
+        _userService.Delete(id);
+        return Ok(new { message = "User deleted" });
     }
 }

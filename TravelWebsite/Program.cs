@@ -4,6 +4,7 @@ using Business.Services.PlaceService;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using TravelWebsite.Business.Common.Interfaces;
+using TravelWebsite.Business.Common.MappingConfig;
 using TravelWebsite.Business.Context;
 using TravelWebsite.Business.Helpers;
 using TravelWebsite.Business.Middelwares;
@@ -13,7 +14,6 @@ using TravelWebsite.Business.Utils;
 using TravelWebsite.DataAccess.EF;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 // Add services to the container.
 
@@ -47,6 +47,7 @@ var config = new MapperConfiguration(cfg =>
     cfg.AddProfile(new PlaceMappingProfile());
     cfg.AddProfile(new UserMappingProfile());
     cfg.AddProfile(new RegisterModelMappingProfile());
+    cfg.AddProfile(new UserUpdateMappingProfile());
 });
 IMapper mapper = config.CreateMapper();
 builder.Services.AddSingleton(mapper);

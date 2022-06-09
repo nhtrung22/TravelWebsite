@@ -42,6 +42,32 @@ namespace Business.Services.PlaceService
             return _mapper.Map<UserDTO>(user);
         }
 
+        public void Update(Guid id, UpdateRequest model)
+        {
+            var user = getUser(id);
+
+            // validate
+            if (model.Email != user.Email && _context.Users.Any(x => x.Email == model.Email))
+                throw new AppException("User with the email '" + model.Email + "' already exists");
+
+            // hash password if it was entered
+            if (!string.IsNullOrEmpty(model.Password))
+                user.PasswordHash = BCr.BCrypt.HashPassword(model.Password);
+
+            // copy model to user and save
+            _mapper.Map(model, user);
+            _context.Users.Update(user);
+            _context.SaveChanges();
+        }
+
+        private User getUser(Guid id)
+        {
+            var user = _context.Users.Find(id);
+            if (user == null) throw new KeyNotFoundException("User not found");
+            return user;
+        }
+
+
         private static string GetRandomSalt()
 
         {
@@ -69,6 +95,13 @@ namespace Business.Services.PlaceService
             _context.SaveChanges();
 
             return user;
+        }
+
+        public void Delete(Guid id)
+        {
+            var user = getUser(id);
+            _context.Users.Remove(user);
+            _context.SaveChanges();
         }
     }
 }

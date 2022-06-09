@@ -21,7 +21,7 @@ namespace TravelWebsite.DataAccess.Entities
         [DataType(DataType.Date)]
         public DateTime BookingDate { get; set; }
 
-        public int Status { get; set; }
+        public BookingStatus Status { get; set; }
 
         public PaymentStatus PaymentStatus { get; set; }
 

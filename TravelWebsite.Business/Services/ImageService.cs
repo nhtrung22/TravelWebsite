@@ -9,7 +9,6 @@ using TravelWebsite.DataAccess.EF;
 using TravelWebsite.DataAccess.Entities;
 using System.IO;
 
-
 namespace TravelWebsite.Business.Services
 {
     public class ImageService
@@ -23,6 +22,7 @@ namespace TravelWebsite.Business.Services
             _context = context;
             _mapper = mapper;
         }
+
 
     }
 }

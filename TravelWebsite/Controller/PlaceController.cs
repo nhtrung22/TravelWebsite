@@ -25,14 +25,6 @@ namespace TravelWebsite.API.Controllers
             return await place;
         }
 
-        //[HttpPut("(id)")]
-        //[AllowAnonymous]
-        //public async Task<PlaceDTO> Update(int Id, PlaceDTO NewPlace)
-        //{
-        //    var place = await _placeService.Update(Id, NewPlace);
-        //    return place;
-        //}
-
         [HttpDelete("(id)")]
         [AllowAnonymous]
         public async Task<IActionResult> Delete(int Id)
