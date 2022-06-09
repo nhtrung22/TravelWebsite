@@ -219,10 +219,10 @@ namespace TravelWebsite.DataAccess.Migrations
                 columns: new[] { "Id", "Address", "Email", "PasswordHash", "PhoneNumber", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { new Guid("00000000-0000-0000-0000-000000000001"), "tphcm", "abc12311@gmail.com", "$2a$11$sXtiMXAugBfqG9ab3eyrnezxSrLEIe1b9InAGAURrAyJflpoAl7OS", "0123456789", "user1", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000002"), "bac ninh", "abc123664@gmail.com", "$2a$11$.2E4QNqYIjErusQkkDf7ueOvY94SY7jsNsQEq6T7/V0D/32gfBNdW", "0123456789", "user2", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000003"), "hanoi", "abc123623@gmail.com", "$2a$11$2IoYnQL12GsOWY6o8wTCau2XmdiL7Z5OEEWZr4yTw3T1dTecq4BKS", "0123456789", "user3", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000004"), "da nang", "abc123614@gmail.com", "$2a$11$KWx89vWIrL2l7bjOzREECOzJKXWm8UoYKkzwshSEsDUPD0YPSxGL6", "0123456789", "user4", 1 }
+                    { new Guid("00000000-0000-0000-0000-000000000001"), "tphcm", "abc12311@gmail.com", "$2a$11$bzIMLKjJ9izKij/8fxJSnuQS5SCu7RPBIDigI0VYKq4n.YItSCJeW", "0123456789", "user1", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000002"), "bac ninh", "abc123664@gmail.com", "$2a$11$ZS0csoKg3BRu6Mnj9foZdejS8qL/n8VXydb2JUOrx27WifmyhWPWu", "0123456789", "user2", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000003"), "hanoi", "abc123623@gmail.com", "$2a$11$wSiboozhHlUz7cVHDSUPieuFMwbQqBZn8PDctC04TX.UYLjKJPdpa", "0123456789", "user3", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000004"), "da nang", "abc123614@gmail.com", "$2a$11$1yGb7zZL7SmlmG8AO381xOOOKneuapqH17wvmDxMuEQ7DO073SrF6", "0123456789", "user4", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -243,7 +243,7 @@ namespace TravelWebsite.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "Booking",
                 columns: new[] { "Id", "BookingDate", "BookingFromTime", "BookingToTime", "CurrentUserId", "Deposit", "FullName", "NumberOfAdult", "NumberOfKid", "PaymentStatus", "PhoneNumber", "PlaceId", "Price", "Status" },
-                values: new object[] { 1, new DateTime(2022, 5, 25, 14, 5, 44, 329, DateTimeKind.Local).AddTicks(4549), new DateTime(2022, 5, 30, 14, 5, 44, 329, DateTimeKind.Local).AddTicks(4539), new DateTime(2022, 6, 19, 14, 5, 44, 329, DateTimeKind.Local).AddTicks(4548), new Guid("00000000-0000-0000-0000-000000000001"), 0m, "Nguyen A", 1, 3, 2, "0123456789", 1, 50000m, 0 });
+                values: new object[] { 1, new DateTime(2022, 5, 25, 17, 35, 46, 280, DateTimeKind.Local).AddTicks(5444), new DateTime(2022, 5, 30, 17, 35, 46, 280, DateTimeKind.Local).AddTicks(5436), new DateTime(2022, 6, 19, 17, 35, 46, 280, DateTimeKind.Local).AddTicks(5443), new Guid("00000000-0000-0000-0000-000000000001"), 0m, "Nguyen A", 1, 3, 2, "0123456789", 1, 50000m, 0 });
 
             migrationBuilder.InsertData(
                 table: "PlaceDetail",
@@ -253,7 +253,7 @@ namespace TravelWebsite.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "PlaceImage",
                 columns: new[] { "Id", "CurrentPlaceId", "DateCreated", "Location", "Title" },
-                values: new object[] { 1, 1, new DateTime(2022, 6, 9, 14, 5, 44, 329, DateTimeKind.Local).AddTicks(4509), "D:\\UserData\\Documents\\source\\repos\\TravelWebsite\\DataAccess\\Image\\1.jpg", "anh1" });
+                values: new object[] { 1, 1, new DateTime(2022, 6, 9, 17, 35, 46, 280, DateTimeKind.Local).AddTicks(5405), "D:\\UserData\\Documents\\source\\repos\\TravelWebsite\\DataAccess\\Image\\1.jpg", "anh1" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Booking_CurrentUserId",
