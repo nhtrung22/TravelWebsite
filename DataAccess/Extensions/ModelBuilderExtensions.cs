@@ -16,7 +16,6 @@ namespace TravelWebsite.DataAccess.Extensions
     {
         public static void Seed(this ModelBuilder modelBuilder)
         {
-            var gf = NetTopologySuite.NtsGeometryServices.Instance.CreateGeometryFactory(4326);
             // User
             modelBuilder.Entity<User>().HasData(
                 new User()
@@ -24,66 +23,118 @@ namespace TravelWebsite.DataAccess.Extensions
                     Id = new Guid("00000000-0000-0000-0000-000000000001"),
                     UserName = "user1",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
-                    Email = "abc12311@gmail.com",
+                    Email = "abc12314121@gmail.com",
                     Address = "tphcm",
                     PhoneNumber = "0123456789",
                     UserType = UserType.Client,
-                }
-            );
-            modelBuilder.Entity<User>().HasData(
+                },
                 new User()
                 {
                     Id = new Guid("00000000-0000-0000-0000-000000000002"),
                     UserName = "user2",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
-                    Email = "abc123664@gmail.com",
-                    Address = "bac ninh",
+                    Email = "463412@gmail.com",
+                    Address = "tphcm",
                     PhoneNumber = "0123456789",
                     UserType = UserType.Client,
-                    
-                }
-            );
-            modelBuilder.Entity<User>().HasData(
+                },
                 new User()
                 {
                     Id = new Guid("00000000-0000-0000-0000-000000000003"),
                     UserName = "user3",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
-                    Email = "abc123623@gmail.com",
+                    Email = "241241@gmail.com",
                     Address = "hanoi",
                     PhoneNumber = "0123456789",
                     UserType = UserType.Client,
-                }
-            );
-            modelBuilder.Entity<User>().HasData(
+                },
                 new User()
                 {
                     Id = new Guid("00000000-0000-0000-0000-000000000004"),
                     UserName = "user4",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
-                    Email = "abc123614@gmail.com",
+                    Email = "abc1236187854@gmail.com",
+                    Address = "da nang",
+                    PhoneNumber = "0123456789",
+                    UserType = UserType.Admin,
+                },
+                new User()
+                {
+                    Id = new Guid("00000000-0000-0000-0000-000000000005"),
+                    UserName = "user5",
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
+                    Email = "abc123618654@gmail.com",
+                    Address = "da nang",
+                    PhoneNumber = "0123456789",
+                    UserType = UserType.Admin,
+                },
+                new User()
+                {
+                    Id = new Guid("00000000-0000-0000-0000-000000000006"),
+                    UserName = "user6",
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
+                    Email = "abc123656714@gmail.com",
+                    Address = "da nang",
+                    PhoneNumber = "0123456789",
+                    UserType = UserType.Admin,
+                },
+                new User()
+                {
+                    Id = new Guid("00000000-0000-0000-0000-000000000007"),
+                    UserName = "user7",
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
+                    Email = "abc123688814@gmail.com",
+                    Address = "da nang",
+                    PhoneNumber = "0123456789",
+                    UserType = UserType.Admin,
+                },
+                new User()
+                {
+                    Id = new Guid("00000000-0000-0000-0000-000000000008"),
+                    UserName = "user8",
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
+                    Email = "abc125673614@gmail.com",
                     Address = "da nang",
                     PhoneNumber = "0123456789",
                     UserType = UserType.Admin,
                 }
             );
+
+                
             // City
             modelBuilder.Entity<City>().HasData(
                 new City()
                 {
                     Id = 1,
-                    CityName = "ha noi",
+                    CityName = "Hà Nội",
                     Description = "abcxyz"
-                }
-            );
-            modelBuilder.Entity<City>().HasData(
+                },
                 new City()
                 {
                     Id = 2,
-                    CityName = "tp hcm",
+                    CityName = "TP HCM",
+                    Description = "xyzabc"
+                },
+                new City()
+                {
+                    Id = 3,
+                    CityName = "Đà Nẵng",
+                    Description = "xyzabc"
+                },
+                new City()
+                {
+                    Id = 4,
+                    CityName = "Quảng Ninh",
+                    Description = "xyzabc"
+                },
+                new City()
+                {
+                    Id = 5,
+                    CityName = "Quảng Ngãi",
                     Description = "xyzabc"
                 }
             );
+
             // Place Type
             modelBuilder.Entity<PlaceType>().HasData(
                 new PlaceType()
@@ -106,9 +157,7 @@ namespace TravelWebsite.DataAccess.Extensions
                     CityId = 1,
                     PlaceTypeID = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000001")
-                }
-            ); ;
-            modelBuilder.Entity<Place>().HasData(
+                },
                 new Place()
                 {
                     Id = 2,
@@ -120,9 +169,7 @@ namespace TravelWebsite.DataAccess.Extensions
                     CityId = 1,
                     PlaceTypeID = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000002")
-                }
-            );
-            modelBuilder.Entity<Place>().HasData(
+                },
                 new Place()
                 {
                     Id = 3,
@@ -134,6 +181,66 @@ namespace TravelWebsite.DataAccess.Extensions
                     CityId = 2,
                     PlaceTypeID = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000003"),
+                },
+                new Place()
+                {
+                    Id = 4,
+                    Name = "palace",
+                    Address = "quan 1",
+                    ShortDicription = "abcxyz",
+                    Latitude = 3841231423,
+                    Longtitude = 6434523,
+                    CityId = 2,
+                    PlaceTypeID = 1,
+                    UserId = new Guid("00000000-0000-0000-0000-000000000004"),
+                },
+                new Place()
+                {
+                    Id = 5,
+                    Name = "palace",
+                    Address = "quan 1",
+                    ShortDicription = "abcxyz",
+                    Latitude = 3841231423,
+                    Longtitude = 6434523,
+                    CityId = 2,
+                    PlaceTypeID = 1,
+                    UserId = new Guid("00000000-0000-0000-0000-000000000005"),
+                },
+                new Place()
+                {
+                    Id = 6,
+                    Name = "palace",
+                    Address = "quan 1",
+                    ShortDicription = "abcxyz",
+                    Latitude = 3841231423,
+                    Longtitude = 6434523,
+                    CityId = 2,
+                    PlaceTypeID = 1,
+                    UserId = new Guid("00000000-0000-0000-0000-000000000006"),
+                },
+                new Place()
+                {
+                    Id = 7,
+                    Name = "palace",
+                    Address = "quan 1",
+                    ShortDicription = "abcxyz",
+                    Latitude = 3841231423,
+                    Longtitude = 6434523,
+                    CityId = 2,
+                    PlaceTypeID = 1,
+                    UserId = new Guid("00000000-0000-0000-0000-000000000007"),
+                },
+                new Place()
+                {
+                    Id = 8,
+                    Name = "palace",
+                    Address = "quan 1",
+                    ShortDicription = "abcxyz",
+                    Latitude = 3841231423,
+                    Longtitude = 6434523,
+                    CityId = 2,
+                    PlaceTypeID = 1,
+                    UserId = new Guid("00000000-0000-0000-0000-000000000008"),
                 }
             );
 

@@ -2,6 +2,8 @@
 using TravelWebsite.DataAccess.Configurations;
 using TravelWebsite.DataAccess.Entities;
 using TravelWebsite.DataAccess.Extensions;
+using TravelWebsite.DataAccess.Helpers;
+
 namespace TravelWebsite.DataAccess.EF
 {
     public class TravelDbContext : DbContext
@@ -122,6 +124,5 @@ namespace TravelWebsite.DataAccess.EF
         public DbSet<PlaceType> PlaceTypes { set; get; }
 
         public DbSet<PlaceImage> Images { set; get; }
-
     }
 }

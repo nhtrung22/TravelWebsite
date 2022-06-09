@@ -16,9 +16,8 @@ namespace TravelWebsite.DataAccess.Configurations
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.ToTable("User");
-
             builder.HasKey(x => x.Id);
-            //builder.Property(x => x.Id).UseIdentityColumn();
+
 
             builder.Property(x => x.UserName).IsRequired().HasMaxLength(20);
 
@@ -29,10 +28,6 @@ namespace TravelWebsite.DataAccess.Configurations
             builder.Property(x => x.Email).IsRequired().HasMaxLength(50);
 
             builder.Property(x => x.PhoneNumber).IsRequired().HasMaxLength(20);
-
-            // builder.Property(x => x.UserType).HasDefaultValue(0);
-
-
         }
     }
 }

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using TravelWebsite.Business.Attributes;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.DTO;
+using TravelWebsite.DataAccess.Entities.Paging;
+using TravelWebsite.DataAccess.Helpers;
 
 namespace TravelWebsite.API.Controllers
 {
@@ -26,10 +28,10 @@ namespace TravelWebsite.API.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<List<PlaceDTO>> Get()
+        public PageList<PlaceDTO> Get([FromQuery] PlaceParametes placeParamaters)
         {
-            var place = _placeService.Get();
-            return await place;
+            var place = _placeService.Get(placeParamaters);
+            return place;
         }
 
         [HttpDelete("(id)")]

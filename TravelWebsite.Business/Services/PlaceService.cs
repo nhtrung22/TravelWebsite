@@ -4,6 +4,8 @@ using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.DTO;
 using TravelWebsite.DataAccess.EF;
 using TravelWebsite.DataAccess.Entities;
+using TravelWebsite.DataAccess.Entities.Paging;
+using TravelWebsite.DataAccess.Helpers;
 
 namespace TravelWebsite.Business.Services.PlaceService
 {
@@ -27,10 +29,9 @@ namespace TravelWebsite.Business.Services.PlaceService
             return _mapper.Map<PlaceDTO>(result);
         }
 
-        public async Task<List<PlaceDTO>> Get()
+        public PageList<PlaceDTO> Get(PlaceParametes placeParametes)
         {
-            var placeList = await _context.Places.ToListAsync();
-            return _mapper.Map<List<PlaceDTO>>(placeList);
+            return PageList<PlaceDTO>.ToPageList(FindAll().OrderBy(x => x.Name), placeParametes.PageNumber, placeParametes.PageSize);
         }
 
         public async Task<int> Delete(int Id)
