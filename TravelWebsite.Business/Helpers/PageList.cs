@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravelWebsite.DataAccess.Helpers
+namespace TravelWebsite.Business.Helpers
 {
     public class PageList<T> : List<T>
     {

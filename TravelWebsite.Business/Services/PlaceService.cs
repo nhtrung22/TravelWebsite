@@ -5,7 +5,7 @@ using TravelWebsite.Business.DTO;
 using TravelWebsite.DataAccess.EF;
 using TravelWebsite.DataAccess.Entities;
 using TravelWebsite.DataAccess.Entities.Paging;
-using TravelWebsite.DataAccess.Helpers;
+using TravelWebsite.Business.Helpers;
 
 namespace TravelWebsite.Business.Services.PlaceService
 {

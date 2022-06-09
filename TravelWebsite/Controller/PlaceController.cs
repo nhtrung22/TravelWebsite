@@ -4,7 +4,7 @@ using TravelWebsite.Business.Attributes;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.DTO;
 using TravelWebsite.DataAccess.Entities.Paging;
-using TravelWebsite.DataAccess.Helpers;
+using TravelWebsite.Business.Helpers;
 
 namespace TravelWebsite.API.Controllers
 {
