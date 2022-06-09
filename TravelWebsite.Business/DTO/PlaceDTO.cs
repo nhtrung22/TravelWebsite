@@ -15,9 +15,6 @@ namespace TravelWebsite.Business.DTO
         public decimal Latitude { get; set; }
 
         public decimal Longtitude { get; set; }
-        public string Thumb { get; set; }
-
-        public string Image { get; set; }
 
         public PlaceType PlaceType { get; set; }
 

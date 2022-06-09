@@ -113,7 +113,7 @@ namespace TravelWebsite.DataAccess.EF
 
         public DbSet<Booking> Bookings { set; get; }
 
-        public DbSet<City> Citys { set; get; }
+        public DbSet<City> Cities { set; get; }
 
         public DbSet<Place> Places { set; get; }
 

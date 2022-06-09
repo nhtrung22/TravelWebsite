@@ -28,16 +28,6 @@ namespace TravelWebsite.DataAccess.Configurations
             builder.Property(x => x.Address).IsRequired().HasMaxLength(100);
 
             builder.Property(x => x.ShortDicription).IsRequired().HasMaxLength(1000);
-
-            //builder.Property(x => x.Latitude).IsRequired();
-
-            //builder.Property(x => x.Longtitude).IsRequired();
-
-            //builder.Property(x => x.Thumb).IsRequired();
-
-            //builder.Property(x => x.Image).IsRequired();
-
-
         }
     }    
 }

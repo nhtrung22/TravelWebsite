@@ -17,6 +17,13 @@ namespace TravelWebsite.API.Controllers
             _placeService = placeService;
         }
 
+        //[HttpPost]
+        //public async Task<PlaceDTO> Create(PlaceDTO placeDTO)
+        //{
+        //    var result = await _placeService.Create(placeDTO);
+        //    return await result;
+        //}
+
         [HttpGet]
         [AllowAnonymous]
         public async Task<List<PlaceDTO>> Get()

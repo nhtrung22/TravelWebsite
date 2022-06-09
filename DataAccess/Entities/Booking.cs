@@ -39,6 +39,5 @@ namespace TravelWebsite.DataAccess.Entities
         // User - Booking
         public Guid? CurrentUserId { get; set; }
         public User User { get; set; }
-
     }
 }

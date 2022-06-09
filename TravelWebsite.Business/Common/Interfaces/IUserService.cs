@@ -10,9 +10,9 @@ public interface IUserService
 {
     Task<IEnumerable<UserDTO>> GetAll();
     Task<UserDTO> GetById(Guid id);
-    public void Update(Guid id, UpdateRequest model);
+    void Update(Guid id, UpdateRequest model);
 
     Task<User> Create(User user, string password);
 
-    public void Delete(Guid id);
+    void Delete(Guid id);
 }

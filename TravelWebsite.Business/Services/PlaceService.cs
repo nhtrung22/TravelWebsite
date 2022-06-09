@@ -20,11 +20,11 @@ namespace TravelWebsite.Business.Services.PlaceService
             _mapper = mapper;
         }
 
-        public async Task Create(PlaceDTO placeDto)
+        public async Task<PlaceDTO> Create(Place place)
         {
-            var place = _mapper.Map<Place>(placeDto);
-            _context.Places.Add(place);
-            await _context.SaveChangesAsync();
+            var result = await _context.Places.AddAsync(place);
+            _context.SaveChanges();
+            return _mapper.Map<PlaceDTO>(result);
         }
 
         public async Task<List<PlaceDTO>> Get()
@@ -32,13 +32,6 @@ namespace TravelWebsite.Business.Services.PlaceService
             var placeList = await _context.Places.ToListAsync();
             return _mapper.Map<List<PlaceDTO>>(placeList);
         }
-
-
-        //public async Task<PlaceDTO> Update(int Id) 
-
-        //    _context.SaveChangesAsync();
-        //    return _mapper.Map<PlaceDTO>(place);
-        //}
 
         public async Task<int> Delete(int Id)
         {
