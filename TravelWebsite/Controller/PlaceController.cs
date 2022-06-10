@@ -5,6 +5,7 @@ using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.DTO;
 using TravelWebsite.DataAccess.Entities.Paging;
 using TravelWebsite.Business.Helpers;
+using Newtonsoft.Json;
 
 namespace TravelWebsite.API.Controllers
 {
@@ -28,9 +29,19 @@ namespace TravelWebsite.API.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public PageList<PlaceDTO> Get([FromQuery] PlaceParametes placeParamaters)
+        public PagedList<PlaceDTO> Get([FromQuery] PlaceParametes placeParamaters)
         {
             var place = _placeService.Get(placeParamaters);
+
+            var metadata = new
+            {
+                place.TotalCount,
+                place.PageSize,
+                place.CurrentPage,
+                place.HasNext,
+                place.HasPrevious,
+            };
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
             return place;
         }
 

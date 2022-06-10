@@ -29,9 +29,11 @@ namespace TravelWebsite.Business.Services.PlaceService
             return _mapper.Map<PlaceDTO>(result);
         }
 
-        public PageList<PlaceDTO> Get(PlaceParametes placeParametes)
+        public PagedList<PlaceDTO> Get(PlaceParametes placeParametes)
         {
-            return PageList<PlaceDTO>.ToPageList(FindAll().OrderBy(x => x.Name), placeParametes.PageNumber, placeParametes.PageSize);
+            return PagedList<PlaceDTO>.ToPagedList(FindAll().OrderBy(on => on.Name),
+                placeParametes.PageNumber,
+                placeParametes.PageSize);
         }
 
         public async Task<int> Delete(int Id)
