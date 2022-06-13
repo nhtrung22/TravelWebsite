@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using TravelWebsite.Business.Attributes;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.DTO;
-using TravelWebsite.DataAccess.Entities.Paging;
 using TravelWebsite.Business.Helpers;
-using Newtonsoft.Json;
+using TravelWebsite.DataAccess.Entities.Paging;
 
 namespace TravelWebsite.API.Controllers
 {
@@ -29,9 +29,9 @@ namespace TravelWebsite.API.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public PagedList<PlaceDTO> Get([FromQuery] PlaceParametes placeParamaters)
+        public async Task<PagedList<PlaceDTO>> Get([FromQuery] PlaceParametes placeParamaters)
         {
-            var place = _placeService.Get(placeParamaters);
+            var place = await _placeService.Get(placeParamaters);
 
             var metadata = new
             {
@@ -49,7 +49,7 @@ namespace TravelWebsite.API.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Delete(int Id)
         {
-            var place = await _placeService.Delete(Id); 
+            var place = await _placeService.Delete(Id);
             return Ok();
         }
 

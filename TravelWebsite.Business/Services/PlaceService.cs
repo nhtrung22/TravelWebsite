@@ -2,10 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.DTO;
+using TravelWebsite.Business.Helpers;
 using TravelWebsite.DataAccess.EF;
 using TravelWebsite.DataAccess.Entities;
 using TravelWebsite.DataAccess.Entities.Paging;
-using TravelWebsite.Business.Helpers;
 
 namespace TravelWebsite.Business.Services.PlaceService
 {
@@ -29,9 +29,10 @@ namespace TravelWebsite.Business.Services.PlaceService
             return _mapper.Map<PlaceDTO>(result);
         }
 
-        public PagedList<PlaceDTO> Get(PlaceParametes placeParametes)
+        public async Task<PagedList<PlaceDTO>> Get(PlaceParametes placeParametes)
         {
-            return PagedList<PlaceDTO>.ToPagedList(FindAll().OrderBy(on => on.Name),
+            var placeList = await _context.Places.ToListAsync();
+            return PagedList<PlaceDTO>.ToPagedList(_mapper.Map<List<PlaceDTO>>(placeList).AsQueryable(),
                 placeParametes.PageNumber,
                 placeParametes.PageSize);
         }
