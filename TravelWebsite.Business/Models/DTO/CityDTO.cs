@@ -1,6 +1,6 @@
 ﻿using TravelWebsite.DataAccess.Entities;
 
-namespace TravelWebsite.DataAccess.DTO
+namespace TravelWebsite.DataAccess.Models.DTO
 {
     public class CityDTO
     {

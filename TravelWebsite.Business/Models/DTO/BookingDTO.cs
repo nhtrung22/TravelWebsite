@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TravelWebsite.Business.DTO
+namespace TravelWebsite.Business.Models.DTO
 {
     public class BookingDTO
     {

@@ -2,8 +2,8 @@
 
 using AutoMapper;
 using TravelWebsite.DataAccess.Entities;
-using TravelWebsite.Business.JwtModel;
 using TravelWebsite.DataAccess.Entities;
+using TravelWebsite.Business.Models.Jwt;
 
 namespace TravelWebsite.Business.Common.MappingConfig
 {

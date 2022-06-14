@@ -1,10 +1,10 @@
-﻿using NetTopologySuite.Geometries;
-using TravelWebsite.DataAccess.Entities;
+﻿using TravelWebsite.DataAccess.Entities;
 
-namespace TravelWebsite.Business.DTO
+namespace TravelWebsite.Business.Models.DTO
 {
     public class PlaceDTO
     {
+        public int Id { get; set; }
 
         public string Name { get; set; }
 

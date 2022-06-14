@@ -1,7 +1,7 @@
 ﻿using TravelWebsite.DataAccess.Entities;
 using TravelWebsite.DataAccess.Enums;
 
-namespace TravelWebsite.Business.DTO
+namespace TravelWebsite.Business.Models.DTO
 {
     public class UserDTO
     {

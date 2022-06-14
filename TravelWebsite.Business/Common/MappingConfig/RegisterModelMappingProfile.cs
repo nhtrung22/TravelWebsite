@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using TravelWebsite.Business.DTO;
-using TravelWebsite.Business.JwtModel;
+using TravelWebsite.Business.Models.Jwt;
 using TravelWebsite.DataAccess.Entities;
 
 namespace Business.Common.MappingConfig

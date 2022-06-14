@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using TravelWebsite.Business.Attributes;
 using TravelWebsite.Business.Common.Interfaces;
-using TravelWebsite.Business.DTO;
 using TravelWebsite.Business.Helpers;
-using TravelWebsite.DataAccess.Entities.Paging;
+using TravelWebsite.Business.Models.DTO;
+using TravelWebsite.Business.Models.Queries;
 
 namespace TravelWebsite.API.Controllers
 {
@@ -20,19 +20,24 @@ namespace TravelWebsite.API.Controllers
             _placeService = placeService;
         }
 
-        //[HttpPost]
-        //public async Task<PlaceDTO> Create(PlaceDTO placeDTO)
-        //{
-        //    var result = await _placeService.Create(placeDTO);
-        //    return await result;
-        //}
+        [HttpPost]
+        public async Task<PlaceDTO> Create(PlaceDTO placeDTO)
+        {
+            var result = await _placeService.Create(placeDTO);
+            return result;
+        }
+
+        [HttpPut("{id}")]
+        public async Task Update(int id, PlaceDTO placeDTO)
+        {
+            await _placeService.Update(id, placeDTO);
+        }
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<PagedList<PlaceDTO>> Get([FromQuery] PlaceParametes placeParamaters)
+        public async Task<PagedList<PlaceDTO>> Get([FromQuery] GetPlacesQuery request)
         {
-            var place = await _placeService.Get(placeParamaters);
-
+            var place = await _placeService.Get(request);
             var metadata = new
             {
                 place.TotalCount,
@@ -51,14 +56,6 @@ namespace TravelWebsite.API.Controllers
         {
             var place = await _placeService.Delete(Id);
             return Ok();
-        }
-
-        [HttpGet("get-place-by-city")]
-        [AllowAnonymous]
-        public async Task<List<PlaceDTO>> GetPlaceByCity(int CityId)
-        {
-            var place = await _placeService.GetPlaceByCity(CityId);
-            return place;
         }
     }
 }

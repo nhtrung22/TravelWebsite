@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravelWebsite.Business.JwtModel
+namespace TravelWebsite.Business.Models.Jwt
 {
     public class ImageUploadModel
     {

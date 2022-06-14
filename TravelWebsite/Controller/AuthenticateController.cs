@@ -2,7 +2,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 using TravelWebsite.Business.Attributes;
-using TravelWebsite.Business.JwtModel;
+using TravelWebsite.Business.Models.Jwt;
 using TravelWebsite.Business.Services;
 
 

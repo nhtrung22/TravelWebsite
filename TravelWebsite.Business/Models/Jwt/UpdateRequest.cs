@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using TravelWebsite.DataAccess.Entities;
 using TravelWebsite.DataAccess.Enums;
 
-namespace TravelWebsite.Business.JwtModel
+namespace TravelWebsite.Business.Models.Jwt
 {
     public class UpdateRequest
     {

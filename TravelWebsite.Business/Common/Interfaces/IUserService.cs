@@ -1,10 +1,8 @@
 ﻿namespace TravelWebsite.Business.Services;
 
-using Microsoft.AspNetCore.Mvc;
-using TravelWebsite.Business.DTO;
-using TravelWebsite.Business.JwtModel;
+using TravelWebsite.Business.Models.DTO;
+using TravelWebsite.Business.Models.Jwt;
 using TravelWebsite.DataAccess.Entities;
-using TravelWebsite.DataAccess.Entities.JwtModel;
 
 public interface IUserService
 {

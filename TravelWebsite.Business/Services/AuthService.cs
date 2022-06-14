@@ -3,13 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.Context;
-using TravelWebsite.Business.DTO;
 using TravelWebsite.Business.Helpers;
-using TravelWebsite.Business.JwtModel;
+using TravelWebsite.Business.Models.DTO;
+using TravelWebsite.Business.Models.Jwt;
 using TravelWebsite.Business.Services;
 using TravelWebsite.DataAccess.EF;
 using TravelWebsite.DataAccess.Entities;
-using TravelWebsite.DataAccess.Entities.JwtModel;
 using BCr = BCrypt.Net;
 
 namespace Business.Services.PlaceService

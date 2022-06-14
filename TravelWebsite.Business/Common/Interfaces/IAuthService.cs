@@ -1,8 +1,7 @@
 ﻿namespace TravelWebsite.Business.Services;
 
-using TravelWebsite.Business.DTO;
-using TravelWebsite.Business.JwtModel;
-using TravelWebsite.DataAccess.Entities.JwtModel;
+using TravelWebsite.Business.Models.DTO;
+using TravelWebsite.Business.Models.Jwt;
 
 public interface IAuthService
 {

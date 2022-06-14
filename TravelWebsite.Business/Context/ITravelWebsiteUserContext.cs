@@ -1,4 +1,4 @@
-﻿using TravelWebsite.Business.DTO;
+﻿using TravelWebsite.Business.Models.DTO;
 
 namespace TravelWebsite.Business.Context
 {

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using TravelWebsite.Business.DTO;
+using TravelWebsite.Business.Models.DTO;
 
 namespace TravelWebsite.Business.Attributes;
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]

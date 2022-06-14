@@ -1,7 +1,6 @@
-namespace TravelWebsite.Business.JwtModel;
-
 using System.ComponentModel.DataAnnotations;
 
+namespace TravelWebsite.Business.Models.Jwt;
 public class AuthenticateRequest
 {
     [Required]
