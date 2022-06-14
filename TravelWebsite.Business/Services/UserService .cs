@@ -37,9 +37,9 @@ namespace Business.Services.PlaceService
             return _mapper.Map<UserDTO>(user);
         }
 
-        public void Update(Guid id, UpdateRequest model)
+        public async Task Update(Guid id, UpdateRequest model)
         {
-            var user = getUser(id);
+            var user = await GetUserAsync(id);
 
             // validate
             if (model.Email != user.Email && _context.Users.Any(x => x.Email == model.Email))
@@ -52,12 +52,12 @@ namespace Business.Services.PlaceService
             // copy model to user and save
             _mapper.Map(model, user);
             _context.Users.Update(user);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        private User getUser(Guid id)
+        private async Task<User> GetUserAsync(Guid id)
         {
-            var user = _context.Users.Find(id);
+            var user = await _context.Users.FindAsync(id);
             if (user == null) throw new KeyNotFoundException("User not found");
             return user;
         }
@@ -92,11 +92,11 @@ namespace Business.Services.PlaceService
             return user;
         }
 
-        public void Delete(Guid id)
+        public async Task Delete(Guid id)
         {
-            var user = getUser(id);
+            var user = await GetUserAsync(id);
             _context.Users.Remove(user);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

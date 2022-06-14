@@ -3,11 +3,12 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using TravelWebsite.Business.Attributes;
+using TravelWebsite.Business.Models.DTO;
 using TravelWebsite.Business.Models.Jwt;
 using TravelWebsite.Business.Services;
 using TravelWebsite.DataAccess.Entities;
 
-[Authorize]
+[Authorize("Admin")]
 public class UserController : BaseController
 {
     private IUserService _userService;
@@ -20,32 +21,24 @@ public class UserController : BaseController
     }
 
     [HttpGet]
-    public async Task<OkObjectResult> GetAll()
+    public async Task<ActionResult<List<UserDTO>>> Get()
     {
         var users = await _userService.GetAll();
-        return Ok(users);
+        return users.ToList();
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetById(Guid id)
+    public async Task<ActionResult<UserDTO>> GetById(Guid id)
     {
-        try
-        {
-            var user = _userService.GetById(id);
-            return Ok(user);
-        }
-        
-        catch
-        {
-            return NotFound();
-        }
+        var user = await _userService.GetById(id);
+        return user;
     }
 
     [HttpPut("{id}")]
-    public IActionResult Update(Guid id, UpdateRequest model)
+    public async Task<ActionResult> Update(Guid id, UpdateRequest model)
     {
-        _userService.Update(id, model); 
-        return Ok(new { message = "User updated" });
+        _userService.Update(id, model);
+        return NoContent();
     }
 
     [AllowAnonymous]
@@ -61,9 +54,9 @@ public class UserController : BaseController
 
 
     [HttpDelete("{id}")]
-    public IActionResult Delete(Guid id)
+    public async Task<ActionResult> Delete(Guid id)
     {
         _userService.Delete(id);
-        return Ok(new { message = "User deleted" });
+        return NoContent();
     }
 }
