@@ -33,7 +33,7 @@ namespace TravelWebsite.Business.Services.PlaceService
         public async Task<PagedList<PlaceDTO>> Get(GetPlacesQuery request)
         {
             var placeList = await _context.Places.ToListAsync();
-            if (string.IsNullOrWhiteSpace(request.City)) placeList.Where(item => item.City.CityName == request.City.Trim()).ToList();
+            if (!string.IsNullOrWhiteSpace(request.City)) placeList.Where(item => item.City.CityName == request.City.Trim()).ToList();
             return PagedList<PlaceDTO>.ToPagedList(_mapper.Map<List<PlaceDTO>>(placeList).AsQueryable(),
                 request.PageNumber,
                 request.PageSize);
