@@ -87,7 +87,7 @@ namespace Business.Services.PlaceService
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash, GetRandomSalt());
 
             _context.Users.Add(user);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return user;
         }

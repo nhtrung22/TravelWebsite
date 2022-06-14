@@ -37,18 +37,18 @@ public class UserController : BaseController
     [HttpPut("{id}")]
     public async Task<ActionResult> Update(Guid id, UpdateRequest model)
     {
-        _userService.Update(id, model);
+        await _userService.Update(id, model);
         return NoContent();
     }
 
     [AllowAnonymous]
     [HttpPost("register")]
-    public IActionResult Create([FromBody] RegisterModel model)
+    public async Task<ActionResult> Create([FromBody] RegisterModel model)
     {
         // map model to entity
         var user = _mapper.Map<User>(model);
         // create user
-        _userService.Create(user, model.PasswordHash);
+        await _userService.Create(user, model.PasswordHash);
         return Ok();
     }
 
