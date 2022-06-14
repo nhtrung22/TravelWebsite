@@ -9,7 +9,7 @@ using TravelWebsite.Business.Models.Queries;
 
 namespace TravelWebsite.API.Controllers
 {
-    [Authorize("Client")]
+    [Authorize("Renter")]
     public class PlaceController : BaseController
     {
         private readonly IPlaceService _placeService;
@@ -28,14 +28,19 @@ namespace TravelWebsite.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task Update(int id, PlaceDTO placeDTO)
+        public async Task<ActionResult> Update(int id, PlaceDTO placeDTO)
         {
+            if (id != placeDTO.Id)
+            {
+                return BadRequest();
+            }
             await _placeService.Update(id, placeDTO);
+            return NoContent();
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<PagedList<PlaceDTO>> Get([FromQuery] GetPlacesQuery request)
+        public async Task<ActionResult<PagedList<PlaceDTO>>> Get([FromQuery] GetPlacesQuery request)
         {
             var place = await _placeService.Get(request);
             var metadata = new
@@ -50,12 +55,11 @@ namespace TravelWebsite.API.Controllers
             return place;
         }
 
-        [HttpDelete("(id)")]
-        [AllowAnonymous]
-        public async Task<IActionResult> Delete(int Id)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
         {
-            var place = await _placeService.Delete(Id);
-            return Ok();
+            await _placeService.Delete(id);
+            return NoContent();
         }
     }
 }
