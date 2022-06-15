@@ -27,22 +27,30 @@ namespace TravelWebsite.API.Controllers
         //    return await result;
         //}
 
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public PagedList<PlaceDTO> Get([FromQuery] PlaceParametes placeParamaters)
+        //{
+        //    var place = _placeService.Get(placeParamaters);
+
+        //    var metadata = new
+        //    {
+        //        place.TotalCount,
+        //        place.PageSize,
+        //        place.CurrentPage,
+        //        place.HasNext,
+        //        place.HasPrevious,
+        //    };
+        //    Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+        //    return place;
+        //}
+
         [HttpGet]
         [AllowAnonymous]
-        public PagedList<PlaceDTO> Get([FromQuery] PlaceParametes placeParamaters)
+        public async Task<PlaceDTO> GetAll()
         {
-            var place = _placeService.Get(placeParamaters);
-
-            var metadata = new
-            {
-                place.TotalCount,
-                place.PageSize,
-                place.CurrentPage,
-                place.HasNext,
-                place.HasPrevious,
-            };
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
-            return place;
+            var place = await _placeService.GetAll();
+            return _mapper.Map<PlaceDTO>(place);
         }
 
         [HttpDelete("(id)")]

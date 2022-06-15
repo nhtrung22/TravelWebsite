@@ -222,14 +222,14 @@ namespace TravelWebsite.DataAccess.Migrations
                 columns: new[] { "Id", "Address", "Email", "PasswordHash", "PhoneNumber", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { new Guid("00000000-0000-0000-0000-000000000001"), "tphcm", "abc12314121@gmail.com", "$2a$11$1tmHiviVYw1cGkeC7s9LgeUHPXoZu9dBotN1Bgj.Owta4nBfRsZy.", "0123456789", "user1", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000002"), "tphcm", "463412@gmail.com", "$2a$11$ChvV0O9f04haln8aYpwMe.rwD87Z0ggyY8qcm/.VrTq.7h510BUtW", "0123456789", "user2", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000003"), "hanoi", "241241@gmail.com", "$2a$11$iScKqsJsGoVP0Pq6.K.eTeLwUUso8BBRqZfNaCy44z7ruwfpo/v9y", "0123456789", "user3", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000004"), "da nang", "abc1236187854@gmail.com", "$2a$11$2VM9zZa8kXX7GB2BW1e9F.kZhXEwCeDUYudlCVwyVzsaOTjOLBLZW", "0123456789", "user4", 1 },
-                    { new Guid("00000000-0000-0000-0000-000000000005"), "da nang", "abc123618654@gmail.com", "$2a$11$Ce9uAfmct6zlAYksCk3dMulqrDmkRHM0EXaJ0DxU7O6auNENwAX4W", "0123456789", "user5", 1 },
-                    { new Guid("00000000-0000-0000-0000-000000000006"), "da nang", "abc123656714@gmail.com", "$2a$11$QAt.x/ggyCxDDY5B84cQguh8nohPlISGye0dlkTW5PD.IIeb8SoY6", "0123456789", "user6", 1 },
-                    { new Guid("00000000-0000-0000-0000-000000000007"), "da nang", "abc123688814@gmail.com", "$2a$11$L6VvCuKY58RmRRKVHbtFZ.z6R6g50rqjOpcih2v7bD9yLrL4HYtAm", "0123456789", "user7", 1 },
-                    { new Guid("00000000-0000-0000-0000-000000000008"), "da nang", "abc125673614@gmail.com", "$2a$11$82QwSJiL.5J609EKPWt/m.z9rbAKMiE0TJiS8B06gyuu7bGPQ510u", "0123456789", "user8", 1 }
+                    { new Guid("00000000-0000-0000-0000-000000000001"), "tphcm", "abc12314121@gmail.com", "$2a$11$SCyhlFSMcaypy6U7csFKu.S5Mp7R4x3MSnSH/xuwZlh/XiwhZlzqa", "0123456789", "user1", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000002"), "tphcm", "463412@gmail.com", "$2a$11$Ss.wEWVcF9xyBJi7B.xz5uMgImxdxOfjCvDntfHjbI7DfsQ8YqqRO", "0123456789", "user2", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000003"), "hanoi", "241241@gmail.com", "$2a$11$XEZzey4TscbS7ACxqZGxTuY3J9/UwoOHohywIUN2wj8OmxqTibnOG", "0123456789", "user3", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000004"), "da nang", "abc1236187854@gmail.com", "$2a$11$78FUFTKezA9ehv4GOmCrUuDxAgakelfwHnl8voviDGZDAbrNK8DdG", "0123456789", "user4", 1 },
+                    { new Guid("00000000-0000-0000-0000-000000000005"), "da nang", "abc123618654@gmail.com", "$2a$11$OQ/MFpFp2KnmVBq1jTlhDen63eQgJMoENKwH0cOWjvz5jv8CymH1q", "0123456789", "user5", 1 },
+                    { new Guid("00000000-0000-0000-0000-000000000006"), "da nang", "abc123656714@gmail.com", "$2a$11$0OsVFPVcmpkmM2SH0otuA./oP98lccF0xNKnIqgTGKjCbW9QpLsAC", "0123456789", "user6", 1 },
+                    { new Guid("00000000-0000-0000-0000-000000000007"), "da nang", "abc123688814@gmail.com", "$2a$11$neQ8XWKq8toH1I78k80Ys.UDWq0UWQX4JqLvgsFLfyKT3b8QQKfrK", "0123456789", "user7", 1 },
+                    { new Guid("00000000-0000-0000-0000-000000000008"), "da nang", "abc125673614@gmail.com", "$2a$11$/IbjXFNwRtAsvWCYwTWNLukrPgvHz7uPiU8F8Q25UaZOaZIre4x2S", "0123456789", "user8", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -250,7 +250,7 @@ namespace TravelWebsite.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "Booking",
                 columns: new[] { "Id", "BookingDate", "BookingFromTime", "BookingToTime", "CurrentUserId", "Deposit", "FullName", "NumberOfAdult", "NumberOfKid", "PaymentStatus", "PhoneNumber", "PlaceId", "Price", "Status" },
-                values: new object[] { 1, new DateTime(2022, 5, 25, 23, 54, 20, 134, DateTimeKind.Local).AddTicks(1048), new DateTime(2022, 5, 30, 23, 54, 20, 134, DateTimeKind.Local).AddTicks(1042), new DateTime(2022, 6, 19, 23, 54, 20, 134, DateTimeKind.Local).AddTicks(1047), new Guid("00000000-0000-0000-0000-000000000001"), 0m, "Nguyen A", 1, 3, 2, "0123456789", 1, 50000m, 0 });
+                values: new object[] { 1, new DateTime(2022, 5, 31, 21, 26, 47, 375, DateTimeKind.Local).AddTicks(8798), new DateTime(2022, 6, 5, 21, 26, 47, 375, DateTimeKind.Local).AddTicks(8791), new DateTime(2022, 6, 25, 21, 26, 47, 375, DateTimeKind.Local).AddTicks(8797), new Guid("00000000-0000-0000-0000-000000000001"), 0m, "Nguyen A", 1, 3, 2, "0123456789", 1, 50000m, 0 });
 
             migrationBuilder.InsertData(
                 table: "PlaceDetail",
@@ -260,7 +260,7 @@ namespace TravelWebsite.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "PlaceImage",
                 columns: new[] { "Id", "CurrentPlaceId", "DateCreated", "Location", "Title" },
-                values: new object[] { 1, 1, new DateTime(2022, 6, 9, 23, 54, 20, 134, DateTimeKind.Local).AddTicks(1015), "D:\\UserData\\Documents\\source\\repos\\TravelWebsite\\DataAccess\\Image\\1.jpg", "anh1" });
+                values: new object[] { 1, 1, new DateTime(2022, 6, 15, 21, 26, 47, 375, DateTimeKind.Local).AddTicks(8686), "D:\\UserData\\Documents\\source\\repos\\TravelWebsite\\DataAccess\\Image\\1.jpg", "anh1" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Booking_CurrentUserId",

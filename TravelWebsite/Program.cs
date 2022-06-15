@@ -56,7 +56,7 @@ var app = builder.Build();
 
 app.UseSwaggerUI(options =>
 {
-    options.DefaultModelsExpandDepth(-1);
+    options.DefaultModelsExpandDepth(1);
 });
 
 

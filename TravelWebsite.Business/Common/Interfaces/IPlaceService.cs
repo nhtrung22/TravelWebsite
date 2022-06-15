@@ -8,7 +8,8 @@ namespace TravelWebsite.Business.Common.Interfaces
     public interface IPlaceService
     {
         Task<PlaceDTO> Create(Place place);
-        PagedList<PlaceDTO> Get(PlaceParametes placeParametes);
+        // PagedList<PlaceDTO> Get(PlaceParametes placeParametes); 
+        Task<PlaceDTO> GetAll();
         Task<int> Delete(int Id);
         Task<List<PlaceDTO>> GetPlaceByCity(int CityId);
     }
