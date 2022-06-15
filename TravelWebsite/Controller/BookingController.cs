@@ -16,9 +16,9 @@ namespace TravelWebsite.API.Controller
             _bookingService = bookingService;
         }
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<ActionResult<List<BookingDTO>>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return await _bookingService.Get();
         }
 
         // GET: api/Booking/5
@@ -33,7 +33,7 @@ namespace TravelWebsite.API.Controller
         public async Task<ActionResult> Post([FromBody] BookingDTO booking)
         {
             await _bookingService.Create(booking);
-            return NoContent();
+            return Ok();
         }
 
         // PUT: api/Booking/5

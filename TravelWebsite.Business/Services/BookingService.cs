@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.Models.DTO;
 using TravelWebsite.DataAccess.EF;
@@ -31,6 +32,12 @@ namespace TravelWebsite.Business.Services
         public Task<int> Delete(int Id)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<List<BookingDTO>> Get()
+        {
+            var result = await _context.Bookings.Where(item => item.User.Id == _currentUserService.UserId).ToListAsync();
+            return _mapper.Map<List<BookingDTO>>(result);
         }
 
         //public Task<PagedList<BookingDTO>> Get(GetPlacesQuery request)

@@ -6,7 +6,7 @@ namespace TravelWebsite.Business.Services
     {
         Task<BookingDTO> Create(BookingDTO booking);
         Task Update(int id, BookingDTO place);
-        //Task<PagedList<BookingDTO>> Get(GetPlacesQuery request);
+        Task<List<BookingDTO>> Get();
         Task<int> Delete(int Id);
     }
 }
