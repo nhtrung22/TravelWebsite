@@ -1,18 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TravelWebsite.API.Controllers;
-using TravelWebsite.Business.Attributes;
+using TravelWebsite.Business.Common.Attributes;
+using TravelWebsite.Business.Models.DTO;
+using TravelWebsite.Business.Services;
 
 namespace TravelWebsite.API.Controller
 {
-    [Authorize("Tenant")]
+    [Authorize("Client")]
     public class BookingController : BaseController
     {
         // GET: api/Booking
+        private readonly IBookingService _bookingService;
+        public BookingController(IBookingService bookingService)
+        {
+            _bookingService = bookingService;
+        }
         [HttpGet]
         public IEnumerable<string> Get()
         {
@@ -28,8 +30,10 @@ namespace TravelWebsite.API.Controller
 
         // POST: api/Booking
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<ActionResult> Post([FromBody] BookingDTO booking)
         {
+            await _bookingService.Create(booking);
+            return NoContent();
         }
 
         // PUT: api/Booking/5

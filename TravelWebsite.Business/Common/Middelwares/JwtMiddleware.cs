@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using TravelWebsite.Business.Common.Interfaces;
-using TravelWebsite.Business.Helpers;
+using TravelWebsite.Business.Models;
 using TravelWebsite.Business.Services;
 
-namespace TravelWebsite.Business.Middelwares;
+namespace TravelWebsite.Business.Common.Middelwares;
 public class JwtMiddleware
 {
     private readonly RequestDelegate _next;
@@ -24,7 +24,8 @@ public class JwtMiddleware
         {
             // attach user to context on successful jwt validation
             var user = await userService.GetById(userId.Value);
-            context.Items["User"] = await userService.GetById(userId.Value);
+            context.Items["Id"] = userId;
+            context.Items["Role"] = user.UserType.ToString();
         }
 
         await _next(context);

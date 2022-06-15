@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using TravelWebsite.Business.Helpers;
+using TravelWebsite.Business.Models;
 using TravelWebsite.Business.Models.DTO;
 using TravelWebsite.Business.Models.Jwt;
 using TravelWebsite.Business.Services;

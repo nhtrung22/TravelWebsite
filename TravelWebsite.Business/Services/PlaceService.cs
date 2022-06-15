@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
+using AutoMapper.QueryableExtensions;
+using System.Linq.Expressions;
+using TravelWebsite.Business.Common.Extensions;
 using TravelWebsite.Business.Common.Interfaces;
-using TravelWebsite.Business.Helpers;
+using TravelWebsite.Business.Models;
 using TravelWebsite.Business.Models.DTO;
 using TravelWebsite.Business.Models.Queries;
 using TravelWebsite.DataAccess.EF;
@@ -30,13 +32,15 @@ namespace TravelWebsite.Business.Services.PlaceService
             return _mapper.Map<PlaceDTO>(result);
         }
 
-        public async Task<PagedList<PlaceDTO>> Get(GetPlacesQuery request)
+        public async Task<PaginatedList<PlaceDTO>> Get(GetPlacesQuery request)
         {
-            var placeList = await _context.Places.ToListAsync();
-            if (!string.IsNullOrWhiteSpace(request.City)) placeList.Where(item => item.City.CityName == request.City.Trim()).ToList();
-            return PagedList<PlaceDTO>.ToPagedList(_mapper.Map<List<PlaceDTO>>(placeList).AsQueryable(),
-                request.PageNumber,
-                request.PageSize);
+            Expression<Func<Place, bool>> predicate = PredicateBuilder.True<Place>();
+            if (!string.IsNullOrWhiteSpace(request.City))
+            {
+                predicate = predicate.And(item => item.City.Name == request.City.Trim());
+            }
+            var placeList = await PaginatedList<PlaceDTO>.CreateAsync(_context.Places.Where(predicate).ProjectTo<PlaceDTO>(_mapper.ConfigurationProvider), request.PageNumber, request.PageSize);
+            return placeList;
         }
 
         public async Task<int> Delete(int Id)
@@ -44,16 +48,6 @@ namespace TravelWebsite.Business.Services.PlaceService
             var place = await _context.Places.FindAsync(Id);
             _context.Places.Remove(place);
             return await _context.SaveChangesAsync();
-        }
-
-        // Get Place by City ID
-        public async Task<List<PlaceDTO>> GetPlaceByCity(int CityId)
-        {
-            var placeList = await _context.Places.ToListAsync();
-            var result = from place in placeList
-                         where place.CityId == CityId
-                         select place;
-            return _mapper.Map<List<PlaceDTO>>(result);
         }
 
         public async Task Update(int id, PlaceDTO place)

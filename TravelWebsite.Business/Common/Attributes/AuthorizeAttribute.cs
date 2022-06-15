@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using TravelWebsite.Business.Models.DTO;
 
-namespace TravelWebsite.Business.Attributes;
+namespace TravelWebsite.Business.Common.Attributes;
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public class AuthorizeAttribute : Attribute, IAuthorizationFilter
 {
@@ -21,10 +20,17 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
             return;
 
         // authorization
-        var user = (UserDTO)context.HttpContext.Items["User"];
-        if (user == null)
+        var userId = context.HttpContext.Items["Id"];
+        if (userId == null)
+        {
             context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
-        if (user != null && allowedroles.Any() && !allowedroles.Contains(user.UserType.ToString()))
+            return;
+        }
+        var userRole = context.HttpContext.Items["Role"];
+        if (allowedroles.Any() && !allowedroles.Contains(userRole))
+        {
             context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            return;
+        }
     }
 }

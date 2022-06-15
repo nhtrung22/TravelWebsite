@@ -2,8 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using TravelWebsite.Business.Common.Interfaces;
-using TravelWebsite.Business.Context;
-using TravelWebsite.Business.Helpers;
+using TravelWebsite.Business.Models;
 using TravelWebsite.Business.Models.DTO;
 using TravelWebsite.Business.Models.Jwt;
 using TravelWebsite.Business.Services;
@@ -17,19 +16,16 @@ namespace Business.Services.PlaceService
     public class AuthService : IAuthService
     {
         private TravelDbContext _context;
-        private ITravelWebsiteUserContext _travelWebsiteUserContext;
         private IJwtUtils _jwtUtils;
         private readonly AppSettings _appSettings;
         private readonly IMapper _mapper;
 
         public AuthService(
             TravelDbContext context,
-            ITravelWebsiteUserContext travelWebsiteUserContext,
             IJwtUtils jwtUtils,
             IOptions<AppSettings> appSettings,
             IMapper mapper)
         {
-            _travelWebsiteUserContext = travelWebsiteUserContext;
             _context = context;
             _jwtUtils = jwtUtils;
             _appSettings = appSettings.Value;
@@ -112,11 +108,6 @@ namespace Business.Services.PlaceService
         {
             var result = await _context.Users.ToListAsync();
             return _mapper.Map<IEnumerable<UserDTO>>(result);
-        }
-
-        public User GetCurrentUser()
-        {
-            return _context.Users.FirstOrDefault(item => item.UserName == _travelWebsiteUserContext.user.UserName);
         }
 
         public async Task<UserDTO> GetById(Guid id)

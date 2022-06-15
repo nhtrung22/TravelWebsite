@@ -74,7 +74,7 @@ namespace TravelWebsite.DataAccess.EF
             modelBuilder.Entity<Booking>()
             .HasOne<User>(s => s.User)
             .WithMany(g => g.Bookings)
-            .HasForeignKey(s => s.CurrentUserId).OnDelete(DeleteBehavior.NoAction);
+            .HasForeignKey(s => s.UserId).OnDelete(DeleteBehavior.NoAction);
 
             // User - Place
             modelBuilder.Entity<Place>()
@@ -85,7 +85,7 @@ namespace TravelWebsite.DataAccess.EF
             modelBuilder.Entity<User>()
             .Property(f => f.Id)
             .ValueGeneratedOnAdd();
-            
+
 
             modelBuilder.Entity<User>().HasIndex(f => f.Email).IsUnique();
 
@@ -105,7 +105,7 @@ namespace TravelWebsite.DataAccess.EF
 
             modelBuilder.ApplyConfiguration(new PlaceImageConfig());
 
-            
+
 
             // Seeding data
             modelBuilder.Seed();

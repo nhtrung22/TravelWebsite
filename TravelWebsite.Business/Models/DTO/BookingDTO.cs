@@ -1,14 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using TravelWebsite.DataAccess.Enums;
 
 namespace TravelWebsite.Business.Models.DTO
 {
     public class BookingDTO
     {
 
-        public DateTime BookingFromTime { get; set; }
+        public DateTime FromTime { get; set; }
 
-
-        public DateTime BookingToTime { get; set; }
+        public DateTime ToTime { get; set; }
 
         public int NumberOfAdult { get; set; }
 
@@ -16,18 +15,15 @@ namespace TravelWebsite.Business.Models.DTO
 
         public decimal Price { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTime BookingDate { get; set; }
+        public int PlaceId { get; set; }
 
-        public int Status { get; set; }
+        public DateTime Date { get; set; }
 
-        public int PaymentStatus { get; set; }
+        public BookingStatus Status { get; set; }
+
+        public PaymentStatus PaymentStatus { get; set; }
 
         public decimal Deposit { get; set; }
-
-        public string PhoneNumber { get; set; }
-
-        public string FullName { get; set; }
 
     }
 }

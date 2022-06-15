@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using TravelWebsite.Business.Attributes;
+using TravelWebsite.Business.Common.Attributes;
 using TravelWebsite.Business.Common.Interfaces;
-using TravelWebsite.Business.Helpers;
+using TravelWebsite.Business.Models;
 using TravelWebsite.Business.Models.DTO;
 using TravelWebsite.Business.Models.Queries;
 
@@ -40,18 +39,18 @@ namespace TravelWebsite.API.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<ActionResult<PagedList<PlaceDTO>>> Get([FromQuery] GetPlacesQuery request)
+        public async Task<ActionResult<PaginatedList<PlaceDTO>>> Get([FromQuery] GetPlacesQuery request)
         {
             var place = await _placeService.Get(request);
-            var metadata = new
-            {
-                place.TotalCount,
-                place.PageSize,
-                place.CurrentPage,
-                place.HasNext,
-                place.HasPrevious,
-            };
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+            //var metadata = new
+            //{
+            //    place.TotalCount,
+            //    place.PageSize,
+            //    place.CurrentPage,
+            //    place.HasNext,
+            //    place.HasPrevious,
+            //};
+            //Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
             return place;
         }
 

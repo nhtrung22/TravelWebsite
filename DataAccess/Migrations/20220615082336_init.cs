@@ -15,7 +15,7 @@ namespace TravelWebsite.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CityName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
                 },
                 constraints: table =>
@@ -123,19 +123,17 @@ namespace TravelWebsite.DataAccess.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BookingFromTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    BookingToTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FromTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ToTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NumberOfAdult = table.Column<int>(type: "int", nullable: false),
                     NumberOfKid = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    BookingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     PaymentStatus = table.Column<int>(type: "int", nullable: false),
                     Deposit = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    FullName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     PlaceId = table.Column<int>(type: "int", nullable: false),
-                    CurrentUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -147,8 +145,8 @@ namespace TravelWebsite.DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Booking_User_CurrentUserId",
-                        column: x => x.CurrentUserId,
+                        name: "FK_Booking_User_UserId",
+                        column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id");
                 });
@@ -202,14 +200,14 @@ namespace TravelWebsite.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "City",
-                columns: new[] { "Id", "CityName", "Description" },
+                columns: new[] { "Id", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Hà Nội", "abcxyz" },
-                    { 2, "TP HCM", "xyzabc" },
-                    { 3, "Đà Nẵng", "xyzabc" },
-                    { 4, "Quảng Ninh", "xyzabc" },
-                    { 5, "Quảng Ngãi", "xyzabc" }
+                    { 1, "abcxyz", "Hà Nội" },
+                    { 2, "xyzabc", "TP HCM" },
+                    { 3, "xyzabc", "Đà Nẵng" },
+                    { 4, "xyzabc", "Quảng Ninh" },
+                    { 5, "xyzabc", "Quảng Ngãi" }
                 });
 
             migrationBuilder.InsertData(
@@ -222,14 +220,14 @@ namespace TravelWebsite.DataAccess.Migrations
                 columns: new[] { "Id", "Address", "Email", "PasswordHash", "PhoneNumber", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { new Guid("00000000-0000-0000-0000-000000000001"), "tphcm", "abc12314121@gmail.com", "$2a$11$1tmHiviVYw1cGkeC7s9LgeUHPXoZu9dBotN1Bgj.Owta4nBfRsZy.", "0123456789", "user1", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000002"), "tphcm", "463412@gmail.com", "$2a$11$ChvV0O9f04haln8aYpwMe.rwD87Z0ggyY8qcm/.VrTq.7h510BUtW", "0123456789", "user2", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000003"), "hanoi", "241241@gmail.com", "$2a$11$iScKqsJsGoVP0Pq6.K.eTeLwUUso8BBRqZfNaCy44z7ruwfpo/v9y", "0123456789", "user3", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000004"), "da nang", "abc1236187854@gmail.com", "$2a$11$2VM9zZa8kXX7GB2BW1e9F.kZhXEwCeDUYudlCVwyVzsaOTjOLBLZW", "0123456789", "user4", 1 },
-                    { new Guid("00000000-0000-0000-0000-000000000005"), "da nang", "abc123618654@gmail.com", "$2a$11$Ce9uAfmct6zlAYksCk3dMulqrDmkRHM0EXaJ0DxU7O6auNENwAX4W", "0123456789", "user5", 1 },
-                    { new Guid("00000000-0000-0000-0000-000000000006"), "da nang", "abc123656714@gmail.com", "$2a$11$QAt.x/ggyCxDDY5B84cQguh8nohPlISGye0dlkTW5PD.IIeb8SoY6", "0123456789", "user6", 1 },
-                    { new Guid("00000000-0000-0000-0000-000000000007"), "da nang", "abc123688814@gmail.com", "$2a$11$L6VvCuKY58RmRRKVHbtFZ.z6R6g50rqjOpcih2v7bD9yLrL4HYtAm", "0123456789", "user7", 1 },
-                    { new Guid("00000000-0000-0000-0000-000000000008"), "da nang", "abc125673614@gmail.com", "$2a$11$82QwSJiL.5J609EKPWt/m.z9rbAKMiE0TJiS8B06gyuu7bGPQ510u", "0123456789", "user8", 1 }
+                    { new Guid("00000000-0000-0000-0000-000000000001"), "tphcm", "abc12314121@gmail.com", "$2a$11$sX65lbQAyuLfiqANnHNDJew0Xw18l5aBNa4il6IZWjxAdIKDFyw2S", "0123456789", "user1", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000002"), "tphcm", "463412@gmail.com", "$2a$11$ufr.F8D478tJ691sWleYUud3YNecJ4KRaUT09Q4kkeJJ1.KVpDt0K", "0123456789", "user2", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000003"), "hanoi", "241241@gmail.com", "$2a$11$nmDefqTCoZscinjtvhrVa.DiOLw0McIJBJ/Ege2PZHmENvP.Zq46G", "0123456789", "user3", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000004"), "da nang", "abc1236187854@gmail.com", "$2a$11$OaOrtM4lKd5fgFTJpQus.eG5DTdNdOOW.Rcf6ar/rMm5Jvk35J1Bi", "0123456789", "user4", 2 },
+                    { new Guid("00000000-0000-0000-0000-000000000005"), "da nang", "abc123618654@gmail.com", "$2a$11$g2by8w4paFhySjZ8Syj9VO0VjMczactzcnyYI.rxHcgjXOdTskpMC", "0123456789", "user5", 2 },
+                    { new Guid("00000000-0000-0000-0000-000000000006"), "da nang", "abc123656714@gmail.com", "$2a$11$MbmCsBGwkVgJYUV.YdJsOu9DhdDTfMqgQF2uxh1jcevPEG60OZXSy", "0123456789", "user6", 2 },
+                    { new Guid("00000000-0000-0000-0000-000000000007"), "da nang", "abc123688814@gmail.com", "$2a$11$Hbv6LzVsNW1AnjZ/EUfJNOuB/nssAsvssQl/B4KUae25CxlVsLOku", "0123456789", "user7", 2 },
+                    { new Guid("00000000-0000-0000-0000-000000000008"), "da nang", "abc125673614@gmail.com", "$2a$11$r2TCF7feSz.QaiqXzhuUJ.8A2dyP.RkPXGcIM6ZLxWUwXZAdUtTrW", "0123456789", "user8", 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -249,8 +247,8 @@ namespace TravelWebsite.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Booking",
-                columns: new[] { "Id", "BookingDate", "BookingFromTime", "BookingToTime", "CurrentUserId", "Deposit", "FullName", "NumberOfAdult", "NumberOfKid", "PaymentStatus", "PhoneNumber", "PlaceId", "Price", "Status" },
-                values: new object[] { 1, new DateTime(2022, 5, 25, 23, 54, 20, 134, DateTimeKind.Local).AddTicks(1048), new DateTime(2022, 5, 30, 23, 54, 20, 134, DateTimeKind.Local).AddTicks(1042), new DateTime(2022, 6, 19, 23, 54, 20, 134, DateTimeKind.Local).AddTicks(1047), new Guid("00000000-0000-0000-0000-000000000001"), 0m, "Nguyen A", 1, 3, 2, "0123456789", 1, 50000m, 0 });
+                columns: new[] { "Id", "Date", "Deposit", "FromTime", "NumberOfAdult", "NumberOfKid", "PaymentStatus", "PlaceId", "Price", "Status", "ToTime", "UserId" },
+                values: new object[] { 1, new DateTime(2022, 5, 31, 15, 23, 36, 588, DateTimeKind.Local).AddTicks(3114), 0m, new DateTime(2022, 6, 5, 15, 23, 36, 588, DateTimeKind.Local).AddTicks(3108), 1, 3, 2, 1, 50000m, 0, new DateTime(2022, 6, 25, 15, 23, 36, 588, DateTimeKind.Local).AddTicks(3113), new Guid("00000000-0000-0000-0000-000000000001") });
 
             migrationBuilder.InsertData(
                 table: "PlaceDetail",
@@ -260,17 +258,17 @@ namespace TravelWebsite.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "PlaceImage",
                 columns: new[] { "Id", "CurrentPlaceId", "DateCreated", "Location", "Title" },
-                values: new object[] { 1, 1, new DateTime(2022, 6, 9, 23, 54, 20, 134, DateTimeKind.Local).AddTicks(1015), "D:\\UserData\\Documents\\source\\repos\\TravelWebsite\\DataAccess\\Image\\1.jpg", "anh1" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Booking_CurrentUserId",
-                table: "Booking",
-                column: "CurrentUserId");
+                values: new object[] { 1, 1, new DateTime(2022, 6, 15, 15, 23, 36, 588, DateTimeKind.Local).AddTicks(3076), "D:\\UserData\\Documents\\source\\repos\\TravelWebsite\\DataAccess\\Image\\1.jpg", "anh1" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Booking_PlaceId",
                 table: "Booking",
                 column: "PlaceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Booking_UserId",
+                table: "Booking",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Place_CityId",

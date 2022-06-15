@@ -5,12 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.Common.MappingConfig;
-using TravelWebsite.Business.Context;
-using TravelWebsite.Business.Helpers;
-using TravelWebsite.Business.Middelwares;
+using TravelWebsite.Business.Common.Middelwares;
+using TravelWebsite.Business.Common.Utils;
+using TravelWebsite.Business.Models;
 using TravelWebsite.Business.Services;
 using TravelWebsite.Business.Services.PlaceService;
-using TravelWebsite.Business.Utils;
 using TravelWebsite.DataAccess.EF;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -32,10 +31,11 @@ builder.Services.AddSwaggerGen();
 
 //trasient scoped singleton
 builder.Services.AddTransient<IPlaceService, PlaceService>();
+builder.Services.AddTransient<IBookingService, BookingService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IJwtUtils, JwtUtils>();
-builder.Services.AddScoped<ITravelWebsiteUserContext, TravelWebsiteUserContext>();
+builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
 
 
@@ -46,6 +46,7 @@ var config = new MapperConfiguration(cfg =>
 {
     cfg.AddProfile(new PlaceMappingProfile());
     cfg.AddProfile(new UserMappingProfile());
+    cfg.AddProfile(new BookingMappingProfile());
     cfg.AddProfile(new RegisterModelMappingProfile());
     cfg.AddProfile(new UserUpdateMappingProfile());
 });

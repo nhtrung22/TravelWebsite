@@ -3,6 +3,7 @@
     public enum UserType
     {
         Client,
+        Renter,
         Admin
     }
 }

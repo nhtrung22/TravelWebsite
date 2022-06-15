@@ -1,4 +1,4 @@
-namespace TravelWebsite.Business.Utils;
+namespace TravelWebsite.Business.Common.Utils;
 
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -7,7 +7,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using TravelWebsite.Business.Common.Interfaces;
-using TravelWebsite.Business.Helpers;
+using TravelWebsite.Business.Models;
 using TravelWebsite.DataAccess.EF;
 using TravelWebsite.DataAccess.Entities;
 
@@ -32,7 +32,10 @@ public class JwtUtils : IJwtUtils
         var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
         var tokenDescriptor = new SecurityTokenDescriptor
         {
-            Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id.ToString()) }),
+            Subject = new ClaimsIdentity(new[] {
+                new Claim("id", user.Id.ToString()),
+                new Claim("role", user.UserType.ToString())
+            }),
             Expires = DateTime.UtcNow.AddDays(1),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };

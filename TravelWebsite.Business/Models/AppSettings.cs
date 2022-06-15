@@ -1,4 +1,4 @@
-namespace TravelWebsite.Business.Helpers;
+namespace TravelWebsite.Business.Models;
 
 public class AppSettings
 {

@@ -1,14 +1,6 @@
-﻿using TravelWebsite.DataAccess.Entities;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 using TravelWebsite.DataAccess.Entities;
-using static Microsoft.EntityFrameworkCore.EF;
 using TravelWebsite.DataAccess.Enums;
-using System.IO;
 
 namespace TravelWebsite.DataAccess.Extensions
 {
@@ -100,37 +92,37 @@ namespace TravelWebsite.DataAccess.Extensions
                 }
             );
 
-                
+
             // City
             modelBuilder.Entity<City>().HasData(
                 new City()
                 {
                     Id = 1,
-                    CityName = "Hà Nội",
+                    Name = "Hà Nội",
                     Description = "abcxyz"
                 },
                 new City()
                 {
                     Id = 2,
-                    CityName = "TP HCM",
+                    Name = "TP HCM",
                     Description = "xyzabc"
                 },
                 new City()
                 {
                     Id = 3,
-                    CityName = "Đà Nẵng",
+                    Name = "Đà Nẵng",
                     Description = "xyzabc"
                 },
                 new City()
                 {
                     Id = 4,
-                    CityName = "Quảng Ninh",
+                    Name = "Quảng Ninh",
                     Description = "xyzabc"
                 },
                 new City()
                 {
                     Id = 5,
-                    CityName = "Quảng Ngãi",
+                    Name = "Quảng Ngãi",
                     Description = "xyzabc"
                 }
             );
@@ -261,19 +253,17 @@ namespace TravelWebsite.DataAccess.Extensions
                 new Booking()
                 {
                     Id = 1,
-                    BookingFromTime = DateTime.Now.AddDays(-10),
-                    BookingToTime = DateTime.Now.AddDays(10),
+                    FromTime = DateTime.Now.AddDays(-10),
+                    ToTime = DateTime.Now.AddDays(10),
                     NumberOfAdult = 1,
                     NumberOfKid = 3,
                     Price = 50000,
-                    BookingDate = DateTime.Now.AddDays(-15),
+                    Date = DateTime.Now.AddDays(-15),
                     Status = 0,
                     PaymentStatus = PaymentStatus.Paid,
                     Deposit = 0,
-                    PhoneNumber = "0123456789",
-                    FullName = "Nguyen A",
                     PlaceId = 1,
-                    CurrentUserId = new Guid("00000000-0000-0000-0000-000000000001")
+                    UserId = new Guid("00000000-0000-0000-0000-000000000001")
                 }
             );
             // Place Detail

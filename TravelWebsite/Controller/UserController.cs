@@ -2,7 +2,7 @@
 
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using TravelWebsite.Business.Attributes;
+using TravelWebsite.Business.Common.Attributes;
 using TravelWebsite.Business.Models.DTO;
 using TravelWebsite.Business.Models.Jwt;
 using TravelWebsite.Business.Services;

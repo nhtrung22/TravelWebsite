@@ -8,9 +8,9 @@ namespace TravelWebsite.DataAccess.Entities
         [Key]
         public int Id { get; set; } // PK
 
-        public DateTime BookingFromTime { get; set; }
+        public DateTime FromTime { get; set; }
 
-        public DateTime BookingToTime { get; set; }
+        public DateTime ToTime { get; set; }
 
         public int NumberOfAdult { get; set; }
 
@@ -18,8 +18,7 @@ namespace TravelWebsite.DataAccess.Entities
 
         public decimal Price { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTime BookingDate { get; set; }
+        public DateTime Date { get; set; }
 
         public BookingStatus Status { get; set; }
 
@@ -27,17 +26,13 @@ namespace TravelWebsite.DataAccess.Entities
 
         public decimal Deposit { get; set; }
 
-        public string PhoneNumber { get; set; }
-
-        public string FullName { get; set; }
-
         // Place - Booking
 
         public int PlaceId { get; set; }
         public Place Place { get; set; }
 
         // User - Booking
-        public Guid? CurrentUserId { get; set; }
+        public Guid UserId { get; set; }
         public User User { get; set; }
     }
 }
