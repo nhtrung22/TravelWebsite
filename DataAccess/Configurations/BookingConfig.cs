@@ -24,8 +24,6 @@ namespace TravelWebsite.DataAccess.Configurations
 
             builder.Property(x => x.Price).IsRequired();
 
-            builder.Property(x => x.Date).IsRequired();
-
             builder.Property(x => x.Status).IsRequired();
 
             builder.Property(x => x.PaymentStatus).IsRequired();

@@ -128,7 +128,6 @@ namespace TravelWebsite.DataAccess.Migrations
                     NumberOfAdult = table.Column<int>(type: "int", nullable: false),
                     NumberOfKid = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     PaymentStatus = table.Column<int>(type: "int", nullable: false),
                     Deposit = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -220,14 +219,14 @@ namespace TravelWebsite.DataAccess.Migrations
                 columns: new[] { "Id", "Address", "Email", "PasswordHash", "PhoneNumber", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { new Guid("00000000-0000-0000-0000-000000000001"), "tphcm", "abc12314121@gmail.com", "$2a$11$sX65lbQAyuLfiqANnHNDJew0Xw18l5aBNa4il6IZWjxAdIKDFyw2S", "0123456789", "user1", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000002"), "tphcm", "463412@gmail.com", "$2a$11$ufr.F8D478tJ691sWleYUud3YNecJ4KRaUT09Q4kkeJJ1.KVpDt0K", "0123456789", "user2", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000003"), "hanoi", "241241@gmail.com", "$2a$11$nmDefqTCoZscinjtvhrVa.DiOLw0McIJBJ/Ege2PZHmENvP.Zq46G", "0123456789", "user3", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000004"), "da nang", "abc1236187854@gmail.com", "$2a$11$OaOrtM4lKd5fgFTJpQus.eG5DTdNdOOW.Rcf6ar/rMm5Jvk35J1Bi", "0123456789", "user4", 2 },
-                    { new Guid("00000000-0000-0000-0000-000000000005"), "da nang", "abc123618654@gmail.com", "$2a$11$g2by8w4paFhySjZ8Syj9VO0VjMczactzcnyYI.rxHcgjXOdTskpMC", "0123456789", "user5", 2 },
-                    { new Guid("00000000-0000-0000-0000-000000000006"), "da nang", "abc123656714@gmail.com", "$2a$11$MbmCsBGwkVgJYUV.YdJsOu9DhdDTfMqgQF2uxh1jcevPEG60OZXSy", "0123456789", "user6", 2 },
-                    { new Guid("00000000-0000-0000-0000-000000000007"), "da nang", "abc123688814@gmail.com", "$2a$11$Hbv6LzVsNW1AnjZ/EUfJNOuB/nssAsvssQl/B4KUae25CxlVsLOku", "0123456789", "user7", 2 },
-                    { new Guid("00000000-0000-0000-0000-000000000008"), "da nang", "abc125673614@gmail.com", "$2a$11$r2TCF7feSz.QaiqXzhuUJ.8A2dyP.RkPXGcIM6ZLxWUwXZAdUtTrW", "0123456789", "user8", 2 }
+                    { new Guid("00000000-0000-0000-0000-000000000001"), "tphcm", "abc12314121@gmail.com", "$2a$11$SjeQUUg2zkPOtVpizYmIQ.YWIGIVa49msPzcAEsbuLkwfNAd2baBe", "0123456789", "user1", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000002"), "tphcm", "463412@gmail.com", "$2a$11$W3savC2CtEhORJ0j7.p.Pu3ZXokkiqKUfueC.gn19qmQzru4gnWTG", "0123456789", "user2", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000003"), "hanoi", "241241@gmail.com", "$2a$11$1B9cONHki1gXBHG4gTwsLOhuYB03LobrzMUVgtf8DhLfSjBC348cC", "0123456789", "user3", 0 },
+                    { new Guid("00000000-0000-0000-0000-000000000004"), "da nang", "abc1236187854@gmail.com", "$2a$11$tEPv8BVvLhiNdteWYlMfC.wgaipLa/j3337MY1bBc0fzYQr4Up9t6", "0123456789", "user4", 2 },
+                    { new Guid("00000000-0000-0000-0000-000000000005"), "da nang", "abc123618654@gmail.com", "$2a$11$gximndcKsWZiDYZx2gDFyuVQcCGmvC897ZNat6dnmgnDQWAqbjrTi", "0123456789", "user5", 2 },
+                    { new Guid("00000000-0000-0000-0000-000000000006"), "da nang", "abc123656714@gmail.com", "$2a$11$D9Yz712DvpsbDDikMfdNOu7aioASpubUhaGBz8cmlwP4.YIgLhLIK", "0123456789", "user6", 2 },
+                    { new Guid("00000000-0000-0000-0000-000000000007"), "da nang", "abc123688814@gmail.com", "$2a$11$XSmty2LZbAYFfWnbgNPNGOBZ8vvtVnc9lHoX4kWnpr4U44p8Rj20O", "0123456789", "user7", 2 },
+                    { new Guid("00000000-0000-0000-0000-000000000008"), "da nang", "abc125673614@gmail.com", "$2a$11$tTEGBPtJJoPFlYzCLeaBJuYjqLBEq.XUQajQV2pQUsw17PvdKo/Ei", "0123456789", "user8", 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -247,8 +246,8 @@ namespace TravelWebsite.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Booking",
-                columns: new[] { "Id", "Date", "Deposit", "FromTime", "NumberOfAdult", "NumberOfKid", "PaymentStatus", "PlaceId", "Price", "Status", "ToTime", "UserId" },
-                values: new object[] { 1, new DateTime(2022, 5, 31, 15, 23, 36, 588, DateTimeKind.Local).AddTicks(3114), 0m, new DateTime(2022, 6, 5, 15, 23, 36, 588, DateTimeKind.Local).AddTicks(3108), 1, 3, 2, 1, 50000m, 0, new DateTime(2022, 6, 25, 15, 23, 36, 588, DateTimeKind.Local).AddTicks(3113), new Guid("00000000-0000-0000-0000-000000000001") });
+                columns: new[] { "Id", "Deposit", "FromTime", "NumberOfAdult", "NumberOfKid", "PaymentStatus", "PlaceId", "Price", "Status", "ToTime", "UserId" },
+                values: new object[] { 1, 0m, new DateTime(2022, 6, 6, 15, 30, 17, 860, DateTimeKind.Local).AddTicks(9128), 1, 3, 2, 1, 50000m, 0, new DateTime(2022, 6, 26, 15, 30, 17, 860, DateTimeKind.Local).AddTicks(9133), new Guid("00000000-0000-0000-0000-000000000001") });
 
             migrationBuilder.InsertData(
                 table: "PlaceDetail",
@@ -258,7 +257,7 @@ namespace TravelWebsite.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "PlaceImage",
                 columns: new[] { "Id", "CurrentPlaceId", "DateCreated", "Location", "Title" },
-                values: new object[] { 1, 1, new DateTime(2022, 6, 15, 15, 23, 36, 588, DateTimeKind.Local).AddTicks(3076), "D:\\UserData\\Documents\\source\\repos\\TravelWebsite\\DataAccess\\Image\\1.jpg", "anh1" });
+                values: new object[] { 1, 1, new DateTime(2022, 6, 16, 15, 30, 17, 860, DateTimeKind.Local).AddTicks(9096), "D:\\UserData\\Documents\\source\\repos\\TravelWebsite\\DataAccess\\Image\\1.jpg", "anh1" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Booking_PlaceId",

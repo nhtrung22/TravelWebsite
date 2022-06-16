@@ -258,7 +258,6 @@ namespace TravelWebsite.DataAccess.Extensions
                     NumberOfAdult = 1,
                     NumberOfKid = 3,
                     Price = 50000,
-                    Date = DateTime.Now.AddDays(-15),
                     Status = 0,
                     PaymentStatus = PaymentStatus.Paid,
                     Deposit = 0,

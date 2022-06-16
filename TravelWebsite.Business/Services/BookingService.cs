@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using TravelWebsite.Business.Common.Interfaces;
+using TravelWebsite.Business.Models.Commands;
 using TravelWebsite.Business.Models.DTO;
 using TravelWebsite.DataAccess.EF;
 using TravelWebsite.DataAccess.Entities;
@@ -21,10 +22,21 @@ namespace TravelWebsite.Business.Services
             _mailService = mailService;
         }
 
-        public async Task<int> Create(BookingDTO booking)
+        public async Task<int> Create(CreateBookingCommand request)
         {
-            var place = await _context.Places.FindAsync(booking.PlaceId);
-            var entity = _mapper.Map<Booking>(booking);
+            var place = await _context.Places.FindAsync(request.PlaceId);
+            Booking entity = new()
+            {
+                PlaceId = place.Id,
+                FromTime = request.FromTime,
+                ToTime = request.ToTime,
+                NumberOfAdult = request.NumberOfAdult,
+                NumberOfKid = request.NumberOfKid,
+                Price = request.Price,
+                Deposit = request.Deposit,
+                PaymentStatus = DataAccess.Enums.PaymentStatus.Pending,
+                Status = DataAccess.Enums.BookingStatus.Booking
+            };
             entity.UserId = _currentUserService.UserId;
             entity.Place = place;
             var result = await _context.Bookings.AddAsync(entity);
@@ -38,9 +50,11 @@ namespace TravelWebsite.Business.Services
             return result.Entity.Id;
         }
 
-        public Task<int> Delete(int Id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var entity = await _context.Bookings.FindAsync(id);
+            _context.Bookings.Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<List<BookingDTO>> Get()
@@ -49,9 +63,10 @@ namespace TravelWebsite.Business.Services
             return _mapper.Map<List<BookingDTO>>(result);
         }
 
-        public Task<BookingDTO> Get(int id)
+        public async Task<BookingDTO> Get(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Bookings.Include(item => item.Place).FirstOrDefaultAsync(item => item.Id == id);
+            return _mapper.Map<BookingDTO>(result);
         }
 
         //public Task<PagedList<BookingDTO>> Get(GetPlacesQuery request)
@@ -59,7 +74,7 @@ namespace TravelWebsite.Business.Services
         //    throw new NotImplementedException();
         //}
 
-        public Task Update(int id, BookingDTO place)
+        public Task Update(int id, UpdateBookingCommand request)
         {
             throw new NotImplementedException();
         }

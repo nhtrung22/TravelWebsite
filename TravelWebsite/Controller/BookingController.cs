@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TravelWebsite.API.Controllers;
 using TravelWebsite.Business.Common.Attributes;
+using TravelWebsite.Business.Models.Commands;
 using TravelWebsite.Business.Models.DTO;
 using TravelWebsite.Business.Services;
 
@@ -30,21 +31,21 @@ namespace TravelWebsite.API.Controller
 
         // POST: api/Booking
         [HttpPost]
-        public async Task<ActionResult<int>> Post([FromBody] BookingDTO booking)
+        public async Task<ActionResult<int>> Post([FromBody] CreateBookingCommand request)
         {
-            var result = await _bookingService.Create(booking);
+            var result = await _bookingService.Create(request);
             return result;
         }
 
         // PUT: api/Booking/5
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] BookingDTO value)
+        public async Task<ActionResult> Put(int id, [FromBody] UpdateBookingCommand request)
         {
-            if (id != value.Id)
+            if (id != request.Id)
             {
                 return BadRequest();
             }
-            await _bookingService.Update(id, value);
+            await _bookingService.Update(id, request);
             return NoContent();
         }
 

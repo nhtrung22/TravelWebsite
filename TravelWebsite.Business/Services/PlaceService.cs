@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using TravelWebsite.Business.Common.Extensions;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.Models;
+using TravelWebsite.Business.Models.Commands;
 using TravelWebsite.Business.Models.DTO;
 using TravelWebsite.Business.Models.Queries;
 using TravelWebsite.DataAccess.EF;
@@ -24,10 +25,9 @@ namespace TravelWebsite.Business.Services.PlaceService
             _mapper = mapper;
         }
 
-        public async Task<PlaceDTO> Create(PlaceDTO place)
+        public async Task<PlaceDTO> Create(CreatePlaceCommand request)
         {
-
-            var result = await _context.Places.AddAsync(_mapper.Map<Place>(place));
+            var result = await _context.Places.AddAsync(_mapper.Map<Place>(request));
             _context.SaveChanges();
             return _mapper.Map<PlaceDTO>(result);
         }
@@ -43,11 +43,11 @@ namespace TravelWebsite.Business.Services.PlaceService
             return placeList;
         }
 
-        public async Task<int> Delete(int Id)
+        public async Task Delete(int Id)
         {
             var place = await _context.Places.FindAsync(Id);
             _context.Places.Remove(place);
-            return await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async Task Update(int id, PlaceDTO place)

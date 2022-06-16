@@ -12,7 +12,7 @@ using TravelWebsite.DataAccess.EF;
 namespace TravelWebsite.DataAccess.Migrations
 {
     [DbContext(typeof(TravelDbContext))]
-    [Migration("20220615082336_init")]
+    [Migration("20220616083018_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,9 +31,6 @@ namespace TravelWebsite.DataAccess.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("Deposit")
                         .HasColumnType("decimal(18,2)");
@@ -77,16 +74,15 @@ namespace TravelWebsite.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(2022, 5, 31, 15, 23, 36, 588, DateTimeKind.Local).AddTicks(3114),
                             Deposit = 0m,
-                            FromTime = new DateTime(2022, 6, 5, 15, 23, 36, 588, DateTimeKind.Local).AddTicks(3108),
+                            FromTime = new DateTime(2022, 6, 6, 15, 30, 17, 860, DateTimeKind.Local).AddTicks(9128),
                             NumberOfAdult = 1,
                             NumberOfKid = 3,
                             PaymentStatus = 2,
                             PlaceId = 1,
                             Price = 50000m,
                             Status = 0,
-                            ToTime = new DateTime(2022, 6, 25, 15, 23, 36, 588, DateTimeKind.Local).AddTicks(3113),
+                            ToTime = new DateTime(2022, 6, 26, 15, 30, 17, 860, DateTimeKind.Local).AddTicks(9133),
                             UserId = new Guid("00000000-0000-0000-0000-000000000001")
                         });
                 });
@@ -377,7 +373,7 @@ namespace TravelWebsite.DataAccess.Migrations
                         {
                             Id = 1,
                             CurrentPlaceId = 1,
-                            DateCreated = new DateTime(2022, 6, 15, 15, 23, 36, 588, DateTimeKind.Local).AddTicks(3076),
+                            DateCreated = new DateTime(2022, 6, 16, 15, 30, 17, 860, DateTimeKind.Local).AddTicks(9096),
                             Location = "D:\\UserData\\Documents\\source\\repos\\TravelWebsite\\DataAccess\\Image\\1.jpg",
                             Title = "anh1"
                         });
@@ -461,7 +457,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000001"),
                             Address = "tphcm",
                             Email = "abc12314121@gmail.com",
-                            PasswordHash = "$2a$11$sX65lbQAyuLfiqANnHNDJew0Xw18l5aBNa4il6IZWjxAdIKDFyw2S",
+                            PasswordHash = "$2a$11$SjeQUUg2zkPOtVpizYmIQ.YWIGIVa49msPzcAEsbuLkwfNAd2baBe",
                             PhoneNumber = "0123456789",
                             UserName = "user1",
                             UserType = 0
@@ -471,7 +467,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000002"),
                             Address = "tphcm",
                             Email = "463412@gmail.com",
-                            PasswordHash = "$2a$11$ufr.F8D478tJ691sWleYUud3YNecJ4KRaUT09Q4kkeJJ1.KVpDt0K",
+                            PasswordHash = "$2a$11$W3savC2CtEhORJ0j7.p.Pu3ZXokkiqKUfueC.gn19qmQzru4gnWTG",
                             PhoneNumber = "0123456789",
                             UserName = "user2",
                             UserType = 0
@@ -481,7 +477,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000003"),
                             Address = "hanoi",
                             Email = "241241@gmail.com",
-                            PasswordHash = "$2a$11$nmDefqTCoZscinjtvhrVa.DiOLw0McIJBJ/Ege2PZHmENvP.Zq46G",
+                            PasswordHash = "$2a$11$1B9cONHki1gXBHG4gTwsLOhuYB03LobrzMUVgtf8DhLfSjBC348cC",
                             PhoneNumber = "0123456789",
                             UserName = "user3",
                             UserType = 0
@@ -491,7 +487,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000004"),
                             Address = "da nang",
                             Email = "abc1236187854@gmail.com",
-                            PasswordHash = "$2a$11$OaOrtM4lKd5fgFTJpQus.eG5DTdNdOOW.Rcf6ar/rMm5Jvk35J1Bi",
+                            PasswordHash = "$2a$11$tEPv8BVvLhiNdteWYlMfC.wgaipLa/j3337MY1bBc0fzYQr4Up9t6",
                             PhoneNumber = "0123456789",
                             UserName = "user4",
                             UserType = 2
@@ -501,7 +497,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000005"),
                             Address = "da nang",
                             Email = "abc123618654@gmail.com",
-                            PasswordHash = "$2a$11$g2by8w4paFhySjZ8Syj9VO0VjMczactzcnyYI.rxHcgjXOdTskpMC",
+                            PasswordHash = "$2a$11$gximndcKsWZiDYZx2gDFyuVQcCGmvC897ZNat6dnmgnDQWAqbjrTi",
                             PhoneNumber = "0123456789",
                             UserName = "user5",
                             UserType = 2
@@ -511,7 +507,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000006"),
                             Address = "da nang",
                             Email = "abc123656714@gmail.com",
-                            PasswordHash = "$2a$11$MbmCsBGwkVgJYUV.YdJsOu9DhdDTfMqgQF2uxh1jcevPEG60OZXSy",
+                            PasswordHash = "$2a$11$D9Yz712DvpsbDDikMfdNOu7aioASpubUhaGBz8cmlwP4.YIgLhLIK",
                             PhoneNumber = "0123456789",
                             UserName = "user6",
                             UserType = 2
@@ -521,7 +517,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000007"),
                             Address = "da nang",
                             Email = "abc123688814@gmail.com",
-                            PasswordHash = "$2a$11$Hbv6LzVsNW1AnjZ/EUfJNOuB/nssAsvssQl/B4KUae25CxlVsLOku",
+                            PasswordHash = "$2a$11$XSmty2LZbAYFfWnbgNPNGOBZ8vvtVnc9lHoX4kWnpr4U44p8Rj20O",
                             PhoneNumber = "0123456789",
                             UserName = "user7",
                             UserType = 2
@@ -531,7 +527,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = new Guid("00000000-0000-0000-0000-000000000008"),
                             Address = "da nang",
                             Email = "abc125673614@gmail.com",
-                            PasswordHash = "$2a$11$r2TCF7feSz.QaiqXzhuUJ.8A2dyP.RkPXGcIM6ZLxWUwXZAdUtTrW",
+                            PasswordHash = "$2a$11$tTEGBPtJJoPFlYzCLeaBJuYjqLBEq.XUQajQV2pQUsw17PvdKo/Ei",
                             PhoneNumber = "0123456789",
                             UserName = "user8",
                             UserType = 2

@@ -18,8 +18,6 @@ namespace TravelWebsite.DataAccess.Entities
 
         public decimal Price { get; set; }
 
-        public DateTime Date { get; set; }
-
         public BookingStatus Status { get; set; }
 
         public PaymentStatus PaymentStatus { get; set; }

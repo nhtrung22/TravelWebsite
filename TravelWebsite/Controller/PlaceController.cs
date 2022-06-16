@@ -2,6 +2,7 @@
 using TravelWebsite.Business.Common.Attributes;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.Models;
+using TravelWebsite.Business.Models.Commands;
 using TravelWebsite.Business.Models.DTO;
 using TravelWebsite.Business.Models.Queries;
 
@@ -17,9 +18,9 @@ namespace TravelWebsite.API.Controllers
         }
 
         [HttpPost]
-        public async Task<PlaceDTO> Create(PlaceDTO placeDTO)
+        public async Task<PlaceDTO> Create(CreatePlaceCommand request)
         {
-            var result = await _placeService.Create(placeDTO);
+            var result = await _placeService.Create(request);
             return result;
         }
 
