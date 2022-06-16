@@ -4,6 +4,7 @@ namespace TravelWebsite.Business.Models.DTO
 {
     public class BookingDTO
     {
+        public int Id { get; set; }
 
         public DateTime FromTime { get; set; }
 

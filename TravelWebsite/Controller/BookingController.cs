@@ -23,29 +23,37 @@ namespace TravelWebsite.API.Controller
 
         // GET: api/Booking/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public async Task<ActionResult<BookingDTO>> Get(int id)
         {
-            return "value";
+            return await _bookingService.Get(id);
         }
 
         // POST: api/Booking
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] BookingDTO booking)
+        public async Task<ActionResult<int>> Post([FromBody] BookingDTO booking)
         {
-            await _bookingService.Create(booking);
-            return Ok();
+            var result = await _bookingService.Create(booking);
+            return result;
         }
 
         // PUT: api/Booking/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<ActionResult> Put(int id, [FromBody] BookingDTO value)
         {
+            if (id != value.Id)
+            {
+                return BadRequest();
+            }
+            await _bookingService.Update(id, value);
+            return NoContent();
         }
 
         // DELETE: api/Booking/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
+            await _bookingService.Delete(id);
+            return NoContent();
         }
     }
 }

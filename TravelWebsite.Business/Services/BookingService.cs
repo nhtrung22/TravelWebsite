@@ -21,7 +21,7 @@ namespace TravelWebsite.Business.Services
             _mailService = mailService;
         }
 
-        public async Task<BookingDTO> Create(BookingDTO booking)
+        public async Task<int> Create(BookingDTO booking)
         {
             var place = await _context.Places.FindAsync(booking.PlaceId);
             var entity = _mapper.Map<Booking>(booking);
@@ -35,7 +35,7 @@ namespace TravelWebsite.Business.Services
                 Subject = "Booking",
                 Body = "Booking",
             });
-            return _mapper.Map<BookingDTO>(result.Entity);
+            return result.Entity.Id;
         }
 
         public Task<int> Delete(int Id)
@@ -47,6 +47,11 @@ namespace TravelWebsite.Business.Services
         {
             var result = await _context.Bookings.Where(item => item.User.Id == _currentUserService.UserId).ToListAsync();
             return _mapper.Map<List<BookingDTO>>(result);
+        }
+
+        public Task<BookingDTO> Get(int id)
+        {
+            throw new NotImplementedException();
         }
 
         //public Task<PagedList<BookingDTO>> Get(GetPlacesQuery request)
