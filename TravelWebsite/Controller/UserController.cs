@@ -56,7 +56,7 @@ public class UserController : BaseController
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(Guid id)
     {
-        _userService.Delete(id);
+        await _userService.Delete(id);
         return NoContent();
     }
 }
