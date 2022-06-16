@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.Models.Commands;
 using TravelWebsite.Business.Models.DTO;
+using TravelWebsite.Business.Models.Exceptions;
 using TravelWebsite.DataAccess.EF;
 using TravelWebsite.DataAccess.Entities;
 
@@ -25,6 +26,9 @@ namespace TravelWebsite.Business.Services
         public async Task<int> Create(CreateBookingCommand request)
         {
             var place = await _context.Places.FindAsync(request.PlaceId);
+            if (place == null) throw new NotFoundException(nameof(place), request.PlaceId);
+            var user = await _context.Users.FindAsync(place.User.Id);
+            if (user == null) throw new NotFoundException(nameof(user), place.User.Id);
             Booking entity = new()
             {
                 PlaceId = place.Id,
@@ -35,15 +39,15 @@ namespace TravelWebsite.Business.Services
                 Price = request.Price,
                 Deposit = request.Deposit,
                 PaymentStatus = DataAccess.Enums.PaymentStatus.Pending,
-                Status = DataAccess.Enums.BookingStatus.Booking
+                Status = DataAccess.Enums.BookingStatus.Booking,
+                UserId = user.Id,
+                Place = place
             };
-            entity.UserId = _currentUserService.UserId;
-            entity.Place = place;
             var result = await _context.Bookings.AddAsync(entity);
             await _context.SaveChangesAsync();
             await _mailService.SendEmailAsync(new Models.MailRequest()
             {
-                ToEmail = (await _context.Users.FindAsync(place.User.Id)).Email,
+                ToEmail = user.Email,
                 Subject = "Booking",
                 Body = "Booking",
             });
@@ -53,6 +57,7 @@ namespace TravelWebsite.Business.Services
         public async Task Delete(int id)
         {
             var entity = await _context.Bookings.FindAsync(id);
+            if (entity == null) throw new NotFoundException(nameof(entity), id);
             _context.Bookings.Remove(entity);
             await _context.SaveChangesAsync();
         }
@@ -69,14 +74,13 @@ namespace TravelWebsite.Business.Services
             return _mapper.Map<BookingDTO>(result);
         }
 
-        //public Task<PagedList<BookingDTO>> Get(GetPlacesQuery request)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        public Task Update(int id, UpdateBookingCommand request)
+        public async Task Update(int id, UpdateBookingCommand request)
         {
-            throw new NotImplementedException();
+            var entity = await _context.Bookings.FindAsync(id);
+            if (entity == null) throw new NotFoundException(nameof(entity), id);
+            _mapper.Map(request, entity);
+            _context.Bookings.Update(entity);
+            await _context.SaveChangesAsync();
         }
     }
 }

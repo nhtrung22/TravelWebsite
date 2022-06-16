@@ -7,9 +7,9 @@ namespace TravelWebsite.Business.Common.Interfaces
 {
     public interface IPlaceService
     {
-        Task<PlaceDTO> Create(CreatePlaceCommand request);
-        Task Update(int id, PlaceDTO place);
+        Task<int> Create(CreatePlaceCommand request);
+        Task Update(int id, UpdatePlaceCommand place);
         Task<PaginatedList<PlaceDTO>> Get(GetPlacesQuery request);
-        Task Delete(int Id);
+        Task Delete(int id);
     }
 }

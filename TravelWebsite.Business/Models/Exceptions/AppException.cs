@@ -1,4 +1,4 @@
-namespace TravelWebsite.Business.Models;
+namespace TravelWebsite.Business.Models.Exceptions;
 
 using System.Globalization;
 

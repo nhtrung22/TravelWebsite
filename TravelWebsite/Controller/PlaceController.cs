@@ -18,20 +18,20 @@ namespace TravelWebsite.API.Controllers
         }
 
         [HttpPost]
-        public async Task<PlaceDTO> Create(CreatePlaceCommand request)
+        public async Task<int> Create(CreatePlaceCommand request)
         {
             var result = await _placeService.Create(request);
             return result;
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(int id, PlaceDTO placeDTO)
+        public async Task<ActionResult> Update(int id, UpdatePlaceCommand request)
         {
-            if (id != placeDTO.Id)
+            if (id != request.Id)
             {
                 return BadRequest();
             }
-            await _placeService.Update(id, placeDTO);
+            await _placeService.Update(id, request);
             return NoContent();
         }
 

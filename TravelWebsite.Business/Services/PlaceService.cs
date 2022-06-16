@@ -6,6 +6,7 @@ using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.Models;
 using TravelWebsite.Business.Models.Commands;
 using TravelWebsite.Business.Models.DTO;
+using TravelWebsite.Business.Models.Exceptions;
 using TravelWebsite.Business.Models.Queries;
 using TravelWebsite.DataAccess.EF;
 using TravelWebsite.DataAccess.Entities;
@@ -25,11 +26,11 @@ namespace TravelWebsite.Business.Services.PlaceService
             _mapper = mapper;
         }
 
-        public async Task<PlaceDTO> Create(CreatePlaceCommand request)
+        public async Task<int> Create(CreatePlaceCommand request)
         {
             var result = await _context.Places.AddAsync(_mapper.Map<Place>(request));
             _context.SaveChanges();
-            return _mapper.Map<PlaceDTO>(result);
+            return result.Entity.Id;
         }
 
         public async Task<PaginatedList<PlaceDTO>> Get(GetPlacesQuery request)
@@ -43,20 +44,21 @@ namespace TravelWebsite.Business.Services.PlaceService
             return placeList;
         }
 
-        public async Task Delete(int Id)
+        public async Task Delete(int id)
         {
-            var place = await _context.Places.FindAsync(Id);
-            _context.Places.Remove(place);
+            var entity = await _context.Places.FindAsync(id);
+            if (entity == null) throw new NotFoundException(nameof(entity), id);
+            _context.Places.Remove(entity);
             await _context.SaveChangesAsync();
         }
 
-        public async Task Update(int id, PlaceDTO place)
+        public async Task Update(int id, UpdatePlaceCommand request)
         {
-            var entitty = await _context.Places.FindAsync(id);
-            if (entitty == null) throw new AppException("Not found");
-            _mapper.Map(place, entitty);
-            _context.Places.Update(entitty);
-            _context.SaveChanges();
+            var entity = await _context.Places.FindAsync(id);
+            if (entity == null) throw new NotFoundException(nameof(entity), id);
+            _mapper.Map(request, entity);
+            _context.Places.Update(entity);
+            await _context.SaveChangesAsync();
         }
     }
 }

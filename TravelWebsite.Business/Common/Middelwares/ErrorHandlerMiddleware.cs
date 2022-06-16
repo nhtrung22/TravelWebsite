@@ -3,7 +3,7 @@ namespace TravelWebsite.Business.Common.Middelwares;
 using Microsoft.AspNetCore.Http;
 using System.Net;
 using System.Text.Json;
-using TravelWebsite.Business.Models;
+using TravelWebsite.Business.Models.Exceptions;
 
 public class ErrorHandlerMiddleware
 {
