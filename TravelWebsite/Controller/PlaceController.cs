@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using TravelWebsite.Business.Common.Attributes;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.Models;
@@ -12,10 +11,8 @@ namespace TravelWebsite.API.Controllers
     public class PlaceController : BaseController
     {
         private readonly IPlaceService _placeService;
-        private readonly IMapper _mapper;
-        public PlaceController(IPlaceService placeService, IMapper mapper)
+        public PlaceController(IPlaceService placeService)
         {
-            _mapper = mapper;
             _placeService = placeService;
         }
 
