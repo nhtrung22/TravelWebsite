@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using NetTopologySuite.Geometries;
 
 namespace TravelWebsite.DataAccess.Entities
 {
@@ -9,7 +7,7 @@ namespace TravelWebsite.DataAccess.Entities
         [Key]
         public int Id { get; set; } // PK
 
-        public string Name { get; set; } 
+        public string Name { get; set; }
 
         public string Address { get; set; }
 
@@ -30,7 +28,7 @@ namespace TravelWebsite.DataAccess.Entities
         public City City { get; set; }
 
         // PlaceType - Place
-        public int PlaceTypeID { get; set; }
+        public int PlaceTypeId { get; set; }
         public PlaceType PlaceType { get; set; }
 
         // User - Place

@@ -64,7 +64,7 @@ namespace TravelWebsite.DataAccess.EF
             modelBuilder.Entity<Place>()
             .HasOne<PlaceType>(s => s.PlaceType)
             .WithMany(g => g.Places)
-            .HasForeignKey(s => s.PlaceTypeID);
+            .HasForeignKey(s => s.PlaceTypeId);
 
             modelBuilder.Entity<PlaceType>()
             .Property(f => f.Id)

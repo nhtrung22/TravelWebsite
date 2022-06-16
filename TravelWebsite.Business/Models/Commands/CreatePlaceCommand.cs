@@ -12,7 +12,7 @@
 
         public decimal Longtitude { get; set; }
 
-        public int PlaceTypeID { get; set; }
+        public int PlaceTypeId { get; set; }
 
         public int CityId { get; set; }
     }

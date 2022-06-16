@@ -147,7 +147,7 @@ namespace TravelWebsite.DataAccess.Extensions
                     Latitude = 3841231423,
                     Longtitude = 6434523,
                     CityId = 1,
-                    PlaceTypeID = 1,
+                    PlaceTypeId = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000001")
                 },
                 new Place()
@@ -159,7 +159,7 @@ namespace TravelWebsite.DataAccess.Extensions
                     Latitude = 3841231423,
                     Longtitude = 6434523,
                     CityId = 1,
-                    PlaceTypeID = 1,
+                    PlaceTypeId = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000002")
                 },
                 new Place()
@@ -171,7 +171,7 @@ namespace TravelWebsite.DataAccess.Extensions
                     Latitude = 3841231423,
                     Longtitude = 6434523,
                     CityId = 2,
-                    PlaceTypeID = 1,
+                    PlaceTypeId = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000003"),
                 },
                 new Place()
@@ -183,7 +183,7 @@ namespace TravelWebsite.DataAccess.Extensions
                     Latitude = 3841231423,
                     Longtitude = 6434523,
                     CityId = 2,
-                    PlaceTypeID = 1,
+                    PlaceTypeId = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000004"),
                 },
                 new Place()
@@ -195,7 +195,7 @@ namespace TravelWebsite.DataAccess.Extensions
                     Latitude = 3841231423,
                     Longtitude = 6434523,
                     CityId = 2,
-                    PlaceTypeID = 1,
+                    PlaceTypeId = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000005"),
                 },
                 new Place()
@@ -207,7 +207,7 @@ namespace TravelWebsite.DataAccess.Extensions
                     Latitude = 3841231423,
                     Longtitude = 6434523,
                     CityId = 2,
-                    PlaceTypeID = 1,
+                    PlaceTypeId = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000006"),
                 },
                 new Place()
@@ -219,7 +219,7 @@ namespace TravelWebsite.DataAccess.Extensions
                     Latitude = 3841231423,
                     Longtitude = 6434523,
                     CityId = 2,
-                    PlaceTypeID = 1,
+                    PlaceTypeId = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000007"),
                 },
                 new Place()
@@ -231,7 +231,7 @@ namespace TravelWebsite.DataAccess.Extensions
                     Latitude = 3841231423,
                     Longtitude = 6434523,
                     CityId = 2,
-                    PlaceTypeID = 1,
+                    PlaceTypeId = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000008"),
                 }
             );
