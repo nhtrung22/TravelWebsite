@@ -35,7 +35,9 @@ builder.Services.AddTransient<IBookingService, BookingService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IJwtUtils, JwtUtils>();
+builder.Services.AddTransient<IMailService, MailService>();
 builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 
 
 

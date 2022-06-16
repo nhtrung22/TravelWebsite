@@ -12,20 +12,29 @@ namespace TravelWebsite.Business.Services
         private readonly IMapper _mapper;
         private readonly TravelDbContext _context;
         private readonly ICurrentUserService _currentUserService;
-        public BookingService(IMapper mapper, TravelDbContext context, ICurrentUserService currentUserService)
+        private readonly IMailService _mailService;
+        public BookingService(IMapper mapper, TravelDbContext context, ICurrentUserService currentUserService, IMailService mailService)
         {
             _mapper = mapper;
             _context = context;
             _currentUserService = currentUserService;
+            _mailService = mailService;
         }
 
         public async Task<BookingDTO> Create(BookingDTO booking)
         {
+            var place = await _context.Places.FindAsync(booking.PlaceId);
             var entity = _mapper.Map<Booking>(booking);
             entity.UserId = _currentUserService.UserId;
-            entity.Place = await _context.Places.FindAsync(booking.PlaceId);
+            entity.Place = place;
             var result = await _context.Bookings.AddAsync(entity);
             await _context.SaveChangesAsync();
+            await _mailService.SendEmailAsync(new Models.MailRequest()
+            {
+                ToEmail = (await _context.Users.FindAsync(place.User.Id)).Email,
+                Subject = "Booking",
+                Body = "Booking",
+            });
             return _mapper.Map<BookingDTO>(result.Entity);
         }
 
