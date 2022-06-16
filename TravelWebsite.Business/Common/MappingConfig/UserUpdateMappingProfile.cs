@@ -3,7 +3,7 @@
 using AutoMapper;
 using TravelWebsite.DataAccess.Entities;
 using TravelWebsite.DataAccess.Entities;
-using TravelWebsite.Business.Models.Jwt;
+using TravelWebsite.Business.Models.Commands;
 
 namespace TravelWebsite.Business.Common.MappingConfig
 {
@@ -15,7 +15,7 @@ namespace TravelWebsite.Business.Common.MappingConfig
             // CreateMap<CreateRequest, User>();
 
             // UpdateRequest -> User
-            CreateMap<UpdateRequest, User>()
+            CreateMap<UpdateUserCommand, User>()
                 .ForAllMembers(x => x.Condition(
                     (src, dest, prop) =>
                     {

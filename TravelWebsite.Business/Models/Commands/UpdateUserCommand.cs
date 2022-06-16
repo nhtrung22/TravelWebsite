@@ -1,12 +1,9 @@
-﻿
-
-using System.ComponentModel.DataAnnotations;
-using TravelWebsite.DataAccess.Entities;
+﻿using System.ComponentModel.DataAnnotations;
 using TravelWebsite.DataAccess.Enums;
 
-namespace TravelWebsite.Business.Models.Jwt
+namespace TravelWebsite.Business.Models.Commands
 {
-    public class UpdateRequest
+    public class UpdateUserCommand
     {
         public string UserName { get; set; }
 

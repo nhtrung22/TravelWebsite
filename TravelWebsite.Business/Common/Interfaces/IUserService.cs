@@ -1,14 +1,13 @@
 ﻿namespace TravelWebsite.Business.Services;
 
+using TravelWebsite.Business.Models.Commands;
 using TravelWebsite.Business.Models.DTO;
-using TravelWebsite.Business.Models.Jwt;
-using TravelWebsite.DataAccess.Entities;
 
 public interface IUserService
 {
     Task<IEnumerable<UserDTO>> GetAll();
     Task<UserDTO> GetById(Guid id);
-    Task Update(Guid id, UpdateRequest model);
-    Task<User> Create(User user, string password);
+    Task Update(Guid id, UpdateUserCommand request);
+    Task Create(CreateUserCommand request, string password);
     Task Delete(Guid id);
 }

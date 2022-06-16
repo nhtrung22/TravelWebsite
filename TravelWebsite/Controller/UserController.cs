@@ -1,23 +1,19 @@
 ﻿namespace TravelWebsite.API.Controllers;
 
-using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using TravelWebsite.Business.Common.Attributes;
+using TravelWebsite.Business.Models.Commands;
 using TravelWebsite.Business.Models.DTO;
-using TravelWebsite.Business.Models.Jwt;
 using TravelWebsite.Business.Services;
-using TravelWebsite.DataAccess.Entities;
 
 [Authorize("Admin")]
 public class UserController : BaseController
 {
-    private IUserService _userService;
-    private IMapper _mapper;
+    private readonly IUserService _userService;
 
-    public UserController(IUserService userService, IMapper mapper)
+    public UserController(IUserService userService)
     {
         _userService = userService;
-        _mapper = mapper;
     }
 
     [HttpGet]
@@ -35,20 +31,17 @@ public class UserController : BaseController
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult> Update(Guid id, UpdateRequest model)
+    public async Task<ActionResult> Update(Guid id, UpdateUserCommand request)
     {
-        await _userService.Update(id, model);
+        await _userService.Update(id, request);
         return NoContent();
     }
 
     [AllowAnonymous]
     [HttpPost("register")]
-    public async Task<ActionResult> Create([FromBody] RegisterModel model)
+    public async Task<ActionResult> Create([FromBody] CreateUserCommand request)
     {
-        // map model to entity
-        var user = _mapper.Map<User>(model);
-        // create user
-        await _userService.Create(user, model.PasswordHash);
+        await _userService.Create(request, request.PasswordHash);
         return Ok();
     }
 

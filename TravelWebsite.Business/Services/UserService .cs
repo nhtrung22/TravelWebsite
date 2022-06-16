@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using TravelWebsite.Business.Models.Commands;
 using TravelWebsite.Business.Models.DTO;
 using TravelWebsite.Business.Models.Exceptions;
-using TravelWebsite.Business.Models.Jwt;
 using TravelWebsite.Business.Services;
 using TravelWebsite.DataAccess.EF;
 using TravelWebsite.DataAccess.Entities;
@@ -37,20 +37,20 @@ namespace Business.Services.PlaceService
             return _mapper.Map<UserDTO>(user);
         }
 
-        public async Task Update(Guid id, UpdateRequest model)
+        public async Task Update(Guid id, UpdateUserCommand request)
         {
             var user = await GetUserAsync(id);
 
             // validate
-            if (model.Email != user.Email && _context.Users.Any(x => x.Email == model.Email))
-                throw new AppException("User with the email '" + model.Email + "' already exists");
+            if (request.Email != user.Email && _context.Users.Any(x => x.Email == request.Email))
+                throw new AppException("User with the email '" + request.Email + "' already exists");
 
             // hash password if it was entered
-            if (!string.IsNullOrEmpty(model.Password))
-                user.PasswordHash = BCr.BCrypt.HashPassword(model.Password);
+            if (!string.IsNullOrEmpty(request.Password))
+                user.PasswordHash = BCr.BCrypt.HashPassword(request.Password);
 
             // copy model to user and save
-            _mapper.Map(model, user);
+            _mapper.Map(request, user);
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
         }
@@ -69,27 +69,32 @@ namespace Business.Services.PlaceService
             return BCrypt.Net.BCrypt.GenerateSalt(12);
         }
 
-        public async Task<User> Create(User user, string password)
+        public async Task Create(CreateUserCommand request, string password)
         {
             // validation
             if (string.IsNullOrWhiteSpace(password))
                 throw new AppException("Password is required");
 
-            if (_context.Users.Any(x => x.UserName == user.UserName))
-                throw new AppException("Username \"" + user.UserName + "\" is already taken");
+            if (_context.Users.Any(x => x.UserName == request.UserName))
+                throw new AppException("Username \"" + request.UserName + "\" is already taken");
 
-            if (_context.Users.Any(x => x.Email == user.Email))
-                throw new AppException("Email \"" + user.Email + "\" is already taken");
+            if (_context.Users.Any(x => x.Email == request.Email))
+                throw new AppException("Email \"" + request.Email + "\" is already taken");
 
-            if (_context.Users.Any(x => x.PhoneNumber == user.PhoneNumber))
-                throw new AppException("PhoneNumber \"" + user.PhoneNumber + "\" is already taken");
+            if (_context.Users.Any(x => x.PhoneNumber == request.PhoneNumber))
+                throw new AppException("PhoneNumber \"" + request.PhoneNumber + "\" is already taken");
 
-            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash, GetRandomSalt());
+            request.PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.PasswordHash, GetRandomSalt());
+            User entity = new()
+            {
+                UserName = request.UserName,
+                Email = request.Email,
+                Address = request.Address,
+                PhoneNumber = request.PhoneNumber,
 
-            _context.Users.Add(user);
+            };
+            _context.Users.Add(entity);
             await _context.SaveChangesAsync();
-
-            return user;
         }
 
         public async Task Delete(Guid id)

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TravelWebsite.Business.Models.Jwt
+namespace TravelWebsite.Business.Models.Commands
 {
-    public class RegisterModel
+    public class CreateUserCommand
     {
         [Required]
         public string UserName { get; set; }

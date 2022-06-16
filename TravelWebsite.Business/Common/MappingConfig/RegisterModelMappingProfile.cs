@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using TravelWebsite.Business.Models.Jwt;
+using TravelWebsite.Business.Models.Commands;
 using TravelWebsite.DataAccess.Entities;
 
 namespace Business.Common.MappingConfig
@@ -8,8 +8,8 @@ namespace Business.Common.MappingConfig
     {
         public RegisterModelMappingProfile()
         {
-            CreateMap<RegisterModel, User>();
-            CreateMap<User, RegisterModel>();
+            CreateMap<CreateUserCommand, User>();
+            CreateMap<User, CreateUserCommand>();
         }
     }
 }
