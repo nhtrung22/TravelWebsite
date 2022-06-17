@@ -12,7 +12,7 @@ using TravelWebsite.DataAccess.EF;
 namespace TravelWebsite.DataAccess.Migrations
 {
     [DbContext(typeof(TravelDbContext))]
-    [Migration("20220616093940_init")]
+    [Migration("20220617045848_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,26 +32,31 @@ namespace TravelWebsite.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Deposit")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTime>("FromTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("NumberOfAdult")
-                        .HasColumnType("int");
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int>("NumberOfKid")
-                        .HasColumnType("int");
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PaymentStatus")
                         .HasColumnType("int");
 
                     b.Property<int>("PlaceId")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -74,16 +79,16 @@ namespace TravelWebsite.DataAccess.Migrations
                         new
                         {
                             Id = 1,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "",
                             Deposit = 0m,
-                            FromTime = new DateTime(2022, 6, 6, 16, 39, 40, 186, DateTimeKind.Local).AddTicks(2451),
-                            NumberOfAdult = 1,
-                            NumberOfKid = 3,
+                            FromTime = new DateTime(2022, 6, 7, 11, 58, 47, 936, DateTimeKind.Local).AddTicks(9409),
+                            LastModifiedBy = "",
                             PaymentStatus = 2,
                             PlaceId = 1,
-                            Price = 50000m,
                             Status = 0,
-                            ToTime = new DateTime(2022, 6, 26, 16, 39, 40, 186, DateTimeKind.Local).AddTicks(2456),
-                            UserId = new Guid("00000000-0000-0000-0000-000000000001")
+                            ToTime = new DateTime(2022, 6, 27, 11, 58, 47, 936, DateTimeKind.Local).AddTicks(9422),
+                            UserId = new Guid("00000000-0000-0000-0000-000000000003")
                         });
                 });
 
@@ -95,10 +100,23 @@ namespace TravelWebsite.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -113,31 +131,46 @@ namespace TravelWebsite.DataAccess.Migrations
                         new
                         {
                             Id = 1,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "",
                             Description = "abcxyz",
+                            LastModifiedBy = "",
                             Name = "Hà Nội"
                         },
                         new
                         {
                             Id = 2,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "",
                             Description = "xyzabc",
+                            LastModifiedBy = "",
                             Name = "TP HCM"
                         },
                         new
                         {
                             Id = 3,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "",
                             Description = "xyzabc",
+                            LastModifiedBy = "",
                             Name = "Đà Nẵng"
                         },
                         new
                         {
                             Id = 4,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "",
                             Description = "xyzabc",
+                            LastModifiedBy = "",
                             Name = "Quảng Ninh"
                         },
                         new
                         {
                             Id = 5,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "",
                             Description = "xyzabc",
+                            LastModifiedBy = "",
                             Name = "Quảng Ngãi"
                         });
                 });
@@ -158,24 +191,41 @@ namespace TravelWebsite.DataAccess.Migrations
                     b.Property<int>("CityId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Latitude")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Longtitude")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discription")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<int>("NumberOfAdults")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberOfKids")
+                        .HasColumnType("int");
+
                     b.Property<int>("PlaceTypeId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ShortDicription")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -196,23 +246,31 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = 1,
                             Address = "bac tu liem",
                             CityId = 1,
-                            Latitude = 3841231423m,
-                            Longtitude = 6434523m,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "",
+                            Discription = "abcxyz",
+                            LastModifiedBy = "",
                             Name = "studio",
+                            NumberOfAdults = 0,
+                            NumberOfKids = 0,
                             PlaceTypeId = 1,
-                            ShortDicription = "abcxyz",
-                            UserId = new Guid("00000000-0000-0000-0000-000000000001")
+                            Price = 0m,
+                            UserId = new Guid("00000000-0000-0000-0000-000000000002")
                         },
                         new
                         {
                             Id = 2,
                             Address = "hoan kiem",
                             CityId = 1,
-                            Latitude = 3841231423m,
-                            Longtitude = 6434523m,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "",
+                            Discription = "abcxyz",
+                            LastModifiedBy = "",
                             Name = "penhouse",
+                            NumberOfAdults = 0,
+                            NumberOfKids = 0,
                             PlaceTypeId = 1,
-                            ShortDicription = "abcxyz",
+                            Price = 0m,
                             UserId = new Guid("00000000-0000-0000-0000-000000000002")
                         },
                         new
@@ -220,122 +278,16 @@ namespace TravelWebsite.DataAccess.Migrations
                             Id = 3,
                             Address = "quan 1",
                             CityId = 2,
-                            Latitude = 3841231423m,
-                            Longtitude = 6434523m,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "",
+                            Discription = "abcxyz",
+                            LastModifiedBy = "",
                             Name = "palace",
+                            NumberOfAdults = 0,
+                            NumberOfKids = 0,
                             PlaceTypeId = 1,
-                            ShortDicription = "abcxyz",
-                            UserId = new Guid("00000000-0000-0000-0000-000000000003")
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Address = "quan 1",
-                            CityId = 2,
-                            Latitude = 3841231423m,
-                            Longtitude = 6434523m,
-                            Name = "palace",
-                            PlaceTypeId = 1,
-                            ShortDicription = "abcxyz",
-                            UserId = new Guid("00000000-0000-0000-0000-000000000004")
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Address = "quan 1",
-                            CityId = 2,
-                            Latitude = 3841231423m,
-                            Longtitude = 6434523m,
-                            Name = "palace",
-                            PlaceTypeId = 1,
-                            ShortDicription = "abcxyz",
-                            UserId = new Guid("00000000-0000-0000-0000-000000000005")
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Address = "quan 1",
-                            CityId = 2,
-                            Latitude = 3841231423m,
-                            Longtitude = 6434523m,
-                            Name = "palace",
-                            PlaceTypeId = 1,
-                            ShortDicription = "abcxyz",
-                            UserId = new Guid("00000000-0000-0000-0000-000000000006")
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Address = "quan 1",
-                            CityId = 2,
-                            Latitude = 3841231423m,
-                            Longtitude = 6434523m,
-                            Name = "palace",
-                            PlaceTypeId = 1,
-                            ShortDicription = "abcxyz",
-                            UserId = new Guid("00000000-0000-0000-0000-000000000007")
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Address = "quan 1",
-                            CityId = 2,
-                            Latitude = 3841231423m,
-                            Longtitude = 6434523m,
-                            Name = "palace",
-                            PlaceTypeId = 1,
-                            ShortDicription = "abcxyz",
-                            UserId = new Guid("00000000-0000-0000-0000-000000000008")
-                        });
-                });
-
-            modelBuilder.Entity("TravelWebsite.DataAccess.Entities.PlaceDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<bool>("AC")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("CarParking")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("PlaceID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Size")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Square")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("TV")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Wifi")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlaceID")
-                        .IsUnique();
-
-                    b.ToTable("PlaceDetail", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AC = true,
-                            CarParking = true,
-                            PlaceID = 1,
-                            Size = 3,
-                            Square = 50,
-                            TV = true,
-                            Wifi = true
+                            Price = 0m,
+                            UserId = new Guid("00000000-0000-0000-0000-000000000002")
                         });
                 });
 
@@ -347,36 +299,36 @@ namespace TravelWebsite.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CurrentPlaceId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("Title")
+                    b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<byte[]>("File")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PlaceId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("CurrentPlaceId");
+                    b.HasIndex("PlaceId");
 
                     b.ToTable("PlaceImage", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CurrentPlaceId = 1,
-                            DateCreated = new DateTime(2022, 6, 16, 16, 39, 40, 186, DateTimeKind.Local).AddTicks(2422),
-                            Location = "D:\\UserData\\Documents\\source\\repos\\TravelWebsite\\DataAccess\\Image\\1.jpg",
-                            Title = "anh1"
-                        });
                 });
 
             modelBuilder.Entity("TravelWebsite.DataAccess.Entities.PlaceType", b =>
@@ -387,10 +339,24 @@ namespace TravelWebsite.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -405,7 +371,10 @@ namespace TravelWebsite.DataAccess.Migrations
                         new
                         {
                             Id = 1,
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "",
                             Description = "abcxyz",
+                            LastModifiedBy = "",
                             Name = "abcxyz"
                         });
                 });
@@ -416,15 +385,24 @@ namespace TravelWebsite.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Address")
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("LastModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("LastModifiedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
@@ -455,82 +433,38 @@ namespace TravelWebsite.DataAccess.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000001"),
-                            Address = "tphcm",
-                            Email = "abc12314121@gmail.com",
-                            PasswordHash = "$2a$11$1VnqOO//w.CiQScpj2fm4OgV0jfzeiebpyXtlJCOlRSiNRs.QPpye",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "",
+                            Email = "admin@gmail.com",
+                            LastModifiedBy = "",
+                            PasswordHash = "$2a$11$N9eGatXwAHnKNPwg6VZU2ucuU4HQc/tCfLEOGFhmeG4r58iCfzqUC",
                             PhoneNumber = "0123456789",
-                            UserName = "user1",
-                            UserType = 0
+                            UserName = "admin",
+                            UserType = 2
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000002"),
-                            Address = "tphcm",
-                            Email = "463412@gmail.com",
-                            PasswordHash = "$2a$11$yGD0tkoyRcQunfaerO3deuX0Qs2t3LPYe6/hBqqeUwvDKFee8nRpe",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "",
+                            Email = "owner@gmail.com",
+                            LastModifiedBy = "",
+                            PasswordHash = "$2a$11$tdlv2IV4xb5ejRWiqG5Dg.uSzvIbzGQSAaK98CPQs54potpURvdZ6",
                             PhoneNumber = "0123456789",
-                            UserName = "user2",
-                            UserType = 0
+                            UserName = "owner",
+                            UserType = 1
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000003"),
-                            Address = "hanoi",
-                            Email = "241241@gmail.com",
-                            PasswordHash = "$2a$11$AvOEH143rBYp/r9TKFMF/elg5ChUBkZBMn1cgTGXm4K4x6mFdbHRO",
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedBy = "",
+                            Email = "client@gmail.com",
+                            LastModifiedBy = "",
+                            PasswordHash = "$2a$11$Hq.h9Gunk1WvGo5BJoyMPe.74.TXisKKKhvIRaYZTN3TWpv0.oDYe",
                             PhoneNumber = "0123456789",
-                            UserName = "user3",
+                            UserName = "client",
                             UserType = 0
-                        },
-                        new
-                        {
-                            Id = new Guid("00000000-0000-0000-0000-000000000004"),
-                            Address = "da nang",
-                            Email = "abc1236187854@gmail.com",
-                            PasswordHash = "$2a$11$fg.SEUIocinhUdo8dFXFFuzqW2vA7nnWP/VKmEk4RrNc6Uk4t3tN.",
-                            PhoneNumber = "0123456789",
-                            UserName = "user4",
-                            UserType = 2
-                        },
-                        new
-                        {
-                            Id = new Guid("00000000-0000-0000-0000-000000000005"),
-                            Address = "da nang",
-                            Email = "abc123618654@gmail.com",
-                            PasswordHash = "$2a$11$3tnCkrqF5mgtSNmib0f9.Oobq1o9I0wpHOOE1OWRmMtEzEdd2i4P.",
-                            PhoneNumber = "0123456789",
-                            UserName = "user5",
-                            UserType = 2
-                        },
-                        new
-                        {
-                            Id = new Guid("00000000-0000-0000-0000-000000000006"),
-                            Address = "da nang",
-                            Email = "abc123656714@gmail.com",
-                            PasswordHash = "$2a$11$N5KEvr.eKG98AnpmCDgK6OIZaofKmwOkZtXtLWIMiZMbBvhnsRr6S",
-                            PhoneNumber = "0123456789",
-                            UserName = "user6",
-                            UserType = 2
-                        },
-                        new
-                        {
-                            Id = new Guid("00000000-0000-0000-0000-000000000007"),
-                            Address = "da nang",
-                            Email = "abc123688814@gmail.com",
-                            PasswordHash = "$2a$11$/9vWH4MZlJK6NEZG9LQY9uArxP1DBsM7Jgj6lc7jfhwF8oGdQ8ZlS",
-                            PhoneNumber = "0123456789",
-                            UserName = "user7",
-                            UserType = 2
-                        },
-                        new
-                        {
-                            Id = new Guid("00000000-0000-0000-0000-000000000008"),
-                            Address = "da nang",
-                            Email = "abc125673614@gmail.com",
-                            PasswordHash = "$2a$11$VANCQGSMH/1zoRm1wXU5O.Ec3BIWe2Nqvo9TxpYTHaduscZA6QW2W",
-                            PhoneNumber = "0123456789",
-                            UserName = "user8",
-                            UserType = 2
                         });
                 });
 
@@ -580,22 +514,11 @@ namespace TravelWebsite.DataAccess.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("TravelWebsite.DataAccess.Entities.PlaceDetail", b =>
-                {
-                    b.HasOne("TravelWebsite.DataAccess.Entities.Place", "Place")
-                        .WithOne("PlaceDetail")
-                        .HasForeignKey("TravelWebsite.DataAccess.Entities.PlaceDetail", "PlaceID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Place");
-                });
-
             modelBuilder.Entity("TravelWebsite.DataAccess.Entities.PlaceImage", b =>
                 {
                     b.HasOne("TravelWebsite.DataAccess.Entities.Place", "Place")
                         .WithMany("Images")
-                        .HasForeignKey("CurrentPlaceId")
+                        .HasForeignKey("PlaceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -667,9 +590,6 @@ namespace TravelWebsite.DataAccess.Migrations
                     b.Navigation("Bookings");
 
                     b.Navigation("Images");
-
-                    b.Navigation("PlaceDetail")
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("TravelWebsite.DataAccess.Entities.PlaceType", b =>

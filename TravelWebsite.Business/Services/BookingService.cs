@@ -34,12 +34,9 @@ namespace TravelWebsite.Business.Services
                 PlaceId = place.Id,
                 FromTime = request.FromTime,
                 ToTime = request.ToTime,
-                NumberOfAdult = request.NumberOfAdult,
-                NumberOfKid = request.NumberOfKid,
-                Price = request.Price,
                 Deposit = request.Deposit,
                 PaymentStatus = DataAccess.Enums.PaymentStatus.Pending,
-                Status = DataAccess.Enums.BookingStatus.Booking,
+                Status = DataAccess.Enums.BookingStatus.Booked,
                 UserId = user.Id,
                 Place = place
             };

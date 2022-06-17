@@ -9,13 +9,9 @@ namespace TravelWebsite.DataAccess.Configurations
         public void Configure(EntityTypeBuilder<City> builder)
         {
             builder.ToTable("City");
-
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
-
             builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
-
-            builder.Property(x => x.Description).IsRequired().HasMaxLength(200);
         }
     }
 }

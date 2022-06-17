@@ -13,82 +13,29 @@ namespace TravelWebsite.DataAccess.Extensions
                 new User()
                 {
                     Id = new Guid("00000000-0000-0000-0000-000000000001"),
-                    UserName = "user1",
+                    UserName = "admin",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
-                    Email = "abc12314121@gmail.com",
-                    Address = "tphcm",
+                    Email = "admin@gmail.com",
                     PhoneNumber = "0123456789",
-                    UserType = UserType.Client,
+                    UserType = UserType.Admin,
                 },
                 new User()
                 {
                     Id = new Guid("00000000-0000-0000-0000-000000000002"),
-                    UserName = "user2",
+                    UserName = "owner",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
-                    Email = "463412@gmail.com",
-                    Address = "tphcm",
+                    Email = "owner@gmail.com",
                     PhoneNumber = "0123456789",
-                    UserType = UserType.Client,
+                    UserType = UserType.Owner,
                 },
                 new User()
                 {
                     Id = new Guid("00000000-0000-0000-0000-000000000003"),
-                    UserName = "user3",
+                    UserName = "client",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
-                    Email = "241241@gmail.com",
-                    Address = "hanoi",
+                    Email = "client@gmail.com",
                     PhoneNumber = "0123456789",
                     UserType = UserType.Client,
-                },
-                new User()
-                {
-                    Id = new Guid("00000000-0000-0000-0000-000000000004"),
-                    UserName = "user4",
-                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
-                    Email = "abc1236187854@gmail.com",
-                    Address = "da nang",
-                    PhoneNumber = "0123456789",
-                    UserType = UserType.Admin,
-                },
-                new User()
-                {
-                    Id = new Guid("00000000-0000-0000-0000-000000000005"),
-                    UserName = "user5",
-                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
-                    Email = "abc123618654@gmail.com",
-                    Address = "da nang",
-                    PhoneNumber = "0123456789",
-                    UserType = UserType.Admin,
-                },
-                new User()
-                {
-                    Id = new Guid("00000000-0000-0000-0000-000000000006"),
-                    UserName = "user6",
-                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
-                    Email = "abc123656714@gmail.com",
-                    Address = "da nang",
-                    PhoneNumber = "0123456789",
-                    UserType = UserType.Admin,
-                },
-                new User()
-                {
-                    Id = new Guid("00000000-0000-0000-0000-000000000007"),
-                    UserName = "user7",
-                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
-                    Email = "abc123688814@gmail.com",
-                    Address = "da nang",
-                    PhoneNumber = "0123456789",
-                    UserType = UserType.Admin,
-                },
-                new User()
-                {
-                    Id = new Guid("00000000-0000-0000-0000-000000000008"),
-                    UserName = "user8",
-                    PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
-                    Email = "abc125673614@gmail.com",
-                    Address = "da nang",
-                    PhoneNumber = "0123456789",
-                    UserType = UserType.Admin,
                 }
             );
 
@@ -143,21 +90,17 @@ namespace TravelWebsite.DataAccess.Extensions
                     Id = 1,
                     Name = "studio",
                     Address = "bac tu liem",
-                    ShortDicription = "abcxyz",
-                    Latitude = 3841231423,
-                    Longtitude = 6434523,
+                    Discription = "abcxyz",
                     CityId = 1,
                     PlaceTypeId = 1,
-                    UserId = new Guid("00000000-0000-0000-0000-000000000001")
+                    UserId = new Guid("00000000-0000-0000-0000-000000000002")
                 },
                 new Place()
                 {
                     Id = 2,
                     Name = "penhouse",
                     Address = "hoan kiem",
-                    ShortDicription = "abcxyz",
-                    Latitude = 3841231423,
-                    Longtitude = 6434523,
+                    Discription = "abcxyz",
                     CityId = 1,
                     PlaceTypeId = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000002")
@@ -167,84 +110,10 @@ namespace TravelWebsite.DataAccess.Extensions
                     Id = 3,
                     Name = "palace",
                     Address = "quan 1",
-                    ShortDicription = "abcxyz",
-                    Latitude = 3841231423,
-                    Longtitude = 6434523,
+                    Discription = "abcxyz",
                     CityId = 2,
                     PlaceTypeId = 1,
-                    UserId = new Guid("00000000-0000-0000-0000-000000000003"),
-                },
-                new Place()
-                {
-                    Id = 4,
-                    Name = "palace",
-                    Address = "quan 1",
-                    ShortDicription = "abcxyz",
-                    Latitude = 3841231423,
-                    Longtitude = 6434523,
-                    CityId = 2,
-                    PlaceTypeId = 1,
-                    UserId = new Guid("00000000-0000-0000-0000-000000000004"),
-                },
-                new Place()
-                {
-                    Id = 5,
-                    Name = "palace",
-                    Address = "quan 1",
-                    ShortDicription = "abcxyz",
-                    Latitude = 3841231423,
-                    Longtitude = 6434523,
-                    CityId = 2,
-                    PlaceTypeId = 1,
-                    UserId = new Guid("00000000-0000-0000-0000-000000000005"),
-                },
-                new Place()
-                {
-                    Id = 6,
-                    Name = "palace",
-                    Address = "quan 1",
-                    ShortDicription = "abcxyz",
-                    Latitude = 3841231423,
-                    Longtitude = 6434523,
-                    CityId = 2,
-                    PlaceTypeId = 1,
-                    UserId = new Guid("00000000-0000-0000-0000-000000000006"),
-                },
-                new Place()
-                {
-                    Id = 7,
-                    Name = "palace",
-                    Address = "quan 1",
-                    ShortDicription = "abcxyz",
-                    Latitude = 3841231423,
-                    Longtitude = 6434523,
-                    CityId = 2,
-                    PlaceTypeId = 1,
-                    UserId = new Guid("00000000-0000-0000-0000-000000000007"),
-                },
-                new Place()
-                {
-                    Id = 8,
-                    Name = "palace",
-                    Address = "quan 1",
-                    ShortDicription = "abcxyz",
-                    Latitude = 3841231423,
-                    Longtitude = 6434523,
-                    CityId = 2,
-                    PlaceTypeId = 1,
-                    UserId = new Guid("00000000-0000-0000-0000-000000000008"),
-                }
-            );
-
-            // PlaceImage
-            modelBuilder.Entity<TravelWebsite.DataAccess.Entities.PlaceImage>().HasData(
-                new TravelWebsite.DataAccess.Entities.PlaceImage()
-                {
-                    Id = 1,
-                    Title = "anh1",
-                    Location = "D:\\UserData\\Documents\\source\\repos\\TravelWebsite\\DataAccess\\Image\\1.jpg",
-                    CurrentPlaceId = 1,
-                    DateCreated = DateTime.Now
+                    UserId = new Guid("00000000-0000-0000-0000-000000000002"),
                 }
             );
 
@@ -255,28 +124,11 @@ namespace TravelWebsite.DataAccess.Extensions
                     Id = 1,
                     FromTime = DateTime.Now.AddDays(-10),
                     ToTime = DateTime.Now.AddDays(10),
-                    NumberOfAdult = 1,
-                    NumberOfKid = 3,
-                    Price = 50000,
                     Status = 0,
                     PaymentStatus = PaymentStatus.Paid,
                     Deposit = 0,
                     PlaceId = 1,
-                    UserId = new Guid("00000000-0000-0000-0000-000000000001")
-                }
-            );
-            // Place Detail
-            modelBuilder.Entity<PlaceDetail>().HasData(
-                new PlaceDetail()
-                {
-                    Id = 1,
-                    Wifi = true,
-                    TV = true,
-                    AC = true,
-                    CarParking = true,
-                    Size = 3,
-                    Square = 50,
-                    PlaceID = 1
+                    UserId = new Guid("00000000-0000-0000-0000-000000000003")
                 }
             );
         }

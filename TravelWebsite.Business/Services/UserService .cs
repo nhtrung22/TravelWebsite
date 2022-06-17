@@ -89,7 +89,6 @@ namespace Business.Services.PlaceService
             {
                 UserName = request.UserName,
                 Email = request.Email,
-                Address = request.Address,
                 PhoneNumber = request.PhoneNumber,
 
             };

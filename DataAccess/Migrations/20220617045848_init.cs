@@ -16,7 +16,11 @@ namespace TravelWebsite.DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,7 +34,11 @@ namespace TravelWebsite.DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,9 +53,12 @@ namespace TravelWebsite.DataAccess.Migrations
                     UserName = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     PasswordHash = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    UserType = table.Column<int>(type: "int", nullable: false)
+                    UserType = table.Column<int>(type: "int", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,12 +73,17 @@ namespace TravelWebsite.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ShortDicription = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    Latitude = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Longtitude = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Discription = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    NumberOfAdults = table.Column<int>(type: "int", nullable: false),
+                    NumberOfKids = table.Column<int>(type: "int", nullable: false),
                     CityId = table.Column<int>(type: "int", nullable: false),
                     PlaceTypeId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -125,14 +141,15 @@ namespace TravelWebsite.DataAccess.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FromTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ToTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    NumberOfAdult = table.Column<int>(type: "int", nullable: false),
-                    NumberOfKid = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     PaymentStatus = table.Column<int>(type: "int", nullable: false),
                     Deposit = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PlaceId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -151,47 +168,25 @@ namespace TravelWebsite.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PlaceDetail",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Wifi = table.Column<bool>(type: "bit", nullable: false),
-                    TV = table.Column<bool>(type: "bit", nullable: false),
-                    AC = table.Column<bool>(type: "bit", nullable: false),
-                    CarParking = table.Column<bool>(type: "bit", nullable: false),
-                    Size = table.Column<int>(type: "int", nullable: false),
-                    Square = table.Column<int>(type: "int", nullable: false),
-                    PlaceID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlaceDetail", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PlaceDetail_Place_PlaceID",
-                        column: x => x.PlaceID,
-                        principalTable: "Place",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PlaceImage",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Location = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CurrentPlaceId = table.Column<int>(type: "int", nullable: false)
+                    File = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    FileName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PlaceId = table.Column<int>(type: "int", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PlaceImage", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PlaceImage_Place_CurrentPlaceId",
-                        column: x => x.CurrentPlaceId,
+                        name: "FK_PlaceImage_Place_PlaceId",
+                        column: x => x.PlaceId,
                         principalTable: "Place",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -199,65 +194,50 @@ namespace TravelWebsite.DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "City",
-                columns: new[] { "Id", "Description", "Name" },
+                columns: new[] { "Id", "Created", "CreatedBy", "Description", "LastModified", "LastModifiedBy", "Name" },
                 values: new object[,]
                 {
-                    { 1, "abcxyz", "Hà Nội" },
-                    { 2, "xyzabc", "TP HCM" },
-                    { 3, "xyzabc", "Đà Nẵng" },
-                    { 4, "xyzabc", "Quảng Ninh" },
-                    { 5, "xyzabc", "Quảng Ngãi" }
+                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "abcxyz", null, "", "Hà Nội" },
+                    { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "xyzabc", null, "", "TP HCM" },
+                    { 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "xyzabc", null, "", "Đà Nẵng" },
+                    { 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "xyzabc", null, "", "Quảng Ninh" },
+                    { 5, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "xyzabc", null, "", "Quảng Ngãi" }
                 });
 
             migrationBuilder.InsertData(
                 table: "PlaceType",
-                columns: new[] { "Id", "Description", "Name" },
-                values: new object[] { 1, "abcxyz", "abcxyz" });
+                columns: new[] { "Id", "Created", "CreatedBy", "Description", "LastModified", "LastModifiedBy", "Name" },
+                values: new object[] { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "abcxyz", null, "", "abcxyz" });
 
             migrationBuilder.InsertData(
                 table: "User",
-                columns: new[] { "Id", "Address", "Email", "PasswordHash", "PhoneNumber", "UserName", "UserType" },
+                columns: new[] { "Id", "Created", "CreatedBy", "Email", "LastModified", "LastModifiedBy", "PasswordHash", "PhoneNumber", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { new Guid("00000000-0000-0000-0000-000000000001"), "tphcm", "abc12314121@gmail.com", "$2a$11$1VnqOO//w.CiQScpj2fm4OgV0jfzeiebpyXtlJCOlRSiNRs.QPpye", "0123456789", "user1", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000002"), "tphcm", "463412@gmail.com", "$2a$11$yGD0tkoyRcQunfaerO3deuX0Qs2t3LPYe6/hBqqeUwvDKFee8nRpe", "0123456789", "user2", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000003"), "hanoi", "241241@gmail.com", "$2a$11$AvOEH143rBYp/r9TKFMF/elg5ChUBkZBMn1cgTGXm4K4x6mFdbHRO", "0123456789", "user3", 0 },
-                    { new Guid("00000000-0000-0000-0000-000000000004"), "da nang", "abc1236187854@gmail.com", "$2a$11$fg.SEUIocinhUdo8dFXFFuzqW2vA7nnWP/VKmEk4RrNc6Uk4t3tN.", "0123456789", "user4", 2 },
-                    { new Guid("00000000-0000-0000-0000-000000000005"), "da nang", "abc123618654@gmail.com", "$2a$11$3tnCkrqF5mgtSNmib0f9.Oobq1o9I0wpHOOE1OWRmMtEzEdd2i4P.", "0123456789", "user5", 2 },
-                    { new Guid("00000000-0000-0000-0000-000000000006"), "da nang", "abc123656714@gmail.com", "$2a$11$N5KEvr.eKG98AnpmCDgK6OIZaofKmwOkZtXtLWIMiZMbBvhnsRr6S", "0123456789", "user6", 2 },
-                    { new Guid("00000000-0000-0000-0000-000000000007"), "da nang", "abc123688814@gmail.com", "$2a$11$/9vWH4MZlJK6NEZG9LQY9uArxP1DBsM7Jgj6lc7jfhwF8oGdQ8ZlS", "0123456789", "user7", 2 },
-                    { new Guid("00000000-0000-0000-0000-000000000008"), "da nang", "abc125673614@gmail.com", "$2a$11$VANCQGSMH/1zoRm1wXU5O.Ec3BIWe2Nqvo9TxpYTHaduscZA6QW2W", "0123456789", "user8", 2 }
+                    { new Guid("00000000-0000-0000-0000-000000000001"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "admin@gmail.com", null, "", "$2a$11$N9eGatXwAHnKNPwg6VZU2ucuU4HQc/tCfLEOGFhmeG4r58iCfzqUC", "0123456789", "admin", 2 },
+                    { new Guid("00000000-0000-0000-0000-000000000002"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "owner@gmail.com", null, "", "$2a$11$tdlv2IV4xb5ejRWiqG5Dg.uSzvIbzGQSAaK98CPQs54potpURvdZ6", "0123456789", "owner", 1 },
+                    { new Guid("00000000-0000-0000-0000-000000000003"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "client@gmail.com", null, "", "$2a$11$Hq.h9Gunk1WvGo5BJoyMPe.74.TXisKKKhvIRaYZTN3TWpv0.oDYe", "0123456789", "client", 0 }
                 });
 
             migrationBuilder.InsertData(
                 table: "Place",
-                columns: new[] { "Id", "Address", "CityId", "Latitude", "Longtitude", "Name", "PlaceTypeId", "ShortDicription", "UserId" },
-                values: new object[,]
-                {
-                    { 1, "bac tu liem", 1, 3841231423m, 6434523m, "studio", 1, "abcxyz", new Guid("00000000-0000-0000-0000-000000000001") },
-                    { 2, "hoan kiem", 1, 3841231423m, 6434523m, "penhouse", 1, "abcxyz", new Guid("00000000-0000-0000-0000-000000000002") },
-                    { 3, "quan 1", 2, 3841231423m, 6434523m, "palace", 1, "abcxyz", new Guid("00000000-0000-0000-0000-000000000003") },
-                    { 4, "quan 1", 2, 3841231423m, 6434523m, "palace", 1, "abcxyz", new Guid("00000000-0000-0000-0000-000000000004") },
-                    { 5, "quan 1", 2, 3841231423m, 6434523m, "palace", 1, "abcxyz", new Guid("00000000-0000-0000-0000-000000000005") },
-                    { 6, "quan 1", 2, 3841231423m, 6434523m, "palace", 1, "abcxyz", new Guid("00000000-0000-0000-0000-000000000006") },
-                    { 7, "quan 1", 2, 3841231423m, 6434523m, "palace", 1, "abcxyz", new Guid("00000000-0000-0000-0000-000000000007") },
-                    { 8, "quan 1", 2, 3841231423m, 6434523m, "palace", 1, "abcxyz", new Guid("00000000-0000-0000-0000-000000000008") }
-                });
+                columns: new[] { "Id", "Address", "CityId", "Created", "CreatedBy", "Discription", "LastModified", "LastModifiedBy", "Name", "NumberOfAdults", "NumberOfKids", "PlaceTypeId", "Price", "UserId" },
+                values: new object[] { 1, "bac tu liem", 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "abcxyz", null, "", "studio", 0, 0, 1, 0m, new Guid("00000000-0000-0000-0000-000000000002") });
+
+            migrationBuilder.InsertData(
+                table: "Place",
+                columns: new[] { "Id", "Address", "CityId", "Created", "CreatedBy", "Discription", "LastModified", "LastModifiedBy", "Name", "NumberOfAdults", "NumberOfKids", "PlaceTypeId", "Price", "UserId" },
+                values: new object[] { 2, "hoan kiem", 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "abcxyz", null, "", "penhouse", 0, 0, 1, 0m, new Guid("00000000-0000-0000-0000-000000000002") });
+
+            migrationBuilder.InsertData(
+                table: "Place",
+                columns: new[] { "Id", "Address", "CityId", "Created", "CreatedBy", "Discription", "LastModified", "LastModifiedBy", "Name", "NumberOfAdults", "NumberOfKids", "PlaceTypeId", "Price", "UserId" },
+                values: new object[] { 3, "quan 1", 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "abcxyz", null, "", "palace", 0, 0, 1, 0m, new Guid("00000000-0000-0000-0000-000000000002") });
 
             migrationBuilder.InsertData(
                 table: "Booking",
-                columns: new[] { "Id", "Deposit", "FromTime", "NumberOfAdult", "NumberOfKid", "PaymentStatus", "PlaceId", "Price", "Status", "ToTime", "UserId" },
-                values: new object[] { 1, 0m, new DateTime(2022, 6, 6, 16, 39, 40, 186, DateTimeKind.Local).AddTicks(2451), 1, 3, 2, 1, 50000m, 0, new DateTime(2022, 6, 26, 16, 39, 40, 186, DateTimeKind.Local).AddTicks(2456), new Guid("00000000-0000-0000-0000-000000000001") });
-
-            migrationBuilder.InsertData(
-                table: "PlaceDetail",
-                columns: new[] { "Id", "AC", "CarParking", "PlaceID", "Size", "Square", "TV", "Wifi" },
-                values: new object[] { 1, true, true, 1, 3, 50, true, true });
-
-            migrationBuilder.InsertData(
-                table: "PlaceImage",
-                columns: new[] { "Id", "CurrentPlaceId", "DateCreated", "Location", "Title" },
-                values: new object[] { 1, 1, new DateTime(2022, 6, 16, 16, 39, 40, 186, DateTimeKind.Local).AddTicks(2422), "D:\\UserData\\Documents\\source\\repos\\TravelWebsite\\DataAccess\\Image\\1.jpg", "anh1" });
+                columns: new[] { "Id", "Created", "CreatedBy", "Deposit", "FromTime", "LastModified", "LastModifiedBy", "PaymentStatus", "PlaceId", "Status", "ToTime", "UserId" },
+                values: new object[] { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", 0m, new DateTime(2022, 6, 7, 11, 58, 47, 936, DateTimeKind.Local).AddTicks(9409), null, "", 2, 1, 0, new DateTime(2022, 6, 27, 11, 58, 47, 936, DateTimeKind.Local).AddTicks(9422), new Guid("00000000-0000-0000-0000-000000000003") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Booking_PlaceId",
@@ -285,15 +265,9 @@ namespace TravelWebsite.DataAccess.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PlaceDetail_PlaceID",
-                table: "PlaceDetail",
-                column: "PlaceID",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PlaceImage_CurrentPlaceId",
+                name: "IX_PlaceImage_PlaceId",
                 table: "PlaceImage",
-                column: "CurrentPlaceId");
+                column: "PlaceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RefreshToken_UserId",
@@ -311,9 +285,6 @@ namespace TravelWebsite.DataAccess.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Booking");
-
-            migrationBuilder.DropTable(
-                name: "PlaceDetail");
 
             migrationBuilder.DropTable(
                 name: "PlaceImage");

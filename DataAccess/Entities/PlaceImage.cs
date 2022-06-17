@@ -1,24 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
+﻿using TravelWebsite.DataAccess.Common;
 
 namespace TravelWebsite.DataAccess.Entities
 {
-
-    public class PlaceImage
+    public class PlaceImage : AuditableEntity
     {
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string Location { get; set; }
-        public DateTime DateCreated { get; set; }
-
-
-        // Place - Image
-        public int CurrentPlaceId { get; set; }
-        public Place Place { get; set; }
+        public Byte[] File { get; set; } = default!;
+        public string FileName { get; set; } = default!;
+        public Place Place { get; set; } = default!;
     }
 }

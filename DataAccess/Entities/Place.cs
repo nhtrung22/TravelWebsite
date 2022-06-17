@@ -1,41 +1,25 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TravelWebsite.DataAccess.Common;
 
 namespace TravelWebsite.DataAccess.Entities
 {
-    public class Place
+    public class Place : AuditableEntity
     {
         [Key]
         public int Id { get; set; } // PK
-
-        public string Name { get; set; }
-
-        public string Address { get; set; }
-
-        public string ShortDicription { get; set; }
-
-        public decimal Latitude { get; set; }
-        public decimal Longtitude { get; set; }
-
-        // Place - Place Detail
-        public PlaceDetail PlaceDetail { get; set; }
-
-        // Place - Booking
-        public ICollection<Booking> Bookings { get; set; }
-
-
-        // City - Place
-        public int CityId { get; set; }
-        public City City { get; set; }
-
-        // PlaceType - Place
-        public int PlaceTypeId { get; set; }
-        public PlaceType PlaceType { get; set; }
-
-        // User - Place
-        public Guid UserId { get; set; }
-        public User User { get; set; }
-
-        // Place - Image
-        public ICollection<PlaceImage> Images { get; set; }
+        public string Name { get; set; } = default!;
+        public string Address { get; set; } = default!;
+        public string Discription { get; set; } = default!;
+        public decimal Price { get; set; } = default!;
+        public int NumberOfAdults { get; set; }
+        public int NumberOfKids { get; set; }
+        public int CityId { get; set; } = default!;
+        public City City { get; set; } = default!;
+        public int PlaceTypeId { get; set; } = default!;
+        public PlaceType PlaceType { get; set; } = default!;
+        public Guid UserId { get; set; } = default!;
+        public User User { get; set; } = default!;
+        public ICollection<Booking> Bookings { get; set; } = default!;
+        public ICollection<PlaceImage> Images { get; set; } = default!;
     }
 }
