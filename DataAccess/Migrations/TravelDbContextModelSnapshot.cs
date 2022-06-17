@@ -80,12 +80,12 @@ namespace TravelWebsite.DataAccess.Migrations
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = "",
                             Deposit = 0m,
-                            FromTime = new DateTime(2022, 6, 7, 12, 28, 16, 186, DateTimeKind.Local).AddTicks(1561),
+                            FromTime = new DateTime(2022, 6, 7, 14, 48, 17, 268, DateTimeKind.Local).AddTicks(8004),
                             LastModifiedBy = "",
                             PaymentStatus = 2,
                             PlaceId = 1,
                             Status = 0,
-                            ToTime = new DateTime(2022, 6, 27, 12, 28, 16, 186, DateTimeKind.Local).AddTicks(1575),
+                            ToTime = new DateTime(2022, 6, 27, 14, 48, 17, 268, DateTimeKind.Local).AddTicks(8019),
                             UserId = new Guid("00000000-0000-0000-0000-000000000003")
                         });
                 });
@@ -435,7 +435,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             CreatedBy = "",
                             Email = "admin@gmail.com",
                             LastModifiedBy = "",
-                            PasswordHash = "$2a$11$RqAVGaIHy4K2bcKuzdn7ru1KMXCSbQkL9skaiB7/j34h6evGoy16K",
+                            PasswordHash = "$2a$11$hSBWcP5tY463Y4sr7HUQvOdQRlTQuBZzcxi1EOvtKHhTU5V2ybK1C",
                             PhoneNumber = "0123456789",
                             UserName = "admin",
                             UserType = 2
@@ -447,7 +447,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             CreatedBy = "",
                             Email = "owner@gmail.com",
                             LastModifiedBy = "",
-                            PasswordHash = "$2a$11$yn9lJkfFtwetHBvJxaWa..q2rCs9ID0FnhMhE3GuRG/6StzNbhHpy",
+                            PasswordHash = "$2a$11$XEwSmuzUYYB96dVvzCN1e.8Fxs/CsYwnexZXLf8Oa7oYeAmg2I4ty",
                             PhoneNumber = "0123456789",
                             UserName = "owner",
                             UserType = 1
@@ -459,7 +459,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             CreatedBy = "",
                             Email = "client@gmail.com",
                             LastModifiedBy = "",
-                            PasswordHash = "$2a$11$PHc3wHg4DS/0Zm1U0eB.yOFYCKaJs.FT2yceruPmmBFNyJC9TbwfO",
+                            PasswordHash = "$2a$11$FDnq6V/dsDg7eruD9fVoFeWV7xgeURtDdhcs.echl6uYWAwX0KN/u",
                             PhoneNumber = "0123456789",
                             UserName = "client",
                             UserType = 0
@@ -515,7 +515,7 @@ namespace TravelWebsite.DataAccess.Migrations
             modelBuilder.Entity("TravelWebsite.DataAccess.Entities.PlaceImage", b =>
                 {
                     b.HasOne("TravelWebsite.DataAccess.Entities.Place", "Place")
-                        .WithMany("Images")
+                        .WithMany("PlaceImages")
                         .HasForeignKey("PlaceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -587,7 +587,7 @@ namespace TravelWebsite.DataAccess.Migrations
                 {
                     b.Navigation("Bookings");
 
-                    b.Navigation("Images");
+                    b.Navigation("PlaceImages");
                 });
 
             modelBuilder.Entity("TravelWebsite.DataAccess.Entities.PlaceType", b =>

@@ -60,6 +60,6 @@ namespace TravelWebsite.DataAccess.EF
 
         public DbSet<PlaceType> PlaceTypes { set; get; }
 
-        public DbSet<PlaceImage> Images { set; get; }
+        public DbSet<PlaceImage> PlaceImages { set; get; }
     }
 }

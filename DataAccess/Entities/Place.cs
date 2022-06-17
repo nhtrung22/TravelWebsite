@@ -20,6 +20,6 @@ namespace TravelWebsite.DataAccess.Entities
         public Guid UserId { get; set; } = default!;
         public User User { get; set; } = default!;
         public ICollection<Booking> Bookings { get; set; } = default!;
-        public ICollection<PlaceImage> Images { get; set; } = default!;
+        public ICollection<PlaceImage> PlaceImages { get; set; } = default!;
     }
 }

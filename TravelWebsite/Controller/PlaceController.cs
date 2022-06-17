@@ -3,12 +3,13 @@ using TravelWebsite.Business.Common.Attributes;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.Models;
 using TravelWebsite.Business.Models.Commands;
+using TravelWebsite.Business.Models.Commands.CreatePlace;
 using TravelWebsite.Business.Models.DTO;
 using TravelWebsite.Business.Models.Queries;
 
 namespace TravelWebsite.API.Controllers
 {
-    [Authorize("Renter")]
+    [Authorize("Owner")]
     public class PlaceController : BaseController
     {
         private readonly IPlaceService _placeService;
@@ -40,15 +41,6 @@ namespace TravelWebsite.API.Controllers
         public async Task<ActionResult<PaginatedList<PlaceDTO>>> Get([FromQuery] GetPlacesQuery request)
         {
             var place = await _placeService.Get(request);
-            //var metadata = new
-            //{
-            //    place.TotalCount,
-            //    place.PageSize,
-            //    place.CurrentPage,
-            //    place.HasNext,
-            //    place.HasPrevious,
-            //};
-            //Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
             return place;
         }
 
