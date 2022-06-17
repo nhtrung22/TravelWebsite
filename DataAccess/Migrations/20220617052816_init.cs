@@ -74,7 +74,7 @@ namespace TravelWebsite.DataAccess.Migrations
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Discription = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     NumberOfAdults = table.Column<int>(type: "int", nullable: false),
                     NumberOfKids = table.Column<int>(type: "int", nullable: false),
                     CityId = table.Column<int>(type: "int", nullable: false),
@@ -143,7 +143,7 @@ namespace TravelWebsite.DataAccess.Migrations
                     ToTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     PaymentStatus = table.Column<int>(type: "int", nullable: false),
-                    Deposit = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Deposit = table.Column<decimal>(type: "decimal(18,4)", nullable: false),
                     PlaceId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -214,9 +214,9 @@ namespace TravelWebsite.DataAccess.Migrations
                 columns: new[] { "Id", "Created", "CreatedBy", "Email", "LastModified", "LastModifiedBy", "PasswordHash", "PhoneNumber", "UserName", "UserType" },
                 values: new object[,]
                 {
-                    { new Guid("00000000-0000-0000-0000-000000000001"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "admin@gmail.com", null, "", "$2a$11$N9eGatXwAHnKNPwg6VZU2ucuU4HQc/tCfLEOGFhmeG4r58iCfzqUC", "0123456789", "admin", 2 },
-                    { new Guid("00000000-0000-0000-0000-000000000002"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "owner@gmail.com", null, "", "$2a$11$tdlv2IV4xb5ejRWiqG5Dg.uSzvIbzGQSAaK98CPQs54potpURvdZ6", "0123456789", "owner", 1 },
-                    { new Guid("00000000-0000-0000-0000-000000000003"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "client@gmail.com", null, "", "$2a$11$Hq.h9Gunk1WvGo5BJoyMPe.74.TXisKKKhvIRaYZTN3TWpv0.oDYe", "0123456789", "client", 0 }
+                    { new Guid("00000000-0000-0000-0000-000000000001"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "admin@gmail.com", null, "", "$2a$11$RqAVGaIHy4K2bcKuzdn7ru1KMXCSbQkL9skaiB7/j34h6evGoy16K", "0123456789", "admin", 2 },
+                    { new Guid("00000000-0000-0000-0000-000000000002"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "owner@gmail.com", null, "", "$2a$11$yn9lJkfFtwetHBvJxaWa..q2rCs9ID0FnhMhE3GuRG/6StzNbhHpy", "0123456789", "owner", 1 },
+                    { new Guid("00000000-0000-0000-0000-000000000003"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", "client@gmail.com", null, "", "$2a$11$PHc3wHg4DS/0Zm1U0eB.yOFYCKaJs.FT2yceruPmmBFNyJC9TbwfO", "0123456789", "client", 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -237,7 +237,7 @@ namespace TravelWebsite.DataAccess.Migrations
             migrationBuilder.InsertData(
                 table: "Booking",
                 columns: new[] { "Id", "Created", "CreatedBy", "Deposit", "FromTime", "LastModified", "LastModifiedBy", "PaymentStatus", "PlaceId", "Status", "ToTime", "UserId" },
-                values: new object[] { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", 0m, new DateTime(2022, 6, 7, 11, 58, 47, 936, DateTimeKind.Local).AddTicks(9409), null, "", 2, 1, 0, new DateTime(2022, 6, 27, 11, 58, 47, 936, DateTimeKind.Local).AddTicks(9422), new Guid("00000000-0000-0000-0000-000000000003") });
+                values: new object[] { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "", 0m, new DateTime(2022, 6, 7, 12, 28, 16, 186, DateTimeKind.Local).AddTicks(1561), null, "", 2, 1, 0, new DateTime(2022, 6, 27, 12, 28, 16, 186, DateTimeKind.Local).AddTicks(1575), new Guid("00000000-0000-0000-0000-000000000003") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Booking_PlaceId",

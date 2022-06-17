@@ -12,7 +12,7 @@ using TravelWebsite.DataAccess.EF;
 namespace TravelWebsite.DataAccess.Migrations
 {
     [DbContext(typeof(TravelDbContext))]
-    [Migration("20220617045848_init")]
+    [Migration("20220617052816_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,7 +40,7 @@ namespace TravelWebsite.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Deposit")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<DateTime>("FromTime")
                         .HasColumnType("datetime2");
@@ -82,12 +82,12 @@ namespace TravelWebsite.DataAccess.Migrations
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = "",
                             Deposit = 0m,
-                            FromTime = new DateTime(2022, 6, 7, 11, 58, 47, 936, DateTimeKind.Local).AddTicks(9409),
+                            FromTime = new DateTime(2022, 6, 7, 12, 28, 16, 186, DateTimeKind.Local).AddTicks(1561),
                             LastModifiedBy = "",
                             PaymentStatus = 2,
                             PlaceId = 1,
                             Status = 0,
-                            ToTime = new DateTime(2022, 6, 27, 11, 58, 47, 936, DateTimeKind.Local).AddTicks(9422),
+                            ToTime = new DateTime(2022, 6, 27, 12, 28, 16, 186, DateTimeKind.Local).AddTicks(1575),
                             UserId = new Guid("00000000-0000-0000-0000-000000000003")
                         });
                 });
@@ -225,7 +225,7 @@ namespace TravelWebsite.DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -437,7 +437,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             CreatedBy = "",
                             Email = "admin@gmail.com",
                             LastModifiedBy = "",
-                            PasswordHash = "$2a$11$N9eGatXwAHnKNPwg6VZU2ucuU4HQc/tCfLEOGFhmeG4r58iCfzqUC",
+                            PasswordHash = "$2a$11$RqAVGaIHy4K2bcKuzdn7ru1KMXCSbQkL9skaiB7/j34h6evGoy16K",
                             PhoneNumber = "0123456789",
                             UserName = "admin",
                             UserType = 2
@@ -449,7 +449,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             CreatedBy = "",
                             Email = "owner@gmail.com",
                             LastModifiedBy = "",
-                            PasswordHash = "$2a$11$tdlv2IV4xb5ejRWiqG5Dg.uSzvIbzGQSAaK98CPQs54potpURvdZ6",
+                            PasswordHash = "$2a$11$yn9lJkfFtwetHBvJxaWa..q2rCs9ID0FnhMhE3GuRG/6StzNbhHpy",
                             PhoneNumber = "0123456789",
                             UserName = "owner",
                             UserType = 1
@@ -461,7 +461,7 @@ namespace TravelWebsite.DataAccess.Migrations
                             CreatedBy = "",
                             Email = "client@gmail.com",
                             LastModifiedBy = "",
-                            PasswordHash = "$2a$11$Hq.h9Gunk1WvGo5BJoyMPe.74.TXisKKKhvIRaYZTN3TWpv0.oDYe",
+                            PasswordHash = "$2a$11$PHc3wHg4DS/0Zm1U0eB.yOFYCKaJs.FT2yceruPmmBFNyJC9TbwfO",
                             PhoneNumber = "0123456789",
                             UserName = "client",
                             UserType = 0
