@@ -110,5 +110,25 @@ namespace TravelWebsite.Business.Services.PlaceService
             var result = await _context.Places.Include(item => item.PlaceImages).FirstOrDefaultAsync(item => item.Id == id);
             return _mapper.Map<PlaceDTO>(result);
         }
+
+        public async Task<PaginatedList<PlaceDTO>> GetByCurrentUser(GetPlacesQuery request)
+        {
+            Expression<Func<Place, bool>> predicate = PredicateBuilder.True<Place>();
+            if (!string.IsNullOrWhiteSpace(request.City))
+            {
+                predicate = predicate.And(item => item.City.Name == request.City.Trim());
+            }
+            if (request.NumberOfAdults > 0)
+            {
+                predicate = predicate.And(item => item.NumberOfAdults >= request.NumberOfAdults);
+            }
+            if (request.NumberOfKids > 0)
+            {
+                predicate = predicate.And(item => item.NumberOfAdults >= request.NumberOfKids);
+            }
+            predicate = predicate.And(item => item.UserId == _currentUserService.UserId);
+            var placeList = await PaginatedList<PlaceDTO>.CreateAsync(_context.Places.Include(item => item.PlaceImages).Where(predicate).ProjectTo<PlaceDTO>(_mapper.ConfigurationProvider), request.PageNumber, request.PageSize);
+            return placeList;
+        }
     }
 }

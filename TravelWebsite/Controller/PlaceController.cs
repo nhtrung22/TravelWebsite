@@ -44,6 +44,13 @@ namespace TravelWebsite.API.Controllers
             return place;
         }
 
+        [HttpGet("GetByCurrentUser")]
+        public async Task<ActionResult<PaginatedList<PlaceDTO>>> GetByCurrentUser([FromQuery] GetPlacesQuery request)
+        {
+            var place = await _placeService.GetByCurrentUser(request);
+            return place;
+        }
+
         [HttpGet("{id}")]
         [AllowAnonymous]
         public async Task<ActionResult<PlaceDTO>> Get(int id)
