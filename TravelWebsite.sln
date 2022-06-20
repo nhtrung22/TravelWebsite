@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelWebsite.API", "Travel
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelWebsite.DataAccess", "DataAccess\TravelWebsite.DataAccess.csproj", "{6BAD734E-DAF8-4477-AC40-B95687BBC5F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelWebsite.Business", "TravelWebsite.Business\TravelWebsite.Business.csproj", "{E0020800-F899-4A3E-8C07-F601D219E32E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelWebsite.Business", "TravelWebsite.Business\TravelWebsite.Business.csproj", "{E0020800-F899-4A3E-8C07-F601D219E32E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

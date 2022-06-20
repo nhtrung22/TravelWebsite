@@ -12,7 +12,11 @@ using TravelWebsite.DataAccess.EF;
 namespace TravelWebsite.DataAccess.Migrations
 {
     [DbContext(typeof(TravelDbContext))]
+<<<<<<<< HEAD:DataAccess/Migrations/20220620135830_init.Designer.cs
     [Migration("20220620135830_init")]
+========
+    [Migration("20220615142647_init")]
+>>>>>>>> 9d60b2836a82a7a1b07223c3ee24cf2b620562f7:DataAccess/Migrations/20220615142647_init.Designer.cs
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -79,8 +83,15 @@ namespace TravelWebsite.DataAccess.Migrations
                         new
                         {
                             Id = 1,
+<<<<<<<< HEAD:DataAccess/Migrations/20220620135830_init.Designer.cs
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = "",
+========
+                            BookingDate = new DateTime(2022, 5, 31, 21, 26, 47, 375, DateTimeKind.Local).AddTicks(8798),
+                            BookingFromTime = new DateTime(2022, 6, 5, 21, 26, 47, 375, DateTimeKind.Local).AddTicks(8791),
+                            BookingToTime = new DateTime(2022, 6, 25, 21, 26, 47, 375, DateTimeKind.Local).AddTicks(8797),
+                            CurrentUserId = new Guid("00000000-0000-0000-0000-000000000001"),
+>>>>>>>> 9d60b2836a82a7a1b07223c3ee24cf2b620562f7:DataAccess/Migrations/20220615142647_init.Designer.cs
                             Deposit = 0m,
                             FromTime = new DateTime(2022, 6, 10, 20, 58, 29, 872, DateTimeKind.Local).AddTicks(6797),
                             LastModifiedBy = "",
@@ -329,6 +340,19 @@ namespace TravelWebsite.DataAccess.Migrations
                     b.HasIndex("PlaceId");
 
                     b.ToTable("PlaceImage", (string)null);
+<<<<<<<< HEAD:DataAccess/Migrations/20220620135830_init.Designer.cs
+========
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CurrentPlaceId = 1,
+                            DateCreated = new DateTime(2022, 6, 15, 21, 26, 47, 375, DateTimeKind.Local).AddTicks(8686),
+                            Location = "D:\\UserData\\Documents\\source\\repos\\TravelWebsite\\DataAccess\\Image\\1.jpg",
+                            Title = "anh1"
+                        });
+>>>>>>>> 9d60b2836a82a7a1b07223c3ee24cf2b620562f7:DataAccess/Migrations/20220615142647_init.Designer.cs
                 });
 
             modelBuilder.Entity("TravelWebsite.DataAccess.Entities.PlaceType", b =>
@@ -433,11 +457,17 @@ namespace TravelWebsite.DataAccess.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000001"),
+<<<<<<<< HEAD:DataAccess/Migrations/20220620135830_init.Designer.cs
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = "",
                             Email = "admin@gmail.com",
                             LastModifiedBy = "",
                             PasswordHash = "$2a$11$2WAAT3wUU1SzhzkMqMU6EeDhtAmn320a5VKmE4NX4xVyLc8NSqMNC",
+========
+                            Address = "tphcm",
+                            Email = "abc12314121@gmail.com",
+                            PasswordHash = "$2a$11$SCyhlFSMcaypy6U7csFKu.S5Mp7R4x3MSnSH/xuwZlh/XiwhZlzqa",
+>>>>>>>> 9d60b2836a82a7a1b07223c3ee24cf2b620562f7:DataAccess/Migrations/20220615142647_init.Designer.cs
                             PhoneNumber = "0123456789",
                             UserName = "admin",
                             UserType = 2
@@ -445,11 +475,17 @@ namespace TravelWebsite.DataAccess.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000002"),
+<<<<<<<< HEAD:DataAccess/Migrations/20220620135830_init.Designer.cs
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = "",
                             Email = "owner@gmail.com",
                             LastModifiedBy = "",
                             PasswordHash = "$2a$11$wswYq2ATZDqU5N9IZKt61O82G6I3NpaHJ9q0VFiJheApmy.OyIpIq",
+========
+                            Address = "tphcm",
+                            Email = "463412@gmail.com",
+                            PasswordHash = "$2a$11$Ss.wEWVcF9xyBJi7B.xz5uMgImxdxOfjCvDntfHjbI7DfsQ8YqqRO",
+>>>>>>>> 9d60b2836a82a7a1b07223c3ee24cf2b620562f7:DataAccess/Migrations/20220615142647_init.Designer.cs
                             PhoneNumber = "0123456789",
                             UserName = "owner",
                             UserType = 1
@@ -457,14 +493,73 @@ namespace TravelWebsite.DataAccess.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-000000000003"),
+<<<<<<<< HEAD:DataAccess/Migrations/20220620135830_init.Designer.cs
                             Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CreatedBy = "",
                             Email = "client@gmail.com",
                             LastModifiedBy = "",
                             PasswordHash = "$2a$11$oG8DYN0QlQnzNykWiKyO1OTHZsJqIUlE/y.uEpxe5oJD2kQqHVte6",
+========
+                            Address = "hanoi",
+                            Email = "241241@gmail.com",
+                            PasswordHash = "$2a$11$XEZzey4TscbS7ACxqZGxTuY3J9/UwoOHohywIUN2wj8OmxqTibnOG",
+>>>>>>>> 9d60b2836a82a7a1b07223c3ee24cf2b620562f7:DataAccess/Migrations/20220615142647_init.Designer.cs
                             PhoneNumber = "0123456789",
                             UserName = "client",
                             UserType = 0
+<<<<<<<< HEAD:DataAccess/Migrations/20220620135830_init.Designer.cs
+========
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-000000000004"),
+                            Address = "da nang",
+                            Email = "abc1236187854@gmail.com",
+                            PasswordHash = "$2a$11$78FUFTKezA9ehv4GOmCrUuDxAgakelfwHnl8voviDGZDAbrNK8DdG",
+                            PhoneNumber = "0123456789",
+                            UserName = "user4",
+                            UserType = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-000000000005"),
+                            Address = "da nang",
+                            Email = "abc123618654@gmail.com",
+                            PasswordHash = "$2a$11$OQ/MFpFp2KnmVBq1jTlhDen63eQgJMoENKwH0cOWjvz5jv8CymH1q",
+                            PhoneNumber = "0123456789",
+                            UserName = "user5",
+                            UserType = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-000000000006"),
+                            Address = "da nang",
+                            Email = "abc123656714@gmail.com",
+                            PasswordHash = "$2a$11$0OsVFPVcmpkmM2SH0otuA./oP98lccF0xNKnIqgTGKjCbW9QpLsAC",
+                            PhoneNumber = "0123456789",
+                            UserName = "user6",
+                            UserType = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-000000000007"),
+                            Address = "da nang",
+                            Email = "abc123688814@gmail.com",
+                            PasswordHash = "$2a$11$neQ8XWKq8toH1I78k80Ys.UDWq0UWQX4JqLvgsFLfyKT3b8QQKfrK",
+                            PhoneNumber = "0123456789",
+                            UserName = "user7",
+                            UserType = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-000000000008"),
+                            Address = "da nang",
+                            Email = "abc125673614@gmail.com",
+                            PasswordHash = "$2a$11$/IbjXFNwRtAsvWCYwTWNLukrPgvHz7uPiU8F8Q25UaZOaZIre4x2S",
+                            PhoneNumber = "0123456789",
+                            UserName = "user8",
+                            UserType = 1
+>>>>>>>> 9d60b2836a82a7a1b07223c3ee24cf2b620562f7:DataAccess/Migrations/20220615142647_init.Designer.cs
                         });
                 });
 
