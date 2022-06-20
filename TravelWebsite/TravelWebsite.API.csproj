@@ -7,11 +7,14 @@
     <UserSecretsId>bb8d0119-9294-4fb5-8cdb-7f52911e387a</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'TravelWebsite' " />
   <ItemGroup>
     <Compile Remove="Services\**" />
     <Content Remove="Services\**" />
     <EmbeddedResource Remove="Services\**" />
     <None Remove="Services\**" />
+    <Compile Remove="Controller\UserController %28copy%29.cs" />
+    <None Remove="NSwag.AspNetCore" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +46,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.16.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -36,9 +36,10 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerDocument();
 
 //trasient scoped singleton
+builder.Services.AddTransient<IPaymentService, PaymentService>();
 builder.Services.AddTransient<IPlaceService, PlaceService>();
 builder.Services.AddTransient<IBookingService, BookingService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
@@ -67,17 +68,13 @@ builder.Services.AddSingleton(mapper);
 
 var app = builder.Build();
 
-app.UseSwaggerUI(options =>
-{
-    options.DefaultModelsExpandDepth(-1);
-});
+app.UseOpenApi();
+app.UseSwaggerUi3();
 
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
     using (var scope = app.Services.CreateScope())
     {
         var initialiser = scope.ServiceProvider.GetRequiredService<TravelDbContextInitialiser>();
