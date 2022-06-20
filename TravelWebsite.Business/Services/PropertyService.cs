@@ -84,8 +84,8 @@ namespace TravelWebsite.Business.Services.PlaceService
             {
                 predicate = predicate.And(item => item.NumberOfAdults >= request.NumberOfKids);
             }
-            var placeList = await PaginatedList<PropertyDTO>.CreateAsync(_context.Properties.Include(item => item.Images).Where(predicate).ProjectTo<PropertyDTO>(_mapper.ConfigurationProvider), request.PageNumber, request.PageSize);
-            return placeList;
+            var result = await PaginatedList<PropertyDTO>.CreateAsync(_context.Properties.Include(item => item.Images).Where(predicate).ProjectTo<PropertyDTO>(_mapper.ConfigurationProvider), request.PageNumber, request.PageSize);
+            return result;
         }
 
         public async Task Delete(int id)
@@ -127,8 +127,8 @@ namespace TravelWebsite.Business.Services.PlaceService
                 predicate = predicate.And(item => item.NumberOfAdults >= request.NumberOfKids);
             }
             predicate = predicate.And(item => item.UserId == _currentUserService.UserId);
-            var placeList = await PaginatedList<PropertyDTO>.CreateAsync(_context.Properties.Include(item => item.Images).Where(predicate).ProjectTo<PropertyDTO>(_mapper.ConfigurationProvider), request.PageNumber, request.PageSize);
-            return placeList;
+            var result = await PaginatedList<PropertyDTO>.CreateAsync(_context.Properties.Include(item => item.Images).Where(predicate).ProjectTo<PropertyDTO>(_mapper.ConfigurationProvider), request.PageNumber, request.PageSize);
+            return result;
         }
     }
 }

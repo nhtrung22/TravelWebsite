@@ -4,9 +4,9 @@ using TravelWebsite.DataAccess.Entities;
 
 namespace Business.Common.MappingConfig
 {
-    public class PlaceMappingProfile : Profile
+    public class PropertyMappingProfile : Profile
     {
-        public PlaceMappingProfile()
+        public PropertyMappingProfile()
         {
             CreateMap<Property, PropertyDTO>();
             CreateMap<PropertyDTO, Property>();

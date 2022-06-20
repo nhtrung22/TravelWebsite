@@ -4,12 +4,12 @@ using TravelWebsite.DataAccess.Entities;
 
 namespace Business.Common.MappingConfig
 {
-    public class PlaceImageMappingProfile : Profile
+    public class PropertyImageMappingProfile : Profile
     {
-        public PlaceImageMappingProfile()
+        public PropertyImageMappingProfile()
         {
-            CreateMap<Property, PropertyImageDTO>();
-            CreateMap<PropertyImageDTO, Property>();
+            CreateMap<PropertyImage, PropertyImageDTO>();
+            CreateMap<PropertyImageDTO, PropertyImage>();
         }
     }
 }
