@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TravelWebsite.DataAccess.Configurations;
 using TravelWebsite.DataAccess.Entities;
 using TravelWebsite.DataAccess.Enums;
-using TravelWebsite.DataAccess.Extensions;
 
 
 namespace TravelWebsite.DataAccess.EF

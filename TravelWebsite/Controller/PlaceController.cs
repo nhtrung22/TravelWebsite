@@ -44,6 +44,14 @@ namespace TravelWebsite.API.Controllers
             return place;
         }
 
+        [HttpGet("{id}")]
+        [AllowAnonymous]
+        public async Task<ActionResult<PlaceDTO>> Get(int id)
+        {
+            var place = await _placeService.Get(id);
+            return place;
+        }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {

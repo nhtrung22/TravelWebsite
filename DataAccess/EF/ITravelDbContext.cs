@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TravelWebsite.DataAccess.Entities;
 
 namespace TravelWebsite.DataAccess.EF

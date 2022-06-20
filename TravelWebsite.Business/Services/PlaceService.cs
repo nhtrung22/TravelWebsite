@@ -76,6 +76,14 @@ namespace TravelWebsite.Business.Services.PlaceService
             {
                 predicate = predicate.And(item => item.City.Name == request.City.Trim());
             }
+            if (request.NumberOfAdults > 0)
+            {
+                predicate = predicate.And(item => item.NumberOfAdults >= request.NumberOfAdults);
+            }
+            if (request.NumberOfKids > 0)
+            {
+                predicate = predicate.And(item => item.NumberOfAdults >= request.NumberOfKids);
+            }
             var placeList = await PaginatedList<PlaceDTO>.CreateAsync(_context.Places.Include(item => item.PlaceImages).Where(predicate).ProjectTo<PlaceDTO>(_mapper.ConfigurationProvider), request.PageNumber, request.PageSize);
             return placeList;
         }
@@ -95,6 +103,12 @@ namespace TravelWebsite.Business.Services.PlaceService
             _mapper.Map(request, entity);
             _context.Places.Update(entity);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<PlaceDTO> Get(int id)
+        {
+            var result = await _context.Places.Include(item => item.PlaceImages).FirstOrDefaultAsync(item => item.Id == id);
+            return _mapper.Map<PlaceDTO>(result);
         }
     }
 }
