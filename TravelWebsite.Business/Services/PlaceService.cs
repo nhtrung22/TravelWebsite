@@ -100,7 +100,7 @@ namespace TravelWebsite.Business.Services.PlaceService
         {
             var entity = await _context.Places.FindAsync(id);
             if (entity == null) throw new NotFoundException(nameof(entity), id);
-            _mapper.Map(request, entity);
+            _mapper.Map(request, entity);   
             _context.Places.Update(entity);
             await _context.SaveChangesAsync();
         }
