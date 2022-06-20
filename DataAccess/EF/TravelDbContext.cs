@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TravelWebsite.DataAccess.Configurations;
 using TravelWebsite.DataAccess.Entities;
-using TravelWebsite.DataAccess.Extensions;
 
 
 namespace TravelWebsite.DataAccess.EF
@@ -18,7 +17,7 @@ namespace TravelWebsite.DataAccess.EF
 
             modelBuilder.Entity<Property>().Property(f => f.Id).ValueGeneratedOnAdd();
             modelBuilder.Entity<Property>().HasOne<City>(s => s.City).WithMany(g => g.Properties).HasForeignKey(s => s.CityId);
-            modelBuilder.Entity<Property>().HasOne<PropertyType>(s => s.Type).WithMany(g => g.Properties).HasForeignKey(s => s.PlaceTypeId);
+            modelBuilder.Entity<Property>().HasOne<PropertyType>(s => s.Type).WithMany(g => g.Properties).HasForeignKey(s => s.PropertyTypeId);
             modelBuilder.Entity<Property>().HasOne<User>(s => s.User).WithMany(g => g.Properties).HasForeignKey(s => s.UserId).OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<PropertyType>().Property(f => f.Id).ValueGeneratedOnAdd();
@@ -46,8 +45,6 @@ namespace TravelWebsite.DataAccess.EF
 
             modelBuilder.ApplyConfiguration(new PropertyImageConfig());
 
-            // Seeding data
-            modelBuilder.Seed();
         }
 
         public DbSet<User> Users { set; get; }

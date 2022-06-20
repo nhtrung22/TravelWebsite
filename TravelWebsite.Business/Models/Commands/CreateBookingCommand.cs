@@ -12,7 +12,7 @@
 
         public decimal Price { get; set; }
 
-        public int PlaceId { get; set; }
+        public int PropertyId { get; set; }
 
         public decimal Deposit { get; set; }
     }

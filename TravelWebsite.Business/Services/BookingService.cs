@@ -25,8 +25,8 @@ namespace TravelWebsite.Business.Services
 
         public async Task<int> Create(CreateBookingCommand request)
         {
-            var property = await _context.Properties.FindAsync(request.PlaceId);
-            if (property == null) throw new NotFoundException(nameof(property), request.PlaceId);
+            var property = await _context.Properties.FindAsync(request.PropertyId);
+            if (property == null) throw new NotFoundException(nameof(property), request.PropertyId);
             var user = await _context.Users.FindAsync(property.User.Id);
             if (user == null) throw new NotFoundException(nameof(user), property.User.Id);
             Booking entity = new()

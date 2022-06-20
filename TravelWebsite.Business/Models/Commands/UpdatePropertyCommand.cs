@@ -1,6 +1,6 @@
 ﻿namespace TravelWebsite.Business.Models.Commands
 {
-    public class UpdatePlaceCommand
+    public class UpdatePropertyCommand
     {
         public int Id { get; set; }
 

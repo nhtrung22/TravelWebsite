@@ -10,10 +10,10 @@ using TravelWebsite.Business.Models.Queries;
 namespace TravelWebsite.API.Controllers
 {
     [Authorize("Owner")]
-    public class PlaceController : BaseController
+    public class PropertyController : BaseController
     {
         private readonly IPropertyService _placeService;
-        public PlaceController(IPropertyService placeService)
+        public PropertyController(IPropertyService placeService)
         {
             _placeService = placeService;
         }
@@ -26,7 +26,7 @@ namespace TravelWebsite.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Update(int id, UpdatePlaceCommand request)
+        public async Task<ActionResult> Update(int id, UpdatePropertyCommand request)
         {
             if (id != request.Id)
             {

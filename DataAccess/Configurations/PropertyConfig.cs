@@ -16,7 +16,7 @@ namespace TravelWebsite.DataAccess.Configurations
             builder.Property(x => x.Address).IsRequired().HasMaxLength(100);
             builder.Property(x => x.Discription).IsRequired().HasMaxLength(1000);
             builder.Property(x => x.Price).IsRequired().HasColumnType("decimal(18,4)");
-            builder.Property(x => x.PlaceTypeId).IsRequired();
+            builder.Property(x => x.PropertyTypeId).IsRequired();
             builder.Property(x => x.CityId).IsRequired();
         }
     }

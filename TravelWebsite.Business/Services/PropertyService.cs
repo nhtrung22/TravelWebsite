@@ -96,7 +96,7 @@ namespace TravelWebsite.Business.Services.PlaceService
             await _context.SaveChangesAsync();
         }
 
-        public async Task Update(int id, UpdatePlaceCommand request)
+        public async Task Update(int id, UpdatePropertyCommand request)
         {
             var entity = await _context.Properties.FindAsync(id);
             if (entity == null) throw new NotFoundException(nameof(entity), id);

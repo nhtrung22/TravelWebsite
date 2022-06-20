@@ -15,7 +15,7 @@ namespace TravelWebsite.DataAccess.Entities
         public int NumberOfKids { get; set; }
         public int CityId { get; set; } = default!;
         public City City { get; set; } = default!;
-        public int PlaceTypeId { get; set; } = default!;
+        public int PropertyTypeId { get; set; } = default!;
         public PropertyType Type { get; set; } = default!;
         public Guid UserId { get; set; } = default!;
         public User User { get; set; } = default!;
