@@ -61,6 +61,7 @@ var config = new MapperConfiguration(cfg =>
     cfg.AddProfile(new PlaceMappingProfile());
     cfg.AddProfile(new UserMappingProfile());
     cfg.AddProfile(new BookingMappingProfile());
+    cfg.AddProfile(new CityMappingProfile());
     cfg.AddProfile(new PlaceImageMappingProfile());
     cfg.AddProfile(new RegisterModelMappingProfile());
     cfg.AddProfile(new UserUpdateMappingProfile());

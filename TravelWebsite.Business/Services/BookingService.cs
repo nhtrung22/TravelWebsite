@@ -31,7 +31,7 @@ namespace TravelWebsite.Business.Services
             if (user == null) throw new NotFoundException(nameof(user), property.User.Id);
             Booking entity = new()
             {
-                PlaceId = property.Id,
+                PropertyId = property.Id,
                 FromTime = request.FromTime,
                 ToTime = request.ToTime,
                 Deposit = request.Deposit,
@@ -67,7 +67,7 @@ namespace TravelWebsite.Business.Services
 
         public async Task<BookingDTO> Get(int id)
         {
-            var result = await _context.Bookings.Include(item => item.Property).FirstOrDefaultAsync(item => item.Id == id);
+            var result = await _context.Bookings.Include(item => item.Property).ThenInclude(item => item.City).FirstOrDefaultAsync(item => item.Id == id);
             return _mapper.Map<BookingDTO>(result);
         }
 

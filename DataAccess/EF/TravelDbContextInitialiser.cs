@@ -147,7 +147,7 @@ namespace TravelWebsite.DataAccess.EF
                     Status = 0,
                     PaymentStatus = PaymentStatus.Paid,
                     Deposit = 0,
-                    PlaceId = 1,
+                    PropertyId = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000003")
                 });
 

@@ -23,7 +23,7 @@ namespace TravelWebsite.DataAccess.EF
             modelBuilder.Entity<PropertyType>().Property(f => f.Id).ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Booking>().Property(f => f.Id).ValueGeneratedOnAdd();
-            modelBuilder.Entity<Booking>().HasOne<Property>(s => s.Property).WithMany(g => g.Bookings).HasForeignKey(s => s.PlaceId);
+            modelBuilder.Entity<Booking>().HasOne<Property>(s => s.Property).WithMany(g => g.Bookings).HasForeignKey(s => s.PropertyId);
             modelBuilder.Entity<Booking>().HasOne<User>(s => s.User).WithMany(g => g.Bookings).HasForeignKey(s => s.UserId).OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<City>().Property(f => f.Id).ValueGeneratedOnAdd();
