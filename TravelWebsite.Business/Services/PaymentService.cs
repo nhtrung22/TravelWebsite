@@ -1,5 +1,7 @@
-﻿using AutoMapper;
+﻿using System.Text;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Linq;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.Models;
@@ -17,63 +19,71 @@ namespace TravelWebsite.Business.Services
         private readonly ITravelDbContext _context;
         private readonly ICurrentUserService _currentUserService;
         private readonly IMailService _mailService;
-        public PaymentService(IMapper mapper, ITravelDbContext context, ICurrentUserService currentUserService, IMailService mailService)
+        private readonly MomoSettings _momoSettings;
+        private readonly IHttpClientFactory _clientFactory;
+
+        public PaymentService(IMapper mapper, ITravelDbContext context, ICurrentUserService currentUserService, IMailService mailService, IOptions<MomoSettings> momoSettings, IHttpClientFactory clientFactory)
         {
             _mapper = mapper;
             _context = context;
             _currentUserService = currentUserService;
             _mailService = mailService;
+            _momoSettings = momoSettings.Value;
+            _clientFactory = clientFactory;
         }
 
-        public void Create()
+        public async Task Create(decimal amount)
         {
-            //request params need to request to MoMo system
-            string endpoint = "https://test-payment.momo.vn/gw_payment/transactionProcessor";
-            string partnerCode = "MOMOOJOI20210710";
-            string accessKey = "iPXneGmrJH0G8FOP";
-            string serectkey = "sFcbSGRSJjwGxwhhcEktCHWYUuTuPNDB";
-            string orderInfo = "test";
-            string returnUrl = "https://localhost:44394/Home/ConfirmPaymentClient";
-            string notifyurl = "http://ba1adf48beba.ngrok.io/Home/SavePayment"; //lưu ý: notifyurl không được sử dụng localhost, có thể sử dụng ngrok để public localhost trong quá trình test
-
-            string amount = "1000";
             string orderid = DateTime.Now.Ticks.ToString();
             string requestId = DateTime.Now.Ticks.ToString();
             string extraData = "";
 
             //Before sign HMAC SHA256 signature
             string rawHash = "partnerCode=" +
-                partnerCode + "&accessKey=" +
-                accessKey + "&requestId=" +
+                _momoSettings.PartnerCode + "&accessKey=" +
+                _momoSettings.AccessKey + "&requestId=" +
                 requestId + "&amount=" +
-                amount + "&orderId=" +
+                ((int)amount).ToString() + "&orderId=" +
                 orderid + "&orderInfo=" +
-                orderInfo + "&returnUrl=" +
-                returnUrl + "&notifyUrl=" +
-                notifyurl + "&extraData=" +
+                _momoSettings.OrderInfo + "&returnUrl=" +
+                _momoSettings.ReturnUrl + "&notifyUrl=" +
+                _momoSettings.Notifyurl + "&extraData=" +
                 extraData;
 
             MoMoSecurity crypto = new MoMoSecurity();
             //sign signature SHA256
-            string signature = crypto.signSHA256(rawHash, serectkey);
+            string signature = crypto.signSHA256(rawHash, _momoSettings.Secretkey);
 
             //build body json request
             JObject message = new JObject
             {
-                { "partnerCode", partnerCode },
-                { "accessKey", accessKey },
+                { "partnerCode", _momoSettings.PartnerCode },
+                { "accessKey", _momoSettings.AccessKey },
                 { "requestId", requestId },
                 { "amount", amount },
                 { "orderId", orderid },
-                { "orderInfo", orderInfo },
-                { "returnUrl", returnUrl },
-                { "notifyUrl", notifyurl },
+                { "orderInfo", _momoSettings.OrderInfo },
+                { "returnUrl", _momoSettings.ReturnUrl },
+                { "notifyUrl", _momoSettings.Notifyurl },
                 { "extraData", extraData },
                 { "requestType", "captureMoMoWallet" },
                 { "signature", signature }
 
             };
-            string responseFromMomo = PaymentRequest.sendPaymentRequest(endpoint, message.ToString());
+
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(message);
+            var data = new System.Net.Http.StringContent(json, Encoding.UTF8, "application/json");
+            var client = _clientFactory.CreateClient();
+            var response = await client.PostAsync(_momoSettings.Endpoint, data);
+            if (response.IsSuccessStatusCode)
+            {
+                return;
+            }
+            else
+            {
+                throw new AppException("Something wrong");
+            }
+            //string responseFromMomo = PaymentRequest.sendPaymentRequest(_momoSettings.Endpoint, message.ToString());
             return;
         }
     }

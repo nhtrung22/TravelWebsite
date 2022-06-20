@@ -5,6 +5,6 @@ namespace TravelWebsite.Business.Services
 {
     public interface IPaymentService
     {
-        void Create();
+        Task Create(decimal amount);
     }
 }

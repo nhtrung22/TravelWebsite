@@ -18,9 +18,9 @@ public class PaymentController : BaseController
 
     [HttpPost]
     [AllowAnonymous]
-    public ActionResult Create()
+    public ActionResult Create(decimal amount)
     {
-        _paymentService.Create();
+        _paymentService.Create(amount);
         return Ok();
     }
 }

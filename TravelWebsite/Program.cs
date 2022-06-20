@@ -37,6 +37,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerDocument();
+builder.Services.AddHttpClient();
 
 //trasient scoped singleton
 builder.Services.AddTransient<IPaymentService, PaymentService>();
@@ -48,6 +49,7 @@ builder.Services.AddTransient<IJwtUtils, JwtUtils>();
 builder.Services.AddTransient<IMailService, MailService>();
 builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+builder.Services.Configure<MomoSettings>(builder.Configuration.GetSection("MomoSettings"));
 
 
 
