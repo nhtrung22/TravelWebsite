@@ -30,7 +30,7 @@ namespace TravelWebsite.Business.Services.PlaceService
             _currentUserService = currentUserService;
         }
 
-        public async Task<int> Create(CreatePlaceCommand request)
+        public async Task<int> Create(CreatePropertyCommand request)
         {
 
             var city = await _context.Cities.FindAsync(request.CityId);
@@ -54,7 +54,7 @@ namespace TravelWebsite.Business.Services.PlaceService
             };
             var result = await _context.Properties.AddAsync(entity);
             await _context.SaveChangesAsync();
-            foreach (var image in request.PlaceImages)
+            foreach (var image in request.Images)
             {
                 TravelWebsite.DataAccess.Entities.PropertyImage propertyImage = new()
                 {
@@ -69,7 +69,7 @@ namespace TravelWebsite.Business.Services.PlaceService
             return result.Entity.Id;
         }
 
-        public async Task<PaginatedList<PropertyDTO>> Get(GetPlacesQuery request)
+        public async Task<PaginatedList<PropertyDTO>> Get(GetPropertiesQuery request)
         {
             Expression<Func<Property, bool>> predicate = PredicateBuilder.True<Property>();
             if (!string.IsNullOrWhiteSpace(request.City))
@@ -111,7 +111,7 @@ namespace TravelWebsite.Business.Services.PlaceService
             return _mapper.Map<PropertyDTO>(result);
         }
 
-        public async Task<PaginatedList<PropertyDTO>> GetByCurrentUser(GetPlacesQuery request)
+        public async Task<PaginatedList<PropertyDTO>> GetByCurrentUser(GetPropertiesQuery request)
         {
             Expression<Func<Property, bool>> predicate = PredicateBuilder.True<Property>();
             if (!string.IsNullOrWhiteSpace(request.City))

@@ -1,6 +1,6 @@
 ﻿namespace TravelWebsite.Business.Models.Commands.CreatePlace
 {
-    public class CreatePlaceCommand
+    public class CreatePropertyCommand
     {
         public string Name { get; set; } = "";
         public string Address { get; set; } = "";
@@ -10,6 +10,6 @@
         public int NumberOfKids { get; set; }
         public int PlaceTypeId { get; set; }
         public int CityId { get; set; }
-        public IEnumerable<PlaceImage> PlaceImages { get; set; } = Enumerable.Empty<PlaceImage>();
+        public IEnumerable<PropertyImage> Images { get; set; } = Enumerable.Empty<PropertyImage>();
     }
 }

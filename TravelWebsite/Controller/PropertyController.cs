@@ -12,16 +12,16 @@ namespace TravelWebsite.API.Controllers
     [Authorize("Owner")]
     public class PropertyController : BaseController
     {
-        private readonly IPropertyService _placeService;
-        public PropertyController(IPropertyService placeService)
+        private readonly IPropertyService _propertyService;
+        public PropertyController(IPropertyService propertyService)
         {
-            _placeService = placeService;
+            _propertyService = propertyService;
         }
 
         [HttpPost]
-        public async Task<int> Create(CreatePlaceCommand request)
+        public async Task<int> Create(CreatePropertyCommand request)
         {
-            var result = await _placeService.Create(request);
+            var result = await _propertyService.Create(request);
             return result;
         }
 
@@ -32,22 +32,22 @@ namespace TravelWebsite.API.Controllers
             {
                 return BadRequest();
             }
-            await _placeService.Update(id, request);
+            await _propertyService.Update(id, request);
             return NoContent();
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<ActionResult<PaginatedList<PropertyDTO>>> Get([FromQuery] GetPlacesQuery request)
+        public async Task<ActionResult<PaginatedList<PropertyDTO>>> Get([FromQuery] GetPropertiesQuery request)
         {
-            var place = await _placeService.Get(request);
+            var place = await _propertyService.Get(request);
             return place;
         }
 
         [HttpGet("GetByCurrentUser")]
-        public async Task<ActionResult<PaginatedList<PropertyDTO>>> GetByCurrentUser([FromQuery] GetPlacesQuery request)
+        public async Task<ActionResult<PaginatedList<PropertyDTO>>> GetByCurrentUser([FromQuery] GetPropertiesQuery request)
         {
-            var result = await _placeService.GetByCurrentUser(request);
+            var result = await _propertyService.GetByCurrentUser(request);
             return result;
         }
 
@@ -55,14 +55,14 @@ namespace TravelWebsite.API.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<PropertyDTO>> Get(int id)
         {
-            var result = await _placeService.Get(id);
+            var result = await _propertyService.Get(id);
             return result;
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            await _placeService.Delete(id);
+            await _propertyService.Delete(id);
             return NoContent();
         }
     }

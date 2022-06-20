@@ -8,10 +8,10 @@ namespace TravelWebsite.Business.Common.Interfaces
 {
     public interface IPropertyService
     {
-        Task<int> Create(CreatePlaceCommand request);
+        Task<int> Create(CreatePropertyCommand request);
         Task Update(int id, UpdatePropertyCommand place);
-        Task<PaginatedList<PropertyDTO>> Get(GetPlacesQuery request);
-        Task<PaginatedList<PropertyDTO>> GetByCurrentUser(GetPlacesQuery request);
+        Task<PaginatedList<PropertyDTO>> Get(GetPropertiesQuery request);
+        Task<PaginatedList<PropertyDTO>> GetByCurrentUser(GetPropertiesQuery request);
         Task<PropertyDTO> Get(int id);
         Task Delete(int id);
     }

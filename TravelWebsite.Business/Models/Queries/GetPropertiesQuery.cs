@@ -1,6 +1,6 @@
 ﻿namespace TravelWebsite.Business.Models.Queries
 {
-    public class GetPlacesQuery
+    public class GetPropertiesQuery
     {
         public string City { get; set; } = "";
         public int NumberOfAdults { get; set; } = 0;

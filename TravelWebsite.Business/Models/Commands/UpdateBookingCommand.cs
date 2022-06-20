@@ -8,9 +8,9 @@
 
         public DateTime ToTime { get; set; }
 
-        public int NumberOfAdult { get; set; }
+        public int NumberOfAdults { get; set; }
 
-        public int NumberOfKid { get; set; }
+        public int NumberOfKids { get; set; }
 
         public decimal Deposit { get; set; }
     }
