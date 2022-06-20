@@ -6,7 +6,7 @@ using TravelWebsite.DataAccess.Extensions;
 
 namespace TravelWebsite.DataAccess.EF
 {
-    public class TravelDbContext : DbContext
+    public class TravelDbContext : DbContext, ITravelDbContext
     {
         public TravelDbContext(DbContextOptions options) : base(options)
         {
@@ -61,5 +61,10 @@ namespace TravelWebsite.DataAccess.EF
         public DbSet<PlaceType> PlaceTypes { set; get; }
 
         public DbSet<PlaceImage> PlaceImages { set; get; }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            return await base.SaveChangesAsync(cancellationToken);
+        }
     }
 }

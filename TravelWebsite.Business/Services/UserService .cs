@@ -13,11 +13,11 @@ namespace Business.Services.PlaceService
 
     public class UserService : IUserService
     {
-        private TravelDbContext _context;
+        private readonly ITravelDbContext _context;
         private readonly IMapper _mapper;
 
 
-        public UserService(TravelDbContext context, IMapper mapper)
+        public UserService(ITravelDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

@@ -19,11 +19,11 @@ namespace TravelWebsite.Business.Services.PlaceService
 
     public class PlaceService : IPlaceService
     {
-        private readonly TravelDbContext _context;
+        private readonly ITravelDbContext _context;
         private readonly IMapper _mapper;
         private readonly ICurrentUserService _currentUserService;
 
-        public PlaceService(TravelDbContext context, IMapper mapper, ICurrentUserService currentUserService)
+        public PlaceService(ITravelDbContext context, IMapper mapper, ICurrentUserService currentUserService)
         {
             _context = context;
             _mapper = mapper;

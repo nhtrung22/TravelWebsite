@@ -8,10 +8,10 @@ namespace TravelWebsite.Business.Services
 {
     public class CityService : ICityService
     {
-        private readonly TravelDbContext _context;
+        private readonly ITravelDbContext _context;
 
         private readonly IMapper _mapper;
-        public CityService(TravelDbContext context, IMapper mapper)
+        public CityService(ITravelDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

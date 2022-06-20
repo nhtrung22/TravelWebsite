@@ -13,11 +13,11 @@ using TravelWebsite.DataAccess.Entities;
 
 public class JwtUtils : IJwtUtils
 {
-    private TravelDbContext _context;
+    private ITravelDbContext _context;
     private readonly AppSettings _appSettings;
 
     public JwtUtils(
-        TravelDbContext context,
+        ITravelDbContext context,
         IOptions<AppSettings> appSettings)
     {
         _context = context;

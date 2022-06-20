@@ -18,10 +18,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 // configure strongly typed settings object
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
-
-builder.Services.AddDbContext<TravelDbContext>(opt =>
+if (builder.Configuration.GetValue<bool>("UseInMemoryDatabase"))
+{
+    builder.Services.AddDbContext<TravelDbContext>(options =>
+        options.UseInMemoryDatabase("TravelDatabase"));
+}
+else
+{
+    builder.Services.AddDbContext<TravelDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("TravelDatabase"), x => x.UseNetTopologySuite()
     ));
+}
+builder.Services.AddScoped<ITravelDbContext>(provider => provider.GetRequiredService<TravelDbContext>());
+builder.Services.AddScoped<TravelDbContextInitialiser>();
 
 builder.Services.AddHttpContextAccessor();
 
@@ -36,7 +45,7 @@ builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IJwtUtils, JwtUtils>();
 builder.Services.AddTransient<IMailService, MailService>();
-builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 
 
@@ -69,6 +78,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    using (var scope = app.Services.CreateScope())
+    {
+        var initialiser = scope.ServiceProvider.GetRequiredService<TravelDbContextInitialiser>();
+        await initialiser.InitialiseAsync();
+        await initialiser.SeedAsync();
+    }
 }
 // global error handler
 app.UseMiddleware<ErrorHandlerMiddleware>();

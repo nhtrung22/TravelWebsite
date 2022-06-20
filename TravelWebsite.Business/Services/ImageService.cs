@@ -13,10 +13,10 @@ namespace TravelWebsite.Business.Services
 {
     public class ImageService
     {
-        private TravelDbContext _context;
+        private readonly ITravelDbContext _context;
         private readonly IMapper _mapper;
 
-        public ImageService(TravelDbContext context)
+        public ImageService(ITravelDbContext context)
         {
             _context = context;
         }

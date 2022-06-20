@@ -16,13 +16,13 @@ namespace Business.Services.PlaceService
 
     public class AuthService : IAuthService
     {
-        private TravelDbContext _context;
-        private IJwtUtils _jwtUtils;
+        private readonly ITravelDbContext _context;
+        private readonly IJwtUtils _jwtUtils;
         private readonly AppSettings _appSettings;
         private readonly IMapper _mapper;
 
         public AuthService(
-            TravelDbContext context,
+            ITravelDbContext context,
             IJwtUtils jwtUtils,
             IOptions<AppSettings> appSettings,
             IMapper mapper)
@@ -33,7 +33,7 @@ namespace Business.Services.PlaceService
             _mapper = mapper;
         }
 
-        public AuthenticateResponse Authenticate(AuthenticateRequest model, string ipAddress)
+        public async Task<AuthenticateResponse> Authenticate(AuthenticateRequest model, string ipAddress)
         {
             var user = _context.Users.SingleOrDefault(x => x.UserName == model.UserName);
 
@@ -52,13 +52,13 @@ namespace Business.Services.PlaceService
             removeOldRefreshTokens(user);
 
             // save changes to db
-            _context.Update(user);
-            _context.SaveChanges();
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
 
             return new AuthenticateResponse(user, jwtToken, refreshToken.Token);
         }
 
-        public AuthenticateResponse RefreshToken(string token, string ipAddress)
+        public async Task<AuthenticateResponse> RefreshToken(string token, string ipAddress)
         {
             var user = getUserByRefreshToken(token);
             var refreshToken = user.RefreshTokens.Single(x => x.Token == token);
@@ -67,8 +67,8 @@ namespace Business.Services.PlaceService
             {
                 // revoke all descendant tokens in case this token has been compromised
                 revokeDescendantRefreshTokens(refreshToken, user, ipAddress, $"Attempted reuse of revoked ancestor token: {token}");
-                _context.Update(user);
-                _context.SaveChanges();
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
             }
 
             if (!refreshToken.IsActive)
@@ -82,8 +82,8 @@ namespace Business.Services.PlaceService
             removeOldRefreshTokens(user);
 
             // save changes to db
-            _context.Update(user);
-            _context.SaveChanges();
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
 
             // generate new jwt
             var jwtToken = _jwtUtils.GenerateJwtToken(user);
@@ -101,8 +101,8 @@ namespace Business.Services.PlaceService
 
             // revoke token and save
             revokeRefreshToken(refreshToken, ipAddress, "Revoked without replacement");
-            _context.Update(user);
-            _context.SaveChanges();
+            _context.Users.Update(user);
+            _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<UserDTO>> GetAll()

@@ -17,19 +17,19 @@ public class AuthenticateController : BaseController
 
     [AllowAnonymous]
     [HttpPost]
-    public IActionResult Authenticate(AuthenticateRequest model)
+    public async Task<IActionResult> Authenticate(AuthenticateRequest model)
     {
-        var response = _userService.Authenticate(model, ipAddress());
+        var response = await _userService.Authenticate(model, ipAddress());
         setTokenCookie(response.RefreshToken);
         return Ok(response);
     }
 
     [AllowAnonymous]
     [HttpPost("refresh-token")]
-    public IActionResult RefreshToken()
+    public async Task<IActionResult> RefreshToken()
     {
         var refreshToken = Request.Cookies["refreshToken"];
-        var response = _userService.RefreshToken(refreshToken, ipAddress());
+        var response = await _userService.RefreshToken(refreshToken, ipAddress());
         setTokenCookie(response.RefreshToken);
         return Ok(response);
     }

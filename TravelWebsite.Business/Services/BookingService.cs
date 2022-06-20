@@ -12,10 +12,10 @@ namespace TravelWebsite.Business.Services
     public class BookingService : IBookingService
     {
         private readonly IMapper _mapper;
-        private readonly TravelDbContext _context;
+        private readonly ITravelDbContext _context;
         private readonly ICurrentUserService _currentUserService;
         private readonly IMailService _mailService;
-        public BookingService(IMapper mapper, TravelDbContext context, ICurrentUserService currentUserService, IMailService mailService)
+        public BookingService(IMapper mapper, ITravelDbContext context, ICurrentUserService currentUserService, IMailService mailService)
         {
             _mapper = mapper;
             _context = context;
