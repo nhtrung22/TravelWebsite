@@ -75,8 +75,8 @@ namespace TravelWebsite.DataAccess.Extensions
             );
 
             // Place Type
-            modelBuilder.Entity<PlaceType>().HasData(
-                new PlaceType()
+            modelBuilder.Entity<PropertyType>().HasData(
+                new PropertyType()
                 {
                     Id = 1,
                     Name = "abcxyz",
@@ -84,8 +84,8 @@ namespace TravelWebsite.DataAccess.Extensions
                 }
             );
             //Place
-            modelBuilder.Entity<Place>().HasData(
-                new Place()
+            modelBuilder.Entity<Property>().HasData(
+                new Property()
                 {
                     Id = 1,
                     Name = "studio",
@@ -95,7 +95,7 @@ namespace TravelWebsite.DataAccess.Extensions
                     PlaceTypeId = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000002")
                 },
-                new Place()
+                new Property()
                 {
                     Id = 2,
                     Name = "penhouse",
@@ -105,7 +105,7 @@ namespace TravelWebsite.DataAccess.Extensions
                     PlaceTypeId = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000002")
                 },
-                new Place()
+                new Property()
                 {
                     Id = 3,
                     Name = "palace",

@@ -25,20 +25,20 @@ namespace TravelWebsite.Business.Services
 
         public async Task<int> Create(CreateBookingCommand request)
         {
-            var place = await _context.Places.FindAsync(request.PlaceId);
-            if (place == null) throw new NotFoundException(nameof(place), request.PlaceId);
-            var user = await _context.Users.FindAsync(place.User.Id);
-            if (user == null) throw new NotFoundException(nameof(user), place.User.Id);
+            var property = await _context.Properties.FindAsync(request.PlaceId);
+            if (property == null) throw new NotFoundException(nameof(property), request.PlaceId);
+            var user = await _context.Users.FindAsync(property.User.Id);
+            if (user == null) throw new NotFoundException(nameof(user), property.User.Id);
             Booking entity = new()
             {
-                PlaceId = place.Id,
+                PlaceId = property.Id,
                 FromTime = request.FromTime,
                 ToTime = request.ToTime,
                 Deposit = request.Deposit,
                 PaymentStatus = DataAccess.Enums.PaymentStatus.Pending,
                 Status = DataAccess.Enums.BookingStatus.Booked,
                 UserId = user.Id,
-                Place = place
+                Property = property
             };
             var result = await _context.Bookings.AddAsync(entity);
             await _context.SaveChangesAsync();
@@ -67,7 +67,7 @@ namespace TravelWebsite.Business.Services
 
         public async Task<BookingDTO> Get(int id)
         {
-            var result = await _context.Bookings.Include(item => item.Place).FirstOrDefaultAsync(item => item.Id == id);
+            var result = await _context.Bookings.Include(item => item.Property).FirstOrDefaultAsync(item => item.Id == id);
             return _mapper.Map<BookingDTO>(result);
         }
 

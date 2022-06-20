@@ -12,8 +12,8 @@ namespace TravelWebsite.API.Controllers
     [Authorize("Owner")]
     public class PlaceController : BaseController
     {
-        private readonly IPlaceService _placeService;
-        public PlaceController(IPlaceService placeService)
+        private readonly IPropertyService _placeService;
+        public PlaceController(IPropertyService placeService)
         {
             _placeService = placeService;
         }
@@ -38,25 +38,25 @@ namespace TravelWebsite.API.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<ActionResult<PaginatedList<PlaceDTO>>> Get([FromQuery] GetPlacesQuery request)
+        public async Task<ActionResult<PaginatedList<PropertyDTO>>> Get([FromQuery] GetPlacesQuery request)
         {
             var place = await _placeService.Get(request);
             return place;
         }
 
         [HttpGet("GetByCurrentUser")]
-        public async Task<ActionResult<PaginatedList<PlaceDTO>>> GetByCurrentUser([FromQuery] GetPlacesQuery request)
+        public async Task<ActionResult<PaginatedList<PropertyDTO>>> GetByCurrentUser([FromQuery] GetPlacesQuery request)
         {
-            var place = await _placeService.GetByCurrentUser(request);
-            return place;
+            var result = await _placeService.GetByCurrentUser(request);
+            return result;
         }
 
         [HttpGet("{id}")]
         [AllowAnonymous]
-        public async Task<ActionResult<PlaceDTO>> Get(int id)
+        public async Task<ActionResult<PropertyDTO>> Get(int id)
         {
-            var place = await _placeService.Get(id);
-            return place;
+            var result = await _placeService.Get(id);
+            return result;
         }
 
         [HttpDelete("{id}")]

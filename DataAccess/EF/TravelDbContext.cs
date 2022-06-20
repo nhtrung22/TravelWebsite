@@ -16,15 +16,15 @@ namespace TravelWebsite.DataAccess.EF
         {
             //Configure using Fluent API
 
-            modelBuilder.Entity<Place>().Property(f => f.Id).ValueGeneratedOnAdd();
-            modelBuilder.Entity<Place>().HasOne<City>(s => s.City).WithMany(g => g.Places).HasForeignKey(s => s.CityId);
-            modelBuilder.Entity<Place>().HasOne<PlaceType>(s => s.PlaceType).WithMany(g => g.Places).HasForeignKey(s => s.PlaceTypeId);
-            modelBuilder.Entity<Place>().HasOne<User>(s => s.User).WithMany(g => g.Places).HasForeignKey(s => s.UserId).OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Property>().Property(f => f.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Property>().HasOne<City>(s => s.City).WithMany(g => g.Properties).HasForeignKey(s => s.CityId);
+            modelBuilder.Entity<Property>().HasOne<PropertyType>(s => s.Type).WithMany(g => g.Properties).HasForeignKey(s => s.PlaceTypeId);
+            modelBuilder.Entity<Property>().HasOne<User>(s => s.User).WithMany(g => g.Properties).HasForeignKey(s => s.UserId).OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<PlaceType>().Property(f => f.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<PropertyType>().Property(f => f.Id).ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Booking>().Property(f => f.Id).ValueGeneratedOnAdd();
-            modelBuilder.Entity<Booking>().HasOne<Place>(s => s.Place).WithMany(g => g.Bookings).HasForeignKey(s => s.PlaceId);
+            modelBuilder.Entity<Booking>().HasOne<Property>(s => s.Property).WithMany(g => g.Bookings).HasForeignKey(s => s.PlaceId);
             modelBuilder.Entity<Booking>().HasOne<User>(s => s.User).WithMany(g => g.Bookings).HasForeignKey(s => s.UserId).OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<City>().Property(f => f.Id).ValueGeneratedOnAdd();
@@ -36,15 +36,15 @@ namespace TravelWebsite.DataAccess.EF
 
             modelBuilder.ApplyConfiguration(new UserConfig());
 
-            modelBuilder.ApplyConfiguration(new PlaceConfig());
+            modelBuilder.ApplyConfiguration(new PropertyConfig());
 
-            modelBuilder.ApplyConfiguration(new PlaceTypeConfig());
+            modelBuilder.ApplyConfiguration(new PropertyTypeConfig());
 
             modelBuilder.ApplyConfiguration(new CityConfig());
 
             modelBuilder.ApplyConfiguration(new BookingConfig());
 
-            modelBuilder.ApplyConfiguration(new PlaceImageConfig());
+            modelBuilder.ApplyConfiguration(new PropertyImageConfig());
 
             // Seeding data
             modelBuilder.Seed();
@@ -56,11 +56,11 @@ namespace TravelWebsite.DataAccess.EF
 
         public DbSet<City> Cities { set; get; }
 
-        public DbSet<Place> Places { set; get; }
+        public DbSet<Property> Properties { set; get; }
 
-        public DbSet<PlaceType> PlaceTypes { set; get; }
+        public DbSet<PropertyType> PropertyTypes { set; get; }
 
-        public DbSet<PlaceImage> PlaceImages { set; get; }
+        public DbSet<PropertyImage> PropertyImages { set; get; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

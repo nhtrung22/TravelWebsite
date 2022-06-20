@@ -5,11 +5,11 @@ using TravelWebsite.DataAccess.Entities;
 
 namespace TravelWebsite.DataAccess.Configurations
 {
-    public class PlaceConfig : IEntityTypeConfiguration<Place>
+    public class PropertyConfig : IEntityTypeConfiguration<Property>
     {
-        public void Configure(EntityTypeBuilder<Place> builder)
+        public void Configure(EntityTypeBuilder<Property> builder)
         {
-            builder.ToTable("Place");
+            builder.ToTable("Property");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
             builder.Property(x => x.Name).IsRequired().HasMaxLength(100);

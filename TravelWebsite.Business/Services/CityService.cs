@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.DataAccess.EF;
-using TravelWebsite.DataAccess.Models.DTO;
+using TravelWebsite.Business.Models.DTO;
 
 namespace TravelWebsite.Business.Services
 {

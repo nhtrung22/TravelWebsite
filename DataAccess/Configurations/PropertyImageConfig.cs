@@ -4,9 +4,9 @@ using TravelWebsite.DataAccess.Entities;
 
 namespace TravelWebsite.DataAccess.Configurations
 {
-    public class PlaceImageConfig : IEntityTypeConfiguration<PlaceImage>
+    public class PropertyImageConfig : IEntityTypeConfiguration<PropertyImage>
     {
-        public void Configure(EntityTypeBuilder<PlaceImage> builder)
+        public void Configure(EntityTypeBuilder<PropertyImage> builder)
         {
             builder.ToTable("PlaceImage");
             builder.HasKey(x => x.Id);

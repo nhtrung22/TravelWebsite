@@ -11,11 +11,11 @@ namespace TravelWebsite.DataAccess.EF
 
         DbSet<City> Cities { set; get; }
 
-        DbSet<Place> Places { set; get; }
+        DbSet<Property> Properties { set; get; }
 
-        DbSet<PlaceType> PlaceTypes { set; get; }
+        DbSet<PropertyType> PropertyTypes { set; get; }
 
-        DbSet<PlaceImage> PlaceImages { set; get; }
+        DbSet<PropertyImage> PropertyImages { set; get; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }

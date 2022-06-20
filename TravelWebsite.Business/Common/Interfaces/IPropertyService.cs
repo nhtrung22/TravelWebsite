@@ -6,13 +6,13 @@ using TravelWebsite.Business.Models.Queries;
 
 namespace TravelWebsite.Business.Common.Interfaces
 {
-    public interface IPlaceService
+    public interface IPropertyService
     {
         Task<int> Create(CreatePlaceCommand request);
         Task Update(int id, UpdatePlaceCommand place);
-        Task<PaginatedList<PlaceDTO>> Get(GetPlacesQuery request);
-        Task<PaginatedList<PlaceDTO>> GetByCurrentUser(GetPlacesQuery request);
-        Task<PlaceDTO> Get(int id);
+        Task<PaginatedList<PropertyDTO>> Get(GetPlacesQuery request);
+        Task<PaginatedList<PropertyDTO>> GetByCurrentUser(GetPlacesQuery request);
+        Task<PropertyDTO> Get(int id);
         Task Delete(int id);
     }
 }

@@ -3,7 +3,7 @@ using TravelWebsite.DataAccess.Common;
 
 namespace TravelWebsite.DataAccess.Entities
 {
-    public class Place : AuditableEntity
+    public class Property : AuditableEntity
     {
         [Key]
         public int Id { get; set; } // PK
@@ -16,10 +16,10 @@ namespace TravelWebsite.DataAccess.Entities
         public int CityId { get; set; } = default!;
         public City City { get; set; } = default!;
         public int PlaceTypeId { get; set; } = default!;
-        public PlaceType PlaceType { get; set; } = default!;
+        public PropertyType Type { get; set; } = default!;
         public Guid UserId { get; set; } = default!;
         public User User { get; set; } = default!;
+        public ICollection<PropertyImage> Images { get; set; } = default!;
         public ICollection<Booking> Bookings { get; set; } = default!;
-        public ICollection<PlaceImage> PlaceImages { get; set; } = default!;
     }
 }

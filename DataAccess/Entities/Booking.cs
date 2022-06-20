@@ -14,7 +14,7 @@ namespace TravelWebsite.DataAccess.Entities
         public PaymentStatus PaymentStatus { get; set; }
         public decimal Deposit { get; set; }
         public int PlaceId { get; set; }
-        public Place Place { get; set; } = default!;
+        public Property Property { get; set; } = default!;
         public Guid UserId { get; set; }
         public User User { get; set; } = default!;
     }

@@ -41,7 +41,7 @@ builder.Services.AddHttpClient();
 
 //trasient scoped singleton
 builder.Services.AddTransient<IPaymentService, PaymentService>();
-builder.Services.AddTransient<IPlaceService, PlaceService>();
+builder.Services.AddTransient<IPropertyService, PropertyService>();
 builder.Services.AddTransient<IBookingService, BookingService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserService, UserService>();

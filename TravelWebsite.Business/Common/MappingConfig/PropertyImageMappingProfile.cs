@@ -8,8 +8,8 @@ namespace Business.Common.MappingConfig
     {
         public PlaceImageMappingProfile()
         {
-            CreateMap<PlaceImage, PlaceImageDTO>();
-            CreateMap<PlaceImageDTO, PlaceImage>();
+            CreateMap<Property, PropertyImageDTO>();
+            CreateMap<PropertyImageDTO, Property>();
         }
     }
 }

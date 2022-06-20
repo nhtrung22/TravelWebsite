@@ -16,7 +16,7 @@ namespace TravelWebsite.Business.Models.DTO
 
         public decimal Price { get; set; }
 
-        public PlaceDTO Place { get; set; }
+        public PropertyDTO Property { get; set; } = default!;
 
         public BookingStatus Status { get; set; }
 

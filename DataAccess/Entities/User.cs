@@ -18,7 +18,7 @@ namespace TravelWebsite.DataAccess.Entities
         public string PhoneNumber { get; set; } = default!;
         public UserType UserType { get; set; }
         public ICollection<Booking> Bookings { get; set; } = default!;
-        public ICollection<Place> Places { get; set; } = default!;
+        public ICollection<Property> Properties { get; set; } = default!;
         [JsonIgnore]
         public List<RefreshToken> RefreshTokens { get; set; } = default!;
     }

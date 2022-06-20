@@ -1,4 +1,4 @@
-﻿using TravelWebsite.DataAccess.Models.DTO;
+﻿using TravelWebsite.Business.Models.DTO;
 
 namespace TravelWebsite.Business.Common.Interfaces
 {

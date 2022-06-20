@@ -2,12 +2,12 @@
 
 namespace TravelWebsite.DataAccess.Entities
 {
-    public class PlaceImage : AuditableEntity
+    public class PropertyImage : AuditableEntity
     {
         public int Id { get; set; }
         public byte[] File { get; set; } = default!;
         public string FileName { get; set; } = default!;
-        public int PlaceId { get; set; }
-        public Place Place { get; set; } = default!;
+        public int PropertyId { get; set; }
+        public Property Property { get; set; } = default!;
     }
 }

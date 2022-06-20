@@ -2,7 +2,7 @@
 
 namespace TravelWebsite.Business.Models.DTO
 {
-    public class CityDTO
+    public class PropertyTypeDTO
     {
         public string Name { get; set; } = default!;
         public string Description { get; set; } = default!;
