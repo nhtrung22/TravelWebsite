@@ -74,16 +74,35 @@ namespace TravelWebsite.DataAccess.Extensions
                 }
             );
 
-            // Place Type
+            // Property type
             modelBuilder.Entity<PropertyType>().HasData(
                 new PropertyType()
                 {
                     Id = 1,
-                    Name = "abcxyz",
+                    Name = "Hotel",
+                    Description = "abcxyz"
+                },
+                new PropertyType()
+                {
+                    Id = 2,
+                    Name = "Apartment",
+                    Description = "abcxyz"
+                },
+                new PropertyType()
+                {
+                    Id = 3,
+                    Name = "Resort",
+                    Description = "abcxyz"
+                },
+                new PropertyType()
+                {
+                    Id = 4,
+                    Name = "Villa",
                     Description = "abcxyz"
                 }
             );
-            //Place
+
+            // Place
             modelBuilder.Entity<Property>().HasData(
                 new Property()
                 {
