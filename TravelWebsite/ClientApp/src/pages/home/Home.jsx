@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import PropertyApiService from "../../adapters/xhr/PropertyApiService";
 import Featured from "../../components/featured/Featured";
 import FeaturedProperties from "../../components/featuredProperties/FeaturedProperties";
