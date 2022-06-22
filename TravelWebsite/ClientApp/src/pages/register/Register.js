@@ -82,7 +82,7 @@ export const Register = (props) => {
         <>
           <Navbar />
           <Header type="list" />
-          <Container component="main" maxWidth="xs" className="margin bottom-4">
+          <Container component="main" maxWidth="xs" sx={{ mb: 8 }}>
             <CssBaseline />
             <Box
               sx={{
