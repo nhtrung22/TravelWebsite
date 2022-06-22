@@ -78,8 +78,8 @@ export default class Service {
     document.location = path;
   };
 
-  async get(path, callback) {
-    const response = await trackPromise(this.service.get(path));
+  async get(path, params, callback) {
+    const response = await trackPromise(this.service.get(path, { params: params }));
     return callback(response.status, response.data);
   }
 

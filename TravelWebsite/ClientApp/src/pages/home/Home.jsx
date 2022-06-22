@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PropertyApiService from "../../adapters/xhr/PropertyApiService";
 import Featured from "../../components/featured/Featured";
 import FeaturedProperties from "../../components/featuredProperties/FeaturedProperties";
@@ -10,15 +10,22 @@ import PropertyList from "../../components/propertyList/PropertyList";
 import "./home.css";
 
 const Home = () => {
+  const [featuredItems, setFeaturedItems] = useState([]);
+
+  const fetchFeaturedItems = async () => {
+    let result = await PropertyApiService.getByCity();
+    if (result) setFeaturedItems(result);
+  };
+
   useEffect(() => {
-    PropertyApiService.getAll();
+    fetchFeaturedItems();
   }, []);
   return (
     <div>
       <Navbar />
       <Header />
       <div className="homeContainer">
-        <Featured />
+        <Featured items={featuredItems} />
         <h1 className="homeTitle">Browse by property type</h1>
         <PropertyList />
         <h1 className="homeTitle">Homes guests love</h1>

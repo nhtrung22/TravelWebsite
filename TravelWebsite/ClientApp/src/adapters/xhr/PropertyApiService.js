@@ -5,10 +5,18 @@ class PropertyApiService extends Service {
     super("api");
   }
 
-  getAll() {
-    this.get(`/property`, (status, data) => {
-      console.log(data);
+  async getAll(params) {
+    let result = this.get(`/property`, params, (status, data) => {
+      return data;
     });
+    return result;
+  }
+
+  async getByCity(params) {
+    let result = this.get(`/property/GetByCity`, params, (status, data) => {
+      return data;
+    });
+    return result;
   }
 }
 

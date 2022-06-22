@@ -44,6 +44,14 @@ namespace TravelWebsite.API.Controllers
             return place;
         }
 
+        [HttpGet("GetByCity")]
+        [AllowAnonymous]
+        public async Task<ActionResult<List<PropertyByCityDTO>>> GetByCity()
+        {
+            var place = await _propertyService.GetByCity();
+            return place;
+        }
+
         [HttpGet("GetByCurrentUser")]
         public async Task<ActionResult<PaginatedList<PropertyDTO>>> GetByCurrentUser([FromQuery] GetPropertiesQuery request)
         {

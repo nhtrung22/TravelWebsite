@@ -1,13 +1,11 @@
-﻿using TravelWebsite.DataAccess.Entities;
-
-namespace TravelWebsite.Business.Models.DTO
+﻿namespace TravelWebsite.Business.Models.DTO
 {
     public class PropertyDTO
     {
         public int Id { get; set; }
         public string Name { get; set; } = default!;
         public string Address { get; set; } = default!;
-        public string Discription { get; set; } = default!;
+        public string Description { get; set; } = default!;
         public decimal Price { get; set; } = default!;
         public int NumberOfAdults { get; set; }
         public int NumberOfKids { get; set; }

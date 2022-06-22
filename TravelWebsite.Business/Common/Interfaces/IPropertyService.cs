@@ -11,6 +11,7 @@ namespace TravelWebsite.Business.Common.Interfaces
         Task<int> Create(CreatePropertyCommand request);
         Task Update(int id, UpdatePropertyCommand place);
         Task<PaginatedList<PropertyDTO>> Get(GetPropertiesQuery request);
+        Task<List<PropertyByCityDTO>> GetByCity();
         Task<PaginatedList<PropertyDTO>> GetByCurrentUser(GetPropertiesQuery request);
         Task<PropertyDTO> Get(int id);
         Task Delete(int id);

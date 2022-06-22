@@ -117,8 +117,12 @@ namespace TravelWebsite.DataAccess.EF
                     Id = 1,
                     Name = "studio",
                     Address = "bac tu liem",
-                    Discription = "abcxyz",
+                    Description = "Entire studio • 1 bathroom • 21m² 1 full bed",
+                    Price = 112,
                     CityId = 1,
+                    NumberOfAdults = 1,
+                    NumberOfKids = 0,
+                    NumberOfRooms = 2,
                     PropertyTypeId = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000002")
                 });
@@ -128,8 +132,27 @@ namespace TravelWebsite.DataAccess.EF
                     Id = 2,
                     Name = "penhouse",
                     Address = "hoan kiem",
-                    Discription = "abcxyz",
+                    Description = "Entire studio • 1 bathroom • 21m² 2 full bed",
+                    Price = 100,
+                    CityId = 2,
+                    NumberOfAdults = 1,
+                    NumberOfKids = 0,
+                    NumberOfRooms = 3,
+                    PropertyTypeId = 1,
+                    UserId = new Guid("00000000-0000-0000-0000-000000000002")
+                });
+
+                _travelDbContext.Properties.Add(new Property
+                {
+                    Id = 3,
+                    Name = "ABC",
+                    Address = "Nam A",
+                    Description = "Entire studio • 1 bathroom • 21m² 1 full bed",
+                    Price = 112,
                     CityId = 1,
+                    NumberOfAdults = 1,
+                    NumberOfKids = 0,
+                    NumberOfRooms = 2,
                     PropertyTypeId = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000002")
                 });

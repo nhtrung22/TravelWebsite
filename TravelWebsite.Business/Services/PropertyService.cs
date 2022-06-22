@@ -44,7 +44,7 @@ namespace TravelWebsite.Business.Services.PlaceService
             {
                 Name = request.Name,
                 Address = request.Address,
-                Discription = request.Description,
+                Description = request.Description,
                 Price = request.Price,
                 NumberOfAdults = request.NumberOfAdults,
                 NumberOfKids = request.NumberOfKids,
@@ -83,6 +83,18 @@ namespace TravelWebsite.Business.Services.PlaceService
             if (request.NumberOfKids > 0)
             {
                 predicate = predicate.And(item => item.NumberOfAdults >= request.NumberOfKids);
+            }
+            if (request.MaxPrice > 0)
+            {
+                predicate = predicate.And(item => item.Price <= request.MaxPrice);
+            }
+            if (request.MinPrice > 0)
+            {
+                predicate = predicate.And(item => item.NumberOfAdults >= request.MinPrice);
+            }
+            if (request.NumberOfRooms > 0)
+            {
+                predicate = predicate.And(item => item.NumberOfRooms >= request.NumberOfRooms);
             }
             var result = await PaginatedList<PropertyDTO>.CreateAsync(_context.Properties.Include(item => item.Images).Where(predicate).ProjectTo<PropertyDTO>(_mapper.ConfigurationProvider), request.PageNumber, request.PageSize);
             return result;
@@ -126,9 +138,27 @@ namespace TravelWebsite.Business.Services.PlaceService
             {
                 predicate = predicate.And(item => item.NumberOfAdults >= request.NumberOfKids);
             }
+            if (request.MaxPrice > 0)
+            {
+                predicate = predicate.And(item => item.Price <= request.MaxPrice);
+            }
+            if (request.MinPrice > 0)
+            {
+                predicate = predicate.And(item => item.NumberOfAdults >= request.MinPrice);
+            }
             predicate = predicate.And(item => item.UserId == _currentUserService.UserId);
             var result = await PaginatedList<PropertyDTO>.CreateAsync(_context.Properties.Include(item => item.Images).Where(predicate).ProjectTo<PropertyDTO>(_mapper.ConfigurationProvider), request.PageNumber, request.PageSize);
             return result;
+        }
+
+        public async Task<List<PropertyByCityDTO>> GetByCity()
+        {
+            var list = await _context.Properties.Include(item => item.City).ToListAsync();
+            if (list.Count == 0) throw new AppException();
+            var result = list.GroupBy(item => item.CityId)
+                .Select(item => new PropertyByCityDTO { Number = item.ToList().Count, City = _mapper.Map<CityDTO>(item.FirstOrDefault().City) }).ToList();
+            return result;
+
         }
     }
 }

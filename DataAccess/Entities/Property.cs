@@ -9,10 +9,11 @@ namespace TravelWebsite.DataAccess.Entities
         public int Id { get; set; } // PK
         public string Name { get; set; } = default!;
         public string Address { get; set; } = default!;
-        public string Discription { get; set; } = default!;
+        public string Description { get; set; } = default!;
         public decimal Price { get; set; } = default!;
         public int NumberOfAdults { get; set; }
         public int NumberOfKids { get; set; }
+        public int NumberOfRooms { get; set; }
         public int CityId { get; set; } = default!;
         public City City { get; set; } = default!;
         public int PropertyTypeId { get; set; } = default!;
