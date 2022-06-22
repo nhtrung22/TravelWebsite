@@ -40,16 +40,24 @@ namespace TravelWebsite.API.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<PaginatedList<PropertyDTO>>> Get([FromQuery] GetPropertiesQuery request)
         {
-            var place = await _propertyService.Get(request);
-            return place;
+            var result = await _propertyService.Get(request);
+            return result;
         }
 
         [HttpGet("GetByCity")]
         [AllowAnonymous]
         public async Task<ActionResult<List<PropertyByCityDTO>>> GetByCity()
         {
-            var place = await _propertyService.GetByCity();
-            return place;
+            var result = await _propertyService.GetByCity();
+            return result;
+        }
+
+        [HttpGet("GetByType")]
+        [AllowAnonymous]
+        public async Task<ActionResult<List<PropertyByTypeDTO>>> GetByType()
+        {
+            var result = await _propertyService.GetByType();
+            return result;
         }
 
         [HttpGet("GetByCurrentUser")]

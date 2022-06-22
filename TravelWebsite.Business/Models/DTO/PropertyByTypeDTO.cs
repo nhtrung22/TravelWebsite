@@ -1,8 +1,8 @@
 ﻿namespace TravelWebsite.Business.Models.DTO
 {
-    public class PropertyByTypeDTO
+    public class PropertyByCityDTO
     {
         public int Number { get; set; }
-        public PropertyTypeDTO Type { get; set; } = default!;
+        public CityDTO City { get; set; } = default!;
     }
 }

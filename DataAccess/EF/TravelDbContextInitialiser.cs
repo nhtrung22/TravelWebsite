@@ -153,7 +153,7 @@ namespace TravelWebsite.DataAccess.EF
                     NumberOfAdults = 1,
                     NumberOfKids = 0,
                     NumberOfRooms = 2,
-                    PropertyTypeId = 1,
+                    PropertyTypeId = 2,
                     UserId = new Guid("00000000-0000-0000-0000-000000000002")
                 });
 

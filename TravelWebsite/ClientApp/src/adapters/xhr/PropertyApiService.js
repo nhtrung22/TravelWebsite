@@ -18,6 +18,13 @@ class PropertyApiService extends Service {
     });
     return result;
   }
+
+  async getByType(params) {
+    let result = this.get(`/property/GetByType`, params, (status, data) => {
+      return data;
+    });
+    return result;
+  }
 }
 
 export default new PropertyApiService();

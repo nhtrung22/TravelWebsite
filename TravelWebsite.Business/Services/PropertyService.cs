@@ -160,5 +160,14 @@ namespace TravelWebsite.Business.Services.PlaceService
             return result;
 
         }
+
+        public async Task<List<PropertyByTypeDTO>> GetByType()
+        {
+            var list = await _context.Properties.Include(item => item.Type).ToListAsync();
+            if (list.Count == 0) throw new AppException();
+            var result = list.GroupBy(item => item.PropertyTypeId)
+                .Select(item => new PropertyByTypeDTO { Number = item.ToList().Count, Type = _mapper.Map<PropertyTypeDTO>(item.FirstOrDefault().Type) }).ToList();
+            return result;
+        }
     }
 }

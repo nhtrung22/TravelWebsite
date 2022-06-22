@@ -11,14 +11,21 @@ import "./home.css";
 
 const Home = () => {
   const [featuredItems, setFeaturedItems] = useState([]);
+  const [itemsByType, setItemsByType] = useState([]);
 
   const fetchFeaturedItems = async () => {
     let result = await PropertyApiService.getByCity();
     if (result) setFeaturedItems(result);
   };
 
+  const fetchItemsByType = async () => {
+    let result = await PropertyApiService.getByType();
+    if (result) setItemsByType(result);
+  };
+
   useEffect(() => {
     fetchFeaturedItems();
+    fetchItemsByType();
   }, []);
   return (
     <div>
@@ -27,7 +34,7 @@ const Home = () => {
       <div className="homeContainer">
         <Featured items={featuredItems} />
         <h1 className="homeTitle">Browse by property type</h1>
-        <PropertyList />
+        <PropertyList items={itemsByType} />
         <h1 className="homeTitle">Homes guests love</h1>
         <FeaturedProperties />
         <MailList />

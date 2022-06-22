@@ -12,7 +12,7 @@ const SearchItem = (props) => {
         <h1 className="siTitle">{props.name}</h1>
         {/* <span className="siDistance">500m from center</span> */}
         <span className="siCityOp">{props.city.name}</span>
-        {/* <span className="siSubtitle">Studio Apartment with Air conditioning</span> */}
+        <span className="siType">{props.type.name}</span>
         <span className="siFeatures">{props.description}</span>
         <span className="siCancelOp">Free cancellation </span>
         <span className="siCancelOpSubtitle">You can cancel later, so lock in this great price today!</span>

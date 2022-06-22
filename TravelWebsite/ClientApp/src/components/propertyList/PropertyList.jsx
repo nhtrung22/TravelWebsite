@@ -1,20 +1,22 @@
 import "./propertyList.css";
 
-const PropertyList = () => {
+const PropertyList = (props) => {
   return (
     <div className="pList">
-      <div className="pListItem">
-        <img
-          src="https://cf.bstatic.com/xdata/images/xphoto/square300/57584488.webp?k=bf724e4e9b9b75480bbe7fc675460a089ba6414fe4693b83ea3fdd8e938832a6&o="
-          alt=""
-          className="pListImg"
-        />
-        <div className="pListTitles">
-          <h1>Hotels</h1>
-          <h2>233 hotels</h2>
+      {props.items.map((item, index) => (
+        <div className="pListItem" key={index}>
+          <img
+            src="https://cf.bstatic.com/xdata/images/xphoto/square300/57584488.webp?k=bf724e4e9b9b75480bbe7fc675460a089ba6414fe4693b83ea3fdd8e938832a6&o="
+            alt=""
+            className="pListImg"
+          />
+          <div className="pListTitles">
+            <h1>{item.type.name}</h1>
+            <h2>{item.number} properties</h2>
+          </div>
         </div>
-      </div>
-      <div className="pListItem">
+      ))}
+      {/* <div className="pListItem">
         <img
           src="https://cf.bstatic.com/static/img/theme-index/carousel_320x240/card-image-apartments_300/9f60235dc09a3ac3f0a93adbc901c61ecd1ce72e.jpg"
           alt=""
@@ -57,7 +59,7 @@ const PropertyList = () => {
           <h1>Cabins</h1>
           <h2>2331 hotels</h2>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
