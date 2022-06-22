@@ -1,6 +1,7 @@
 using AutoMapper;
 using Business.Common.MappingConfig;
 using Business.Services.PlaceService;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using TravelWebsite.Business.Common.Interfaces;
@@ -38,6 +39,11 @@ builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerDocument();
 builder.Services.AddHttpClient();
+
+builder.Services.AddSpaStaticFiles(configuration =>
+{
+    configuration.RootPath = "ClientApp/dist";
+});
 
 //trasient scoped singleton
 builder.Services.AddTransient<IPaymentService, PaymentService>();
@@ -88,10 +94,13 @@ if (app.Environment.IsDevelopment())
 }
 // global error handler
 app.UseMiddleware<ErrorHandlerMiddleware>();
-
 // custom jwt auth middleware
 app.UseMiddleware<JwtMiddleware>();
 app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseSpaStaticFiles();
+
+app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
@@ -105,5 +114,21 @@ app.UseCors(x => x
     .AllowCredentials());
 
 app.MapControllers();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller}/{action=Index}/{id?}");
+});
+
+app.UseSpa(spa =>
+{
+    spa.Options.SourcePath = "ClientApp";
+    if (app.Environment.IsDevelopment())
+    {
+        spa.UseReactDevelopmentServer(npmScript: "start");
+    }
+});
 
 app.Run();
