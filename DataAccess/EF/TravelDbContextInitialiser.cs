@@ -74,6 +74,13 @@ namespace TravelWebsite.DataAccess.EF
                     Description = "xyzabc"
                 });
 
+                _travelDbContext.Cities.Add(new City
+                {
+                    Id = 3,
+                    Name = "Đà Nẵng",
+                    Description = "xyzabc"
+                });
+
                 await _travelDbContext.SaveChangesAsync();
             }
 
@@ -149,7 +156,22 @@ namespace TravelWebsite.DataAccess.EF
                     Address = "Nam A",
                     Description = "Entire studio • 1 bathroom • 21m² 1 full bed",
                     Price = 112,
-                    CityId = 1,
+                    CityId = 3,
+                    NumberOfAdults = 1,
+                    NumberOfKids = 0,
+                    NumberOfRooms = 2,
+                    PropertyTypeId = 2,
+                    UserId = new Guid("00000000-0000-0000-0000-000000000002")
+                });
+
+                _travelDbContext.Properties.Add(new Property
+                {
+                    Id = 4,
+                    Name = "EF",
+                    Address = "Nam A",
+                    Description = "Entire studio • 1 bathroom • 21m² 1 full bed",
+                    Price = 150,
+                    CityId = 3,
                     NumberOfAdults = 1,
                     NumberOfKids = 0,
                     NumberOfRooms = 2,
