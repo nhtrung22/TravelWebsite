@@ -1,14 +1,4 @@
-import {
-  Box,
-  Checkbox,
-  Container,
-  CssBaseline,
-  FormControlLabel,
-  Grid,
-  Link,
-  Typography,
-  Avatar,
-} from "@mui/material";
+import { Box, Checkbox, Container, CssBaseline, FormControlLabel, Grid, Link, Typography, Avatar } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import React, { useCallback, useContext, useState, useTransition } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -20,21 +10,24 @@ import { EmailRegExp, ValidTextRegExp } from "../../Constant";
 import MyContext from "../../contexts/MyContext";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
+import AuthApiService from "../../adapters/xhr/AuthApiService";
+import UserApiService from "../../adapters/xhr/UserApiService";
+import { MyDropdown } from "../../components/myDropdown/MyDropdown";
+import { MyCheckbox } from "../../components/myCheckbox/MyCheckbox";
 
 export const Register = (props) => {
-  const [username, setUsername] = useState("");
+  const [user, setUser] = useState({});
   const [usernameErr, setUsernameErr] = useState("");
-  const [email, setEmail] = useState("");
+  const [fullnameErr, setFullnameErr] = useState("");
   const [emailErr, setEmailErr] = useState("");
-  const [password, setPassword] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmPasswordErr, setConfirmPasswordErr] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const myContext = useContext(MyContext);
 
   const register = async () => {
+    let { username, fullname, email, password, confirmPassword } = user;
     let isValid = true;
     let validEmail = new RegExp(EmailRegExp);
     if (username == "") {
@@ -43,10 +36,16 @@ export const Register = (props) => {
     } else {
       setUsernameErr("");
     }
+    if (!fullname) {
+      setFullnameErr("Required");
+      isValid = false;
+    } else {
+      setFullnameErr("");
+    }
     if (email == "") {
       setEmailErr("Required");
       isValid = false;
-    } else if (!validEmail.tes(email)) {
+    } else if (!validEmail.test(email)) {
       setEmailErr("Invalid");
       isValid = false;
     } else setEmailErr("");
@@ -66,15 +65,10 @@ export const Register = (props) => {
     } else {
       setConfirmPasswordErr("");
     }
-    // if (isValid) {
-    //   let result = await AuthApiService.register({
-    //     username: username,
-    //     password: password,
-    //   });
-    //   if (result) {
-    //     navigate("/login", { replace: true });
-    //   }
-    // }
+    if (isValid) {
+      await UserApiService.create(user);
+      navigate("/login", { replace: true });
+    }
   };
   return (
     <MyContext.Consumer>
@@ -101,38 +95,41 @@ export const Register = (props) => {
               <Box component="form" noValidate sx={{ mt: 1 }}>
                 <MyTextField
                   label={"Username"}
-                  value={username}
-                  onChange={setUsername}
+                  value={user.username ?? ""}
+                  onChange={(value) => setUser({ ...user, username: value })}
                   regExp={ValidTextRegExp}
                   helperText={usernameErr}
                 />
                 <MyTextField
+                  label={"Fullname"}
+                  value={user.fullname ?? ""}
+                  onChange={(value) => setUser({ ...user, fullname: value })}
+                  regExp={ValidTextRegExp}
+                  helperText={fullnameErr}
+                />
+                <MyTextField
                   label={"Email"}
-                  value={email}
-                  onChange={setEmail}
+                  value={user.email ?? ""}
+                  onChange={(value) => setUser({ ...user, email: value })}
                   regExp={ValidTextRegExp}
                   helperText={emailErr}
                 />
                 <MyTextField
                   type="password"
                   label={"Password"}
-                  value={password}
-                  onChange={setPassword}
+                  value={user.password ?? ""}
+                  onChange={(value) => setUser({ ...user, password: value })}
                   helperText={passwordErr}
                 />
                 <MyTextField
                   type="password"
                   label={"Confirm password"}
-                  value={confirmPassword}
-                  onChange={setConfirmPassword}
+                  value={user.confirmPassword ?? ""}
+                  onChange={(value) => setUser({ ...user, confirmPassword: value })}
                   helperText={confirmPasswordErr}
                 />
-                <MyButton
-                  fullWidth={true}
-                  className="margin bottom-1 right-1"
-                  onClick={(e) => register()}
-                  text={"register"}
-                />
+                <MyCheckbox label="Register as an owner" onChange={(value) => setUser({ ...user, userType: value ? 1 : 0 })} />
+                <MyButton fullWidth={true} className="margin bottom-1 right-1" onClick={(e) => register()} text={"register"} />
                 <Grid container>
                   <Grid item xs>
                     <Link href="/register#" variant="body2">
@@ -146,11 +143,7 @@ export const Register = (props) => {
                   </Grid>
                 </Grid>
                 {message && (
-                  <Alert
-                    variant="filled"
-                    severity="error"
-                    className="margin top-1 bottom-1"
-                  >
+                  <Alert variant="filled" severity="error" className="margin top-1 bottom-1">
                     {message}
                   </Alert>
                 )}

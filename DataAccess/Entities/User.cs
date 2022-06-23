@@ -18,7 +18,7 @@ namespace TravelWebsite.DataAccess.Entities
         public string Email { get; set; } = default!;
         public string? Avatar { get; set; } = default!;
         public int Age { get; set; } = default!;
-        public string PhoneNumber { get; set; } = default!;
+        public string? PhoneNumber { get; set; } = default!;
         public string? Address { get; set; } = default!;
         public UserType UserType { get; set; }
         public ICollection<Booking> Bookings { get; set; } = default!;

@@ -14,6 +14,7 @@ import Hotel from "./pages/hotel/Hotel";
 import List from "./pages/list/List";
 // import "./styles/main.scss";
 import { Login } from "./pages/login/Login";
+import { Logout } from "./pages/logout/Logout";
 import { Register } from "./pages/register/Register";
 
 function App() {
@@ -68,6 +69,7 @@ function App() {
             </>
           }
         />
+        <Route path="/logout" element={<Logout />} />
         <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>

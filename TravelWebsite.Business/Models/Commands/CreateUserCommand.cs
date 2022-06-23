@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TravelWebsite.DataAccess.Enums;
 
 namespace TravelWebsite.Business.Models.Commands
 {
@@ -11,8 +12,8 @@ namespace TravelWebsite.Business.Models.Commands
         [Required]
         public string Email { get; set; }
         public string Fullname { get; set; }
-        public string Address { get; set; }
-        [Required]
-        public string PhoneNumber { get; set; }
+        public string? Address { get; set; }
+        public string? PhoneNumber { get; set; }
+        public UserType? UserType { get; set; }
     }
 }

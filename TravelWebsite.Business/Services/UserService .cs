@@ -81,8 +81,8 @@ namespace Business.Services.PlaceService
             if (_context.Users.Any(x => x.Email == request.Email))
                 throw new AppException("Email \"" + request.Email + "\" is already taken");
 
-            if (_context.Users.Any(x => x.PhoneNumber == request.PhoneNumber))
-                throw new AppException("PhoneNumber \"" + request.PhoneNumber + "\" is already taken");
+            //if (_context.Users.Any(x => x.PhoneNumber == request.PhoneNumber))
+            //    throw new AppException("PhoneNumber \"" + request.PhoneNumber + "\" is already taken");
 
             User entity = new()
             {
@@ -92,6 +92,7 @@ namespace Business.Services.PlaceService
                 Address = request.Address,
                 Email = request.Email,
                 PhoneNumber = request.PhoneNumber,
+                UserType = request.UserType.HasValue ? request.UserType.Value : TravelWebsite.DataAccess.Enums.UserType.Client,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password, GetRandomSalt())
             };
             _context.Users.Add(entity);

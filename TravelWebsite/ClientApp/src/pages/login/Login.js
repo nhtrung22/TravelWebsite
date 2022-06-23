@@ -57,7 +57,6 @@ export const Login = (props) => {
       let result = await AuthApiService.login(username, password);
       if (result) {
         dispatch({ type: "LOGIN_SUCCESS", payload: result.username });
-        console.log(getReturnUrl());
         navigateToReturnUrl(getReturnUrl());
       } else {
         setMessage("Something wrong");
