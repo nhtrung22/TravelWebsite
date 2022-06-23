@@ -2,6 +2,7 @@ import "./singleAdmin.scss";
 import Sidebar from "../../../components/sidebar/Sidebar";
 import Navbar from "../../../components/navbar/Navbar";
 import MyTable from "../../../components/myTable/MyTable";
+import NavbarAdmin from "../../../components/navbarAdmin/NavbarAdmin";
 // import Chart from "../../../components/chart/Chart";
 
 const SingleAdmin = () => {
@@ -9,7 +10,7 @@ const SingleAdmin = () => {
     <div className="single">
       <Sidebar />
       <div className="singleContainer">
-        <Navbar />
+        <NavbarAdmin />
         <div className="top">
           <div className="left">
             <div className="editButton">Edit</div>
@@ -32,9 +33,7 @@ const SingleAdmin = () => {
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Address:</span>
-                  <span className="itemValue">
-                    Elton St. 234 Garden Yd. NewYork
-                  </span>
+                  <span className="itemValue">Elton St. 234 Garden Yd. NewYork</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Country:</span>
@@ -48,8 +47,8 @@ const SingleAdmin = () => {
           </div> */}
         </div>
         <div className="bottom">
-        <h1 className="title">Last Transactions</h1>
-          <MyTable/>
+          <h1 className="title">Last Transactions</h1>
+          <MyTable />
         </div>
       </div>
     </div>
