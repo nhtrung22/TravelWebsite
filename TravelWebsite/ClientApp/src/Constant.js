@@ -31,3 +31,9 @@ export const QueryParameterNames = {
   ReturnUrl: "returnUrl",
   Message: "message",
 };
+
+export const UserType = {
+  Client: 0,
+  Owner: 1,
+  Admin: 2,
+};

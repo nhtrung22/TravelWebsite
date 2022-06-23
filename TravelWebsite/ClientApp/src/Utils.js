@@ -56,3 +56,8 @@ export function formatTime(time, upToSecs = false) {
   if (!upToSecs) return `${hours}:${minutes}`;
   else return `${hours}:${minutes}:${secs}`;
 }
+
+export function string_of_enum(enu, value) {
+  for (var k in enu) if (enu[k] == value) return k;
+  return null;
+}
