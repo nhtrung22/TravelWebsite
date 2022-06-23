@@ -1,4 +1,8 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useContext } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Header from "./components/header/Header";
+import Navbar from "./components/navbar/Navbar";
+import { AuthContext } from "./contexts/AuthContext";
 import { userInputs } from "./formSource";
 import { HomeAdmin } from "./pages/admin/homeAdmin/HomeAdmin";
 import ListAdmin from "./pages/admin/listAdmin/ListAdmin";
@@ -12,22 +16,48 @@ import { Login } from "./pages/login/Login";
 import { Register } from "./pages/register/Register";
 
 function App() {
+  const ProtectedRoute = ({ children }) => {
+    const { user } = useContext(AuthContext);
+
+    if (!user) {
+      return <Navigate to="/admin/login" />;
+    }
+
+    return children;
+  };
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/admin" element={<HomeAdmin />} />
+        <Route path="/admin">
+          <Route
+            index
+            element={
+              <ProtectedRoute>
+                <HomeAdmin />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/admin/login" element={<Login />} />
+        </Route>
+
         <Route path="users">
           <Route index element={<ListAdmin />} />
           <Route path=":userId" element={<SingleAdmin />} />
-          <Route
-            path="new"
-            element={<NewAdmin inputs={userInputs} title="Add New User" />}
-          />
+          <Route path="new" element={<NewAdmin inputs={userInputs} title="Add New User" />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/hotels" element={<List />} />
         <Route path="/hotels/:id" element={<Hotel />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={
+            <>
+              <Navbar />
+              <Header type="list" />
+              <Login />
+            </>
+          }
+        />
         <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>

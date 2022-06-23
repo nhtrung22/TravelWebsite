@@ -75,8 +75,8 @@ namespace Business.Services.PlaceService
             if (string.IsNullOrWhiteSpace(password))
                 throw new AppException("Password is required");
 
-            if (_context.Users.Any(x => x.UserName == request.UserName))
-                throw new AppException("Username \"" + request.UserName + "\" is already taken");
+            if (_context.Users.Any(x => x.Username == request.Username))
+                throw new AppException("Username \"" + request.Username + "\" is already taken");
 
             if (_context.Users.Any(x => x.Email == request.Email))
                 throw new AppException("Email \"" + request.Email + "\" is already taken");
@@ -87,7 +87,7 @@ namespace Business.Services.PlaceService
             request.PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.PasswordHash, GetRandomSalt());
             User entity = new()
             {
-                UserName = request.UserName,
+                Username = request.Username,
                 Email = request.Email,
                 PhoneNumber = request.PhoneNumber,
 

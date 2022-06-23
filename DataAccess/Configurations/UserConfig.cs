@@ -11,7 +11,7 @@ namespace TravelWebsite.DataAccess.Configurations
         {
             builder.ToTable("User");
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.UserName).IsRequired().HasMaxLength(20);
+            builder.Property(x => x.Username).IsRequired().HasMaxLength(20);
             builder.Property(x => x.PasswordHash).IsRequired().HasMaxLength(500);
             builder.Property(x => x.Email).IsRequired().HasMaxLength(50);
             builder.Property(x => x.PhoneNumber).IsRequired().HasMaxLength(20);

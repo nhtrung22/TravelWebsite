@@ -35,7 +35,7 @@ namespace Business.Services.PlaceService
 
         public async Task<AuthenticateResponse> Authenticate(AuthenticateRequest model, string ipAddress)
         {
-            var user = _context.Users.SingleOrDefault(x => x.UserName == model.UserName);
+            var user = _context.Users.SingleOrDefault(x => x.Username == model.Username);
 
 
             // validate

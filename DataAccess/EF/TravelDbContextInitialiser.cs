@@ -28,7 +28,7 @@ namespace TravelWebsite.DataAccess.EF
                 _travelDbContext.Users.Add(new User
                 {
                     Id = new Guid("00000000-0000-0000-0000-000000000003"),
-                    UserName = "client",
+                    Username = "client",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
                     Email = "client@gmail.com",
                     PhoneNumber = "0123456789",
@@ -38,7 +38,7 @@ namespace TravelWebsite.DataAccess.EF
                 _travelDbContext.Users.Add(new User
                 {
                     Id = new Guid("00000000-0000-0000-0000-000000000002"),
-                    UserName = "owner",
+                    Username = "owner",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
                     Email = "owner@gmail.com",
                     PhoneNumber = "0123456789",
@@ -48,7 +48,7 @@ namespace TravelWebsite.DataAccess.EF
                 _travelDbContext.Users.Add(new User
                 {
                     Id = new Guid("00000000-0000-0000-0000-000000000001"),
-                    UserName = "admin",
+                    Username = "admin",
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword("123456"),
                     Email = "admin@gmail.com",
                     PhoneNumber = "0123456789",

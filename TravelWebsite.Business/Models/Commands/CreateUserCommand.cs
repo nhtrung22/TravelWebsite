@@ -5,7 +5,7 @@ namespace TravelWebsite.Business.Models.Commands
     public class CreateUserCommand
     {
         [Required]
-        public string UserName { get; set; }
+        public string Username { get; set; }
 
         [Required]
         public string PasswordHash { get; set; }

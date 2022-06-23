@@ -1,6 +1,5 @@
-import { Link } from "@mui/material";
+import { Link } from "react-router-dom";
 import "./navbar.css";
-import { useEffect, useState } from "react";
 
 const Navbar = () => {
   return (
@@ -10,8 +9,12 @@ const Navbar = () => {
           <span className="logo">Booking</span>
         </a>
         <div className="navItems">
-          <button className="navButton"><a href="/register">Register</a></button>
-          <button className="navButton"><a href="/login">Login</a></button>
+          <Link to="/register" style={{ textDecoration: "none" }}>
+            <button className="navButton">Register</button>
+          </Link>
+          <Link to="/login" style={{ textDecoration: "none" }}>
+            <button className="navButton">Login</button>
+          </Link>
         </div>
       </div>
     </div>

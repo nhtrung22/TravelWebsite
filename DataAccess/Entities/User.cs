@@ -11,7 +11,7 @@ namespace TravelWebsite.DataAccess.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; } // PK
-        public string UserName { get; set; } = default!;
+        public string Username { get; set; } = default!;
         [JsonIgnore]
         public string PasswordHash { get; set; } = default!;
         public string Email { get; set; } = default!;

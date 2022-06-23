@@ -13,6 +13,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { MyCheckbox } from "../../components/myCheckbox/MyCheckbox";
+import AuthApiService from "../../adapters/xhr/AuthApiService";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export const Login = (props) => {
   const [username, setUsername] = useState("");
@@ -22,6 +24,7 @@ export const Login = (props) => {
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
   const myContext = useContext(MyContext);
+  const { loading, error, dispatch } = useContext(AuthContext);
 
   const login = async () => {
     let isValid = true;
@@ -34,22 +37,22 @@ export const Login = (props) => {
       isValid = false;
     } else setPasswordErr("");
     if (!isValid) return;
-    // let result = await AuthApiService.login(username, password);
-    // if (result.status == 200) {
-    //   SnackbarUtils.success("success");
-    //   myContext.changeRole(result.user.role);
-    //   myContext.changeAuthorized(true);
-    //   navigate("/", { replace: true });
-    // } else if (result.status == 401) {
-    //   setMessage("Something wrong");
-    // }
+    try {
+      let result = await AuthApiService.login(username, password);
+      if (result) {
+        dispatch({ type: "LOGIN_SUCCESS", payload: result.username });
+        navigate("/admin");
+      } else {
+        setMessage("Something wrong");
+      }
+    } catch (err) {
+      setMessage("Something wrong");
+    }
   };
   return (
     <MyContext.Consumer>
       {(context) => (
         <>
-          <Navbar />
-          <Header type="list" />
           <Container component="main" maxWidth="xs">
             <CssBaseline />
             <Box
@@ -67,31 +70,10 @@ export const Login = (props) => {
                 Login
               </Typography>
               <Box component="form" noValidate sx={{ mt: 1 }}>
-                <MyTextField
-                  label={"Username"}
-                  value={username}
-                  onChange={setUsername}
-                  regExp={ValidTextRegExp}
-                  helperText={usernameErr}
-                />
-                <MyTextField
-                  type="password"
-                  label={"Password"}
-                  value={password}
-                  onChange={setPassword}
-                  helperText={passwordErr}
-                />
-                <MyCheckbox
-                  label="Remember me"
-                  className="margin top-0 bottom-0"
-                  onChange={() => {}}
-                />
-                <MyButton
-                  fullWidth={true}
-                  className="margin bottom-1"
-                  onClick={(e) => login()}
-                  text={"login"}
-                />
+                <MyTextField label={"Username"} value={username} onChange={setUsername} regExp={ValidTextRegExp} helperText={usernameErr} />
+                <MyTextField type="password" label={"Password"} value={password} onChange={setPassword} helperText={passwordErr} />
+                <MyCheckbox label="Remember me" className="margin top-0 bottom-0" onChange={() => {}} />
+                <MyButton fullWidth={true} className="margin bottom-1" onClick={(e) => login()} text={"login"} />
                 <Grid container>
                   <Grid item xs>
                     <Link href="/login#" variant="body2">
@@ -105,11 +87,7 @@ export const Login = (props) => {
                   </Grid>
                 </Grid>
                 {message && (
-                  <Alert
-                    variant="filled"
-                    severity="error"
-                    className="margin top-1 bottom-1"
-                  >
+                  <Alert variant="filled" severity="error" sx={{ mt: 2, mb: 2 }}>
                     {message}
                   </Alert>
                 )}

@@ -1,3 +1,4 @@
+import { setCookie } from "../../Utils";
 import Service from "./Service";
 
 class AuthApiService extends Service {
@@ -5,15 +6,12 @@ class AuthApiService extends Service {
     super("api");
   }
 
-  login(username, password, returnUrl) {
-    this.post(
-      `/authenticate`,
-      {
-        username: username,
-        password: password,
-      },
-      (status, data) => {}
-    );
+  async login(username, password, returnUrl) {
+    let result = await this.post(`/authenticate`, { username: username, password: password }, (status, data) => {
+      return data;
+    });
+    setCookie("jwtToken", result.jwtToken);
+    return result;
   }
 }
 
