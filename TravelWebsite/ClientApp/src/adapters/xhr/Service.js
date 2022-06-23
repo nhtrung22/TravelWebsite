@@ -22,7 +22,7 @@ export default class Service {
       headers: headers,
     });
     service.interceptors.request.use((config) => {
-      if (getCookie("jwToken")) config.headers.Authorization = "Bearer " + getCookie("jwToken");
+      if (getCookie("jwtToken")) config.headers.Authorization = "Bearer " + getCookie("jwtToken");
       return config;
     });
     service.defaults.headers.common["Accept"] = "application/json;charset=UTF-8";
@@ -44,12 +44,12 @@ export default class Service {
       try {
         const result = await trackPromise(this.axiosInstance().post(`api/authenticate/RefreshToken`));
         if (result) {
-          if (getCookie("jwToken")) originalRequest.headers.Authorization = "Bearer " + getCookie("jwToken");
+          if (getCookie("jwtToken")) originalRequest.headers.Authorization = "Bearer " + getCookie("jwtToken");
           return await trackPromise(axios.request(originalRequest));
         }
       } catch (err) {
         console.log(err);
-        eraseCookie("jwToken");
+        eraseCookie("jwtToken");
         eraseCookie("refreshToken");
         this.redirectTo(document, "/");
       }

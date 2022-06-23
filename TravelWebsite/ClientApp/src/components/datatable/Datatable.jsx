@@ -1,18 +1,18 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../../datatablesource";
+import { userColumns } from "../../datatablesource";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import UserApiService from "../../adapters/xhr/UserApiService";
 
-const Datatable = () => {
-  const [data, setData] = useState(userRows);
+const Datatable = (props) => {
+  //const [data, setData] = useState(props.userRows);
   useEffect(() => {
     // UserApiService.getAll();
   });
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
-  };
+  // const handleDelete = (id) => {
+  //   setData(data.filter((item) => item.id !== id));
+  // };
 
   const actionColumn = [
     {
@@ -41,7 +41,7 @@ const Datatable = () => {
           Add New
         </Link>
       </div>
-      <DataGrid className="datagrid" rows={data} columns={userColumns.concat(actionColumn)} pageSize={9} rowsPerPageOptions={[9]} checkboxSelection />
+      <DataGrid className="datagrid" rows={props.userRows} columns={userColumns.concat(actionColumn)} pageSize={9} rowsPerPageOptions={[9]} checkboxSelection />
     </div>
   );
 };

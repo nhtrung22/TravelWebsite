@@ -48,12 +48,12 @@ public class AuthenticateController : BaseController
         return Ok(new { message = "Token revoked" });
     }
 
-    [HttpGet("{id}/refresh-tokens")]
-    public async Task<OkObjectResult> GetRefreshTokens(Guid id)
-    {
-        var user = await _userService.GetById(id);
-        return Ok(user.RefreshTokens);
-    }
+    //[HttpGet("{id}/refresh-tokens")]
+    //public async Task<OkObjectResult> GetRefreshTokens(Guid id)
+    //{
+    //    var user = await _userService.GetById(id);
+    //    return Ok(user.RefreshTokens);
+    //}
 
     // helper methods
 

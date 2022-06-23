@@ -33,6 +33,8 @@ namespace TravelWebsite.DataAccess.EF
                     Email = "client@gmail.com",
                     PhoneNumber = "0123456789",
                     UserType = UserType.Client,
+                    Age = 20,
+                    Avatar = "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                 });
 
                 _travelDbContext.Users.Add(new User
@@ -43,6 +45,8 @@ namespace TravelWebsite.DataAccess.EF
                     Email = "owner@gmail.com",
                     PhoneNumber = "0123456789",
                     UserType = UserType.Owner,
+                    Age = 20,
+                    Avatar = "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                 });
 
                 _travelDbContext.Users.Add(new User
@@ -53,6 +57,8 @@ namespace TravelWebsite.DataAccess.EF
                     Email = "admin@gmail.com",
                     PhoneNumber = "0123456789",
                     UserType = UserType.Admin,
+                    Age = 20,
+                    Avatar = "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                 });
 
                 await _travelDbContext.SaveChangesAsync();

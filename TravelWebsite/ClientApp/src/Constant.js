@@ -26,3 +26,8 @@ export const users = [
     role: roles.user,
   },
 ];
+
+export const QueryParameterNames = {
+  ReturnUrl: "returnUrl",
+  Message: "message",
+};

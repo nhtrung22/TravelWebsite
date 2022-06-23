@@ -3,7 +3,7 @@ import React, { useCallback, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MyButton } from "../../components/myButton/MyButton";
 import { MyTextField } from "../../components/myTextField/MyTextField";
-import { ValidTextRegExp } from "../../Constant";
+import { QueryParameterNames, ValidTextRegExp } from "../../Constant";
 import MyContext from "../../contexts/MyContext";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
@@ -26,6 +26,22 @@ export const Login = (props) => {
   const myContext = useContext(MyContext);
   const { loading, error, dispatch } = useContext(AuthContext);
 
+  const navigateToReturnUrl = (returnUrl) => {
+    // It's important that we do a replace here so that we remove the callback uri with the
+    // fragment containing the tokens from the browser history.
+    window.location.replace(returnUrl);
+  };
+
+  const getReturnUrl = () => {
+    const params = new URLSearchParams(window.location.search);
+    const fromQuery = params.get(QueryParameterNames.ReturnUrl);
+    if (fromQuery && !fromQuery.startsWith(`${window.location.origin}/`)) {
+      // This is an extra check to prevent open redirects.
+      throw new Error("Invalid return url. The return url needs to have the same origin as the current page.");
+    }
+    return fromQuery || `${window.location.origin}/`;
+  };
+
   const login = async () => {
     let isValid = true;
     if (!username) {
@@ -41,7 +57,8 @@ export const Login = (props) => {
       let result = await AuthApiService.login(username, password);
       if (result) {
         dispatch({ type: "LOGIN_SUCCESS", payload: result.username });
-        navigate("/admin");
+        console.log(getReturnUrl());
+        navigateToReturnUrl(getReturnUrl());
       } else {
         setMessage("Something wrong");
       }

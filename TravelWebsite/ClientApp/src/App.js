@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/header/Header";
 import Navbar from "./components/navbar/Navbar";
+import { QueryParameterNames } from "./Constant";
 import { AuthContext } from "./contexts/AuthContext";
 import { userInputs } from "./formSource";
 import { HomeAdmin } from "./pages/admin/homeAdmin/HomeAdmin";
@@ -18,11 +19,13 @@ import { Register } from "./pages/register/Register";
 function App() {
   const ProtectedRoute = ({ children }) => {
     const { user } = useContext(AuthContext);
-
     if (!user) {
-      return <Navigate to="/admin/login" />;
+      var link = document.createElement("a");
+      link.href = window.location.pathname;
+      const returnUrl = `${link.protocol}//${link.host}${link.pathname}${link.search}${link.hash}`;
+      const redirectUrl = `/login?${QueryParameterNames.ReturnUrl}=${encodeURI(returnUrl)}`;
+      return <Navigate to={redirectUrl} />;
     }
-
     return children;
   };
   return (
@@ -38,13 +41,20 @@ function App() {
             }
           />
           <Route path="/admin/login" element={<Login />} />
+          <Route path="users">
+            <Route
+              index
+              element={
+                <ProtectedRoute>
+                  <ListAdmin />
+                </ProtectedRoute>
+              }
+            />
+            <Route path=":userId" element={<SingleAdmin />} />
+            <Route path="new" element={<NewAdmin inputs={userInputs} title="Add New User" />} />
+          </Route>
         </Route>
 
-        <Route path="users">
-          <Route index element={<ListAdmin />} />
-          <Route path=":userId" element={<SingleAdmin />} />
-          <Route path="new" element={<NewAdmin inputs={userInputs} title="Add New User" />} />
-        </Route>
         <Route path="/" element={<Home />} />
         <Route path="/hotels" element={<List />} />
         <Route path="/hotels/:id" element={<Hotel />} />
