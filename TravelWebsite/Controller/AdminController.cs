@@ -10,10 +10,15 @@ namespace TravelWebsite.API.Controller
     [Authorize("Admin")]
     public class AdminController : BaseController
     {
-        [HttpGet("Statistics")]
-        public void Get()
+        private readonly IAdminService _adminService;
+        public AdminController(IAdminService adminService)
         {
-            //todo
+            _adminService = adminService;
+        }
+        [HttpGet("Statistics")]
+        public async Task<ActionResult<StatisticsDTO>> Get()
+        {
+            return await _adminService.GetStatistics();
         }
     }
 }

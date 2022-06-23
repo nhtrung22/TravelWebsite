@@ -46,6 +46,7 @@ builder.Services.AddSpaStaticFiles(configuration =>
 });
 
 //trasient scoped singleton
+builder.Services.AddTransient<IAdminService, AdminService>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
 builder.Services.AddTransient<IPropertyService, PropertyService>();
 builder.Services.AddTransient<IBookingService, BookingService>();

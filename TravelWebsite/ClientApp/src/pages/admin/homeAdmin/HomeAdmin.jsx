@@ -5,16 +5,26 @@ import Widget from "../../../components/widget/Widget";
 import FeaturedAdmin from "../../../components/featuredAdmin/FeaturedAdmin";
 // import Chart from "../../../components/chart/Chart";
 import MyTable from "../../../components/myTable/MyTable";
+import { useEffect, useState } from "react";
+import AdminApiService from "../../../adapters/xhr/AdminApiService";
 
 export const HomeAdmin = () => {
+  const [statistics, setStatistics] = useState({});
+  const fetchStatistics = async () => {
+    let result = await AdminApiService.getStatistics();
+    setStatistics(result);
+  };
+  useEffect(() => {
+    fetchStatistics();
+  }, []);
   return (
     <div className="home">
       <Sidebar />
       <div className="homeAdminContainer">
         <NavbarAdmin />
         <div className="widgets">
-          <Widget type="user" />
-          <Widget type="order" />
+          <Widget type="user" amount={statistics.numberOfUsers} />
+          <Widget type="order" amount={statistics.numberOfOrders} />
           <Widget type="earning" />
           <Widget type="balance" />
         </div>
