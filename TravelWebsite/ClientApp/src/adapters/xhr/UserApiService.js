@@ -6,21 +6,14 @@ class UserApiService extends Service {
   }
 
   async getAll(params) {
-    let result = this.get(`/user`, params, (status, data) => {
+    let result = await this.get(`/user`, params, (status, data) => {
       return data;
     });
     return result;
   }
 
-  async getByCity(params) {
-    let result = this.get(`/property/GetByCity`, params, (status, data) => {
-      return data;
-    });
-    return result;
-  }
-
-  async getByType(params) {
-    let result = this.get(`/property/GetByType`, params, (status, data) => {
+  async create(payload) {
+    let result = await this.post(`/User/register`, payload, (status, data) => {
       return data;
     });
     return result;

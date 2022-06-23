@@ -41,7 +41,7 @@ public class UserController : BaseController
     [HttpPost("register")]
     public async Task<ActionResult> Create([FromBody] CreateUserCommand request)
     {
-        await _userService.Create(request, request.PasswordHash);
+        await _userService.Create(request, request.Password);
         return Ok();
     }
 

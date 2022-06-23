@@ -11,13 +11,15 @@ namespace TravelWebsite.DataAccess.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; } // PK
+        public string Fullname { get; set; } = default!;
         public string Username { get; set; } = default!;
         [JsonIgnore]
         public string PasswordHash { get; set; } = default!;
         public string Email { get; set; } = default!;
-        public string Avatar { get; set; } = default!;
+        public string? Avatar { get; set; } = default!;
         public int Age { get; set; } = default!;
         public string PhoneNumber { get; set; } = default!;
+        public string? Address { get; set; } = default!;
         public UserType UserType { get; set; }
         public ICollection<Booking> Bookings { get; set; } = default!;
         public ICollection<Property> Properties { get; set; } = default!;

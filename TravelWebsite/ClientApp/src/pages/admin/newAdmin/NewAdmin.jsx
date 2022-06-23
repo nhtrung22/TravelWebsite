@@ -4,12 +4,22 @@ import Navbar from "../../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
 import NavbarAdmin from "../../../components/navbarAdmin/NavbarAdmin";
+import UserApiService from "../../../adapters/xhr/UserApiService";
+import { useNavigate } from "react-router-dom";
 
 const NewAdmin = ({ inputs, title }) => {
   const [file, setFile] = useState("");
-
-  const add = () => {};
-
+  const [user, setUser] = useState({});
+  const navigate = useNavigate();
+  const add = async (event) => {
+    event.preventDefault();
+    try {
+      await UserApiService.create(user);
+      navigate("/admin/users", { replace: true });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="new">
       <Sidebar />
@@ -34,10 +44,15 @@ const NewAdmin = ({ inputs, title }) => {
               {inputs.map((input) => (
                 <div className="formInput" key={input.id}>
                   <label>{input.label}</label>
-                  <input type={input.type} placeholder={input.placeholder} />
+                  <input
+                    name={input.key}
+                    onChange={(e) => setUser({ ...user, [input.key]: e.target.value })}
+                    type={input.type}
+                    placeholder={input.placeholder}
+                  />
                 </div>
               ))}
-              <button>Send</button>
+              <button onClick={add}>Send</button>
             </form>
           </div>
         </div>

@@ -84,13 +84,15 @@ namespace Business.Services.PlaceService
             if (_context.Users.Any(x => x.PhoneNumber == request.PhoneNumber))
                 throw new AppException("PhoneNumber \"" + request.PhoneNumber + "\" is already taken");
 
-            request.PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.PasswordHash, GetRandomSalt());
             User entity = new()
             {
                 Username = request.Username,
+                Fullname = request.Fullname,
+                Avatar = "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+                Address = request.Address,
                 Email = request.Email,
                 PhoneNumber = request.PhoneNumber,
-
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password, GetRandomSalt())
             };
             _context.Users.Add(entity);
             await _context.SaveChangesAsync();
