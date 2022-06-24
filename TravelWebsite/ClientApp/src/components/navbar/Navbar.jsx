@@ -8,9 +8,9 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navContainer">
-        <a href="/">
+        <Link to="/">
           <span className="logo">Booking</span>
-        </a>
+        </Link>
         <div className="navItems">
           {!user && (
             <>
