@@ -14,7 +14,7 @@ const SearchItem = (props) => {
         {/* <span className="siDistance">500m from center</span> */}
         <span className="siCityOp">{props.city.name}</span>
         <span className="siType">{props.type.name}</span>
-        <span className="siFeatures">{props.description}</span>
+        <span className="siFeatures">{props.shortDescription}</span>
         <span className="siCancelOp">Free cancellation </span>
         <span className="siCancelOpSubtitle">You can cancel later, so lock in this great price today!</span>
       </div>

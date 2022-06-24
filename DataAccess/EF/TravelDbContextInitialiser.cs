@@ -140,7 +140,13 @@ namespace TravelWebsite.DataAccess.EF
                     Id = 1,
                     Name = "studio",
                     Address = "bac tu liem",
-                    Description = "Entire studio • 1 bathroom • 21m² 1 full bed",
+                    ShortDescription = "Entire studio • 1 bathroom • 21m² 1 full bed",
+                    Description = @"Located a 5-minute walk from St. Florian's Gate in Krakow, Tower Street Apartments has accommodations with air conditioning and free WiFi. The
+                units come with hardwood floors and feature a fully equipped kitchenette with a microwave, a flat-screen TV, and a private bathroom with shower
+                and a hairdryer. A fridge is also offered, as well as an electric tea pot and a coffee machine. Popular points of interest near the apartment
+                include Cloth Hall, Main Market Square and Town Hall Tower. The nearest airport is John Paul II International Kraków–Balice, 16.1 km from Tower
+                Street Apartments, and the property offers a paid airport shuttle service.",
+                    Distance = "Excellent location – 500m from center",
                     Price = 112,
                     CityId = 1,
                     NumberOfAdults = 1,
@@ -155,7 +161,13 @@ namespace TravelWebsite.DataAccess.EF
                     Id = 2,
                     Name = "penhouse",
                     Address = "hoan kiem",
-                    Description = "Entire studio • 1 bathroom • 21m² 2 full bed",
+                    ShortDescription = "Entire studio • 1 bathroom • 21m² 1 full bed",
+                    Description = @"Located a 5-minute walk from St. Florian's Gate in Krakow, Tower Street Apartments has accommodations with air conditioning and free WiFi. The
+                units come with hardwood floors and feature a fully equipped kitchenette with a microwave, a flat-screen TV, and a private bathroom with shower
+                and a hairdryer. A fridge is also offered, as well as an electric tea pot and a coffee machine. Popular points of interest near the apartment
+                include Cloth Hall, Main Market Square and Town Hall Tower. The nearest airport is John Paul II International Kraków–Balice, 16.1 km from Tower
+                Street Apartments, and the property offers a paid airport shuttle service.",
+                    Distance = "Excellent location – 500m from center",
                     Price = 100,
                     CityId = 2,
                     NumberOfAdults = 1,
@@ -169,8 +181,14 @@ namespace TravelWebsite.DataAccess.EF
                 {
                     Id = 3,
                     Name = "ABC",
-                    Address = "Nam A",
-                    Description = "Entire studio • 1 bathroom • 21m² 1 full bed",
+                    Address = "Elton St 125 New york",
+                    ShortDescription = "Entire studio • 1 bathroom • 21m² 1 full bed",
+                    Description = @"Located a 5-minute walk from St. Florian's Gate in Krakow, Tower Street Apartments has accommodations with air conditioning and free WiFi. The
+                units come with hardwood floors and feature a fully equipped kitchenette with a microwave, a flat-screen TV, and a private bathroom with shower
+                and a hairdryer. A fridge is also offered, as well as an electric tea pot and a coffee machine. Popular points of interest near the apartment
+                include Cloth Hall, Main Market Square and Town Hall Tower. The nearest airport is John Paul II International Kraków–Balice, 16.1 km from Tower
+                Street Apartments, and the property offers a paid airport shuttle service.",
+                    Distance = "Excellent location – 500m from center",
                     Price = 112,
                     CityId = 3,
                     NumberOfAdults = 1,
@@ -185,7 +203,13 @@ namespace TravelWebsite.DataAccess.EF
                     Id = 4,
                     Name = "EF",
                     Address = "Nam A",
-                    Description = "Entire studio • 1 bathroom • 21m² 1 full bed",
+                    ShortDescription = "Entire studio • 1 bathroom • 21m² 1 full bed",
+                    Description = @"Located a 5-minute walk from St. Florian's Gate in Krakow, Tower Street Apartments has accommodations with air conditioning and free WiFi. The
+                units come with hardwood floors and feature a fully equipped kitchenette with a microwave, a flat-screen TV, and a private bathroom with shower
+                and a hairdryer. A fridge is also offered, as well as an electric tea pot and a coffee machine. Popular points of interest near the apartment
+                include Cloth Hall, Main Market Square and Town Hall Tower. The nearest airport is John Paul II International Kraków–Balice, 16.1 km from Tower
+                Street Apartments, and the property offers a paid airport shuttle service.",
+                    Distance = "Excellent location – 500m from center",
                     Price = 150,
                     CityId = 3,
                     NumberOfAdults = 1,
@@ -200,7 +224,13 @@ namespace TravelWebsite.DataAccess.EF
                     Id = 5,
                     Name = "EFG",
                     Address = "Nam A",
-                    Description = "Entire studio • 1 bathroom • 21m² 1 full bed",
+                    ShortDescription = "Entire studio • 1 bathroom • 21m² 1 full bed",
+                    Description = @"Located a 5-minute walk from St. Florian's Gate in Krakow, Tower Street Apartments has accommodations with air conditioning and free WiFi. The
+                units come with hardwood floors and feature a fully equipped kitchenette with a microwave, a flat-screen TV, and a private bathroom with shower
+                and a hairdryer. A fridge is also offered, as well as an electric tea pot and a coffee machine. Popular points of interest near the apartment
+                include Cloth Hall, Main Market Square and Town Hall Tower. The nearest airport is John Paul II International Kraków–Balice, 16.1 km from Tower
+                Street Apartments, and the property offers a paid airport shuttle service.",
+                    Distance = "Excellent location – 500m from center",
                     Price = 150,
                     CityId = 3,
                     NumberOfAdults = 1,
@@ -215,7 +245,13 @@ namespace TravelWebsite.DataAccess.EF
                     Id = 6,
                     Name = "EFGH",
                     Address = "Nam A",
-                    Description = "Entire studio • 1 bathroom • 21m² 1 full bed",
+                    ShortDescription = "Entire studio • 1 bathroom • 21m² 1 full bed",
+                    Description = @"Located a 5-minute walk from St. Florian's Gate in Krakow, Tower Street Apartments has accommodations with air conditioning and free WiFi. The
+                units come with hardwood floors and feature a fully equipped kitchenette with a microwave, a flat-screen TV, and a private bathroom with shower
+                and a hairdryer. A fridge is also offered, as well as an electric tea pot and a coffee machine. Popular points of interest near the apartment
+                include Cloth Hall, Main Market Square and Town Hall Tower. The nearest airport is John Paul II International Kraków–Balice, 16.1 km from Tower
+                Street Apartments, and the property offers a paid airport shuttle service.",
+                    Distance = "Excellent location – 500m from center",
                     Price = 150,
                     CityId = 3,
                     NumberOfAdults = 1,
