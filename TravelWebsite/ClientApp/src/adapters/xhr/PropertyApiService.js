@@ -12,6 +12,13 @@ class PropertyApiService extends Service {
     return result;
   }
 
+  async getById(id) {
+    let result = await this.get(`/property/${id}`, {}, (status, data) => {
+      return data;
+    });
+    return result;
+  }
+
   async getByCity(params) {
     let result = await this.get(`/property/GetByCity`, params, (status, data) => {
       return data;

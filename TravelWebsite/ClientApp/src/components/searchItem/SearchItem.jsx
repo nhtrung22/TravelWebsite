@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./searchItem.css";
 
 const SearchItem = (props) => {
@@ -25,7 +26,9 @@ const SearchItem = (props) => {
         <div className="siDetailTexts">
           <span className="siPrice">${props.price}</span>
           <span className="siTaxOp">Includes taxes and fees</span>
-          <button className="siCheckButton">See availability</button>
+          <Link to={`/hotels/${props.id}`}>
+            <button className="siCheckButton">See availability</button>
+          </Link>
         </div>
       </div>
     </div>
