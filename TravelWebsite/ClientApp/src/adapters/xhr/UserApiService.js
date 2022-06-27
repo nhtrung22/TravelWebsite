@@ -5,6 +5,13 @@ class UserApiService extends Service {
     super("api");
   }
 
+  async getById(id) {
+    let result = await this.get(`/user/${id}`, {}, (status, data) => {
+      return data;
+    });
+    return result;
+  }
+
   async getAll(params) {
     let result = await this.get(`/user`, params, (status, data) => {
       return data;

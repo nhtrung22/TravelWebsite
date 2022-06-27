@@ -54,11 +54,21 @@ function App() {
             <Route path=":userId" element={<SingleAdmin />} />
             <Route path="new" element={<NewAdmin inputs={userInputs} title="Add New User" />} />
           </Route>
+          <Route path="hotels">
+            <Route
+              index
+              element={
+                <ProtectedRoute>
+                  <ListAdmin />
+                </ProtectedRoute>
+              }
+            />
+            <Route path=":hotelId" element={<SingleAdmin />} />
+            <Route path="new" element={<NewAdmin inputs={userInputs} title="Add New Hotel" />} />
+          </Route>
         </Route>
 
         <Route path="/" element={<Home />} />
-        <Route path="/hotels" element={<List />} />
-        <Route path="/hotels/:id" element={<Hotel />} />
         <Route
           path="/login"
           element={
