@@ -10,6 +10,8 @@ import PropertyApiService from "../../adapters/xhr/PropertyApiService";
 import Reserve from "../../components/reserve/Reserve";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import BookingApiService from "../../adapters/xhr/BookingApiService";
+import SnackbarUtils from "../../SnackbarUtils";
 
 const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
@@ -22,6 +24,15 @@ const Hotel = () => {
   const fetchHotel = async () => {
     let result = await PropertyApiService.getById(id);
     setHotel(result);
+  };
+  const createBooking = async () => {
+    let payload = {
+      fromTime: Date.now,
+      toTime: Date.now,
+      propertyId: id,
+    };
+    let result = await BookingApiService.add(payload);
+    return result;
   };
   useEffect(() => {
     fetchHotel(id);
@@ -47,12 +58,17 @@ const Hotel = () => {
     },
   ];
 
-  const handleClick = () => {
-    if (user) {
-      setOpenModal(true);
-    } else {
-      navigate("/login");
+  const handleClick = async () => {
+    let result = await createBooking();
+    if (result) {
+      SnackbarUtils.success("success");
+      navigate("/");
     }
+    // if (user) {
+    //   setOpenModal(true);
+    // } else {
+    //   navigate("/login");
+    // }
   };
 
   const handleOpen = (i) => {
@@ -123,7 +139,7 @@ const Hotel = () => {
         <MailList />
         <Footer />
       </div>
-      {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}
+      {/* {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />} */}
     </div>
   );
 };

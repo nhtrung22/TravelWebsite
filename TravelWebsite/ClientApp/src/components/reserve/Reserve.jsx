@@ -63,7 +63,7 @@ const Reserve = ({ setOpen, hotelId }) => {
       <div className="rContainer">
         <FontAwesomeIcon icon={faCircleXmark} className="rClose" onClick={() => setOpen(false)} />
         <span>Select your rooms:</span>
-        {/* {data.map((item) => (
+        {data.map((item) => (
           <div className="rItem" key={item._id}>
             <div className="rItemInfo">
               <div className="rTitle">{item.title}</div>
@@ -77,17 +77,12 @@ const Reserve = ({ setOpen, hotelId }) => {
               {item.roomNumbers.map((roomNumber) => (
                 <div className="room">
                   <label>{roomNumber.number}</label>
-                  <input
-                    type="checkbox"
-                    value={roomNumber._id}
-                    onChange={handleSelect}
-                    disabled={!isAvailable(roomNumber)}
-                  />
+                  <input type="checkbox" value={roomNumber._id} onChange={handleSelect} disabled={!isAvailable(roomNumber)} />
                 </div>
               ))}
             </div>
           </div>
-        ))} */}
+        ))}
         <button onClick={handleClick} className="rButton">
           Reserve Now!
         </button>
