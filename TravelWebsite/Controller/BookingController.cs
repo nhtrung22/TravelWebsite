@@ -7,7 +7,7 @@ using TravelWebsite.Business.Services;
 
 namespace TravelWebsite.API.Controller
 {
-    [Authorize("Client")]
+    [Authorize("Client", "Admin", "Owner")]
     public class BookingController : BaseController
     {
         // GET: api/Booking

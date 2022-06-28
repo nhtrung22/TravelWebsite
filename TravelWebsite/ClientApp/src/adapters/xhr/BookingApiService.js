@@ -11,6 +11,13 @@ class BookingApiService extends Service {
     });
     return result;
   }
+
+  async getAll(params) {
+    let result = await this.get(`/booking`, params, (status, data) => {
+      return data;
+    });
+    return result;
+  }
 }
 
 export default new BookingApiService();

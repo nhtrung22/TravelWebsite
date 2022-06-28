@@ -3,8 +3,7 @@ import Sidebar from "../../../components/sidebar/Sidebar";
 import Datatable from "../../../components/datatable/Datatable";
 import NavbarAdmin from "../../../components/navbarAdmin/NavbarAdmin";
 import { useEffect, useState } from "react";
-import UserApiService from "../../../adapters/xhr/UserApiService";
-import { hotelColumns, userColumns } from "../../../datatablesource";
+import { hotelColumns } from "../../../datatablesource";
 import PropertyApiService from "../../../adapters/xhr/PropertyApiService";
 
 const HotelListAdmin = () => {

@@ -6,17 +6,18 @@ import NavbarAdmin from "../../../components/navbarAdmin/NavbarAdmin";
 import UserApiService from "../../../adapters/xhr/UserApiService";
 import { useEffect, useState } from "react";
 import PropertyApiService from "../../../adapters/xhr/PropertyApiService";
+import BookingApiService from "../../../adapters/xhr/BookingApiService";
 // import Chart from "../../../components/chart/Chart";
 
 const SingleHotelAdmin = () => {
-  const [data, setData] = useState({});
+  const [hotel, setHotel] = useState({});
   const id = location.pathname.split("/")[3];
-  const fetchUser = async () => {
+  const fetchHotel = async () => {
     let result = await PropertyApiService.getById(id);
-    setData(result);
+    setHotel(result);
   };
   useEffect(() => {
-    fetchUser();
+    fetchHotel();
   }, []);
   return (
     <div className="single">
@@ -28,24 +29,24 @@ const SingleHotelAdmin = () => {
             <div className="editButton">Edit</div>
             <h1 className="title">Information</h1>
             <div className="item">
-              <img src={data.avatar} alt="" className="itemImg" />
+              <img src={hotel.avatar} alt="" className="itemImg" />
               <div className="details">
-                <h1 className="itemTitle">{data.fullname}</h1>
+                <h1 className="itemTitle">{hotel.fullname}</h1>
                 <div className="detailItem">
                   <span className="itemKey">Name:</span>
-                  <span className="itemValue">{data.name}</span>
+                  <span className="itemValue">{hotel.name}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Type:</span>
-                  <span className="itemValue">{data.type?.name}</span>
+                  <span className="itemValue">{hotel.type?.name}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Description:</span>
-                  <span className="itemValue">{data.description}</span>
+                  <span className="itemValue">{hotel.description}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Address:</span>
-                  <span className="itemValue">{data.address}</span>
+                  <span className="itemValue">{hotel.address}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Country:</span>

@@ -73,6 +73,7 @@ namespace TravelWebsite.Business.Services.PlaceService
         public async Task<PaginatedList<PropertyDTO>> Get(GetPropertiesQuery request)
         {
             Expression<Func<Property, bool>> predicate = PredicateBuilder.True<Property>();
+            predicate = predicate.And(item => item.Bookings.All(booking => booking.FromTime > request.ToTime || booking.ToTime < request.FromTime));
             if (!string.IsNullOrWhiteSpace(request.City))
             {
                 predicate = predicate.And(item => item.City.Name == request.City.Trim());

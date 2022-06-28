@@ -29,6 +29,8 @@ const List = () => {
       numberOfRooms: room,
       maxPrice,
       minPrice,
+      fromTime: date[0].startDate,
+      toTime: date[0].endDate,
     };
     let response = await PropertyApiService.getAll(params);
     if (response) {

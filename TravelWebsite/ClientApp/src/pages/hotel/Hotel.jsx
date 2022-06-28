@@ -59,10 +59,14 @@ const Hotel = () => {
   ];
 
   const handleClick = async () => {
-    let result = await createBooking();
-    if (result) {
-      SnackbarUtils.success("success");
-      navigate("/");
+    if (user) {
+      let result = await createBooking();
+      if (result) {
+        SnackbarUtils.success("success");
+        navigate("/");
+      }
+    } else {
+      navigate("/login");
     }
     // if (user) {
     //   setOpenModal(true);
