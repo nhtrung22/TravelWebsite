@@ -8,7 +8,6 @@ import { hotelInputs, userInputs } from "./formSource";
 import { HomeAdmin } from "./pages/admin/home-admin/HomeAdmin";
 import UserListAdmin from "./pages/admin/user-list-admin/UserListAdmin";
 import HotelListAdmin from "./pages/admin/hotel-list-admin/HotelListAdmin";
-import NewAdmin from "./pages/admin/new-user-admin/NewUserAdmin";
 import Home from "./pages/home/Home";
 import Hotel from "./pages/hotel/Hotel";
 import List from "./pages/list/List";
