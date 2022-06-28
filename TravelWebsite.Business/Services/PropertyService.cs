@@ -35,8 +35,8 @@ namespace TravelWebsite.Business.Services.PlaceService
 
             var city = await _context.Cities.FindAsync(request.CityId);
             if (city == null) throw new NotFoundException(nameof(city), request.CityId);
-            var placeType = await _context.PropertyTypes.FindAsync(request.PlaceTypeId);
-            if (placeType == null) throw new NotFoundException(nameof(placeType), request.PlaceTypeId);
+            var type = await _context.PropertyTypes.FindAsync(request.TypeId);
+            if (type == null) throw new NotFoundException(nameof(type), request.TypeId);
             var currentUser = await _context.Users.FindAsync(_currentUserService.UserId);
             if (currentUser == null) throw new NotFoundException(nameof(currentUser), _currentUserService.UserId);
             using TransactionScope tx = new(TransactionScopeAsyncFlowOption.Enabled);
@@ -45,11 +45,12 @@ namespace TravelWebsite.Business.Services.PlaceService
                 Name = request.Name,
                 Address = request.Address,
                 Description = request.Description,
+                Distance = request.Distance,
                 Price = request.Price,
                 NumberOfAdults = request.NumberOfAdults,
                 NumberOfKids = request.NumberOfKids,
                 City = city,
-                Type = placeType,
+                Type = type,
                 User = currentUser,
             };
             var result = await _context.Properties.AddAsync(entity);

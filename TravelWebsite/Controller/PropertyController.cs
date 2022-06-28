@@ -9,7 +9,7 @@ using TravelWebsite.Business.Models.Queries;
 
 namespace TravelWebsite.API.Controllers
 {
-    [Authorize("Owner")]
+    [Authorize("Owner", "Admin")]
     public class PropertyController : BaseController
     {
         private readonly IPropertyService _propertyService;

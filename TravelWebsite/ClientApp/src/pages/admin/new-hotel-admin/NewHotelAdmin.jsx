@@ -6,16 +6,17 @@ import { useState } from "react";
 import NavbarAdmin from "../../../components/navbarAdmin/NavbarAdmin";
 import UserApiService from "../../../adapters/xhr/UserApiService";
 import { useNavigate } from "react-router-dom";
+import PropertyApiService from "../../../adapters/xhr/PropertyApiService";
 
 const NewHotelAdmin = ({ inputs, title }) => {
   const [file, setFile] = useState("");
-  const [user, setUser] = useState({});
+  const [data, setData] = useState({});
   const navigate = useNavigate();
   const add = async (event) => {
     event.preventDefault();
     try {
-      await UserApiService.create(user);
-      navigate("/admin/users", { replace: true });
+      await PropertyApiService.add(data);
+      navigate("/admin/hotels", { replace: true });
     } catch (err) {
       console.log(err);
     }
@@ -46,7 +47,7 @@ const NewHotelAdmin = ({ inputs, title }) => {
                   <label>{input.label}</label>
                   <input
                     name={input.key}
-                    onChange={(e) => setUser({ ...user, [input.key]: e.target.value })}
+                    onChange={(e) => setData({ ...data, [input.key]: e.target.value })}
                     type={input.type}
                     placeholder={input.placeholder}
                   />

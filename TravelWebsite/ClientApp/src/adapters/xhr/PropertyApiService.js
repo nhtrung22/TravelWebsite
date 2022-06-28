@@ -5,6 +5,13 @@ class PropertyApiService extends Service {
     super("api");
   }
 
+  async add(payload) {
+    let result = await this.post(`/property`, payload, (status, data) => {
+      return data;
+    });
+    return result;
+  }
+
   async getAll(params) {
     let result = await this.get(`/property`, params, (status, data) => {
       return data;

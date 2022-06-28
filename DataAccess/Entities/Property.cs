@@ -9,7 +9,7 @@ namespace TravelWebsite.DataAccess.Entities
         public int Id { get; set; } // PK
         public string Name { get; set; } = default!;
         public string Address { get; set; } = default!;
-        public string ShortDescription { get; set; } = default!;
+        public string? ShortDescription { get; set; } = default!;
         public string Description { get; set; } = default!;
         public string Distance { get; set; } = default!;
         public decimal Price { get; set; } = default!;

@@ -84,30 +84,35 @@ export const productInputs = [
 export const hotelInputs = [
   {
     id: "name",
+    key: "name",
     label: "Name",
     type: "text",
     placeholder: "My Hotel",
   },
   {
     id: "type",
+    key: "typeId",
     label: "Type",
-    type: "text",
+    type: "number",
     placeholder: "hotel",
   },
   {
     id: "city",
+    key: "cityId",
     label: "City",
-    type: "text",
+    type: "number",
     placeholder: "New York",
   },
   {
     id: "address",
+    key: "address",
     label: "Address",
     type: "text",
     placeholder: "elton st, 216",
   },
   {
     id: "distance",
+    key: "distance",
     label: "Distance from City Center",
     type: "text",
     placeholder: "500",
@@ -120,14 +125,16 @@ export const hotelInputs = [
   },
   {
     id: "desc",
+    key: "description",
     label: "Description",
     type: "text",
     placeholder: "description",
   },
   {
     id: "cheapestPrice",
+    key: "price",
     label: "Price",
-    type: "text",
+    type: "number",
     placeholder: "100",
   },
 ];
