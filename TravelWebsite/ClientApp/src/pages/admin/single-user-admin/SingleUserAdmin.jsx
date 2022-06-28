@@ -7,7 +7,7 @@ import UserApiService from "../../../adapters/xhr/UserApiService";
 import { useEffect, useState } from "react";
 // import Chart from "../../../components/chart/Chart";
 
-const SingleAdmin = () => {
+const SingleUserAdmin = () => {
   const [user, setUser] = useState({});
   const id = location.pathname.split("/")[3];
   const fetchUser = async () => {
@@ -62,4 +62,4 @@ const SingleAdmin = () => {
   );
 };
 
-export default SingleAdmin;
+export default SingleUserAdmin;

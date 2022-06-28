@@ -40,7 +40,7 @@ export const Sidebar = () => {
           <Link to="/admin/hotels" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
-              <span>Products</span>
+              <span>Properties</span>
             </li>
           </Link>
           {/* <li>

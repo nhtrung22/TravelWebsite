@@ -7,7 +7,7 @@ import NavbarAdmin from "../../../components/navbarAdmin/NavbarAdmin";
 import UserApiService from "../../../adapters/xhr/UserApiService";
 import { useNavigate } from "react-router-dom";
 
-const NewAdmin = ({ inputs, title }) => {
+const NewHotelAdmin = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [user, setUser] = useState({});
   const navigate = useNavigate();
@@ -61,4 +61,4 @@ const NewAdmin = ({ inputs, title }) => {
   );
 };
 
-export default NewAdmin;
+export default NewHotelAdmin;

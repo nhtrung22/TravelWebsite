@@ -1,19 +1,9 @@
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns } from "../../datatablesource";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import UserApiService from "../../adapters/xhr/UserApiService";
 
 const Datatable = (props) => {
-  //const [data, setData] = useState(props.userRows);
-  useEffect(() => {
-    // UserApiService.getAll();
-  });
-  // const handleDelete = (id) => {
-  //   setData(data.filter((item) => item.id !== id));
-  // };
-
+  const path = location.pathname.split("/")[2];
   const actionColumn = [
     {
       field: "action",
@@ -22,7 +12,7 @@ const Datatable = (props) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to={`/admin/users/${params.row.id}`} style={{ textDecoration: "none" }}>
+            <Link to={`/admin/${path}/${params.row.id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
             <div className="deleteButton" onClick={() => handleDelete(params.row.id)}>
@@ -36,12 +26,19 @@ const Datatable = (props) => {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        Add New User
-        <Link to="/admin/users/new" className="link">
+        Add New
+        <Link to={`/admin/${path}/new`} className="link">
           Add New
         </Link>
       </div>
-      <DataGrid className="datagrid" rows={props.userRows} columns={userColumns.concat(actionColumn)} pageSize={9} rowsPerPageOptions={[9]} checkboxSelection />
+      <DataGrid
+        className="datagrid"
+        rows={props.userRows}
+        columns={props.columns.concat(actionColumn)}
+        pageSize={9}
+        rowsPerPageOptions={[9]}
+        checkboxSelection
+      />
     </div>
   );
 };

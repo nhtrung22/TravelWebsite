@@ -4,8 +4,9 @@ import Datatable from "../../../components/datatable/Datatable";
 import NavbarAdmin from "../../../components/navbarAdmin/NavbarAdmin";
 import { useEffect, useState } from "react";
 import UserApiService from "../../../adapters/xhr/UserApiService";
+import { userColumns } from "../../../datatablesource";
 
-const ListAdmin = () => {
+const UserListAdmin = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     async function fetchData() {
@@ -19,10 +20,10 @@ const ListAdmin = () => {
       <Sidebar />
       <div className="listContainer-admin">
         <NavbarAdmin />
-        <Datatable userRows={data} />
+        <Datatable userRows={data} columns={userColumns} />
       </div>
     </div>
   );
 };
 
-export default ListAdmin;
+export default UserListAdmin;
