@@ -34,7 +34,7 @@ export const HomeAdmin = () => {
         </div> */}
         <div className="listContainer">
           <div className="listTitle">Latest Transactions</div>
-          <MyTable />
+          <MyTable items={statistics.latestTransactions} />
         </div>
       </div>
     </div>

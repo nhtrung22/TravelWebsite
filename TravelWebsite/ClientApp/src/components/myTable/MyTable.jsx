@@ -6,8 +6,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { string_of_enum } from "../../Utils";
+import { PaymentStatus } from "../../Constant";
 
-const MyTable = () => {
+const MyTable = ({ items }) => {
   const rows = [
     {
       id: 1143155,
@@ -75,24 +77,25 @@ const MyTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell className="tableCell">{row.id}</TableCell>
-              <TableCell className="tableCell">
-                <div className="cellWrapper">
-                  <img src={row.img} alt="" className="image" />
-                  {row.product}
-                </div>
-              </TableCell>
-              <TableCell className="tableCell">{row.customer}</TableCell>
-              <TableCell className="tableCell">{row.date}</TableCell>
-              <TableCell className="tableCell">{row.amount}</TableCell>
-              <TableCell className="tableCell">{row.method}</TableCell>
-              <TableCell className="tableCell">
-                <span className={`status ${row.status}`}>{row.status}</span>
-              </TableCell>
-            </TableRow>
-          ))}
+          {items &&
+            items.map((row) => (
+              <TableRow key={row.id}>
+                <TableCell className="tableCell">{row.id}</TableCell>
+                <TableCell className="tableCell">
+                  <div className="cellWrapper">
+                    {/* <img src={row.img} alt="" className="image" /> */}
+                    {row.property.name}
+                  </div>
+                </TableCell>
+                <TableCell className="tableCell">{row.user.fullname}</TableCell>
+                <TableCell className="tableCell">{row.date}</TableCell>
+                <TableCell className="tableCell">{row.price}</TableCell>
+                <TableCell className="tableCell">{row.method}</TableCell>
+                <TableCell className="tableCell">
+                  <span className={`status ${row.paymentStatus}`}>{string_of_enum(PaymentStatus, row.paymentStatus)}</span>
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>

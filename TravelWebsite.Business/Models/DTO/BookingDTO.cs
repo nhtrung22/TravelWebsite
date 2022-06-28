@@ -18,6 +18,8 @@ namespace TravelWebsite.Business.Models.DTO
 
         public PropertyDTO Property { get; set; } = default!;
 
+        public UserDTO User { get; set; } = default!;
+
         public BookingStatus Status { get; set; }
 
         public PaymentStatus PaymentStatus { get; set; }

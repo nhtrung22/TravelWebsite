@@ -37,3 +37,11 @@ export const UserType = {
   Owner: 1,
   Admin: 2,
 };
+
+export const PaymentStatus = {
+  Pending: 0,
+  Reserved: 1,
+  Paid: 2,
+  Waiting: 3,
+  Cancelled: 4,
+};

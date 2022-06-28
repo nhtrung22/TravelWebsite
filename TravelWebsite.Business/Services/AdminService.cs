@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using TravelWebsite.Business.Common.Interfaces;
-using TravelWebsite.Business.Models.Commands;
 using TravelWebsite.Business.Models.DTO;
-using TravelWebsite.Business.Models.Exceptions;
 using TravelWebsite.DataAccess.EF;
-using TravelWebsite.DataAccess.Entities;
 
 namespace TravelWebsite.Business.Services
 {
@@ -28,6 +25,7 @@ namespace TravelWebsite.Business.Services
             StatisticsDTO result = new();
             result.NumberOfUsers = await _context.Users.CountAsync();
             result.NumberOfOrders = await _context.Bookings.CountAsync();
+            result.LatestTransactions = _mapper.Map<IEnumerable<BookingDTO>>(await _context.Bookings.Include(item => item.Property).Include(item => item.User).ToListAsync());
             return result;
         }
     }
