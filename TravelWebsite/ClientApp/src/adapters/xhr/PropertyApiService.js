@@ -12,6 +12,13 @@ class PropertyApiService extends Service {
     return result;
   }
 
+  async deleteById(id) {
+    let result = await this.delete(`/property/${id}`, (status, data) => {
+      return data;
+    });
+    return result;
+  }
+
   async getAll(params) {
     let result = await this.get(`/property`, params, (status, data) => {
       return data;

@@ -8,19 +8,23 @@ import PropertyApiService from "../../../adapters/xhr/PropertyApiService";
 
 const HotelListAdmin = () => {
   const [data, setData] = useState([]);
+  const fetchData = async () => {
+    const response = await PropertyApiService.getAll();
+    setData(response.items);
+  };
   useEffect(() => {
-    async function fetchData() {
-      const response = await PropertyApiService.getAll();
-      setData(response.items);
-    }
     fetchData();
   }, []);
+  const handleDelete = async (id) => {
+    await PropertyApiService.deleteById(id);
+    await fetchData();
+  };
   return (
     <div className="list">
       <Sidebar />
       <div className="listContainer-admin">
         <NavbarAdmin />
-        <Datatable userRows={data} columns={hotelColumns} />
+        <Datatable userRows={data} columns={hotelColumns} handleDelete={handleDelete} />
       </div>
     </div>
   );

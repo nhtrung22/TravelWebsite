@@ -15,7 +15,7 @@ const Datatable = (props) => {
             <Link to={`/admin/${path}/${params.row.id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
-            <div className="deleteButton" onClick={() => handleDelete(params.row.id)}>
+            <div className="deleteButton" onClick={() => props.handleDelete(params.row.id)}>
               Delete
             </div>
           </div>
