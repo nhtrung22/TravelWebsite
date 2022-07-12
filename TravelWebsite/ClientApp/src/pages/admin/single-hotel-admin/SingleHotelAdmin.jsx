@@ -7,6 +7,7 @@ import UserApiService from "../../../adapters/xhr/UserApiService";
 import { useEffect, useState } from "react";
 import PropertyApiService from "../../../adapters/xhr/PropertyApiService";
 import BookingApiService from "../../../adapters/xhr/BookingApiService";
+import { base64ToSrc } from "../../../Utils";
 // import Chart from "../../../components/chart/Chart";
 
 const SingleHotelAdmin = () => {
@@ -29,7 +30,7 @@ const SingleHotelAdmin = () => {
             <div className="editButton">Edit</div>
             <h1 className="title">Information</h1>
             <div className="item">
-              <img src={hotel.avatar} alt="" className="itemImg" />
+              <img src={hotel.images ? base64ToSrc(hotel.images[0].file) : ""} alt="" className="itemImg" />
               <div className="details">
                 <h1 className="itemTitle">{hotel.fullname}</h1>
                 <div className="detailItem">

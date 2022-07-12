@@ -137,4 +137,25 @@ export const hotelInputs = [
     type: "number",
     placeholder: "100",
   },
+  {
+    id: "numberOfKids",
+    key: "numberOfKids",
+    label: "Number of kids",
+    type: "number",
+    placeholder: "0",
+  },
+  {
+    id: "numberOfAdults",
+    key: "numberOfAdults",
+    label: "Number of adults",
+    type: "number",
+    placeholder: "1",
+  },
+  {
+    id: "numberOfRooms",
+    key: "numberOfRooms",
+    label: "Number of rooms",
+    type: "number",
+    placeholder: "1",
+  },
 ];

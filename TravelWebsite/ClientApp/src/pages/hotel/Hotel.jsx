@@ -12,6 +12,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import BookingApiService from "../../adapters/xhr/BookingApiService";
 import SnackbarUtils from "../../SnackbarUtils";
+import { base64ToSrc } from "../../Utils";
 
 const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
@@ -24,6 +25,12 @@ const Hotel = () => {
   const fetchHotel = async () => {
     let result = await PropertyApiService.getById(id);
     setHotel(result);
+    if (result.images && result.images.length > 0) {
+      let imgs = result.images.map((item) => ({
+        src: base64ToSrc(item.file),
+      }));
+      setPhotos(imgs);
+    }
   };
   const createBooking = async () => {
     let payload = {
@@ -37,7 +44,7 @@ const Hotel = () => {
   useEffect(() => {
     fetchHotel(id);
   }, []);
-  const photos = [
+  const [photos, setPhotos] = useState([
     {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707778.jpg?k=56ba0babbcbbfeb3d3e911728831dcbc390ed2cb16c51d88159f82bf751d04c6&o=&hp=1",
     },
@@ -56,7 +63,7 @@ const Hotel = () => {
     {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707389.jpg?k=52156673f9eb6d5d99d3eed9386491a0465ce6f3b995f005ac71abc192dd5827&o=&hp=1",
     },
-  ];
+  ]);
 
   const handleClick = async () => {
     if (user) {

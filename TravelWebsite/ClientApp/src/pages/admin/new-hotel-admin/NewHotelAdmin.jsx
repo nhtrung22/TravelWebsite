@@ -1,28 +1,30 @@
 import "./newAdmin.scss";
 import Sidebar from "../../../components/sidebar/Sidebar";
-import Navbar from "../../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
 import NavbarAdmin from "../../../components/navbarAdmin/NavbarAdmin";
-import UserApiService from "../../../adapters/xhr/UserApiService";
 import { useNavigate } from "react-router-dom";
 import PropertyApiService from "../../../adapters/xhr/PropertyApiService";
+import { toBase64 } from "../../../Utils";
 
 const NewHotelAdmin = ({ inputs, title }) => {
-  const [file, setFile] = useState("");
+  const [files, setFiles] = useState([]);
   const [data, setData] = useState({});
   const navigate = useNavigate();
   const add = async (event) => {
     event.preventDefault();
     try {
-      await PropertyApiService.add(data);
+      await PropertyApiService.add({
+        ...data,
+        images: await Promise.all(Array.from(files).map(async (item) => ({ fileName: item.name, file: await toBase64(item) }))),
+      });
       navigate("/admin/hotels", { replace: true });
     } catch (err) {
       console.log(err);
     }
   };
   return (
-    <div className="new">
+    <div className="new-hotel">
       <Sidebar />
       <div className="newContainer">
         <NavbarAdmin />
@@ -31,7 +33,11 @@ const NewHotelAdmin = ({ inputs, title }) => {
         </div>
         <div className="bottom">
           <div className="left">
-            <img src={file ? URL.createObjectURL(file) : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"} alt="" />
+            {files && files.length > 0 ? (
+              Array.from(files).map((file, index) => <img key={index} src={URL.createObjectURL(file)} alt="" />)
+            ) : (
+              <img src={"https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"} alt="" />
+            )}
           </div>
           <div className="right">
             <form>
@@ -39,7 +45,15 @@ const NewHotelAdmin = ({ inputs, title }) => {
                 <label htmlFor="file">
                   Image: <DriveFolderUploadOutlinedIcon className="icon" />
                 </label>
-                <input type="file" id="file" onChange={(e) => setFile(e.target.files[0])} style={{ display: "none" }} />
+                <input
+                  multiple
+                  type="file"
+                  id="file"
+                  onChange={(e) => {
+                    setFiles(e.target.files);
+                  }}
+                  style={{ display: "none" }}
+                />
               </div>
 
               {inputs.map((input) => (

@@ -6,6 +6,8 @@ export const toBase64 = (file) =>
     reader.onerror = (error) => reject(error);
   });
 
+export const base64ToSrc = (base64) => "data:image/png;base64," + base64;
+
 export function getCookie(name) {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);

@@ -49,6 +49,7 @@ namespace TravelWebsite.Business.Services.PlaceService
                 Price = request.Price,
                 NumberOfAdults = request.NumberOfAdults,
                 NumberOfKids = request.NumberOfKids,
+                NumberOfRooms = request.NumberOfAdults,
                 City = city,
                 Type = type,
                 User = currentUser,
