@@ -1,4 +1,4 @@
-.single {
+.single-hotel {
   display: flex;
   width: 100%;
   .singleContainer {
@@ -35,7 +35,7 @@
           .itemImg {
             width: 100px;
             height: 100px;
-            border-radius: 50%;
+            // border-radius: 50%;
             object-fit: cover;
           }
 

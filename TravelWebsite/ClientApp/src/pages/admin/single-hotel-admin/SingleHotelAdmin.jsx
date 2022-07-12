@@ -21,7 +21,7 @@ const SingleHotelAdmin = () => {
     fetchHotel();
   }, []);
   return (
-    <div className="single">
+    <div className="single-hotel">
       <Sidebar />
       <div className="singleContainer">
         <NavbarAdmin />
@@ -30,7 +30,7 @@ const SingleHotelAdmin = () => {
             <div className="editButton">Edit</div>
             <h1 className="title">Information</h1>
             <div className="item">
-              <img src={hotel.images ? base64ToSrc(hotel.images[0].file) : ""} alt="" className="itemImg" />
+              <img src={hotel.images && hotel.images.length > 0 ? base64ToSrc(hotel.images[0].file) : ""} alt="" className="itemImg" />
               <div className="details">
                 <h1 className="itemTitle">{hotel.fullname}</h1>
                 <div className="detailItem">
@@ -50,8 +50,8 @@ const SingleHotelAdmin = () => {
                   <span className="itemValue">{hotel.address}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Country:</span>
-                  <span className="itemValue">USA</span>
+                  <span className="itemKey">Price:</span>
+                  <span className="itemValue">{hotel.price}</span>
                 </div>
               </div>
             </div>
