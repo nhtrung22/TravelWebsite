@@ -53,6 +53,18 @@ const SingleHotelAdmin = () => {
                   <span className="itemKey">Price:</span>
                   <span className="itemValue">{hotel.price}</span>
                 </div>
+                <div className="detailItem">
+                  <span className="itemKey">Number of kids:</span>
+                  <span className="itemValue">{hotel.numberOfKids}</span>
+                </div>
+                <div className="detailItem">
+                  <span className="itemKey">Number of adults:</span>
+                  <span className="itemValue">{hotel.numberOfAdults}</span>
+                </div>
+                <div className="detailItem">
+                  <span className="itemKey">Number of rooms:</span>
+                  <span className="itemValue">{hotel.numberOfRooms}</span>
+                </div>
               </div>
             </div>
           </div>

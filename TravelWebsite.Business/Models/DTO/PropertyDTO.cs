@@ -8,6 +8,7 @@
         public string ShortDescription { get; set; } = default!;
         public string Description { get; set; } = default!;
         public decimal Price { get; set; } = default!;
+        public int NumberOfRooms { get; set; }
         public int NumberOfAdults { get; set; }
         public int NumberOfKids { get; set; }
         public PropertyTypeDTO Type { get; set; } = default!;
