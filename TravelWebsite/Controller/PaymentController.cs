@@ -2,11 +2,9 @@
 
 using Microsoft.AspNetCore.Mvc;
 using TravelWebsite.Business.Common.Attributes;
-using TravelWebsite.Business.Models.Commands;
-using TravelWebsite.Business.Models.DTO;
 using TravelWebsite.Business.Services;
 
-[Authorize("Client")]
+[Authorize("Client", "Admin")]
 public class PaymentController : BaseController
 {
     private readonly IPaymentService _paymentService;
@@ -18,9 +16,9 @@ public class PaymentController : BaseController
 
     [HttpPost]
     [AllowAnonymous]
-    public ActionResult Create(decimal amount)
+    public IActionResult Create()
     {
-        _paymentService.Create(amount);
-        return Ok();
+        var result = _paymentService.Create();
+        return Ok(new { clientSecret = result.ClientSecret });
     }
 }

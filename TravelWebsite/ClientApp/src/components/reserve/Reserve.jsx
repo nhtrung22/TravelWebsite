@@ -1,11 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
-
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 import "./reserve.css";
 import { useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../../contexts/SearchContext";
+import CheckoutForm from "./CheckoutForm";
+
+const promise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
 const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
@@ -62,8 +66,11 @@ const Reserve = ({ setOpen, hotelId }) => {
     <div className="reserve">
       <div className="rContainer">
         <FontAwesomeIcon icon={faCircleXmark} className="rClose" onClick={() => setOpen(false)} />
-        <span>Select your rooms:</span>
-        {data.map((item) => (
+        <Elements stripe={promise}>
+          <CheckoutForm />
+        </Elements>
+        {/* <span>Select your rooms:</span> */}
+        {/* {data.map((item) => (
           <div className="rItem" key={item._id}>
             <div className="rItemInfo">
               <div className="rTitle">{item.title}</div>
@@ -82,10 +89,10 @@ const Reserve = ({ setOpen, hotelId }) => {
               ))}
             </div>
           </div>
-        ))}
-        <button onClick={handleClick} className="rButton">
+        ))} */}
+        {/* <button onClick={handleClick} className="rButton">
           Reserve Now!
-        </button>
+        </button> */}
       </div>
     </div>
   );

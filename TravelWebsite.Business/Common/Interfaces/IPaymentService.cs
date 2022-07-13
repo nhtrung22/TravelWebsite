@@ -1,10 +1,9 @@
-﻿using TravelWebsite.Business.Models.Commands;
-using TravelWebsite.Business.Models.DTO;
+﻿using Stripe;
 
 namespace TravelWebsite.Business.Services
 {
     public interface IPaymentService
     {
-        Task Create(decimal amount);
+        PaymentIntent Create();
     }
 }

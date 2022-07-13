@@ -14,6 +14,7 @@
   background-color: white;
   padding: 20px;
   position: relative;
+  width: 40rem;
 }
 
 .rClose {
@@ -52,7 +53,7 @@
   font-weight: 500;
 }
 
-.rSelectRooms{
+.rSelectRooms {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
@@ -60,7 +61,7 @@
   color: gray;
 }
 
-.room{
+.room {
   display: flex;
   flex-direction: column;
 }

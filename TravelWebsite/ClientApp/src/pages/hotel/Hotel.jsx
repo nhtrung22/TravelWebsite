@@ -66,20 +66,20 @@ const Hotel = () => {
   ]);
 
   const handleClick = async () => {
-    if (user) {
-      let result = await createBooking();
-      if (result) {
-        SnackbarUtils.success("success");
-        navigate("/");
-      }
-    } else {
-      navigate("/login");
-    }
     // if (user) {
-    //   setOpenModal(true);
+    //   let result = await createBooking();
+    //   if (result) {
+    //     SnackbarUtils.success("success");
+    //     navigate("/");
+    //   }
     // } else {
     //   navigate("/login");
     // }
+    if (user) {
+      setOpenModal(true);
+    } else {
+      navigate("/login");
+    }
   };
 
   const handleOpen = (i) => {
@@ -150,7 +150,7 @@ const Hotel = () => {
         <MailList />
         <Footer />
       </div>
-      {/* {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />} */}
+      {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}
     </div>
   );
 };

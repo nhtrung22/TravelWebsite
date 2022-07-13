@@ -3,6 +3,7 @@ using Business.Common.MappingConfig;
 using Business.Services.PlaceService;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
 using System.Text.Json.Serialization;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.Common.MappingConfig;
@@ -19,6 +20,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // configure strongly typed settings object
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+// This is a public sample test API key.
+// Don’t submit any personally identifiable information in requests made with this key.
+// Sign in to see your own test API key embedded in code samples.
+StripeConfiguration.ApiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
 if (builder.Configuration.GetValue<bool>("UseInMemoryDatabase"))
 {
     builder.Services.AddDbContext<TravelDbContext>(options =>
