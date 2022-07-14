@@ -4,6 +4,6 @@ namespace TravelWebsite.Business.Services
 {
     public interface IPaymentService
     {
-        PaymentIntent Create();
+        Task<PaymentIntent> Create(int id);
     }
 }

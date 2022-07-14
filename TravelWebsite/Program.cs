@@ -23,7 +23,7 @@ builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSet
 // This is a public sample test API key.
 // Don’t submit any personally identifiable information in requests made with this key.
 // Sign in to see your own test API key embedded in code samples.
-StripeConfiguration.ApiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
+StripeConfiguration.ApiKey = "sk_test_51LLMFpKay66RBQQA30s2S0x02Q4h9rjwMVBDwteljOAbXpsD2Nfggw2rxjFGVgsb66G4BXtguPo1Ndr1kTj3SiyP00LBWyoay2";
 //var options = new SetupIntentCreateOptions
 //{
 //    PaymentMethodTypes = new List<string>

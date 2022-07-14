@@ -16,7 +16,7 @@ import { base64ToSrc } from "../../Utils";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
-const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
+const stripePromise = loadStripe("pk_test_51LLMFpKay66RBQQAsEq805VONK0K7IdlBsfzr1TEoirJRtI2eh2HTLfQdpsSXTAFdC5sugqgIbNoLPkR5Tqqzr1F00wRBlRd4h");
 
 const Hotel = () => {
   const [clientSecret, setClientSecret] = useState("");
@@ -46,7 +46,7 @@ const Hotel = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+          body: JSON.stringify({ id: id }),
         })
         .then((res) => {
           return res.json();
