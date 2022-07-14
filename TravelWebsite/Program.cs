@@ -24,6 +24,15 @@ builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSet
 // Don’t submit any personally identifiable information in requests made with this key.
 // Sign in to see your own test API key embedded in code samples.
 StripeConfiguration.ApiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
+//var options = new SetupIntentCreateOptions
+//{
+//    PaymentMethodTypes = new List<string>
+//  {
+//    "card",
+//  },
+//};
+//var service = new SetupIntentService();
+//service.Create(options);
 if (builder.Configuration.GetValue<bool>("UseInMemoryDatabase"))
 {
     builder.Services.AddDbContext<TravelDbContext>(options =>

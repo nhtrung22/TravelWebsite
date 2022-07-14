@@ -13,8 +13,13 @@ import { useNavigate } from "react-router-dom";
 import BookingApiService from "../../adapters/xhr/BookingApiService";
 import SnackbarUtils from "../../SnackbarUtils";
 import { base64ToSrc } from "../../Utils";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
 const Hotel = () => {
+  const [clientSecret, setClientSecret] = useState("");
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -31,6 +36,32 @@ const Hotel = () => {
       }));
       setPhotos(imgs);
     }
+  };
+  useEffect(() => {
+    // Create PaymentIntent as soon as the page loads
+    if (clientSecret == "") {
+      window
+        .fetch("/api/payment", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+        })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setClientSecret(data.clientSecret);
+        });
+    }
+  }, []);
+  const appearance = {
+    theme: "stripe",
+  };
+  let options = {
+    clientSecret,
+    appearance,
   };
   const createBooking = async () => {
     let payload = {
@@ -124,7 +155,7 @@ const Hotel = () => {
             <span>{hotel.address}</span>
           </div>
           <span className="hotelDistance">{hotel.distance}</span>
-          <span className="hotelPriceHighlight">Book a stay over $114 at this property and get a free airport taxi</span>
+          <span className="hotelPriceHighlight">Book a stay over $200 at this property and get a free airport taxi</span>
           <div className="hotelImages">
             {photos.map((photo, i) => (
               <div className="hotelImgWrapper" key={i}>
@@ -138,10 +169,10 @@ const Hotel = () => {
               <p className="hotelDesc">{hotel.description}</p>
             </div>
             <div className="hotelDetailsPrice">
-              <h1>Perfect for a 9-night stay!</h1>
-              <span>Located in the real heart of Krakow, this property has an excellent location score of 9.8!</span>
+              <h1>Perfect for a stay!</h1>
+              <span>{hotel.shortDescription}</span>
               <h2>
-                <b>$945</b> (9 nights)
+                <b>${hotel.price}</b> (1 night)
               </h2>
               <button onClick={handleClick}>Reserve or Book Now!</button>
             </div>
@@ -150,7 +181,11 @@ const Hotel = () => {
         <MailList />
         <Footer />
       </div>
-      {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}
+      {openModal && clientSecret && (
+        <Elements options={options} stripe={stripePromise}>
+          <Reserve setOpen={setOpenModal} hotelId={id} clientSecret={clientSecret} hotel={hotel} />
+        </Elements>
+      )}
     </div>
   );
 };

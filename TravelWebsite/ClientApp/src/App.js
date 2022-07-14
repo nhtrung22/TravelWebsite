@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/header/Header";
 import Navbar from "./components/navbar/Navbar";
@@ -19,7 +19,6 @@ import SingleHotelAdmin from "./pages/admin/single-hotel-admin/SingleHotelAdmin"
 import SingleUserAdmin from "./pages/admin/single-user-admin/SingleUserAdmin";
 import NewHotelAdmin from "./pages/admin/new-hotel-admin/NewHotelAdmin";
 import NewUserAdmin from "./pages/admin/new-user-admin/NewUserAdmin";
-
 function App() {
   const ProtectedRoute = ({ children }) => {
     const { user } = useContext(AuthContext);

@@ -6,7 +6,6 @@ import { LoadingIndicator } from "./components/loadingIndicator/LoadingIndicator
 import { AuthContextProvider } from "./contexts/AuthContext";
 import { SearchContextProvider } from "./contexts/SearchContext";
 import { SnackbarUtilsConfigurator } from "./SnackbarUtils";
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

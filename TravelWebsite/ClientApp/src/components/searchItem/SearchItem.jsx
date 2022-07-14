@@ -29,7 +29,7 @@ const SearchItem = (props) => {
           {/* <button>8.9</button> */}
         </div>
         <div className="siDetailTexts">
-          <span className="siPrice">${props.price}</span>
+          <span className="siPrice">${props.price} / night</span>
           <span className="siTaxOp">Includes taxes and fees</span>
           <Link to={`/hotels/${props.id}`}>
             <button className="siCheckButton">See availability</button>

@@ -32,6 +32,10 @@ namespace TravelWebsite.Business.Services
             {
                 Amount = 1400,
                 Currency = "usd",
+                AutomaticPaymentMethods = new PaymentIntentAutomaticPaymentMethodsOptions
+                {
+                    Enabled = true,
+                },
             });
 
             return paymentIntent;

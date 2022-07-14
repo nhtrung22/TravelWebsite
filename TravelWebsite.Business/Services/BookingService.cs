@@ -35,7 +35,7 @@ namespace TravelWebsite.Business.Services
                 FromTime = request.FromTime,
                 ToTime = request.ToTime,
                 Deposit = request.Deposit,
-                PaymentStatus = DataAccess.Enums.PaymentStatus.Pending,
+                PaymentStatus = DataAccess.Enums.PaymentStatus.Paid,
                 Status = DataAccess.Enums.BookingStatus.Booked,
                 UserId = user.Id,
                 Property = property

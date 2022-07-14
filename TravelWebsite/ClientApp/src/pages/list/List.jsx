@@ -2,11 +2,12 @@ import "./list.css";
 import Navbar from "../../components/navbar/Navbar";
 import Header from "../../components/header/Header";
 import { useLocation } from "react-router-dom";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
 import PropertyApiService from "../../adapters/xhr/PropertyApiService";
+import { SearchContext } from "../../contexts/SearchContext";
 
 const List = () => {
   const location = useLocation();
@@ -20,6 +21,7 @@ const List = () => {
   const [maxPrice, setMaxPrice] = useState(0);
   const [minPrice, setMinPrice] = useState(0);
   const [room, setRoom] = useState(1);
+  const { loading, error, dispatch } = useContext(SearchContext);
 
   const fetchProperties = async () => {
     let params = {

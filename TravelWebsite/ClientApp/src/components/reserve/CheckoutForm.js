@@ -1,91 +1,97 @@
 import React, { useState, useEffect } from "react";
-import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import { CardElement, useStripe, useElements, PaymentElement, Elements, CardNumberElement } from "@stripe/react-stripe-js";
+import SnackbarUtils from "../../SnackbarUtils";
+import BookingApiService from "../../adapters/xhr/BookingApiService";
+import { loadStripe } from "@stripe/stripe-js";
 
-export default function CheckoutForm() {
+export default function CheckoutForm({ clientSecret }) {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState("");
   const [disabled, setDisabled] = useState(true);
-  const [clientSecret, setClientSecret] = useState("");
   const stripe = useStripe();
   const elements = useElements();
+  const id = location.pathname.split("/")[2];
+  const createBooking = async () => {
+    let payload = {
+      fromTime: Date.now,
+      toTime: Date.now,
+      propertyId: id,
+    };
+    let result = await BookingApiService.add(payload);
+    return result;
+  };
 
   useEffect(() => {
-    // Create PaymentIntent as soon as the page loads
-    window
-      .fetch("/api/payment", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
-      })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setClientSecret(data.clientSecret);
-      });
-  }, []);
+    if (!stripe) {
+      return;
+    }
+    //const clientSecret = new URLSearchParams(window.location.search).get("payment_intent_client_secret");
 
-  const cardStyle = {
-    style: {
-      base: {
-        color: "#32325d",
-        fontFamily: "Arial, sans-serif",
-        fontSmoothing: "antialiased",
-        fontSize: "16px",
-        "::placeholder": {
-          color: "#32325d",
-        },
-      },
-      invalid: {
-        fontFamily: "Arial, sans-serif",
-        color: "#fa755a",
-        iconColor: "#fa755a",
-      },
-    },
-  };
+    if (!clientSecret) {
+      return;
+    }
 
-  const handleChange = async (event) => {
-    // Listen for changes in the CardElement
-    // and display any errors as the customer types their card details
-    setDisabled(event.empty);
-    setError(event.error ? event.error.message : "");
-  };
+    stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
+      // switch (paymentIntent.status) {
+      //   case "succeeded":
+      //     setMessage("Payment succeeded!");
+      //     break;
+      //   case "processing":
+      //     setMessage("Your payment is processing.");
+      //     break;
+      //   case "requires_payment_method":
+      //     setMessage("Your payment was not successful, please try again.");
+      //     break;
+      //   default:
+      //     setMessage("Something went wrong.");
+      //     break;
+      // }
+    });
+  }, [stripe]);
 
   const handleSubmit = async (ev) => {
     ev.preventDefault();
+    if (!stripe || !elements) {
+      // Stripe.js has not yet loaded.
+      // Make sure to disable form submission until Stripe.js has loaded.
+      return;
+    }
     setProcessing(true);
-
-    const payload = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: elements.getElement(CardElement),
+    const payload = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        // Make sure to change this to your payment completion page
+        return_url: "http://localhost:44333",
       },
+      redirect: "if_required",
     });
-
     if (payload.error) {
       setError(`Payment failed ${payload.error.message}`);
       setProcessing(false);
     } else {
-      setError(null);
-      setProcessing(false);
-      setSucceeded(true);
+      let result = await createBooking();
+      if (result) {
+        SnackbarUtils.success("success");
+        setError(null);
+        setProcessing(false);
+        setSucceeded(true);
+      }
     }
   };
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
-      <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
-      <button class="rButton" disabled={processing || disabled || succeeded} id="submit">
-        <span id="button-text">{processing ? <div className="spinner" id="spinner"></div> : "Pay now"}</span>
+      <PaymentElement id="payment-element" />
+      <button className="rButton" id="submit">
+        <span id="button-text">{"Pay now"}</span>
       </button>
       {/* Show any error that happens when processing the payment */}
-      {error && (
+      {/* {error && (
         <div className="card-error" role="alert">
           {error}
         </div>
-      )}
+      )} */}
       {/* Show a success message upon completion */}
       {/* <p className={succeeded ? "result-message" : "result-message hidden"}>
         Payment succeeded, see the result in your
