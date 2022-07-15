@@ -88,8 +88,10 @@ const MyTable = ({ items }) => {
                   </div>
                 </TableCell>
                 <TableCell className="tableCell">{row.user.fullname}</TableCell>
-                <TableCell className="tableCell">{row.date}</TableCell>
-                <TableCell className="tableCell">{row.price}</TableCell>
+                <TableCell className="tableCell">
+                  {new Date(row.fromTime).toISOString().slice(0, 10) + " - " + new Date(row.toTime).toISOString().slice(0, 10)}
+                </TableCell>
+                <TableCell className="tableCell">{row.property?.price}</TableCell>
                 <TableCell className="tableCell">{row.method}</TableCell>
                 <TableCell className="tableCell">
                   <span className={`status ${row.paymentStatus}`}>{string_of_enum(PaymentStatus, row.paymentStatus)}</span>

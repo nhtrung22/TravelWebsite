@@ -14,8 +14,8 @@ export default function CheckoutForm({ clientSecret }) {
   const id = location.pathname.split("/")[2];
   const createBooking = async () => {
     let payload = {
-      fromTime: Date.now,
-      toTime: Date.now,
+      fromTime: new Date(),
+      toTime: new Date(),
       propertyId: id,
     };
     let result = await BookingApiService.add(payload);

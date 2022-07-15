@@ -22,8 +22,8 @@ const Reserve = ({ setOpen, hotelId, clientSecret, hotel }) => {
   const { loading, dispatch, dates } = useContext(SearchContext);
   const createBooking = async () => {
     let payload = {
-      fromTime: Date.now,
-      toTime: Date.now,
+      fromTime: new Date().toString(),
+      toTime: new Date().toString(),
       propertyId: id,
     };
     let result = await BookingApiService.add(payload);

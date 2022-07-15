@@ -38,7 +38,7 @@ namespace TravelWebsite.Business.Services
                 PaymentStatus = DataAccess.Enums.PaymentStatus.Paid,
                 Status = DataAccess.Enums.BookingStatus.Booked,
                 UserId = user.Id,
-                Property = property
+                Property = property,
             };
             var result = await _context.Bookings.AddAsync(entity);
             await _context.SaveChangesAsync();
