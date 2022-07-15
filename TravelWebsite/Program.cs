@@ -72,8 +72,6 @@ builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 builder.Services.Configure<MomoSettings>(builder.Configuration.GetSection("MomoSettings"));
 
-
-
 builder.Services.AddCors();
 builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull);
 
