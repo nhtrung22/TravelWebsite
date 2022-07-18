@@ -16,7 +16,9 @@ import { base64ToSrc } from "../../Utils";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
-const stripePromise = loadStripe("pk_test_51LLMFpKay66RBQQAsEq805VONK0K7IdlBsfzr1TEoirJRtI2eh2HTLfQdpsSXTAFdC5sugqgIbNoLPkR5Tqqzr1F00wRBlRd4h");
+const stripePromise = loadStripe("pk_test_51LLMFpKay66RBQQAsEq805VONK0K7IdlBsfzr1TEoirJRtI2eh2HTLfQdpsSXTAFdC5sugqgIbNoLPkR5Tqqzr1F00wRBlRd4h", {
+  locale: "en",
+});
 
 const Hotel = () => {
   const [clientSecret, setClientSecret] = useState("");
