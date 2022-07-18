@@ -27,8 +27,10 @@ namespace TravelWebsite.Business.Services
         {
             var property = await _context.Properties.Include(item => item.User).FirstOrDefaultAsync(item => item.Id == request.PropertyId);
             if (property == null) throw new NotFoundException(nameof(property), request.PropertyId);
-            var user = await _context.Users.FindAsync(property.User.Id);
-            if (user == null) throw new NotFoundException(nameof(user), property.User.Id);
+            var owner = await _context.Users.FindAsync(property.User.Id);
+            if (owner == null) throw new NotFoundException(nameof(owner), property.User.Id);
+            var user = await _context.Users.FindAsync(_currentUserService.UserId);
+            if (user == null) throw new NotFoundException(nameof(user), _currentUserService.UserId);
             Booking entity = new()
             {
                 PropertyId = property.Id,
@@ -44,8 +46,8 @@ namespace TravelWebsite.Business.Services
             await _context.SaveChangesAsync();
             await _mailService.SendEmailAsync(new Models.MailRequest()
             {
-                ToEmail = user.Email,
-                Subject = $"Booking at {property.Name} from {request.FromTime.Date} to {request.ToTime.Date} by {user.Username}",
+                ToEmail = owner.Email,
+                Subject = $"Booking at {property.Name} from {request.FromTime.Date.ToString("dd/MM/yyyy")} to {request.ToTime.Date.ToString("dd/MM/yyyy")} by {user.Username}",
                 Body = $"User information:\nEmail: {user.Email}\nPhone: {user.PhoneNumber}",
             });
             return result.Entity.Id;
