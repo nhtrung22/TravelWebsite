@@ -45,8 +45,8 @@ namespace TravelWebsite.Business.Services
             await _mailService.SendEmailAsync(new Models.MailRequest()
             {
                 ToEmail = user.Email,
-                Subject = "Booking",
-                Body = "Booking",
+                Subject = $"Booking at {property.Name} from {request.FromTime.Date} to {request.ToTime.Date} by {user.Username}",
+                Body = $"User information:\nEmail: {user.Email}\nPhone: {user.PhoneNumber}",
             });
             return result.Entity.Id;
         }
