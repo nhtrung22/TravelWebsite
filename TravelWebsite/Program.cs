@@ -73,7 +73,7 @@ builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailS
 builder.Services.Configure<MomoSettings>(builder.Configuration.GetSection("MomoSettings"));
 builder.Services.AddHostedService<CityHostedService>();
 builder.Services.AddCors();
-builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull);
+builder.Services.AddControllers().AddJsonOptions(x => { x.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull; x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; });
 
 var config = new MapperConfiguration(cfg =>
 {

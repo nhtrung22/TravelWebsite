@@ -84,7 +84,7 @@ const MyTable = ({ items }) => {
                 <TableCell className="tableCell">
                   <div className="cellWrapper">
                     {/* <img src={row.img} alt="" className="image" /> */}
-                    {row.property.name}
+                    {row.property?.name}
                   </div>
                 </TableCell>
                 <TableCell className="tableCell">{row.user.fullname}</TableCell>

@@ -74,7 +74,7 @@ const SingleHotelAdmin = () => {
         </div>
         <div className="bottom">
           <h1 className="title">Last Transactions</h1>
-          <MyTable />
+          <MyTable items={hotel.bookings} />
         </div>
       </div>
     </div>

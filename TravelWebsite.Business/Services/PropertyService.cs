@@ -122,7 +122,7 @@ namespace TravelWebsite.Business.Services.PlaceService
 
         public async Task<PropertyDTO> Get(int id)
         {
-            var result = await _context.Properties.Include(item => item.City).Include(item => item.Type).Include(item => item.Images).FirstOrDefaultAsync(item => item.Id == id);
+            var result = await _context.Properties.Include(item => item.Bookings).Include(item => item.City).Include(item => item.Type).Include(item => item.Images).FirstOrDefaultAsync(item => item.Id == id);
             return _mapper.Map<PropertyDTO>(result);
         }
 
