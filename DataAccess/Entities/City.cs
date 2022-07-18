@@ -11,6 +11,7 @@ namespace TravelWebsite.DataAccess.Entities
         public string Description { get; set; } = default!;
         public string Link { get; set; } = default!;
         public ICollection<Property> Properties { get; set; } = default!;
+        public int Code { get; set; }
 
     }
 }
