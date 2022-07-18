@@ -8,19 +8,23 @@ import { userColumns } from "../../../datatablesource";
 
 const UserListAdmin = () => {
   const [data, setData] = useState([]);
+  const fetchData = async () => {
+    const response = await UserApiService.getAll();
+    setData(response);
+  };
   useEffect(() => {
-    async function fetchData() {
-      const response = await UserApiService.getAll();
-      setData(response);
-    }
     fetchData();
   }, []);
+  const handleDelete = async (id) => {
+    await UserApiService.deleteById(id);
+    await fetchData();
+  };
   return (
     <div className="list">
       <Sidebar />
       <div className="listContainer-admin">
         <NavbarAdmin />
-        <Datatable userRows={data} columns={userColumns} />
+        <Datatable userRows={data} columns={userColumns} handleDelete={handleDelete} />
       </div>
     </div>
   );

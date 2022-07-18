@@ -25,6 +25,13 @@ class UserApiService extends Service {
     });
     return result;
   }
+
+  async deleteById(id) {
+    let result = await this.delete(`/User/${id}`, (status, data) => {
+      return data;
+    });
+    return result;
+  }
 }
 
 export default new UserApiService();
