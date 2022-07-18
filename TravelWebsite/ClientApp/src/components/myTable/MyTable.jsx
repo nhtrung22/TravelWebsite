@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { string_of_enum } from "../../Utils";
-import { PaymentStatus } from "../../Constant";
+import { PaymentMethod, PaymentStatus } from "../../Constant";
 
 const MyTable = ({ items }) => {
   const rows = [
@@ -92,7 +92,7 @@ const MyTable = ({ items }) => {
                   {new Date(row.fromTime).toISOString().slice(0, 10) + " - " + new Date(row.toTime).toISOString().slice(0, 10)}
                 </TableCell>
                 <TableCell className="tableCell">{row.property?.price}</TableCell>
-                <TableCell className="tableCell">{row.method}</TableCell>
+                <TableCell className="tableCell">{string_of_enum(PaymentMethod, row.paymentMethod)}</TableCell>
                 <TableCell className="tableCell">
                   <span className={`status ${row.paymentStatus}`}>{string_of_enum(PaymentStatus, row.paymentStatus)}</span>
                 </TableCell>

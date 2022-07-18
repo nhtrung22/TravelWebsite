@@ -12,6 +12,7 @@ namespace TravelWebsite.DataAccess.Entities
         public DateTime ToTime { get; set; }
         public BookingStatus Status { get; set; }
         public PaymentStatus PaymentStatus { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
         public decimal Deposit { get; set; }
         public int PropertyId { get; set; }
         public Property Property { get; set; } = default!;

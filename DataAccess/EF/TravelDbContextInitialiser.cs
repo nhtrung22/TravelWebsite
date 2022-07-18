@@ -276,6 +276,7 @@ namespace TravelWebsite.DataAccess.EF
                     ToTime = DateTime.Now.AddDays(10),
                     Status = 0,
                     PaymentStatus = PaymentStatus.Paid,
+                    PaymentMethod = PaymentMethod.Card,
                     Deposit = 0,
                     PropertyId = 1,
                     UserId = new Guid("00000000-0000-0000-0000-000000000003")

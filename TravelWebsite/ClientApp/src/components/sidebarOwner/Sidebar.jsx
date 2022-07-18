@@ -17,34 +17,15 @@ import { useContext } from "react";
 export const Sidebar = () => {
   return (
     <div className="sidebar">
-      <div className="top">
-        <Link to="/admin" style={{ textDecoration: "none" }}>
-          <span className="logo">admin</span>
-        </Link>
-      </div>
-      <hr />
       <div className="center">
         <ul>
-          <p className="title">MAIN</p>
-          <Link to="/admin" style={{ textDecoration: "none" }}>
-            <li>
-              <DashboardIcon className="icon" />
-              <span>Dashboard</span>
-            </li>
-          </Link>
           <p className="title">LISTS</p>
-          <Link to="/admin/users" style={{ textDecoration: "none" }}>
-            <li>
-              <PersonOutlineIcon className="icon" />
-              <span>Users</span>
-            </li>
-          </Link>
-          {/* <Link to="/admin/hotels" style={{ textDecoration: "none" }}>
+          <Link to="/owner/hotels" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
               <span>Properties</span>
             </li>
-          </Link> */}
+          </Link>
           {/* <li>
             <CreditCardIcon className="icon" />
             <span>Orders</span>

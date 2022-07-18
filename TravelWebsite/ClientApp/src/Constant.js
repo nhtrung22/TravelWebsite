@@ -45,3 +45,8 @@ export const PaymentStatus = {
   Waiting: 3,
   Cancelled: 4,
 };
+
+export const PaymentMethod = {
+  Card: 1,
+  PayUponCheckIn: 2,
+};

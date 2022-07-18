@@ -3,7 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Link } from "react-router-dom";
 
 const Datatable = (props) => {
-  const path = location.pathname.split("/")[2];
+  const path = location.pathname.split("/")[1] + "/" + location.pathname.split("/")[2];
   const actionColumn = [
     {
       field: "action",
@@ -12,7 +12,7 @@ const Datatable = (props) => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to={`/admin/${path}/${params.row.id}`} style={{ textDecoration: "none" }}>
+            <Link to={`/${path}/${params.row.id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton">View</div>
             </Link>
             <div className="deleteButton" onClick={() => props.handleDelete(params.row.id)}>
@@ -27,7 +27,7 @@ const Datatable = (props) => {
     <div className="datatable">
       <div className="datatableTitle">
         Add New
-        <Link to={`/admin/${path}/new`} className="link">
+        <Link to={`/${path}/new`} className="link">
           Add New
         </Link>
       </div>

@@ -37,7 +37,8 @@ namespace TravelWebsite.Business.Services
                 FromTime = request.FromTime,
                 ToTime = request.ToTime,
                 Deposit = request.Deposit,
-                PaymentStatus = DataAccess.Enums.PaymentStatus.Paid,
+                PaymentStatus = DataAccess.Enums.PaymentStatus.Pending,
+                PaymentMethod = (DataAccess.Enums.PaymentMethod)request.PaymentMethod,
                 Status = DataAccess.Enums.BookingStatus.Booked,
                 UserId = user.Id,
                 Property = property,
@@ -63,7 +64,7 @@ namespace TravelWebsite.Business.Services
 
         public async Task<List<BookingDTO>> Get()
         {
-            var result = await _context.Bookings.Where(item => item.User.Id == _currentUserService.UserId).ToListAsync();
+            var result = await _context.Bookings.Include(item => item.Property).Where(item => item.User.Id == _currentUserService.UserId).ToListAsync();
             return _mapper.Map<List<BookingDTO>>(result);
         }
 

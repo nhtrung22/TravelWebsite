@@ -14,6 +14,8 @@
 
         public int PropertyId { get; set; }
 
+        public int PaymentMethod { get; set; }
+
         public decimal Deposit { get; set; }
     }
 }

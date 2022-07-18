@@ -9,8 +9,10 @@ import CheckoutForm from "./CheckoutForm";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import BookingApiService from "../../adapters/xhr/BookingApiService";
+import SnackbarUtils from "../../SnackbarUtils";
 
 const Reserve = ({ setOpen, hotelId, clientSecret, hotel }) => {
+  const [paymentMethod, setPaymentMethod] = useState(1);
   const [selectedRooms, setSelectedRooms] = useState([]);
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
@@ -22,9 +24,10 @@ const Reserve = ({ setOpen, hotelId, clientSecret, hotel }) => {
   const { loading, dispatch, dates } = useContext(SearchContext);
   const createBooking = async () => {
     let payload = {
-      fromTime: new Date().toString(),
-      toTime: new Date().toString(),
+      fromTime: new Date(),
+      toTime: new Date(),
       propertyId: id,
+      paymentMethod: paymentMethod,
     };
     let result = await BookingApiService.add(payload);
     return result;
@@ -79,31 +82,13 @@ const Reserve = ({ setOpen, hotelId, clientSecret, hotel }) => {
   };
   const handleSubmit = async (ev) => {
     ev.preventDefault();
-    if (!stripe || !elements) {
-      // Stripe.js has not yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
-      return;
-    }
     setProcessing(true);
-    const payload = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: "http://localhost:44333",
-      },
-      redirect: "if_required",
-    });
-    if (payload.error) {
-      setError(`Payment failed ${payload.error.message}`);
+    let result = await createBooking();
+    if (result) {
+      SnackbarUtils.success("success");
+      setError(null);
       setProcessing(false);
-    } else {
-      let result = await createBooking();
-      if (result) {
-        SnackbarUtils.success("success");
-        setError(null);
-        setProcessing(false);
-        setSucceeded(true);
-      }
+      setSucceeded(true);
     }
   };
   return (
@@ -118,7 +103,27 @@ const Reserve = ({ setOpen, hotelId, clientSecret, hotel }) => {
           <h4 className="product-date">{new Date().toISOString().slice(0, 10)}</h4>
           <br />
         </div>
-        <CheckoutForm clientSecret={clientSecret} />
+        <input type="checkbox" id="card" name="card" value={1} checked={paymentMethod == 1} onChange={(e) => setPaymentMethod(e.target.value)} />
+        <label for="card"> Card</label>
+        <br />
+        <input
+          type="checkbox"
+          id="payuponcheckin"
+          name="payuponcheckin"
+          value={2}
+          checked={paymentMethod == 2}
+          onChange={(e) => setPaymentMethod(e.target.value)}
+        />
+        <label for="payuponcheckin"> Pay upon check-in</label>
+        <br />
+        <br />
+        {paymentMethod == 1 ? (
+          <CheckoutForm clientSecret={clientSecret} />
+        ) : (
+          <button onClick={handleSubmit} className="rButton">
+            Reserve Now!
+          </button>
+        )}
         {/* <span>Select your rooms:</span> */}
         {/* {data.map((item) => (
           <div className="rItem" key={item._id}>
@@ -140,9 +145,6 @@ const Reserve = ({ setOpen, hotelId, clientSecret, hotel }) => {
             </div>
           </div>
         ))} */}
-        {/* <button onClick={handleClick} className="rButton">
-          Reserve Now!
-        </button> */}
       </div>
     </div>
   );

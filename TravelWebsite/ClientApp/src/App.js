@@ -19,6 +19,10 @@ import SingleHotelAdmin from "./pages/admin/single-hotel-admin/SingleHotelAdmin"
 import SingleUserAdmin from "./pages/admin/single-user-admin/SingleUserAdmin";
 import NewHotelAdmin from "./pages/admin/new-hotel-admin/NewHotelAdmin";
 import NewUserAdmin from "./pages/admin/new-user-admin/NewUserAdmin";
+import HotelListOwner from "./pages/owner/hotel-list-owner/HotelListOwner";
+import SingleHotelOwner from "./pages/owner/single-hotel-owner/SingleHotelOwner";
+import NewHotelOwner from "./pages/owner/new-hotel-owner/NewHotelOwner";
+import HomeUser from "./pages/user/home-user/HomeUser";
 function App() {
   const ProtectedRoute = ({ children }) => {
     const { user } = useContext(AuthContext);
@@ -68,6 +72,33 @@ function App() {
             <Route path=":hotelId" element={<SingleHotelAdmin />} />
             <Route path="new" element={<NewHotelAdmin inputs={hotelInputs} title="Add New Hotel" />} />
           </Route>
+        </Route>
+
+        <Route path="/owner">
+          <Route path="/owner/login" element={<Login />} />
+          <Route path="hotels">
+            <Route
+              index
+              element={
+                <ProtectedRoute>
+                  <HotelListOwner />
+                </ProtectedRoute>
+              }
+            />
+            <Route path=":hotelId" element={<SingleHotelOwner />} />
+            <Route path="new" element={<NewHotelOwner inputs={hotelInputs} title="Add New Hotel" />} />
+          </Route>
+        </Route>
+
+        <Route path="/user">
+          <Route
+            index
+            element={
+              <ProtectedRoute>
+                <HomeUser />
+              </ProtectedRoute>
+            }
+          />
         </Route>
 
         <Route path="/" element={<Home />} />

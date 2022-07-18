@@ -23,6 +23,7 @@ namespace TravelWebsite.Business.Models.DTO
         public BookingStatus Status { get; set; }
 
         public PaymentStatus PaymentStatus { get; set; }
+        public PaymentMethod PaymentMethod { get; set; }
 
         public decimal Deposit { get; set; }
 
