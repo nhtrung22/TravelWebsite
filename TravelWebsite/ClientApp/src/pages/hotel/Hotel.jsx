@@ -24,7 +24,7 @@ const Hotel = () => {
   const [clientSecret, setClientSecret] = useState("");
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
   const id = location.pathname.split("/")[2];
   const [hotel, setHotel] = useState({});
   const { user } = useContext(AuthContext);
