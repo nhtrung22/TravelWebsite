@@ -9,7 +9,7 @@ import PropertyApiService from "../../../adapters/xhr/PropertyApiService";
 const HotelListOwner = () => {
   const [data, setData] = useState([]);
   const fetchData = async () => {
-    const response = await PropertyApiService.getAll();
+    const response = await PropertyApiService.getByCurrentUser();
     setData(response.items);
   };
   useEffect(() => {

@@ -40,6 +40,13 @@ class PropertyApiService extends Service {
     return result;
   }
 
+  async getByCurrentUser(params) {
+    let result = await this.get(`/property/getByCurrentUser`, params, (status, data) => {
+      return data;
+    });
+    return result;
+  }
+
   async getByType(params) {
     let result = await this.get(`/property/GetByType`, params, (status, data) => {
       return data;
