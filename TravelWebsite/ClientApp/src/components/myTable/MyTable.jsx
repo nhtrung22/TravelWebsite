@@ -87,7 +87,7 @@ const MyTable = ({ items }) => {
                     {row.property?.name}
                   </div>
                 </TableCell>
-                <TableCell className="tableCell">{row.user.fullname}</TableCell>
+                <TableCell className="tableCell">{row.user?.fullname}</TableCell>
                 <TableCell className="tableCell">
                   {new Date(row.fromTime).toISOString().slice(0, 10) + " - " + new Date(row.toTime).toISOString().slice(0, 10)}
                 </TableCell>
