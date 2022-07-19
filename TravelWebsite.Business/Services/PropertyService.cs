@@ -77,7 +77,7 @@ namespace TravelWebsite.Business.Services.PlaceService
             predicate = predicate.And(item => item.Bookings.All(booking => booking.FromTime > request.ToTime || booking.ToTime < request.FromTime));
             if (!string.IsNullOrWhiteSpace(request.City))
             {
-                predicate = predicate.And(item => item.City.Name == request.City.Trim());
+                predicate = predicate.And(item => item.City.Name.ToUpper().Contains(request.City.ToUpper()));
             }
             if (request.NumberOfAdults > 0)
             {
