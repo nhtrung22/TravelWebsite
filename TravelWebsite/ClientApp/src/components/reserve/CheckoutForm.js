@@ -3,6 +3,7 @@ import { CardElement, useStripe, useElements, PaymentElement, Elements, CardNumb
 import SnackbarUtils from "../../SnackbarUtils";
 import BookingApiService from "../../adapters/xhr/BookingApiService";
 import { loadStripe } from "@stripe/stripe-js";
+import { PaymentMethod } from "../../Constant";
 
 export default function CheckoutForm({ clientSecret }) {
   const [succeeded, setSucceeded] = useState(false);
@@ -17,6 +18,7 @@ export default function CheckoutForm({ clientSecret }) {
       fromTime: new Date(),
       toTime: new Date(),
       propertyId: id,
+      paymentMethod: PaymentMethod.Card,
     };
     let result = await BookingApiService.add(payload);
     return result;
