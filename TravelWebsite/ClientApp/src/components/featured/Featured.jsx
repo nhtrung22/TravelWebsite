@@ -1,16 +1,36 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./featured.css";
 
 const Featured = (props) => {
+  const [date, setDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ]);
+  const [options, setOptions] = useState({
+    adult: 1,
+    children: 0,
+    room: 1,
+  });
+  const navigate = useNavigate();
+  const handleClick = (item) => {
+    navigate("/hotels", {
+      state: { destination: item.city.name, date, options },
+    });
+  };
   return (
     <div className="featured">
       {props.items.map((item, index) => {
         return (
-          <div className="featuredItem" key={index}>
-            <img
-              src={item.city.link}
-              alt=""
-              className="featuredImg"
-            />
+          <div
+            className="featuredItem"
+            key={index}
+            onClick={(e) => handleClick(item)}
+          >
+            <img src={item.city.link} alt="" className="featuredImg" />
             <div className="featuredTitles">
               <h1>{item.city.name}</h1>
               <h2>{item.number} properties</h2>

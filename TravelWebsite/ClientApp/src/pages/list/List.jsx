@@ -11,7 +11,7 @@ import { SearchContext } from "../../contexts/SearchContext";
 
 const List = () => {
   const location = useLocation();
-  const [destination, setDestination] = useState("");
+  const [destination, setDestination] = useState(location.state.destination);
   const [date, setDate] = useState(location.state.date);
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
@@ -52,12 +52,25 @@ const List = () => {
             <h1 className="lsTitle">Search</h1>
             <div className="lsItem">
               <label>Destination</label>
-              <input onChange={(e) => setDestination(e.target.value)} placeholder={destination} type="text" />
+              <input
+                onChange={(e) => setDestination(e.target.value)}
+                placeholder={destination}
+                type="text"
+              />
             </div>
             <div className="lsItem">
               <label>Check-in Date</label>
-              <span onClick={() => setOpenDate(!openDate)}>{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
-              {openDate && <DateRange onChange={(item) => setDate([item.selection])} minDate={new Date()} ranges={date} />}
+              <span onClick={() => setOpenDate(!openDate)}>{`${format(
+                date[0].startDate,
+                "MM/dd/yyyy"
+              )} to ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
+              {openDate && (
+                <DateRange
+                  onChange={(item) => setDate([item.selection])}
+                  minDate={new Date()}
+                  ranges={date}
+                />
+              )}
             </div>
             <div className="lsItem">
               <label>Options</label>
@@ -66,25 +79,51 @@ const List = () => {
                   <span className="lsOptionText">
                     Min price <small>per night</small>
                   </span>
-                  <input onChange={(value) => setMinPrice(value)} type="number" className="lsOptionInput" />
+                  <input
+                    onChange={(value) => setMinPrice(value)}
+                    type="number"
+                    className="lsOptionInput"
+                  />
                 </div>
                 <div className="lsOptionItem">
                   <span className="lsOptionText">
                     Max price <small>per night</small>
                   </span>
-                  <input onChange={(e) => setMaxPrice(e.target.value)} type="number" className="lsOptionInput" />
+                  <input
+                    onChange={(e) => setMaxPrice(e.target.value)}
+                    type="number"
+                    className="lsOptionInput"
+                  />
                 </div>
                 <div className="lsOptionItem">
                   <span className="lsOptionText">Adult</span>
-                  <input onChange={(e) => setMaxPrice(e.target.value)} type="number" min={1} className="lsOptionInput" placeholder={options.adult} />
+                  <input
+                    onChange={(e) => setMaxPrice(e.target.value)}
+                    type="number"
+                    min={1}
+                    className="lsOptionInput"
+                    placeholder={options.adult}
+                  />
                 </div>
                 <div className="lsOptionItem">
                   <span className="lsOptionText">Children</span>
-                  <input onChange={(value) => setChildren(value)} type="number" min={0} className="lsOptionInput" placeholder={options.children} />
+                  <input
+                    onChange={(value) => setChildren(value)}
+                    type="number"
+                    min={0}
+                    className="lsOptionInput"
+                    placeholder={options.children}
+                  />
                 </div>
                 <div className="lsOptionItem">
                   <span className="lsOptionText">Room</span>
-                  <input onChange={(value) => setRoom(value)} type="number" min={1} className="lsOptionInput" placeholder={options.room} />
+                  <input
+                    onChange={(value) => setRoom(value)}
+                    type="number"
+                    min={1}
+                    className="lsOptionInput"
+                    placeholder={options.room}
+                  />
                 </div>
               </div>
             </div>
