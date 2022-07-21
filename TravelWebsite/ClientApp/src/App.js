@@ -7,7 +7,6 @@ import { AuthContext } from "./contexts/AuthContext";
 import { hotelInputs, userInputs } from "./formSource";
 import { HomeAdmin } from "./pages/admin/home-admin/HomeAdmin";
 import UserListAdmin from "./pages/admin/user-list-admin/UserListAdmin";
-import HotelListAdmin from "./pages/admin/hotel-list-admin/HotelListAdmin";
 import Home from "./pages/home/Home";
 import Hotel from "./pages/hotel/Hotel";
 import List from "./pages/list/List";
@@ -15,9 +14,7 @@ import List from "./pages/list/List";
 import { Login } from "./pages/login/Login";
 import { Logout } from "./pages/logout/Logout";
 import { Register } from "./pages/register/Register";
-import SingleHotelAdmin from "./pages/admin/single-hotel-admin/SingleHotelAdmin";
 import SingleUserAdmin from "./pages/admin/single-user-admin/SingleUserAdmin";
-import NewHotelAdmin from "./pages/admin/new-hotel-admin/NewHotelAdmin";
 import NewUserAdmin from "./pages/admin/new-user-admin/NewUserAdmin";
 import HotelListOwner from "./pages/owner/hotel-list-owner/HotelListOwner";
 import SingleHotelOwner from "./pages/owner/single-hotel-owner/SingleHotelOwner";
@@ -30,7 +27,9 @@ function App() {
       var link = document.createElement("a");
       link.href = window.location.pathname;
       const returnUrl = `${link.protocol}//${link.host}${link.pathname}${link.search}${link.hash}`;
-      const redirectUrl = `/login?${QueryParameterNames.ReturnUrl}=${encodeURI(returnUrl)}`;
+      const redirectUrl = `/login?${QueryParameterNames.ReturnUrl}=${encodeURI(
+        returnUrl
+      )}`;
       return <Navigate to={redirectUrl} />;
     }
     return children;
@@ -58,19 +57,12 @@ function App() {
               }
             />
             <Route path=":userId" element={<SingleUserAdmin />} />
-            <Route path="new" element={<NewUserAdmin inputs={userInputs} title="Add New User" />} />
-          </Route>
-          <Route path="hotels">
             <Route
-              index
+              path="new"
               element={
-                <ProtectedRoute>
-                  <HotelListAdmin />
-                </ProtectedRoute>
+                <NewUserAdmin inputs={userInputs} title="Add New User" />
               }
             />
-            <Route path=":hotelId" element={<SingleHotelAdmin />} />
-            <Route path="new" element={<NewHotelAdmin inputs={hotelInputs} title="Add New Hotel" />} />
           </Route>
         </Route>
 
@@ -86,7 +78,12 @@ function App() {
               }
             />
             <Route path=":hotelId" element={<SingleHotelOwner />} />
-            <Route path="new" element={<NewHotelOwner inputs={hotelInputs} title="Add New Hotel" />} />
+            <Route
+              path="new"
+              element={
+                <NewHotelOwner inputs={hotelInputs} title="Add New Hotel" />
+              }
+            />
           </Route>
         </Route>
 

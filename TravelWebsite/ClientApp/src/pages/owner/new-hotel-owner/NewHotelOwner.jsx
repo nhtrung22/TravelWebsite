@@ -16,7 +16,12 @@ const NewHotelOwner = ({ inputs, title }) => {
     try {
       await PropertyApiService.add({
         ...data,
-        images: await Promise.all(Array.from(files).map(async (item) => ({ fileName: item.name, file: await toBase64(item) }))),
+        images: await Promise.all(
+          Array.from(files).map(async (item) => ({
+            fileName: item.name,
+            file: await toBase64(item),
+          }))
+        ),
       });
       navigate("/owner/hotels", { replace: true });
     } catch (err) {
@@ -34,9 +39,16 @@ const NewHotelOwner = ({ inputs, title }) => {
         <div className="bottom">
           <div className="left">
             {files && files.length > 0 ? (
-              Array.from(files).map((file, index) => <img key={index} src={URL.createObjectURL(file)} alt="" />)
+              Array.from(files).map((file, index) => (
+                <img key={index} src={URL.createObjectURL(file)} alt="" />
+              ))
             ) : (
-              <img src={"https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"} alt="" />
+              <img
+                src={
+                  "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                }
+                alt=""
+              />
             )}
           </div>
           <div className="right">
@@ -61,13 +73,17 @@ const NewHotelOwner = ({ inputs, title }) => {
                   <label>{input.label}</label>
                   <input
                     name={input.key}
-                    onChange={(e) => setData({ ...data, [input.key]: e.target.value })}
+                    onChange={(e) =>
+                      setData({ ...data, [input.key]: e.target.value })
+                    }
                     type={input.type}
                     placeholder={input.placeholder}
                   />
                 </div>
               ))}
-              <button onClick={add}>Send</button>
+              <div className="formInput">
+                <button onClick={add}>Send</button>
+              </div>
             </form>
           </div>
         </div>

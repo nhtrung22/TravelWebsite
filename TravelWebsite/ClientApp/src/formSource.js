@@ -131,6 +131,13 @@ export const hotelInputs = [
     placeholder: "description",
   },
   {
+    id: "shortDesc",
+    key: "shortDescription",
+    label: "Features",
+    type: "text",
+    placeholder: "Features",
+  },
+  {
     id: "cheapestPrice",
     key: "price",
     label: "Price",

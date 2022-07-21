@@ -44,6 +44,7 @@ namespace TravelWebsite.Business.Services.PlaceService
             {
                 Name = request.Name,
                 Address = request.Address,
+                ShortDescription = request.ShortDescription,
                 Description = request.Description,
                 Distance = request.Distance,
                 Price = request.Price,
