@@ -79,6 +79,10 @@ namespace TravelWebsite.Business.Services.PlaceService
             {
                 predicate = predicate.And(item => item.City.Name.ToUpper().Contains(request.City.ToUpper()));
             }
+            if (!string.IsNullOrWhiteSpace(request.Type))
+            {
+                predicate = predicate.And(item => item.Type.Name.ToUpper().Contains(request.Type.ToUpper()));
+            }
             if (request.NumberOfAdults > 0)
             {
                 predicate = predicate.And(item => item.NumberOfAdults >= request.NumberOfAdults);

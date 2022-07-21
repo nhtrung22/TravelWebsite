@@ -12,6 +12,7 @@ import { SearchContext } from "../../contexts/SearchContext";
 const List = () => {
   const location = useLocation();
   const [destination, setDestination] = useState(location.state.destination);
+  const [type, setType] = useState(location.state.type);
   const [date, setDate] = useState(location.state.date);
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState(location.state.options);
@@ -26,6 +27,7 @@ const List = () => {
   const fetchProperties = async () => {
     let params = {
       city: destination,
+      type: type,
       numberOfAdults: adult,
       numberOfKids: children,
       numberOfRooms: room,
@@ -55,6 +57,14 @@ const List = () => {
               <input
                 onChange={(e) => setDestination(e.target.value)}
                 placeholder={destination}
+                type="text"
+              />
+            </div>
+            <div className="lsItem">
+              <label>Type</label>
+              <input
+                onChange={(e) => setType(e.target.value)}
+                placeholder={type}
                 type="text"
               />
             </div>

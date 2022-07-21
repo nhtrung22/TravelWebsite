@@ -3,6 +3,7 @@
     public class GetPropertiesQuery
     {
         public string? City { get; set; } = "";
+        public string? Type { get; set; } = "";
         public int NumberOfAdults { get; set; } = 0;
         public int NumberOfKids { get; set; } = 0;
         public int NumberOfRooms { get; set; } = 0;

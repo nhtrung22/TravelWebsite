@@ -1,15 +1,35 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./propertyList.css";
 
 const PropertyList = (props) => {
+  const [date, setDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ]);
+  const [options, setOptions] = useState({
+    adult: 1,
+    children: 0,
+    room: 1,
+  });
+  const navigate = useNavigate();
+  const handleClick = (item) => {
+    navigate("/hotels", {
+      state: { type: item.type.name, date, options },
+    });
+  };
   return (
     <div className="pList">
       {props.items.map((item, index) => (
-        <div className="pListItem" key={index}>
-          <img
-            src={item.type.link}
-            alt=""
-            className="pListImg"
-          />
+        <div
+          className="pListItem"
+          key={index}
+          onClick={(e) => handleClick(item)}
+        >
+          <img src={item.type.link} alt="" className="pListImg" />
           <div className="pListTitles">
             <h1>{item.type.name}</h1>
             <h2>{item.number} properties</h2>
