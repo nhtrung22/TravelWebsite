@@ -113,7 +113,7 @@ export const hotelInputs = [
   {
     id: "distance",
     key: "distance",
-    label: "Distance from City Center",
+    label: "Distance",
     type: "text",
     placeholder: "500",
   },
