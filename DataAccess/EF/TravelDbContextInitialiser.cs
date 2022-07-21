@@ -272,222 +272,222 @@ namespace TravelWebsite.DataAccess.EF
                 //1
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707778.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707778.jpg")),
                     FileName = "261707778.jpg",
                     PropertyId = 1,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707367.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707367.jpg")),
                     FileName = "261707367.jpg",
                     PropertyId = 1,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707389.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707389.jpg")),
                     FileName = "261707389.jpg",
                     PropertyId = 1,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707776.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707776.jpg")),
                     FileName = "261707776.jpg",
                     PropertyId = 1,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261708693.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261708693.jpg")),
                     FileName = "261708693.jpg",
                     PropertyId = 1,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261708745.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261708745.jpg")),
                     FileName = "261708745.jpg",
                     PropertyId = 1,
                 });
                 //2
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707367.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707367.jpg")),
                     FileName = "261707367.jpg",
                     PropertyId = 2,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707778.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707778.jpg")),
                     FileName = "261707778.jpg",
                     PropertyId = 2,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707389.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707389.jpg")),
                     FileName = "261707389.jpg",
                     PropertyId = 2,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707776.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707776.jpg")),
                     FileName = "261707776.jpg",
                     PropertyId = 2,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261708693.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261708693.jpg")),
                     FileName = "261708693.jpg",
                     PropertyId = 2,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261708745.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261708745.jpg")),
                     FileName = "261708745.jpg",
                     PropertyId = 2,
                 });
                 //3
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707389.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707389.jpg")),
                     FileName = "261707389.jpg",
                     PropertyId = 3,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707778.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707778.jpg")),
                     FileName = "261707778.jpg",
                     PropertyId = 3,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707367.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707367.jpg")),
                     FileName = "261707367.jpg",
                     PropertyId = 3,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707776.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707776.jpg")),
                     FileName = "261707776.jpg",
                     PropertyId = 3,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261708693.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261708693.jpg")),
                     FileName = "261708693.jpg",
                     PropertyId = 3,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261708745.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261708745.jpg")),
                     FileName = "261708745.jpg",
                     PropertyId = 3,
                 });
                 //4
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707776.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707776.jpg")),
                     FileName = "261707776.jpg",
                     PropertyId = 4,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707778.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707778.jpg")),
                     FileName = "261707778.jpg",
                     PropertyId = 4,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707367.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707367.jpg")),
                     FileName = "261707367.jpg",
                     PropertyId = 4,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707389.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707389.jpg")),
                     FileName = "261707389.jpg",
                     PropertyId = 4,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261708693.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261708693.jpg")),
                     FileName = "261708693.jpg",
                     PropertyId = 4,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261708745.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261708745.jpg")),
                     FileName = "261708745.jpg",
                     PropertyId = 4,
                 });
                 //5
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261708693.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261708693.jpg")),
                     FileName = "261708693.jpg",
                     PropertyId = 5,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707778.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707778.jpg")),
                     FileName = "261707778.jpg",
                     PropertyId = 5,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707367.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707367.jpg")),
                     FileName = "261707367.jpg",
                     PropertyId = 5,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707389.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707389.jpg")),
                     FileName = "261707389.jpg",
                     PropertyId = 5,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707776.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707776.jpg")),
                     FileName = "261707776.jpg",
                     PropertyId = 5,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261708745.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261708745.jpg")),
                     FileName = "261708745.jpg",
                     PropertyId = 5,
                 });
                 //6
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261708745.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261708745.jpg")),
                     FileName = "261708745.jpg",
                     PropertyId = 6,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707778.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707778.jpg")),
                     FileName = "261707778.jpg",
                     PropertyId = 6,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707367.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707367.jpg")),
                     FileName = "261707367.jpg",
                     PropertyId = 6,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707389.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707389.jpg")),
                     FileName = "261707389.jpg",
                     PropertyId = 6,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261707776.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261707776.jpg")),
                     FileName = "261707776.jpg",
                     PropertyId = 6,
                 });
                 _travelDbContext.PropertyImages.Add(new PropertyImage
                 {
-                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image\", "261708693.jpg")),
+                    File = File.ReadAllBytes(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"Image", "261708693.jpg")),
                     FileName = "261708693.jpg",
                     PropertyId = 6,
                 });
