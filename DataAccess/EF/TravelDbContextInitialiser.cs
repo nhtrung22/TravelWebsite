@@ -499,7 +499,7 @@ namespace TravelWebsite.DataAccess.EF
                 _travelDbContext.Bookings.Add(new Booking
                 {
                     Id = 1,
-                    FromTime = DateTime.Now.AddDays(-10),
+                    FromTime = DateTime.Now.AddDays(1),
                     ToTime = DateTime.Now.AddDays(10),
                     Status = 0,
                     PaymentStatus = PaymentStatus.Paid,
