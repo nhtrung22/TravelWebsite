@@ -39,23 +39,28 @@ const Hotel = () => {
       setPhotos(imgs);
     }
   };
+
+  const createPaymentIntent = (id, number) => {
+    window
+      .fetch("/api/payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: id, number: number == 0 ? 1 : number }),
+      })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setClientSecret(data.clientSecret);
+      });
+  };
+
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
     if (clientSecret == "") {
-      window
-        .fetch("/api/payment", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ id: id }),
-        })
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          setClientSecret(data.clientSecret);
-        });
+      createPaymentIntent(id, 1);
     }
   }, []);
   const appearance = {
@@ -184,8 +189,14 @@ const Hotel = () => {
         <Footer />
       </div>
       {openModal && clientSecret && (
-        <Elements options={options} stripe={stripePromise}>
-          <Reserve setOpen={setOpenModal} hotelId={id} clientSecret={clientSecret} hotel={hotel} />
+        <Elements
+          options={{
+            clientSecret,
+            appearance,
+          }}
+          stripe={stripePromise}
+        >
+          <Reserve createPaymentIntent={createPaymentIntent} setOpen={setOpenModal} hotelId={id} clientSecret={clientSecret} hotel={hotel} />
         </Elements>
       )}
     </div>

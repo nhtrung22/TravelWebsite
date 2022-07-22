@@ -25,13 +25,13 @@ namespace TravelWebsite.Business.Services
             _clientFactory = clientFactory;
         }
 
-        public async Task<PaymentIntent> Create(int id)
+        public async Task<PaymentIntent> Create(int id, int number)
         {
             var paymentIntents = new PaymentIntentService();
             var item = await _context.Properties.FindAsync(id);
             var paymentIntent = paymentIntents.Create(new PaymentIntentCreateOptions
             {
-                Amount = Convert.ToInt64(item.Price),
+                Amount = Convert.ToInt64(item.Price) * number,
                 Currency = "usd",
                 AutomaticPaymentMethods = new PaymentIntentAutomaticPaymentMethodsOptions
                 {

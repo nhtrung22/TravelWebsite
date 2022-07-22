@@ -18,12 +18,13 @@ public class PaymentController : BaseController
     [AllowAnonymous]
     public async Task<IActionResult> Create(PaymentIntentCreateRequest paymentIntentCreateRequest)
     {
-        var result = await _paymentService.Create(paymentIntentCreateRequest.Id);
+        var result = await _paymentService.Create(paymentIntentCreateRequest.Id, paymentIntentCreateRequest.Number);
         return Ok(new { clientSecret = result.ClientSecret });
     }
 
     public class PaymentIntentCreateRequest
     {
         public int Id { get; set; }
+        public int Number { get; set; }
     }
 }
