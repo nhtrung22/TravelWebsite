@@ -88,9 +88,7 @@ const MyTable = ({ items }) => {
                   </div>
                 </TableCell>
                 <TableCell className="tableCell">{row.user?.fullname}</TableCell>
-                <TableCell className="tableCell">
-                  {new Date(row.fromTime).toISOString().slice(0, 10) + " - " + new Date(row.toTime).toISOString().slice(0, 10)}
-                </TableCell>
+                <TableCell className="tableCell">{new Date(row.fromTime).toDateString() + " - " + new Date(row.toTime).toDateString()}</TableCell>
                 <TableCell className="tableCell">{row.property?.price}</TableCell>
                 <TableCell className="tableCell">{string_of_enum(PaymentMethod, row.paymentMethod)}</TableCell>
                 <TableCell className="tableCell">

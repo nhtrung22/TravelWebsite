@@ -4,8 +4,9 @@ import SnackbarUtils from "../../SnackbarUtils";
 import BookingApiService from "../../adapters/xhr/BookingApiService";
 import { loadStripe } from "@stripe/stripe-js";
 import { PaymentMethod } from "../../Constant";
+import { formatDate } from "../../Utils";
 
-export default function CheckoutForm({ clientSecret }) {
+export default function CheckoutForm({ fromTime, toTime, clientSecret }) {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState("");
@@ -15,8 +16,8 @@ export default function CheckoutForm({ clientSecret }) {
   const id = location.pathname.split("/")[2];
   const createBooking = async () => {
     let payload = {
-      fromTime: new Date(),
-      toTime: new Date(),
+      fromTime: formatDate(fromTime),
+      toTime: formatDate(toTime),
       propertyId: id,
       paymentMethod: PaymentMethod.Card,
     };

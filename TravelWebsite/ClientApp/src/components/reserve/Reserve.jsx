@@ -6,10 +6,14 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { SearchContext } from "../../contexts/SearchContext";
 import CheckoutForm from "./CheckoutForm";
+import { format } from "date-fns";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import BookingApiService from "../../adapters/xhr/BookingApiService";
 import SnackbarUtils from "../../SnackbarUtils";
+import { DateRange } from "react-date-range";
+import { ClickAwayListener } from "@mui/material";
+import { formatDate } from "../../Utils";
 
 const Reserve = ({ setOpen, hotelId, clientSecret, hotel }) => {
   const [paymentMethod, setPaymentMethod] = useState(1);
@@ -22,10 +26,18 @@ const Reserve = ({ setOpen, hotelId, clientSecret, hotel }) => {
   const elements = useElements();
   const id = location.pathname.split("/")[2];
   const { loading, dispatch, dates } = useContext(SearchContext);
+  const [openDate, setOpenDate] = useState(false);
+  const [date, setDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ]);
   const createBooking = async () => {
     let payload = {
-      fromTime: new Date(),
-      toTime: new Date(),
+      fromTime: formatDate(date[0].startDate),
+      toTime: formatDate(date[0].endDate),
       propertyId: id,
       paymentMethod: paymentMethod,
     };
@@ -95,16 +107,31 @@ const Reserve = ({ setOpen, hotelId, clientSecret, hotel }) => {
     <div className="reserve">
       <div className="rContainer">
         <FontAwesomeIcon icon={faCircleXmark} className="rClose" onClick={() => setOpen(false)} />
-        <div className="product-info">
-          <h3 className="product-title">{hotel.name}</h3>
-          <br />
-          <h4 className="product-price">${hotel.price} / night</h4>
-          <br />
-          <h4 className="product-date">{new Date().toISOString().slice(0, 10)}</h4>
-          <br />
-        </div>
+        <ClickAwayListener onClickAway={() => setOpenDate(false)}>
+          <div className="product-info">
+            <h3 className="product-title">{hotel.name}</h3>
+            <br />
+            <h4 className="product-price">${hotel.price} / night</h4>
+            <br />
+            <h4 className="product-date" onClick={() => setOpenDate(!openDate)}>{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
+              date[0].endDate,
+              "MM/dd/yyyy"
+            )}`}</h4>
+            {openDate && (
+              <DateRange
+                editableDateInputs={true}
+                onChange={(item) => setDate([item.selection])}
+                moveRangeOnFirstSelection={false}
+                ranges={date}
+                className="date"
+                minDate={new Date()}
+              />
+            )}
+            <br />
+          </div>
+        </ClickAwayListener>
         <input type="checkbox" id="card" name="card" value={1} checked={paymentMethod == 1} onChange={(e) => setPaymentMethod(e.target.value)} />
-        <label for="card"> Card</label>
+        <label htmlFor="card"> Card</label>
         <br />
         <input
           type="checkbox"
@@ -114,11 +141,11 @@ const Reserve = ({ setOpen, hotelId, clientSecret, hotel }) => {
           checked={paymentMethod == 2}
           onChange={(e) => setPaymentMethod(e.target.value)}
         />
-        <label for="payuponcheckin"> Pay upon check-in</label>
+        <label htmlFor="payuponcheckin"> Pay upon check-in</label>
         <br />
         <br />
         {paymentMethod == 1 ? (
-          <CheckoutForm clientSecret={clientSecret} />
+          <CheckoutForm fromTime={date[0].startDate} toTime={date[0].endDate} clientSecret={clientSecret} />
         ) : (
           <button onClick={handleSubmit} className="rButton">
             Reserve Now!
