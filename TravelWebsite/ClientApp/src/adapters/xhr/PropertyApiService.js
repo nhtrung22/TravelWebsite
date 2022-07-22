@@ -12,6 +12,13 @@ class PropertyApiService extends Service {
     return result;
   }
 
+  async update(id, payload) {
+    let result = await this.put(`/property/${id}`, payload, (status, data) => {
+      return data;
+    });
+    return result;
+  }
+
   async deleteById(id) {
     let result = await this.delete(`/property/${id}`, (status, data) => {
       return data;
@@ -34,23 +41,35 @@ class PropertyApiService extends Service {
   }
 
   async getByCity(params) {
-    let result = await this.get(`/property/GetByCity`, params, (status, data) => {
-      return data;
-    });
+    let result = await this.get(
+      `/property/GetByCity`,
+      params,
+      (status, data) => {
+        return data;
+      }
+    );
     return result;
   }
 
   async getByCurrentUser(params) {
-    let result = await this.get(`/property/getByCurrentUser`, params, (status, data) => {
-      return data;
-    });
+    let result = await this.get(
+      `/property/getByCurrentUser`,
+      params,
+      (status, data) => {
+        return data;
+      }
+    );
     return result;
   }
 
   async getByType(params) {
-    let result = await this.get(`/property/GetByType`, params, (status, data) => {
-      return data;
-    });
+    let result = await this.get(
+      `/property/GetByType`,
+      params,
+      (status, data) => {
+        return data;
+      }
+    );
     return result;
   }
 }

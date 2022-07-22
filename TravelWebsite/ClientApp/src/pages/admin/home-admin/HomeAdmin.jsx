@@ -25,7 +25,7 @@ export const HomeAdmin = () => {
         <div className="widgets">
           <Widget type="user" amount={statistics.numberOfUsers} />
           <Widget type="order" amount={statistics.numberOfOrders} />
-          <Widget type="earning" />
+          <Widget type="earning" amount={statistics.earnings} />
           <Widget type="balance" />
         </div>
         {/* <div className="charts">

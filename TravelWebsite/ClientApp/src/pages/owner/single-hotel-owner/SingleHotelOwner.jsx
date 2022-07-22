@@ -8,11 +8,13 @@ import { useEffect, useState } from "react";
 import PropertyApiService from "../../../adapters/xhr/PropertyApiService";
 import BookingApiService from "../../../adapters/xhr/BookingApiService";
 import { base64ToSrc } from "../../../Utils";
+import { Link, useNavigate } from "react-router-dom";
 // import Chart from "../../../components/chart/Chart";
 
 const SingleHotelOwner = () => {
   const [hotel, setHotel] = useState({});
   const id = location.pathname.split("/")[3];
+  const navigate = useNavigate();
   const fetchHotel = async () => {
     let result = await PropertyApiService.getById(id);
     setHotel(result);
@@ -20,6 +22,11 @@ const SingleHotelOwner = () => {
   useEffect(() => {
     fetchHotel();
   }, []);
+  const onEdit = () => {
+    navigate("/owner/hotels/edit", {
+      state: { hotel },
+    });
+  };
   return (
     <div className="single-hotel">
       <Sidebar />
@@ -27,10 +34,23 @@ const SingleHotelOwner = () => {
         <NavbarAdmin />
         <div className="top">
           <div className="left">
-            <div className="editButton">Edit</div>
+            <div className="editButton" onClick={onEdit}>
+              Edit
+              {/* <Link to={`/owner/hotels/edit`} className="link">
+                Edit
+              </Link> */}
+            </div>
             <h1 className="title">Information</h1>
             <div className="item">
-              <img src={hotel.images && hotel.images.length > 0 ? base64ToSrc(hotel.images[0].file) : ""} alt="" className="itemImg" />
+              <img
+                src={
+                  hotel.images && hotel.images.length > 0
+                    ? base64ToSrc(hotel.images[0].file)
+                    : ""
+                }
+                alt=""
+                className="itemImg"
+              />
               <div className="details">
                 <h1 className="itemTitle">{hotel.fullname}</h1>
                 <div className="detailItem">

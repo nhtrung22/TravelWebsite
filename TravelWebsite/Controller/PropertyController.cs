@@ -3,7 +3,6 @@ using TravelWebsite.Business.Common.Attributes;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.Models;
 using TravelWebsite.Business.Models.Commands;
-using TravelWebsite.Business.Models.Commands.CreatePlace;
 using TravelWebsite.Business.Models.DTO;
 using TravelWebsite.Business.Models.Queries;
 

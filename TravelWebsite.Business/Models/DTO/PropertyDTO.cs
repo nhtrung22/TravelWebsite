@@ -7,6 +7,7 @@
         public string Address { get; set; } = default!;
         public string ShortDescription { get; set; } = default!;
         public string Description { get; set; } = default!;
+        public string Distance { get; set; } = "";
         public decimal Price { get; set; } = default!;
         public int NumberOfRooms { get; set; }
         public int NumberOfAdults { get; set; }

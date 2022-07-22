@@ -7,7 +7,6 @@ using TravelWebsite.Business.Common.Extensions;
 using TravelWebsite.Business.Common.Interfaces;
 using TravelWebsite.Business.Models;
 using TravelWebsite.Business.Models.Commands;
-using TravelWebsite.Business.Models.Commands.CreatePlace;
 using TravelWebsite.Business.Models.DTO;
 using TravelWebsite.Business.Models.Exceptions;
 using TravelWebsite.Business.Models.Queries;
@@ -120,9 +119,25 @@ namespace TravelWebsite.Business.Services.PlaceService
         {
             var entity = await _context.Properties.FindAsync(id);
             if (entity == null) throw new NotFoundException(nameof(entity), id);
-            _mapper.Map(request, entity);
-            _context.Properties.Update(entity);
+            entity.Address = request.Address;
+            entity.Description = request.Description;
+            entity.ShortDescription = request.ShortDescription;
+            using TransactionScope tx = new(TransactionScopeAsyncFlowOption.Enabled);
+            var result = _context.Properties.Update(entity);
             await _context.SaveChangesAsync();
+            _context.PropertyImages.RemoveRange(_context.PropertyImages.Where(item => item.PropertyId == result.Entity.Id));
+            foreach (var image in request.Images)
+            {
+                TravelWebsite.DataAccess.Entities.PropertyImage propertyImage = new()
+                {
+                    File = image.File,
+                    FileName = image.FileName,
+                    PropertyId = result.Entity.Id
+                };
+                await _context.PropertyImages.AddAsync(propertyImage);
+            }
+            await _context.SaveChangesAsync();
+            tx.Complete();
         }
 
         public async Task<PropertyDTO> Get(int id)

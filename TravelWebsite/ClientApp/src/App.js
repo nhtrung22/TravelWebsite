@@ -20,6 +20,7 @@ import HotelListOwner from "./pages/owner/hotel-list-owner/HotelListOwner";
 import SingleHotelOwner from "./pages/owner/single-hotel-owner/SingleHotelOwner";
 import NewHotelOwner from "./pages/owner/new-hotel-owner/NewHotelOwner";
 import HomeUser from "./pages/user/home-user/HomeUser";
+import EditHotelOwner from "./pages/owner/edit-hotel-owner/EditHotelOwner";
 function App() {
   const ProtectedRoute = ({ children }) => {
     const { user } = useContext(AuthContext);
@@ -82,6 +83,12 @@ function App() {
               path="new"
               element={
                 <NewHotelOwner inputs={hotelInputs} title="Add New Hotel" />
+              }
+            />
+            <Route
+              path="edit"
+              element={
+                <EditHotelOwner inputs={hotelInputs} title="Edit Hotel" />
               }
             />
           </Route>

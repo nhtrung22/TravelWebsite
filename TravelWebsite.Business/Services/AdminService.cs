@@ -26,6 +26,7 @@ namespace TravelWebsite.Business.Services
             result.NumberOfUsers = await _context.Users.CountAsync();
             result.NumberOfOrders = await _context.Bookings.CountAsync();
             result.LatestTransactions = _mapper.Map<IEnumerable<BookingDTO>>(await _context.Bookings.Include(item => item.Property).Include(item => item.User).ToListAsync());
+            result.Earnings = await _context.Bookings.Include(item => item.Property).SumAsync(item => item.Property.Price);
             return result;
         }
     }

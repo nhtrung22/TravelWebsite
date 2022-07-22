@@ -1,4 +1,4 @@
-﻿namespace TravelWebsite.Business.Models.Commands.CreatePlace
+﻿namespace TravelWebsite.Business.Models.Commands
 {
     public class PropertyImage
     {
