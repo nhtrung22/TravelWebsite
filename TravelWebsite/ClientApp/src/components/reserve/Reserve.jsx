@@ -114,7 +114,6 @@ const Reserve = ({ setOpen, hotelId, clientSecret, hotel, createPaymentIntent })
     return Math.round((second.getTime() - first.getTime()) / (1000 * 60 * 60 * 24));
   }
   useEffect(() => {
-    console.log("createPaymentIntent");
     createPaymentIntent(id, datediff(new Date(date[0].startDate), new Date(date[0].endDate)));
   }, [date[0].startDate, date[0].endDate]);
   return (

@@ -67,7 +67,7 @@ export default function CheckoutForm({ fromTime, toTime, clientSecret }) {
       return;
     }
     setProcessing(true);
-    const payload = await stripe.confirmCardPayment(clientSecret);
+    const payload = await stripe.confirmCardPayment(clientSecret, { receipt_email: email });
     if (payload.error) {
       setError(`Payment failed ${payload.error.message}`);
       setProcessing(false);
