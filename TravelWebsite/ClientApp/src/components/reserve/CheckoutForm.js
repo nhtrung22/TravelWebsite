@@ -5,12 +5,14 @@ import BookingApiService from "../../adapters/xhr/BookingApiService";
 import { loadStripe } from "@stripe/stripe-js";
 import { PaymentMethod } from "../../Constant";
 import { formatDate } from "../../Utils";
+import { TextField } from "@mui/material";
 
 export default function CheckoutForm({ fromTime, toTime, clientSecret }) {
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState("");
   const [disabled, setDisabled] = useState(true);
+  const [email, setEmail] = useState("");
   const stripe = useStripe();
   const elements = useElements();
   const id = location.pathname.split("/")[2];
@@ -36,20 +38,24 @@ export default function CheckoutForm({ fromTime, toTime, clientSecret }) {
     }
 
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-      // switch (paymentIntent.status) {
-      //   case "succeeded":
-      //     setMessage("Payment succeeded!");
-      //     break;
-      //   case "processing":
-      //     setMessage("Your payment is processing.");
-      //     break;
-      //   case "requires_payment_method":
-      //     setMessage("Your payment was not successful, please try again.");
-      //     break;
-      //   default:
-      //     setMessage("Something went wrong.");
-      //     break;
-      // }
+      switch (paymentIntent.status) {
+        case "succeeded":
+          console.log("Payment succeeded!");
+          // setMessage("Payment succeeded!");
+          break;
+        case "processing":
+          console.log("Your payment is processing.");
+          // setMessage("Your payment is processing.");
+          break;
+        case "requires_payment_method":
+          console.log("Your payment was not successful, please try again.");
+          // setMessage("Your payment was not successful, please try again.");
+          break;
+        default:
+          console.log("Something went wrong.");
+          // setMessage("Something went wrong.");
+          break;
+      }
     });
   }, [stripe]);
 
@@ -66,6 +72,7 @@ export default function CheckoutForm({ fromTime, toTime, clientSecret }) {
       confirmParams: {
         // Make sure to change this to your payment completion page
         return_url: "http://localhost:44333",
+        receipt_email: email,
       },
       redirect: "if_required",
     });
@@ -86,6 +93,8 @@ export default function CheckoutForm({ fromTime, toTime, clientSecret }) {
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />
+      <br />
+      <TextField placeholder="Email for receipt" onChange={(e) => setEmail(e.target.value)} type="text" value={email} size="small" />
       <button className="rButton" id="submit">
         <span id="button-text">{"Pay now"}</span>
       </button>
