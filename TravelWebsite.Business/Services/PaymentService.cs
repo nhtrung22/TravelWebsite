@@ -27,16 +27,30 @@ namespace TravelWebsite.Business.Services
 
         public async Task<PaymentIntent> Create(int id, int number)
         {
+            var paymentMethodService = new PaymentMethodService();
+            var paymentMethod = paymentMethodService.Create(new PaymentMethodCreateOptions
+            {
+                Type = "card",
+                Card = new PaymentMethodCardOptions
+                {
+                    Number = "4242424242424242",
+                    ExpMonth = 12,
+                    ExpYear = 2034,
+                    Cvc = "567",
+                },
+            });
             var paymentIntents = new PaymentIntentService();
             var item = await _context.Properties.FindAsync(id);
             var paymentIntent = paymentIntents.Create(new PaymentIntentCreateOptions
             {
                 Amount = Convert.ToInt64(item.Price) * number,
                 Currency = "usd",
-                AutomaticPaymentMethods = new PaymentIntentAutomaticPaymentMethodsOptions
-                {
-                    Enabled = true,
-                },
+                PaymentMethod = paymentMethod.Id,
+                //AutomaticPaymentMethods = new PaymentIntentAutomaticPaymentMethodsOptions
+                //{
+                //    Enabled = true,
+                //},
+                PaymentMethodTypes = new List<string> { "card", },
             });
 
             return paymentIntent;

@@ -67,15 +67,7 @@ export default function CheckoutForm({ fromTime, toTime, clientSecret }) {
       return;
     }
     setProcessing(true);
-    const payload = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: "http://localhost:44333",
-        receipt_email: email,
-      },
-      redirect: "if_required",
-    });
+    const payload = await stripe.confirmCardPayment(clientSecret);
     if (payload.error) {
       setError(`Payment failed ${payload.error.message}`);
       setProcessing(false);
