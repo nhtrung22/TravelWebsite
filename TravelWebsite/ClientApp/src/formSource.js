@@ -91,17 +91,17 @@ export const hotelInputs = [
   },
   {
     id: "type",
-    key: "typeId",
+    key: "type",
     label: "Type",
-    type: "number",
-    placeholder: "hotel",
+    type: "text",
+    placeholder: "Hotel",
   },
   {
     id: "city",
-    key: "cityId",
+    key: "city",
     label: "City",
-    type: "number",
-    placeholder: "New York",
+    type: "text",
+    placeholder: "TP HCM",
   },
   {
     id: "address",

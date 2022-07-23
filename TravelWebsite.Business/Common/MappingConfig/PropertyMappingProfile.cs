@@ -8,7 +8,9 @@ namespace Business.Common.MappingConfig
     {
         public PropertyMappingProfile()
         {
-            CreateMap<Property, PropertyDTO>();
+            CreateMap<Property, PropertyDTO>()
+                .ForMember(des => des.City, act => act.MapFrom(src => src.City.Name))
+                .ForMember(des => des.Type, act => act.MapFrom(src => src.Type.Name));
             CreateMap<PropertyDTO, Property>();
         }
     }

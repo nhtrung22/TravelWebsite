@@ -12,8 +12,8 @@
         public int NumberOfRooms { get; set; }
         public int NumberOfAdults { get; set; }
         public int NumberOfKids { get; set; }
-        public PropertyTypeDTO Type { get; set; } = default!;
-        public CityDTO City { get; set; } = default!;
+        public string Type { get; set; } = default!;
+        public string City { get; set; } = default!;
         public IEnumerable<BookingDTO> Bookings { get; set; } = default!;
         public IEnumerable<PropertyImageDTO> Images { get; set; } = default!;
     }

@@ -58,7 +58,7 @@ export const hotelColumns = [
     field: "type",
     headerName: "Type",
     width: 100,
-    valueGetter: (params) => params.row.type.name,
+    valueGetter: (params) => params.row.type,
   },
   // {
   //   field: "title",
@@ -69,6 +69,6 @@ export const hotelColumns = [
     field: "city",
     headerName: "City",
     width: 100,
-    valueGetter: (params) => params.row.city.name,
+    valueGetter: (params) => params.row.city,
   },
 ];

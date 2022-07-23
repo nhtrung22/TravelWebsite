@@ -32,10 +32,10 @@ namespace TravelWebsite.Business.Services.PlaceService
         public async Task<int> Create(CreatePropertyCommand request)
         {
 
-            var city = await _context.Cities.FindAsync(request.CityId);
-            if (city == null) throw new NotFoundException(nameof(city), request.CityId);
-            var type = await _context.PropertyTypes.FindAsync(request.TypeId);
-            if (type == null) throw new NotFoundException(nameof(type), request.TypeId);
+            var city = await _context.Cities.FirstOrDefaultAsync(item => item.Name == request.City);
+            if (city == null) throw new NotFoundException(nameof(city), request.City);
+            var type = await _context.PropertyTypes.FirstOrDefaultAsync(item => item.Name == request.Type);
+            if (type == null) throw new NotFoundException(nameof(type), request.Type);
             var currentUser = await _context.Users.FindAsync(_currentUserService.UserId);
             if (currentUser == null) throw new NotFoundException(nameof(currentUser), _currentUserService.UserId);
             using TransactionScope tx = new(TransactionScopeAsyncFlowOption.Enabled);
@@ -119,7 +119,21 @@ namespace TravelWebsite.Business.Services.PlaceService
         {
             var entity = await _context.Properties.FindAsync(id);
             if (entity == null) throw new NotFoundException(nameof(entity), id);
+            var city = await _context.Cities.FirstOrDefaultAsync(item => item.Name == request.City);
+            if (city == null) throw new NotFoundException(nameof(city), request.City);
+            var type = await _context.PropertyTypes.FirstOrDefaultAsync(item => item.Name == request.Type);
+            if (type == null) throw new NotFoundException(nameof(type), request.Type);
+            var currentUser = await _context.Users.FindAsync(_currentUserService.UserId);
+            if (currentUser == null) throw new NotFoundException(nameof(currentUser), _currentUserService.UserId);
+            entity.Name = request.Name;
+            entity.Type = type;
+            entity.City = city;
             entity.Address = request.Address;
+            entity.Distance = request.Distance;
+            entity.Price = request.Price;
+            entity.NumberOfAdults = request.NumberOfAdults;
+            entity.NumberOfKids = request.NumberOfKids;
+            entity.NumberOfRooms = request.NumberOfRooms;
             entity.Description = request.Description;
             entity.ShortDescription = request.ShortDescription;
             using TransactionScope tx = new(TransactionScopeAsyncFlowOption.Enabled);

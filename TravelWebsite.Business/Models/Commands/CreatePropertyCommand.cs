@@ -11,8 +11,8 @@
         public int NumberOfAdults { get; set; }
         public int NumberOfKids { get; set; }
         public int NumberOfRooms { get; set; }
-        public int TypeId { get; set; } = 1;
-        public int CityId { get; set; } = 1;
+        public string Type { get; set; } = "";
+        public string City { get; set; } = "";
         public IEnumerable<PropertyImage> Images { get; set; } = Enumerable.Empty<PropertyImage>();
     }
 }

@@ -42,7 +42,15 @@ const SingleHotelOwner = () => {
             </div>
             <h1 className="title">Information</h1>
             <div className="item">
-              <img src={hotel.images && hotel.images.length > 0 ? base64ToSrc(hotel.images[0].file) : ""} alt="" className="itemImg" />
+              <img
+                src={
+                  hotel.images && hotel.images.length > 0
+                    ? base64ToSrc(hotel.images[0].file)
+                    : ""
+                }
+                alt=""
+                className="itemImg"
+              />
               <div className="details">
                 <h1 className="itemTitle">{hotel.fullname}</h1>
                 <div className="detailItem">
@@ -51,7 +59,11 @@ const SingleHotelOwner = () => {
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Type:</span>
-                  <span className="itemValue">{hotel.type?.name}</span>
+                  <span className="itemValue">{hotel.type}</span>
+                </div>
+                <div className="detailItem">
+                  <span className="itemKey">City:</span>
+                  <span className="itemValue">{hotel.city}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Description:</span>
