@@ -4,7 +4,12 @@ import Header from "../../components/header/Header";
 import MailList from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCircleArrowLeft,
+  faCircleArrowRight,
+  faCircleXmark,
+  faLocationDot,
+} from "@fortawesome/free-solid-svg-icons";
 import { useContext, useEffect, useState } from "react";
 import PropertyApiService from "../../adapters/xhr/PropertyApiService";
 import Reserve from "../../components/reserve/Reserve";
@@ -16,9 +21,12 @@ import { base64ToSrc } from "../../Utils";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
-const stripePromise = loadStripe("pk_test_51LLMFpKay66RBQQAsEq805VONK0K7IdlBsfzr1TEoirJRtI2eh2HTLfQdpsSXTAFdC5sugqgIbNoLPkR5Tqqzr1F00wRBlRd4h", {
-  locale: "en",
-});
+const stripePromise = loadStripe(
+  "pk_test_51LOcZOGDgHAK4M7n8e9Kdcw5UbgEBslUxPWK9fN9wBlQrJuvoWD0UzQWtNXoxCiAA1LaUbZMOTu7OupJZBE9C1Vu00NGcyDQos",
+  {
+    locale: "en",
+  }
+);
 
 const Hotel = () => {
   const [clientSecret, setClientSecret] = useState("");
@@ -144,12 +152,24 @@ const Hotel = () => {
       <div className="hotelContainer">
         {open && (
           <div className="slider">
-            <FontAwesomeIcon icon={faCircleXmark} className="close" onClick={() => setOpen(false)} />
-            <FontAwesomeIcon icon={faCircleArrowLeft} className="arrow" onClick={() => handleMove("l")} />
+            <FontAwesomeIcon
+              icon={faCircleXmark}
+              className="close"
+              onClick={() => setOpen(false)}
+            />
+            <FontAwesomeIcon
+              icon={faCircleArrowLeft}
+              className="arrow"
+              onClick={() => handleMove("l")}
+            />
             <div className="sliderWrapper">
               <img src={photos[slideNumber].src} alt="" className="sliderImg" />
             </div>
-            <FontAwesomeIcon icon={faCircleArrowRight} className="arrow" onClick={() => handleMove("r")} />
+            <FontAwesomeIcon
+              icon={faCircleArrowRight}
+              className="arrow"
+              onClick={() => handleMove("r")}
+            />
           </div>
         )}
         <div className="hotelWrapper">
@@ -162,11 +182,18 @@ const Hotel = () => {
             <span>{hotel.address}</span>
           </div>
           <span className="hotelDistance">{hotel.distance}</span>
-          <span className="hotelPriceHighlight">Book a stay over $200 at this property and get a free airport taxi</span>
+          <span className="hotelPriceHighlight">
+            Book a stay over $200 at this property and get a free airport taxi
+          </span>
           <div className="hotelImages">
             {photos.map((photo, i) => (
               <div className="hotelImgWrapper" key={i}>
-                <img onClick={() => handleOpen(i)} src={photo.src} alt="" className="hotelImg" />
+                <img
+                  onClick={() => handleOpen(i)}
+                  src={photo.src}
+                  alt=""
+                  className="hotelImg"
+                />
               </div>
             ))}
           </div>
@@ -196,7 +223,13 @@ const Hotel = () => {
           }}
           stripe={stripePromise}
         >
-          <Reserve createPaymentIntent={createPaymentIntent} setOpen={setOpenModal} hotelId={id} clientSecret={clientSecret} hotel={hotel} />
+          <Reserve
+            createPaymentIntent={createPaymentIntent}
+            setOpen={setOpenModal}
+            hotelId={id}
+            clientSecret={clientSecret}
+            hotel={hotel}
+          />
         </Elements>
       )}
     </div>

@@ -21,9 +21,9 @@ var builder = WebApplication.CreateBuilder(args);
 // configure strongly typed settings object
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
 // This is a public sample test API key.
-// Don’t submit any personally identifiable information in requests made with this key.
+// Donï¿½t submit any personally identifiable information in requests made with this key.
 // Sign in to see your own test API key embedded in code samples.
-StripeConfiguration.ApiKey = "sk_test_51LLMFpKay66RBQQA30s2S0x02Q4h9rjwMVBDwteljOAbXpsD2Nfggw2rxjFGVgsb66G4BXtguPo1Ndr1kTj3SiyP00LBWyoay2";
+StripeConfiguration.ApiKey = "sk_test_51LOcZOGDgHAK4M7nKfkaH9aFyJM4QehKZlPpDOZpuWhAW2G6WebcJuqPijZonbUYtk9FDteoNNQTryMbQejUWU0f00uJgdSJqC";
 //var options = new SetupIntentCreateOptions
 //{
 //    PaymentMethodTypes = new List<string>
